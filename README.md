@@ -1,4 +1,4 @@
-# Kelde
+# Kelde, the wrath of Rasgazul
 Chalmers / GU group project (game)
 
 ###Group Members
