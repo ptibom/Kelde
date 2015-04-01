@@ -1,3 +1,7 @@
+/*
+	Main game class with game loop.
+	@author: Philip Tibom
+ */
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.ApplicationAdapter;

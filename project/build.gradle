@@ -53,6 +53,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.0.8"
+        testCompile "junit:junit:4.11"
     }
 }
 
