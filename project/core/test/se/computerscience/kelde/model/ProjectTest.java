@@ -1,6 +1,5 @@
 package se.computerscience.kelde.model;
 
-import se.computerscience.kelde.model.Project;
 import org.junit.Assert;
 import org.junit.Test;
 
