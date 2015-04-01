@@ -1,4 +1,4 @@
-# Kelde, the wrath of Rhas al Ghul
+# Kelde, the wrath of Ra's al Ghul
 Chalmers / GU group project (game)
 
 ###Group Members
