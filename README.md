@@ -12,3 +12,6 @@ Daniel Olsson
 2. Build all.  
 3. Run project/desktop/src/se/computerscience/kelde/desktop/DesktopLauncher.java  
 Don't forget to set the working directory to: project/core/assets/
+
+##GitInspector (updated daily)
+http://htmlpreview.github.io/?https://github.com/ptibom/Kelde/blob/master/Documents/gitinspector.html
