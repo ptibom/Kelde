@@ -1,0 +1,113 @@
+System design document for NNN
+
+
+
+  Version: 
+
+  Date 
+
+  Author 
+
+This version overrides all previous versions.
+
+1 Introduction
+
+1.1 Design goals
+The goal is to create a design which allows to easily extend any area of the game, so it's primary that
+every aspect of the game is modular, and that new features can easily be implemented. The GUI and 
+model is to be seperated so that we can, if wanted, change the model into a server-client type.
+The model should allow easy testing, and be isolated for ease of bug finding.
+
+
+1.2 Definitions, acronyms and abbreviations 
+MANA = magic points of the player character
+HP = health points of the player character.
+Buff = A temporary upgrade of stats
+Quest = A player can get extra rewards for doing errands for people
+AVATAR = The graphical representation of the player in the world
+Death = If you die, you have to start over from last save pont.
+
+
+
+2 System design
+
+2.1 Overview 
+The application will use MVC model pattern.
+
+2.1.1 The model functionality
+
+The model functionality will be exposed by the interface IKeldei, To avoid a very
+large and diverse interface, the functionaly will be further split into interface
+for IPlayer and IWorld. IKeldei will be the top level interface functioning as entry
+for other the other interfaces. 
+In this section we explain the overall design choices.
+
+Interface IKelde
+start():void
+
+Interface IPlayer
+
+Interface IBoard
+
+2.1.3 Unique identifiers, global look ups
+Will there be lookups?
+
+2.1.4 Spaces
+Spaces?
+
+2.1.5 Event handling
+Many events can take place, state changing or not, may happen during the play.
+(New game, attack, loot, pick up items) There is a need for flexible event handling,
+if done at individual level, reciever and sender connects, there is a good chance
+the event handling will be hard to understand.
+
+2.1.6 Internal representation of text
+All texts are localizeable. All objects will use independent keys for actual text.
+
+2.2 Software decomposition
+
+2.2.1 General
+
+* Keyboard button reading 
+* dialogs, GUI dialogs to interact with users. View parts for MVC
+* view, man GUI for application. View parts for MVC
+* eventbus, classes for the eventbus
+*ctrl, the control classes for the MVC model
+
+
+
+Package diagram. For each package an UML class diagram in 
+appendix
+
+2.2.2 Decomposition into subsystems 
+The only subsystem is the file handling in package io
+
+2.2.3 Layering
+Layering TODO
+dialogs
+view
+eventbus
+ctrl
+adapter
+model
+Main
+io
+
+2.2.4 Dependency analysis
+No circular dependencies 
+
+2.3 Concurrency issues
+Sinle-threaded application, no concurrency issues
+
+2.4 Persistent data management
+All persistent data will be stored in flat text files.
+
+2.5 Access control and security
+NA
+
+2.6 Boundary conditions 
+NA application launched and exited as normal desktop application
+
+3 References
+
+  APPENDIX 
