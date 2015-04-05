@@ -1,11 +1,11 @@
 Downloaded from: http://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
 Images of this directory are copyrighted to their respective authors, as listed in CREDITS.TXT.
 
-The content of this directory is licensed under CC-BY-SA 3.0 and GNU GPL 3.0.
-Licenses can be found in License-CC-BY-SA.txt and License-GNU-GPL-3.0.txt.
-Licenses can also be found online at:
+The content of this directory is licensed under CC-BY-SA 3.0.
+License can be found in LICENSE.txt.
+License can also be found online at:
 http://creativecommons.org/licenses/by-sa/3.0/legalcode
-http://www.gnu.org/licenses/gpl-3.0.html
+Human-readable version: http://creativecommons.org/licenses/by-sa/3.0/
 
 
 

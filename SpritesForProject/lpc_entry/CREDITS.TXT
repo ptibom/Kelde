@@ -1,8 +1,8 @@
 Downloaded from: http://opengameart.org/content/lpc-medieval-fantasy-character-sprites
 Images of this directory are copyrighted to Johannes Sjölund, j.sjolund@gmail.com, Freenode: wulax
 
-The content of this directory is licensed under CC-BY-SA 3.0 and GNU GPL 3.0.
-Licenses can be found in LICENSE-CC-BY-SA.txt and LICENSE-GNU-GPL-3.0.txt.
-Licenses can also be found online at:
+The content of this directory is licensed under CC-BY-SA 3.0.
+License can be found in LICENSE.txt.
+License can also be found online at:
 http://creativecommons.org/licenses/by-sa/3.0/legalcode
-http://www.gnu.org/licenses/gpl-3.0.html
+Human-readable version: http://creativecommons.org/licenses/by-sa/3.0/
