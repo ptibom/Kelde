@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MapScreen implements Screen {
     private OrthographicCamera camera; // Camera is the view from where the scene is rendered.
@@ -38,10 +40,16 @@ public class MapScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        if (height%2 == 1) {
+            height--; // Keeps viewport "even" and prevents texture-distortion.
+        }
+        if (width%2 == 1) {
+            width--; // Keeps viewport "even" and prevents texture-distortion.
+        }
         // Prevents stretching/resizing of images. Keeps a perfect resolution when window is resized.
         camera.viewportWidth = width;
         camera.viewportHeight = height;
-        camera.position.set(width/2, height/2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
+        camera.position.set(width / 2, height / 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
     }
 

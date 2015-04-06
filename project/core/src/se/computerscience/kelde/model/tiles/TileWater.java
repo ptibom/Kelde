@@ -2,7 +2,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.tiles;
 
 public class TileWater implements ITiles {
     public boolean canWalk = false;

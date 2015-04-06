@@ -2,7 +2,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.entities;
 
 import org.junit.Assert;
 import org.junit.Test;

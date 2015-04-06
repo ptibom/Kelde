@@ -2,7 +2,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.items;
 
 public class ItemSword implements IItems {
     public boolean isConsumable = false;
