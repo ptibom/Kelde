@@ -22,7 +22,7 @@ import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
 
 
 public class MapScreen implements Screen {
-    private OrthographicCamera camera; // Camera is the view from where the scene is rendered.
+    private OrthographicCamera camera, box2dCamera; // Camera is the view from where the scene is rendered.
     private OrthogonalTiledMapRenderer renderer; // Renders the map
     private TiledMap map; // Loads the map
     private World world;
@@ -30,27 +30,29 @@ public class MapScreen implements Screen {
     private Body body;
     private Texture texture;
     private SpriteBatch batch;
+    private final float BOX2D_SCALE = 0.01f;
 
     @Override
     public void show() {
         // Initialises objects, like a constructor
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
+        box2dCamera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
         world = new World(new Vector2(0, 0), true);
         box2DDebugRenderer = new Box2DDebugRenderer();
-        Box2DMapObjectParser parser = new Box2DMapObjectParser();
+        Box2DMapObjectParser parser = new Box2DMapObjectParser(BOX2D_SCALE);
         parser.load(world, map.getLayers().get("Collision"));
 
 
         // Create a player
         BodyDef def = new BodyDef();
-        def.position.set(70, 50);
+        def.position.set(70*BOX2D_SCALE, 50*BOX2D_SCALE);
         def.type = BodyType.DynamicBody;
         body = world.createBody(def);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16, 24);
+        shape.setAsBox(16*BOX2D_SCALE, 24*BOX2D_SCALE);
         fdef.shape = shape;
         body.createFixture(fdef);
 
@@ -62,33 +64,37 @@ public class MapScreen implements Screen {
         // Renders the scene, first clear it with black.
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
         int x = 0, y = 0;
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            y = 100;
+            y = 2;
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            y = -100;
+            y = -2;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            x = 100;
+            x = 2;
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            x = -100;
+            x = -2;
         }
         body.setLinearVelocity(x, y);
         world.step(delta, 6, 2);
+
+
         // Choose to render from Camera's perspective and then render it.
         renderer.setView(camera);
         renderer.render();
 
         Sprite player = new Sprite(texture, 32, 48);
-        player.setPosition(body.getPosition().x - 16, body.getPosition().y - 24);
+        player.setPosition(body.getPosition().x/BOX2D_SCALE - 16, body.getPosition().y/BOX2D_SCALE - 24);
 
         batch.begin();
         player.draw(batch);
         batch.end();
 
-        box2DDebugRenderer.render(world, camera.combined);
+        box2DDebugRenderer.render(world, box2dCamera.combined);
     }
 
     @Override
@@ -100,6 +106,10 @@ public class MapScreen implements Screen {
             width--; // Keeps viewport "even" and prevents texture-distortion.
         }
         // Prevents stretching/resizing of images. Keeps a perfect resolution when window is resized.
+        box2dCamera.viewportWidth = width*BOX2D_SCALE;
+        box2dCamera.viewportHeight = height*BOX2D_SCALE;
+        box2dCamera.position.set(width*BOX2D_SCALE/2, height*BOX2D_SCALE/2, 0);
+        box2dCamera.update();
         camera.viewportWidth = width;
         camera.viewportHeight = height;
         camera.position.set(width / 2, height / 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
