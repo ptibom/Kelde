@@ -2,7 +2,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model.world;
+package se.computerscience.kelde.model.gameworld;
 
-public class WorldObjects {
+public class GameWorldObjects {
 }
