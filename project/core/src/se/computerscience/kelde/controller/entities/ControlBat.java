@@ -32,8 +32,6 @@ public class ControlBat {
     float elapsedTime = 0;
     private Point p;
     private int waypointX,waypointY;
-    private float viewportWidth;
-    private float viewportHeight;
 
     public ControlBat(EntityBat ebat, ViewBat vbat) {
         camera = new OrthographicCamera();

@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.controller.ControlBat;
+import se.computerscience.kelde.controller.entities.EyeController;
 import se.computerscience.kelde.model.EntityBat;
 
 public class MapScreen implements Screen {
@@ -20,6 +21,7 @@ public class MapScreen implements Screen {
     private TiledMap map; // Loads the map
 
     private ControlBat bat1;
+    private EyeController eye1;
 
     @Override
     public void show() {
@@ -30,6 +32,7 @@ public class MapScreen implements Screen {
         EntityBat ebat = new EntityBat();
         ViewBat vbat = new ViewBat();
         bat1 = new ControlBat(ebat, vbat);
+        eye1 = new EyeController();
     }
 
     @Override
@@ -42,7 +45,7 @@ public class MapScreen implements Screen {
         renderer.setView(camera);
         renderer.render();
         bat1.render();
-
+        eye1.render(camera);
 
 
     }
