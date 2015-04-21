@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 
 /**
@@ -19,10 +22,16 @@ public class EyeView {
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animation,animationN,animationE,animationS,animationW;
     private float ELAPSED_TIME = 0;
+    private float BOX2D_SCALE = 0.01f;
     private Vector2 oldposition;
 
+    //box2D
+    private WorldPhysics worldPhysics;
+    private BodyDef eyeDef;
+    private Body eyeBody;
 
-    public EyeView() {
+
+    public EyeView(Vector2 startVector) {
         camera = new OrthographicCamera();
         
         batch = new SpriteBatch();
@@ -40,6 +49,12 @@ public class EyeView {
         //Bat facing west
         textureAtlasW = new TextureAtlas(Gdx.files.internal("eyeballWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
+
+        eyeDef = new BodyDef();
+        eyeDef.position.set(startVector.x*BOX2D_SCALE, startVector.y*BOX2D_SCALE);
+        eyeDef.type = BodyType.DynamicBody;
+        eyeBody = worldPhysics
+
     }
 
 
@@ -48,7 +63,7 @@ public class EyeView {
         this.oldposition = oldposition;
         float x = position.x;
         float y = position.y;
-
+        ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         batch.begin();
 
         if(x > oldposition.x) {
@@ -65,8 +80,6 @@ public class EyeView {
             y += 1;
             animation = animationN;
         }
-
-        ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         if(ELAPSED_TIME > 10.0f) { ELAPSED_TIME = 0f; }
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), x, y);
         batch.end();

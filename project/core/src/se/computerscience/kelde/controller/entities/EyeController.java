@@ -15,9 +15,9 @@ public class EyeController {
     private EyeView eyeview;
     private Vector2 vector, oldvector;
 
-    public EyeController() {
+    public EyeController(Vector2 startVector) {
         eye = new EntityEye();
-        eyeview = new EyeView();
+        eyeview = new EyeView(startVector);
         eye.setNewWaypoint();
         vector = eye.getNewPosition();
         oldvector = eye.getNewPosition();
@@ -28,6 +28,7 @@ public class EyeController {
         if(vector.x == oldvector.x && vector.y == oldvector.y) {
             eye.setNewWaypoint();
             oldvector = vector;
+            System.out.print("cords x:"+ vector.x + "cords y:"+ vector.y);
             vector = eye.getNewPosition();
         }
 
