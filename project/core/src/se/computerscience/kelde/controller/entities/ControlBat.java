@@ -23,54 +23,17 @@ public class ControlBat {
     //Variables
     private final EntityBat ebat;
     private final ViewBat vbat;
-    private final OrthographicCamera camera;
-    private SpriteBatch batch;
-    private TextureAtlas textureAtlas;
-    private Animation animation;
-    private int x = 0;
-    private int y = 0;
-    float elapsedTime = 0;
-    private Point p;
-    private int waypointX,waypointY;
+
+
+
 
     public ControlBat(EntityBat ebat, ViewBat vbat) {
-        camera = new OrthographicCamera();
         this.ebat = ebat;
         this.vbat = vbat;
-        batch = vbat.getBatch();
-        textureAtlas = vbat.getTextureAtlas();
-        animation = vbat.getAnimationN();
-        setNewWaypoint();
     }
 
     public void render() {
-       //Gdx.gl.glClearColor(0, 0, 0, 1);
-       //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        batch.begin();
-
-        if(x == waypointX && y == waypointY) {
-            setNewWaypoint();
-        }
-        if(x > waypointX) {
-            x -= 1;
-            animation = vbat.getAnimationE();
-        } else if (x < waypointX) {
-            x += 1;
-            animation = vbat.getAnimationW();
-        }
-        if(y > waypointY) {
-            y -= 1;
-            animation = vbat.getAnimationS();
-        } else if(y < waypointY) {
-            y += 1;
-            animation = vbat.getAnimationN();
-        }
-
-        elapsedTime += Gdx.graphics.getDeltaTime();
-        if(elapsedTime > 10.0f) { elapsedTime = 0f; }
-        batch.draw(animation.getKeyFrame(elapsedTime, true), x, y);
-        batch.end();
+       vbat.render(position, camera);
     }
 
     public void setNewWaypoint() {

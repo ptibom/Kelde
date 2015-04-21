@@ -18,21 +18,12 @@ public class EyeController {
     public EyeController(Vector2 startVector) {
         eye = new EntityEye();
         eyeview = new EyeView(startVector);
-        eye.setNewWaypoint();
-        vector = eye.getNewPosition();
-        oldvector = eye.getNewPosition();
+        vector = startVector;
     }
 
 
     public void render(OrthographicCamera camera) {
-        if(vector.x == oldvector.x && vector.y == oldvector.y) {
-            eye.setNewWaypoint();
-            oldvector = vector;
-            System.out.print("cords x:"+ vector.x + "cords y:"+ vector.y);
-            vector = eye.getNewPosition();
-        }
-
-        eyeview.render(vector, oldvector, camera);
+        eyeview.render(vector, camera);
     }
 
 }

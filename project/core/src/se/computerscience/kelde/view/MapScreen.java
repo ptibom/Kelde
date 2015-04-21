@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.ControlBat;
 import se.computerscience.kelde.controller.entities.EyeController;
 import se.computerscience.kelde.model.EntityBat;
@@ -32,7 +33,7 @@ public class MapScreen implements Screen {
         EntityBat ebat = new EntityBat();
         ViewBat vbat = new ViewBat();
         bat1 = new ControlBat(ebat, vbat);
-        eye1 = new EyeController();
+        eye1 = new EyeController(new Vector2(200,200));
     }
 
     @Override

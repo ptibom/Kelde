@@ -2,6 +2,7 @@ package se.computerscience.kelde.model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.values.PointSpawnShapeValue;
+import com.badlogic.gdx.math.Vector2;
 
 import java.awt.*;
 
@@ -14,13 +15,13 @@ public class EntityBat {
 
     //Variables
     private int index;
-    private Point[] wayPoints = {
-            new Point(1, 1),
-            new Point(50, 50),
-            new Point(0, 50),
-            new Point(100, 75),
-            new Point(200, 25),
-            new Point(25,200)
+    private Vector2[] wayPoints = {
+            new Vector2(1, 1),
+            new Vector2(50, 50),
+            new Vector2(0, 50),
+            new Vector2(100, 75),
+            new Vector2(200, 25),
+            new Vector2(25,200)
     };
     //Constructor
     public EntityBat(){
@@ -28,7 +29,7 @@ public class EntityBat {
     }
 
 
-    public Point getWayPoint() {
+    public Vector2 getWayPoint() {
         index += 1;
         if(index > 5){
             index = 0;
