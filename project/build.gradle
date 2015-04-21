@@ -10,8 +10,8 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
-
     version = '1.0'
+
     ext {
         appName = 'Kelde'
         gdxVersion = '1.5.5'
@@ -44,6 +44,17 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
+    apply plugin: "findbugs"
+    apply plugin: "pmd"
+    findbugs {
+        excludeFilter = file("$rootProject.projectDir/findbugs-exclude.xml")
+    }
+
+    pmd {
+        ruleSets = [
+                "$rootProject.projectDir/pmd-rules.xml"
+        ]
+    }
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"

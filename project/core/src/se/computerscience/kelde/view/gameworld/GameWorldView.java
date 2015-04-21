@@ -1,5 +1,5 @@
-/* Description: Renders the Game World.
- * @author: Philip Tibom
+/** Description: Renders the Game World.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.view.gameworld;

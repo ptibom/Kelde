@@ -1,5 +1,5 @@
-/* Description: Interface to abstract Player Entity. In case we want several players in the future.
- * @author: Philip Tibom
+/** Description: Interface to abstract Player Entity. In case we want several players in the future.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

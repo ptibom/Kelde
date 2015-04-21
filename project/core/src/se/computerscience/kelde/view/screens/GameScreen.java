@@ -1,5 +1,5 @@
-/* Description: Renders a tile-map with camera.
- * @author: Philip Tibom
+/** Description: Renders a tile-map with camera.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.view.screens;
@@ -8,14 +8,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
@@ -25,8 +25,6 @@ import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 
 public class GameScreen implements Screen {
-    private OrthographicCamera box2dCamera; // Camera is the view from where the scene is rendered.
-
     private GameWorld gameWorld;
     private GameWorldController gameWorldController;
     private GameWorldView gameWorldView;
@@ -38,7 +36,7 @@ public class GameScreen implements Screen {
     private Body body;
     private Texture texture;
     private SpriteBatch batch;
-    private final float BOX2D_SCALE = 0.01f; // Exists in WorldPhysics, this is temporary for testing
+    private static final float BOX2D_SCALE = 0.01f; // Exists in WorldPhysics, this is temporary for testing
 
     @Override
     public void show() {
