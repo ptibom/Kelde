@@ -1,39 +1,38 @@
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.values.PointSpawnShapeValue;
 import com.badlogic.gdx.math.Vector2;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by Anders on 2015-04-06.
  */
 public class EntityBat {
 
-    //Model of Flying Enemy Bat
-
     //Variables
-    private int index;
-    private Vector2[] wayPoints = {
-            new Vector2(1, 1),
-            new Vector2(50, 50),
-            new Vector2(0, 50),
-            new Vector2(100, 75),
-            new Vector2(200, 25),
-            new Vector2(25,200)
-    };
+    private int DAMAGE;
+    private int HEALTH = 100;
+    private static final int ATTACK_DISTANCE = 100;
+
+
     //Constructor
-    public EntityBat(){
-        index = 0;
+    public EntityBat(int damage){
+        this.DAMAGE = damage;
     }
 
-
-    public Vector2 getWayPoint() {
-        index += 1;
-        if(index > 5){
-            index = 0;
-        }
-        return wayPoints[index];
+    public int getHEALTH() {
+        return HEALTH;
     }
+
+    public static int getATTACK_DISTANCE() {
+        return ATTACK_DISTANCE;
+    }
+
+    public void setHEALTH(int HEALTH) {
+        this.HEALTH = HEALTH;
+    }
+
 }

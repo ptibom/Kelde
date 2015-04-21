@@ -10,7 +10,7 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
-
+    apply plugin: "pmd"
     version = '1.0'
     ext {
         appName = 'Kelde'
@@ -44,7 +44,7 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
-
+    apply plugin: "pmd"
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"

@@ -10,29 +10,13 @@ import java.util.Random;
 public class EntityEye {
 
     //Variables
-    private Vector2[] waypoint = new Vector2[10];
-    private int index = 0;
+    private int DAMAGAE;
 
-    public EntityEye() {
-        for (int i = 0; i < 10 ; i++) {
-            waypoint[i] = setNewPosition();
-        }
+    public EntityEye(int damage) {
+        this.DAMAGAE = damage;
 
     }
 
-    private Vector2 setNewPosition() {
-        Random random = new Random();
-        int x = random.nextInt(500) + 1;
-        int y = random.nextInt(500) + 1;
-        return new Vector2(x,y);
-    }
 
-    public Vector2 getWayPoint() {
-        index++;
-        if(index == 9){
-            index = 0;
-        }
-        return waypoint[index];
-    }
 
 }

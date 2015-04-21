@@ -12,9 +12,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.ControlBat;
+import se.computerscience.kelde.controller.entities.ControlBat;
 import se.computerscience.kelde.controller.entities.EyeController;
-import se.computerscience.kelde.model.EntityBat;
 
 public class MapScreen implements Screen {
     private OrthographicCamera camera; // Camera is the view from where the scene is rendered.
@@ -30,7 +29,7 @@ public class MapScreen implements Screen {
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
-        bat1 = new ControlBat(new Vector2(100,100));
+        bat1 = new ControlBat(new Vector2(300,300));
         eye1 = new EyeController(new Vector2(200,200));
     }
 
@@ -43,8 +42,8 @@ public class MapScreen implements Screen {
         // Choose to render from Camera's perspective and then render it.
         renderer.setView(camera);
         renderer.render();
-        bat1.render(camera);
         eye1.render(camera);
+        bat1.render(camera);
 
 
     }
