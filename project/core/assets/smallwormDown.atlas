@@ -7,7 +7,7 @@ repeat: none
 0001
   rotate: false
   xy: 0, 32
-  size: 32, 32
+  size: 32, 5
   orig: 32, 32
   offset: 0, 0
   index: -1
