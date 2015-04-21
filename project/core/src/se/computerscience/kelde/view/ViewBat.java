@@ -23,13 +23,12 @@ public class ViewBat {
     private float ELAPSED_TIME = 0;
     private Vector2 CURRENT_VECTOR, NEXT_VECTOR;
     private Vector2[] VECTOR_ARRAY;
-    private int index;
+    private int index = 0;
 
     /**
      * Public constructor
      */
     public ViewBat(Vector2 startVector, Vector2[] nextVector) {
-        index = 0;
         CURRENT_VECTOR = startVector;
         VECTOR_ARRAY = nextVector;
         NEXT_VECTOR = VECTOR_ARRAY[index];
@@ -39,7 +38,7 @@ public class ViewBat {
         createNorthTexture();
         createSouthTexture();
         createEastTexture();
-        createEastTexture();
+        createWestTexture();
     }
 
     private void createWestTexture() {
@@ -72,7 +71,7 @@ public class ViewBat {
         if(CURRENT_VECTOR.x == NEXT_VECTOR.x && CURRENT_VECTOR.y == NEXT_VECTOR.y) {
             NEXT_VECTOR = VECTOR_ARRAY[index];
             index++;
-            if(index >= 9) {
+            if(index == 9) {
                 index = 0;
             }
         }

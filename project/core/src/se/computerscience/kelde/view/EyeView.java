@@ -99,7 +99,7 @@ public class EyeView {
         batch.end();
     }
 
-    public void resize() {
+    public void resize(OrthographicCamera camera) {
         batch.setProjectionMatrix(camera.combined);
     }
 
