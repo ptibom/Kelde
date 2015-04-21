@@ -37,7 +37,9 @@ public class ViewBat {
     /**
      * Public constructor
      */
-    public ViewBat() {
+    public ViewBat(Vector2 startVector) {
+        CURRENT_VECTOR = startVector;
+        FUTURE_VECTOR = bat.getWayPoint();
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         batch = new SpriteBatch();

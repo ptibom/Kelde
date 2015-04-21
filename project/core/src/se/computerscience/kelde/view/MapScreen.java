@@ -30,9 +30,7 @@ public class MapScreen implements Screen {
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
-        EntityBat ebat = new EntityBat();
-        ViewBat vbat = new ViewBat();
-        bat1 = new ControlBat(ebat, vbat);
+        bat1 = new ControlBat(new Vector2(100,100));
         eye1 = new EyeController(new Vector2(200,200));
     }
 
@@ -45,7 +43,7 @@ public class MapScreen implements Screen {
         // Choose to render from Camera's perspective and then render it.
         renderer.setView(camera);
         renderer.render();
-        bat1.render();
+        bat1.render(camera);
         eye1.render(camera);
 
 

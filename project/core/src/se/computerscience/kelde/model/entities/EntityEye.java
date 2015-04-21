@@ -35,7 +35,4 @@ public class EntityEye {
         return waypoint[index];
     }
 
-    public void getNewWaypoint() {
-        getWayPoint();
-    }
 }
