@@ -1,0 +1,38 @@
+class MonsterController {
+    public void render() {
+        MonsterModel.calculateMovement;
+        MonsterView.render(MonsterModel.getPosition(););
+    }
+}
+
+class MonsterModel {
+    public void calculateMovement() {
+        // setPosition();
+    }
+    public Vector2 getPosition() {
+        return new Vector2(x,y);
+    }
+}
+
+class MonsterView {
+
+    public void resize(Camera cam) {
+        batch.setProjectionMatrix(camera.combined);
+    }
+
+    public void render(Vector2 position) {
+        sprite.position = position;
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
+    }
+}
+
+
+class GameScreen implements Screen {
+    public void show();
+    public void render(delta) {
+        MonsterController.render();
+    }
+    public void resize(width, height);
+}
