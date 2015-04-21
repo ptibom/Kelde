@@ -10,13 +10,31 @@ import java.util.Random;
 public class EntityEye {
 
     //Variables
-    private int DAMAGAE;
+    private int DAMAGE;
+    private int HEALTH = 100;
+    private static final int ATTACK_DISTANCE = 150;
+    private static final int LOOT = 25;
 
     public EntityEye(int damage) {
-        this.DAMAGAE = damage;
+        this.DAMAGE = damage;
 
     }
 
+    public void setDAMAGAE(int damage) {
+        this.DAMAGE = DAMAGE - damage;
+    }
+
+    public int getHEALTH() {
+        return HEALTH;
+    }
+
+    public int getAttackDistance() {
+        return ATTACK_DISTANCE;
+    }
+
+    public int getLoot() {
+        return LOOT;
+    }
 
 
 }

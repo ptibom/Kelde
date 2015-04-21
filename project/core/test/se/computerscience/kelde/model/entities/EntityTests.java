@@ -19,4 +19,10 @@ public class EntityTests {
         INPCEntity entityKnight = new EntityKnight();
         Assert.assertEquals(false, entityKnight.isFriendly());
     }
+
+    @Test
+    public void testBat() {
+        EntityBat bat = new EntityBat(100);
+        Assert.assertNotNull(bat.getHEALTH());
+    }
 }
