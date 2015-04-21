@@ -13,14 +13,16 @@ import java.util.Random;
 public class EntityBat {
 
     //Variables
-    private int DAMAGE;
+    private int DEALT_DAMAGE;
     private int HEALTH = 100;
     private static final int ATTACK_DISTANCE = 100;
+    private boolean ALIVE = true;
+    private static final int LOOT = 15;
 
 
     //Constructor
     public EntityBat(int damage){
-        this.DAMAGE = damage;
+        this.DEALT_DAMAGE = damage;
     }
 
     public int getHEALTH() {
@@ -31,8 +33,15 @@ public class EntityBat {
         return ATTACK_DISTANCE;
     }
 
-    public void setHEALTH(int HEALTH) {
-        this.HEALTH = HEALTH;
+    public int getLoot() {
+        return LOOT;
+    }
+
+    public void setTakenDamage(int takenDamage) {
+        this.HEALTH = this.HEALTH - takenDamage;
+        if(this.HEALTH <= 0) {
+            ALIVE = false;
+        }
     }
 
 }

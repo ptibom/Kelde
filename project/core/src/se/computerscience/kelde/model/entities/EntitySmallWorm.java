@@ -1,23 +1,19 @@
 package se.computerscience.kelde.model.entities;
 
-import com.badlogic.gdx.math.Vector2;
-
-import java.util.Random;
-
 /**
- * Created by Anders on 2015-04-08.
+ * Created by Anders on 2015-04-25.
  */
-public class EntityEye {
+public class EntitySmallWorm {
 
     //Variables
     private int DAMAGE;
     private int HEALTH = 100;
-    private static final int ATTACK_DISTANCE = 150;
-    private static final int LOOT = 25;
+    private static final int ATTACK_DISTANCE = 30;
+    private static final int LOOT = 5;
     private boolean ALIVE = true;
     private static final int DEAD = 0;
 
-    public EntityEye(int damage) {
+    public EntitySmallWorm(int damage) {
         this.DAMAGE = damage;
 
     }
@@ -40,6 +36,5 @@ public class EntityEye {
             ALIVE = false;
         }
     }
-
 
 }

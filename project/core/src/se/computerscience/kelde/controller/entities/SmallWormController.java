@@ -3,37 +3,39 @@ package se.computerscience.kelde.controller.entities;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityEye;
+import se.computerscience.kelde.model.entities.EntitySmallWorm;
 import se.computerscience.kelde.view.EyeView;
+import se.computerscience.kelde.view.SmallWormView;
 
 import java.util.Random;
 
 /**
- * Created by Anders on 2015-04-08.
+ * Created by Anders on 2015-04-25.
  */
-public class EyeController {
+public class SmallWormController {
 
     //Variables
-    private EntityEye eye;
-    private EyeView eyeview;
+    private SmallWormView wormview;
+    private EntitySmallWorm worm;
     private Vector2 vector;
 
     private Vector2[] waypoint = new Vector2[10];
     private int index = 0;
 
-    public EyeController(Vector2 startVector) {
+    public SmallWormController(Vector2 startVector) {
         setVectors();
-        eye = new EntityEye(10);
-        eyeview = new EyeView(startVector, waypoint);
+        worm = new EntitySmallWorm(10);
+        wormview = new SmallWormView(startVector, waypoint);
         vector = startVector;
     }
 
 
     public void render(OrthographicCamera camera) {
-        eyeview.render(vector, camera);
+        wormview.render(camera);
     }
 
     public void resize(OrthographicCamera camera) {
-        eyeview.resize(camera);
+        wormview.resize(camera);
     }
 
     private Vector2 setNewPosition() {

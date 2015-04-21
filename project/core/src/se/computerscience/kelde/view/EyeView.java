@@ -30,7 +30,7 @@ public class EyeView {
     private Vector2 CURRENT_VECTOR, NEXT_VECTOR;
     private Vector2[] VECTOR_ARRAY;
     private int index = 0;
-
+    Vector2 direction;
 
     public EyeView(Vector2 startVector, Vector2[] nextVector) {
         camera = new OrthographicCamera();
@@ -44,6 +44,7 @@ public class EyeView {
         createWestTexture();
 
         CURRENT_VECTOR = startVector;
+        direction = startVector;
     }
 
     private void createWestTexture() {
@@ -94,8 +95,9 @@ public class EyeView {
             CURRENT_VECTOR.y += 0.5;
             animation = animationN;
         }
+
         if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0f; }
-        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), CURRENT_VECTOR.x, CURRENT_VECTOR.y);
+        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), direction.x, direction.y);
         batch.end();
     }
 
