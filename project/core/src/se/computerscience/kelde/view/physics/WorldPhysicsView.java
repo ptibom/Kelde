@@ -1,5 +1,5 @@
-/* Description: Renders the Physics World.
- * @author: Philip Tibom
+/** Description: Renders the Physics World.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.view.physics;

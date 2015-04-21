@@ -1,5 +1,5 @@
-/* Description: Modelling the world physics. Using Box2D physics engine.
- * @author: Philip Tibom
+/** Description: Modelling the world physics. Using Box2D physics engine.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.physics;
@@ -34,16 +34,10 @@ public class WorldPhysics {
     }
 
     public void resizeCamera(int width, int height) {
-        if (height%2 == 1) {
-            height--; // Keeps viewport "even" and prevents texture-distortion.
-        }
-        if (width%2 == 1) {
-            width--; // Keeps viewport "even" and prevents texture-distortion.
-        }
         // Prevents stretching/resizing of images. Keeps a perfect resolution when window is resized.
         box2dCamera.viewportWidth = width*BOX2D_SCALE;
         box2dCamera.viewportHeight = height*BOX2D_SCALE;
-        box2dCamera.position.set(width * BOX2D_SCALE / 2, height * BOX2D_SCALE / 2, 0);
+        box2dCamera.position.set(width * BOX2D_SCALE / (float)2, height * BOX2D_SCALE / (float)2, 0);
         box2dCamera.update();
     }
 

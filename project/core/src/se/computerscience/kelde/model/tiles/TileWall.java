@@ -1,5 +1,5 @@
-/* Description: Tiles, like grass and water. But should stop Entities from moving.
- * @author: Philip Tibom
+/** Description: Tiles, like grass and water. But should stop Entities from moving.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.tiles;
