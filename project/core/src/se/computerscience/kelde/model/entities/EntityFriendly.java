@@ -1,5 +1,5 @@
-/* Description: Friendly entity, should talk to player.
- * @author: Philip Tibom
+/** Description: Friendly entity, should talk to player.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

@@ -1,5 +1,5 @@
-/* Description: Interface to enemies & friendly NPCs.
- * @author: Philip Tibom
+/** Description: Interface to enemies & friendly NPCs.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

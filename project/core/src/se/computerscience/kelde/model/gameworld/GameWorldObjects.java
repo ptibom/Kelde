@@ -1,5 +1,5 @@
-/* Description: Movable/interactive objects in the world
- * @author: Philip Tibom
+/** Description: Movable/interactive objects in the world
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.gameworld;
