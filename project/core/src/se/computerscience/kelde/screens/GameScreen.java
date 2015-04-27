@@ -2,7 +2,7 @@
  *  @author: Philip Tibom
  */
 
-package se.computerscience.kelde.view.screens;
+package se.computerscience.kelde.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
