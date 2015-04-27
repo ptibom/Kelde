@@ -11,10 +11,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.entities.ControlBat;
+import se.computerscience.kelde.controller.ControlBat;
 import se.computerscience.kelde.controller.entities.EyeController;
-import se.computerscience.kelde.controller.entities.SmallWormController;
+import se.computerscience.kelde.model.EntityBat;
 
 public class MapScreen implements Screen {
     private OrthographicCamera camera; // Camera is the view from where the scene is rendered.
@@ -23,7 +22,6 @@ public class MapScreen implements Screen {
 
     private ControlBat bat1;
     private EyeController eye1;
-    private SmallWormController worm1;
 
     @Override
     public void show() {
@@ -31,9 +29,10 @@ public class MapScreen implements Screen {
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
-        bat1 = new ControlBat(new Vector2(300,300));
-        eye1 = new EyeController(new Vector2(200,200));
-        worm1 = new SmallWormController(new Vector2(300,300));
+        EntityBat ebat = new EntityBat();
+        ViewBat vbat = new ViewBat();
+        bat1 = new ControlBat(ebat, vbat);
+        eye1 = new EyeController();
     }
 
     @Override
@@ -45,9 +44,9 @@ public class MapScreen implements Screen {
         // Choose to render from Camera's perspective and then render it.
         renderer.setView(camera);
         renderer.render();
+        bat1.render();
         eye1.render(camera);
-        bat1.render(camera);
-        worm1.render(camera);
+
 
     }
 
@@ -66,8 +65,6 @@ public class MapScreen implements Screen {
         camera.position.set(width / 2, height / 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
         bat1.resize(camera);
-        eye1.resize(camera);
-        worm1.resize(camera);
     }
 
     @Override

@@ -10,36 +10,24 @@ import java.util.Random;
 public class EntityEye {
 
     //Variables
-    private int DAMAGE;
-    private int HEALTH = 100;
-    private static final int ATTACK_DISTANCE = 150;
-    private static final int LOOT = 25;
-    private boolean ALIVE = true;
-    private static final int DEAD = 0;
+    private Vector2 waypoint;
 
-    public EntityEye(int damage) {
-        this.DAMAGE = damage;
-
+    public EntityEye() {
+        waypoint = getNewPosition();
     }
 
-    public int getHEALTH() {
-        return HEALTH;
+    private void setNewPosition() {
+        Random random = new Random();
+        int x = random.nextInt(500) + 1;
+        int y = random.nextInt(500) + 1;
+        waypoint = new Vector2(x,y);
     }
 
-    public int getAttackDistance() {
-        return ATTACK_DISTANCE;
+    public Vector2 getNewPosition() {
+        return waypoint;
     }
 
-    public int getLoot() {
-        return LOOT;
+    public void setNewWaypoint() {
+        setNewPosition();
     }
-
-    public void setTakenDamage(int takenDamage) {
-        this.HEALTH = this.HEALTH - takenDamage;
-        if(this.HEALTH <= DEAD) {
-            ALIVE = false;
-        }
-    }
-
-
 }

@@ -1,12 +1,18 @@
-package se.computerscience.kelde.controller.entities;
+package se.computerscience.kelde.controller;
 
-
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.model.entities.EntityBat;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import se.computerscience.kelde.model.EntityBat;
 import se.computerscience.kelde.view.ViewBat;
 
-import java.util.Random;
+import java.awt.*;
 
 
 /**
@@ -17,38 +23,69 @@ public class ControlBat {
     //Variables
     private final EntityBat ebat;
     private final ViewBat vbat;
-    private Vector2 startPos;
+    private final OrthographicCamera camera;
+    private SpriteBatch batch;
+    private TextureAtlas textureAtlas;
+    private Animation animation;
+    private int x = 0;
+    private int y = 0;
+    float elapsedTime = 0;
+    private Point p;
+    private int waypointX,waypointY;
 
-    private Vector2[] waypoint = new Vector2[10];
-    private int index = 0;
-
-
-
-    public ControlBat(Vector2 startVector) {
-        setWayVectors();
-        ebat = new EntityBat(10);
-        vbat = new ViewBat(startVector,waypoint);
-        startPos = startVector;
+    public ControlBat(EntityBat ebat, ViewBat vbat) {
+        camera = new OrthographicCamera();
+        this.ebat = ebat;
+        this.vbat = vbat;
+        batch = vbat.getBatch();
+        textureAtlas = vbat.getTextureAtlas();
+        animation = vbat.getAnimationN();
+        setNewWaypoint();
     }
 
-    private void setWayVectors() {
-        for (int i = 0; i < 10 ; i++) {
-            waypoint[i] = setNewPosition();
+    public void render() {
+       //Gdx.gl.glClearColor(0, 0, 0, 1);
+       //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+
+        if(x == waypointX && y == waypointY) {
+            setNewWaypoint();
         }
+        if(x > waypointX) {
+            x -= 1;
+            animation = vbat.getAnimationE();
+        } else if (x < waypointX) {
+            x += 1;
+            animation = vbat.getAnimationW();
+        }
+        if(y > waypointY) {
+            y -= 1;
+            animation = vbat.getAnimationS();
+        } else if(y < waypointY) {
+            y += 1;
+            animation = vbat.getAnimationN();
+        }
+
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        if(elapsedTime > 10.0f) { elapsedTime = 0f; }
+        batch.draw(animation.getKeyFrame(elapsedTime, true), x, y);
+        batch.end();
     }
-    public void render(OrthographicCamera camera) {
-        vbat.render(startPos, camera);
+
+    public void setNewWaypoint() {
+        p = ebat.getWayPoint();
+        waypointX = p.x;
+        waypointY = p.y;
     }
 
 
     public void resize(OrthographicCamera camera) {
-        vbat.resize(camera);
+        batch.setProjectionMatrix(camera.combined);
     }
 
-    private Vector2 setNewPosition() {
-        Random random = new Random();
-        int x = random.nextInt(500) + 1;
-        int y = random.nextInt(500) + 1;
-        return new Vector2(x,y);
+    public void dispose() {
+        batch.dispose();
+        textureAtlas.dispose();
     }
 }

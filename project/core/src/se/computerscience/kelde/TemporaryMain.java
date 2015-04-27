@@ -14,5 +14,12 @@ public final class TemporaryMain {
     }
 
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            final Project project = new Project();
+            final ProjectView projectView = new ProjectView(project);
+
+            ProjectController.create(project, projectView);
+            projectView.setVisible(true);
+        });
     }
 }

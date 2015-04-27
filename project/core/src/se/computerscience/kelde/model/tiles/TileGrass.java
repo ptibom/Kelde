@@ -1,5 +1,5 @@
-/** Description: Tile that looks like grass.
- *  @author: Philip Tibom
+/* Description: Tile that looks like grass.
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.tiles;

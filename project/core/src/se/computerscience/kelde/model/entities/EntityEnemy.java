@@ -1,5 +1,5 @@
-/** Description: Hostile entity, should attack player.
- *  @author: Philip Tibom
+/* Description: Hostile entity, should attack player.
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

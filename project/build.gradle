@@ -10,8 +10,8 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
-    version = '1.0'
 
+    version = '1.0'
     ext {
         appName = 'Kelde'
         gdxVersion = '1.5.5'
@@ -44,17 +44,7 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
-    apply plugin: "findbugs"
-    apply plugin: "pmd"
-    findbugs {
-        excludeFilter = file("$rootProject.projectDir/findbugs-exclude.xml")
-    }
 
-    pmd {
-        ruleSets = [
-                "$rootProject.projectDir/pmd-rules.xml"
-        ]
-    }
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -63,9 +53,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.0.8"
-        compile 'net.dermetfan.libgdx-utils:libgdx-utils:0.10.0'
-        compile 'net.dermetfan.libgdx-utils:libgdx-utils-box2d:0.10.0' // Box2D module
-        compile 'net.dermetfan.libgdx-utils:libgdx-utils-box2d-gwt:0.10.0:sources' // Box2D module GWT backend (sources)
         testCompile "junit:junit:4.11"
     }
 }
