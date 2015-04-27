@@ -41,9 +41,8 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         // Initialises objects, like a constructor
-
         gameWorld = new GameWorld();
-        gameWorldView = new GameWorldView();
+        gameWorldView = new GameWorldView(gameWorld);
         gameWorldController = new GameWorldController(gameWorld, gameWorldView);
 
         worldPhysics = new WorldPhysics(gameWorld);

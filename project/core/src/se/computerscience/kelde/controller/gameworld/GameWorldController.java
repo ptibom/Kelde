@@ -22,7 +22,6 @@ public class GameWorldController {
     public GameWorldController(GameWorld gameWorld, GameWorldView gameWorldView) {
         this.gameWorld = gameWorld;
         this.gameWorldView = gameWorldView;
-        initializeWorld(); // Make sure everything is set up.
     }
 
     /** Called by Game Loop. Renders & Updates everything in the world
@@ -30,7 +29,7 @@ public class GameWorldController {
      */
     public void render(float delta) {
         // Sets the camera to render from.
-        gameWorldView.getRenderer().setView(gameWorld.getCamera());
+        gameWorldView.getMapRenderer().setView(gameWorld.getCamera());
         gameWorldView.render(delta);
     }
 
@@ -41,11 +40,6 @@ public class GameWorldController {
     public void resizeCamera(int width, int height) {
         // Make sure to resize camera to prevent stretching.
         gameWorld.resizeCamera(width, height);
-    }
-
-    private void initializeWorld() {
-        // Give GameWorldView a renderer with the Map from GameWorld.
-        gameWorldView.setRenderer(new OrthogonalTiledMapRenderer(gameWorld.getMap()));
     }
 
     /** Called when game is closing */
