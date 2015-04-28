@@ -20,11 +20,17 @@ import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.startmenu.StartMenu;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 
 public class GameScreen implements Screen {
+
+    private StartMenu startMenu;
+    private StartMenu startMenuController;
+
+
     private GameWorld gameWorld;
     private GameWorldController gameWorldController;
     private GameWorldView gameWorldView;
@@ -41,6 +47,8 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         // Initialises objects, like a constructor
+
+
 
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView();

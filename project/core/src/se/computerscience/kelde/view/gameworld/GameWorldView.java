@@ -6,6 +6,7 @@ package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+
 public class GameWorldView {
     private OrthogonalTiledMapRenderer renderer;
 
