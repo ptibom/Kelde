@@ -1,5 +1,5 @@
-/* Description: Testing methods in Entities
- * @author: Philip Tibom
+/** Description: Testing methods in Entities
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;
@@ -18,5 +18,11 @@ public class EntityTests {
     public void testEntityKnightHostile() {
         INPCEntity entityKnight = new EntityKnight();
         Assert.assertEquals(false, entityKnight.isFriendly());
+    }
+
+    @Test
+    public void testBat() {
+        EntityBat bat = new EntityBat(100);
+        Assert.assertNotNull(bat.getHEALTH());
     }
 }

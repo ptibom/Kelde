@@ -6,28 +6,28 @@ filter: Nearest,Nearest
 repeat: none
 0001
   rotate: false
-  xy: 0, 96
+  xy: 0, 115
   size: 32, 38
   orig: 32, 38
   offset: 0, 0
   index: -1
 0002
   rotate: false
-  xy: 32, 96
+  xy: 32, 115
   size: 32, 38
   orig: 32, 38
   offset: 0, 0
   index: -1
 0003
   rotate: false
-  xy: 64, 96
+  xy: 64, 115
   size: 32, 38
   orig: 32, 38
   offset: 0, 0
   index: -1
 0004
   rotate: false
-  xy: 32, 96
+  xy: 32, 115
   size: 32, 38
   orig: 32, 38
   offset: 0, 0

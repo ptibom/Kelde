@@ -10,24 +10,56 @@ import java.util.Random;
 public class EntityEye {
 
     //Variables
-    private Vector2 waypoint;
+    private int DAMAGE;
+    private int HEALTH = 100;
+    private static final int ATTACK_DISTANCE = 150;
+    private static final int LOOT = 25;
+    private boolean ALIVE = true;
+    private static final int DEAD = 0;
 
-    public EntityEye() {
-        waypoint = getNewPosition();
+    /**
+     * Public constructor
+     * @param damage value the monster will have is set
+     */
+    public EntityEye(int damage) {
+        this.DAMAGE = damage;
+
     }
 
-    private void setNewPosition() {
-        Random random = new Random();
-        int x = random.nextInt(500) + 1;
-        int y = random.nextInt(500) + 1;
-        waypoint = new Vector2(x,y);
+    /**
+     * A getter for the health value
+     * @return the HEALTH
+     */
+    public int getHEALTH() {
+        return HEALTH;
     }
 
-    public Vector2 getNewPosition() {
-        return waypoint;
+    /**
+     * A getter for the distance the attacks
+     * @return the ATTACK_DISTANCE
+     */
+    public int getAttackDistance() {
+        return ATTACK_DISTANCE;
     }
 
-    public void setNewWaypoint() {
-        setNewPosition();
+    /**
+     * A getter for the Loot value
+     * @return the loot value
+     */
+    public int getLoot() {
+        return LOOT;
     }
+
+    /**
+     * Sets the damage taken to the health value.
+     * @param takenDamage is the damage value taken
+     */
+    public void setTakenDamage(int takenDamage) {
+        this.HEALTH = this.HEALTH - takenDamage;
+        if(this.HEALTH <= DEAD) {
+            ALIVE = false;
+        }
+    }
+
+
 }

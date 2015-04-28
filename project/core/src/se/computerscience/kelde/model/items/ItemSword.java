@@ -1,5 +1,5 @@
-/* Description: A sword item. Used by player to damage enemies.
- * @author: Philip Tibom
+/** Description: A sword item. Used by player to damage enemies.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.items;

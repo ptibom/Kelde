@@ -1,0 +1,174 @@
+
+small_worm.png
+size: 96,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0001
+  rotate: false
+  xy: 0, 32
+  size: 32, 5
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0002
+  rotate: false
+  xy: 0, 32
+  size: 32, 10
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0003
+  rotate: false
+  xy: 32, 32
+  size: 32, 15
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0004
+  rotate: false
+  xy: 32, 32
+  size: 32, 20
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0005
+  rotate: false
+  xy: 64, 32
+  size: 32, 25
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0006
+  rotate: false
+  xy: 64, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ 0007
+  rotate: false
+  xy: 0, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0008
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0009
+  rotate: false
+  xy: 64, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0010
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0011
+  rotate: false
+  xy: 0, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0012
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0013
+  rotate: false
+  xy: 64, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0014
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0015
+  rotate: false
+  xy: 0, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0016
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0017
+  rotate: false
+  xy: 64, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0018
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0019
+  rotate: false
+  xy: 0, 32
+  size: 32, 25
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0020
+  rotate: false
+  xy: 32, 32
+  size: 32, 20
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0021
+  rotate: false
+  xy: 32, 32
+  size: 32, 25
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0022
+  rotate: false
+  xy: 64, 32
+  size: 32, 10
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0023
+  rotate: false
+  xy: 64, 32
+  size: 32, 5
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+0024
+  rotate: false
+  xy: 64, 32
+  size: 32, 0
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

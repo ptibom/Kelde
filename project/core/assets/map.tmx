@@ -1,19 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="34">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="96" height="192"/>
+  <terraintypes>
+   <terrain name="Grass" tile="15"/>
+  </terraintypes>
+  <tile id="1" terrain="0,0,0,"/>
+  <tile id="2" terrain="0,0,,0"/>
+  <tile id="4" terrain="0,,0,0"/>
+  <tile id="5" terrain=",0,0,0"/>
+  <tile id="6" terrain=",,,0"/>
+  <tile id="7" terrain=",,0,0"/>
+  <tile id="8" terrain=",,0,"/>
+  <tile id="9" terrain=",0,,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain=",0,,"/>
+  <tile id="13" terrain="0,0,,"/>
+  <tile id="14" terrain="0,,,"/>
+  <tile id="15" terrain="0,0,0,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
  </tileset>
  <tileset firstgid="19" name="dirt" tilewidth="32" tileheight="32">
   <image source="dirt.png" width="96" height="192"/>
  </tileset>
+ <tileset firstgid="37" name="water" tilewidth="32" tileheight="32">
+  <image source="water.png" width="96" height="192"/>
+  <terraintypes>
+   <terrain name="water" tile="15"/>
+  </terraintypes>
+  <tile id="1" terrain="0,0,0,"/>
+  <tile id="2" terrain="0,0,,0"/>
+  <tile id="4" terrain="0,,0,0"/>
+  <tile id="5" terrain=",0,0,0"/>
+  <tile id="6" terrain=",,,0"/>
+  <tile id="7" terrain=",,0,0"/>
+  <tile id="8" terrain=",,0,"/>
+  <tile id="9" terrain=",0,,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain=",0,,"/>
+  <tile id="13" terrain="0,0,,"/>
+  <tile id="14" terrain="0,,,"/>
+  <tile id="15" terrain="0,0,0,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+ </tileset>
+ <tileset firstgid="55" name="rock" tilewidth="32" tileheight="32">
+  <image source="rock.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="57" name="holek" tilewidth="32" tileheight="32">
+  <image source="holek.png" width="96" height="192"/>
+  <tile id="10">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJyTZWBgkB3Fo3gUj+IRiLnR8Kh5pGEAKOMsMQ==
+   eJyTZWBgkB3Fo3gUj+JRPIpJxAADMi1R
   </data>
  </layer>
  <layer name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJztkjEOACAIAzHxB/7/ry4OhhQoRJ1sQhyEo6AiXy80VlRqsnGjR6ZW5+h8zwvjF52eP+QV5TH7Q3lWH0aMJwH3EVMzvHdheYhZ+XfMXFm2x6vMbvWP+H0LhhvtsgW8rPrGPKEJhB4H6g==
+   eJzNlAsLwyAMhMNG92i6Tf3/P3YRPDgy0bRjMOHw0ebLRW1FftuupltH94O81ZRNxZSa6nj7gudZtV8O+K21XhqjelTHxVyJP+KuFAMeOEpzfjbaB+ZxrfBUSLmtz3h4T52PQuNEazMe50esz5El7o/rBVOlf4c0WK9nQux7D4+9cc/7hnyRejl/zyv4J9NrwuPcHMusFGCxv9Hdi5wr2sN0ls97gXn0XL1Hz/Lfxp7/TfX4DGi2d//a3vHQC74=
   </data>
  </layer>
+ <layer name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFtADaQKyDA+uSYZYWEJsAsT4Qm0FpGNuARPP0oHrVgNgICatTYJ4JFn24xIkxD5s7cIlTYp4pmeaB/KXJgBqXlJhnBtULMhOWTrTINM+QARGX+gyoaYWc8IOZaYQDG5Nh3igYHgAAXGsOZw==
+  </data>
+ </layer>
+ <objectgroup name="Collision">
+  <object id="31" type="object" x="217" y="137">
+   <polygon points="0,0 211,2 219,20 217,294 2,295 -44,248 -45,50"/>
+  </object>
+  <object id="33" type="object" x="0" y="0">
+   <polyline points="0,0 1,640 639,639 640,1 0,-2"/>
+  </object>
+ </objectgroup>
 </map>
