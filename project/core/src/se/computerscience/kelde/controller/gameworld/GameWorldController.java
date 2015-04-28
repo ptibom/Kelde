@@ -29,7 +29,7 @@ public class GameWorldController {
      */
     public void render(float delta) {
         // Sets the camera to render from.
-        gameWorldView.getMapRenderer().setView(gameWorld.getCamera());
+        gameWorldView.getMapRenderer().setView(gameWorld.getCamera().getOrthographicCamera());
         gameWorldView.render(delta);
     }
 

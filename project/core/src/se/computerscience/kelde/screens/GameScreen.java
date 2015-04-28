@@ -29,10 +29,6 @@ public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
     private GameWorldView gameWorldView;
 
-    private WorldPhysics worldPhysics;
-    private WorldPhysicsView worldPhysicsView;
-    private WorldPhysicsController worldPhysicsController;
-
     private Body body;
     private Texture texture;
     private SpriteBatch batch;
@@ -45,10 +41,6 @@ public class GameScreen implements Screen {
         gameWorldView = new GameWorldView(gameWorld);
         gameWorldController = new GameWorldController(gameWorld, gameWorldView);
 
-        worldPhysics = new WorldPhysics(gameWorld);
-        worldPhysicsView = new WorldPhysicsView(worldPhysics);
-        worldPhysicsController = new WorldPhysicsController(worldPhysics, worldPhysicsView);
-
         loadTestPlayer();
     }
     @Override
@@ -60,18 +52,13 @@ public class GameScreen implements Screen {
         // Render the world
         gameWorldController.render(delta);
 
-        // Update physics & render debugging
-        worldPhysicsController.update(delta);
-        worldPhysicsController.renderDebug(delta); // Comment this line to remove debugging.
-
         renderTestPlayer();
     }
 
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);
-        worldPhysicsController.resizeCamera(width, height);
-        batch.setProjectionMatrix(gameWorld.getCamera().combined);
+        batch.setProjectionMatrix(gameWorld.getCamera().getOrthographicCamera().combined);
     }
 
     @Override
@@ -93,7 +80,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameWorldController.dispose();
-        worldPhysics.dispose();
     }
 
     public void loadTestPlayer() {
@@ -101,7 +87,7 @@ public class GameScreen implements Screen {
         BodyDef def = new BodyDef();
         def.position.set(70*BOX2D_SCALE, 50*BOX2D_SCALE);
         def.type = BodyType.DynamicBody;
-        body = worldPhysics.getBox2dWorld().createBody(def);
+        body = gameWorld.getWorldPhysics().getBox2dWorld().createBody(def);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(16*BOX2D_SCALE, 8*BOX2D_SCALE);

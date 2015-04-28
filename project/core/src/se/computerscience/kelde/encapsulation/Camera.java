@@ -7,13 +7,16 @@
 package se.computerscience.kelde.encapsulation;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Matrix4;
 
 public class Camera implements ICamera {
     OrthographicCamera orthographicCamera;
 
     public Camera() {
-        this.orthographicCamera = new OrthographicCamera();
+        orthographicCamera = new OrthographicCamera();
+    }
+
+    public Camera(float width, float height) {
+        orthographicCamera = new OrthographicCamera(width, height);
     }
 
     @Override
@@ -23,7 +26,7 @@ public class Camera implements ICamera {
 
     @Override
     public void setViewPortHeight(float height) {
-        orthographicCamera.viewportWidth = height;
+        orthographicCamera.viewportHeight = height;
     }
 
     @Override

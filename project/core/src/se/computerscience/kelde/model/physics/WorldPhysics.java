@@ -5,6 +5,7 @@
 package se.computerscience.kelde.model.physics;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
@@ -19,13 +20,13 @@ public class WorldPhysics {
     private OrthographicCamera box2dCamera; // Used to debug Box2D visually.
     private World box2dWorld; // A box2d World.
 
-    public WorldPhysics(GameWorld gameWorld) {
+    public WorldPhysics(TiledMap map) {
         box2dWorld = new World(new Vector2(0, 0), true); // Create a Box2D world with 0 gravity.
         box2dCamera = new OrthographicCamera();
 
         // Load all the objects from the Game Map and populate the Box2D world with polygon objects.
         Box2DMapObjectParser parser = new Box2DMapObjectParser(BOX2D_SCALE);
-        parser.load(box2dWorld, gameWorld.getMap()); // Objects loaded to Box2D.
+        parser.load(box2dWorld, map); // Objects loaded to Box2D.
     }
 
     public void update(float delta) {
