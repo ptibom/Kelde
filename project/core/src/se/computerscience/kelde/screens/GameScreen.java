@@ -17,11 +17,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
-import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
-import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 
 public class GameScreen implements Screen {
@@ -87,7 +84,7 @@ public class GameScreen implements Screen {
         BodyDef def = new BodyDef();
         def.position.set(70*BOX2D_SCALE, 50*BOX2D_SCALE);
         def.type = BodyType.DynamicBody;
-        body = gameWorld.getWorldPhysics().getBox2dWorld().createBody(def);
+        body = gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().createBody(def);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(16*BOX2D_SCALE, 8*BOX2D_SCALE);

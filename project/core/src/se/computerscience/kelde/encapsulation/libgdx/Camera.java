@@ -4,7 +4,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.encapsulation;
+package se.computerscience.kelde.encapsulation.libgdx;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 

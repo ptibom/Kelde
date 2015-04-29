@@ -5,10 +5,7 @@
 package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-import se.computerscience.kelde.model.physics.WorldPhysics;
-import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 public class GameWorldView {
     private final OrthogonalTiledMapRenderer mapRenderer;
@@ -16,14 +13,13 @@ public class GameWorldView {
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
-        mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap());
-        mapRenderer.setView(gameWorld.getCamera().getOrthographicCamera());
+        mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
     }
 
     public void render(float delta) {
+        mapRenderer.setView(gameWorld.getCamera().getOrthographicCamera());
         mapRenderer.render();
-        // Update physics & render debugging
-        gameWorld.getWorldPhysicsController().update(delta);
+        // Physics debug renderer, comment out to remove.
         gameWorld.getWorldPhysicsController().renderDebug(delta); // Comment this line to remove debugging.
     }
 
