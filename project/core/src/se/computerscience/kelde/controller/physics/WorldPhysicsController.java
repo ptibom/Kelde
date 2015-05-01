@@ -20,10 +20,6 @@ public class WorldPhysicsController {
         worldPhysics.update(delta);
     }
 
-    public void renderDebug(float delta) {
-        worldPhysicsView.render(delta);
-    }
-
     public void resizeCamera(int width, int height) {
         worldPhysics.resizeCamera(width, height);
     }
