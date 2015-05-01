@@ -4,7 +4,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.encapsulation.libgdx;
+package se.computerscience.kelde.model.encapsulation.libgdx;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;

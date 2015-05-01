@@ -4,10 +4,10 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.encapsulation.box2d;
+package se.computerscience.kelde.model.encapsulation.box2d;
 
 import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
-import se.computerscience.kelde.encapsulation.libgdx.IMap;
+import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 
 public class B2DParser implements IB2DParser {
     private final Box2DMapObjectParser parser;

@@ -4,17 +4,17 @@
 
 package se.computerscience.kelde.model.physics;
 
-import se.computerscience.kelde.encapsulation.box2d.B2DParser;
-import se.computerscience.kelde.encapsulation.box2d.B2DWorld;
-import se.computerscience.kelde.encapsulation.box2d.IB2DParser;
-import se.computerscience.kelde.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.encapsulation.libgdx.Camera;
-import se.computerscience.kelde.encapsulation.libgdx.ICamera;
-import se.computerscience.kelde.encapsulation.libgdx.IMap;
+import se.computerscience.kelde.model.encapsulation.box2d.B2DParser;
+import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
+import se.computerscience.kelde.model.encapsulation.box2d.IB2DParser;
+import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
+import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
+import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
+import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 
 public class WorldPhysics {
     // Scale 100 pixels to 1 meter. box2d uses: Meters, Kilograms, Seconds as units
-    private static final float BOX2D_SCALE = 0.01f;
+    public static final float BOX2D_SCALE = 0.01f;
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 

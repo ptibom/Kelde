@@ -4,7 +4,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.encapsulation.box2d;
+package se.computerscience.kelde.model.encapsulation.box2d;
 
 import com.badlogic.gdx.physics.box2d.World;
 
