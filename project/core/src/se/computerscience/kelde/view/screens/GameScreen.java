@@ -48,18 +48,25 @@ public class GameScreen implements Screen {
     private static final float BOX2D_SCALE = 0.01f; // Exists in WorldPhysics, this is temporary for testing
 
     private float ELAPSED_TIME = 0;
-    private TextureAtlas keldeWalkNorth, keldeWalkWest, keldeWalkSouth, keldeWalkEast;
-    private Animation animation, animationWalkNorth, animationWalkWest, animationWalkSouth, animationWalkEast;
-
+    private float ELAPSED_TIME1 = 0;
+    private TextureAtlas keldeWalkNorth, keldeWalkWest, keldeWalkSouth, keldeWalkEast, keldeLookNorth, keldeLookEast, keldeLookSouth, keldeLookWest;
+    private Animation animation, animationWalkNorth, animationWalkWest, animationWalkSouth, animationWalkEast, STANDING_STILL_NORTH, STANDING_STILL_WEST, STANDING_STILL_EAST, STANDING_STILL_SOUTH;
+    private TextureAtlas keldeNorthKnife, keldeEastKnife, keldeSouthKnife, keldeWestKnife;
+    private Animation knifeslashnorth, knifeslasheast,knifeslashwest,knifeslashsouth;
 
     private ControlBat bat1;
     private EyeController eye1;
     private SmallWormController worm1;
 
+    public enum HEADING {
+        NORTH, SOUTH, WEST, EAST
+    }
+    private HEADING direction;
+
     @Override
     public void show() {
         // Initialises objects, like a constructor
-
+        direction = HEADING.NORTH;
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView();
         gameWorldController = new GameWorldController(gameWorld, gameWorldView);
@@ -143,7 +150,32 @@ public class GameScreen implements Screen {
         createWestTexture();
         createSouthTexture();
         createEastTexture();
+        createKeldeStanding();
+        createKnifeSlash();
         // End of temporary player
+    }
+
+    private void createKnifeSlash() {
+        keldeNorthKnife = new TextureAtlas(Gdx.files.internal("kslashNorth.atlas"));
+        knifeslashnorth = new Animation(0.1f, keldeNorthKnife.getRegions());
+        keldeEastKnife = new TextureAtlas((Gdx.files.internal("kslashEast.atlas")));
+        knifeslasheast = new Animation(0.1f, keldeEastKnife.getRegions());
+        keldeSouthKnife = new TextureAtlas((Gdx.files.internal("kslashSouth.atlas")));
+        knifeslashsouth = new Animation(0.1f, keldeSouthKnife.getRegions());
+        keldeWestKnife = new TextureAtlas((Gdx.files.internal("kslashWest.atlas")));
+        knifeslashwest = new Animation(0.1f, keldeWestKnife.getRegions());
+
+    }
+
+    private void createKeldeStanding() {
+        keldeLookNorth = new TextureAtlas(Gdx.files.internal("keldelooknorth.atlas"));
+        STANDING_STILL_NORTH = new Animation(0.1f, keldeLookNorth.getRegions());
+        keldeLookEast = new TextureAtlas(Gdx.files.internal("keldelookeast.atlas"));
+        STANDING_STILL_EAST = new Animation(0.1f, keldeLookEast.getRegions());
+        keldeLookSouth = new TextureAtlas(Gdx.files.internal("keldelooksouth.atlas"));
+        STANDING_STILL_SOUTH = new Animation(0.1f, keldeLookSouth.getRegions());
+        keldeLookWest = new TextureAtlas(Gdx.files.internal("keldelookwest.atlas"));
+        STANDING_STILL_WEST = new Animation(0.1f, keldeLookWest.getRegions());
     }
 
     private void createNorthTexture() {
@@ -172,21 +204,48 @@ public class GameScreen implements Screen {
         animation = animationWalkNorth;
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         float x = 0, y = 0;
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) && !Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             y = 0.5f;
             animation = animationWalkNorth;
+            direction = HEADING.NORTH;
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && !Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             y = -0.5f;
             animation = animationWalkSouth;
+            direction = HEADING.SOUTH;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             x = 0.5f;
             animation = animationWalkEast;
+            direction = HEADING.EAST;
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             x = -0.5f;
             animation = animationWalkWest;
+            direction = HEADING.WEST;
+        }
+        if(!Gdx.input.isKeyPressed(Input.Keys.UP) && !Gdx.input.isKeyPressed(Input.Keys.DOWN) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if(direction == HEADING.NORTH) {
+                animation = STANDING_STILL_NORTH;
+            } else if (direction == HEADING.WEST) {
+                animation = STANDING_STILL_WEST;
+            } else if(direction == HEADING.EAST) {
+                animation = STANDING_STILL_EAST;
+            } else if(direction == HEADING.SOUTH) {
+                animation = STANDING_STILL_SOUTH;
+            }
+        }
+        ELAPSED_TIME1 += Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            if(direction == HEADING.NORTH) {
+                animation = knifeslashnorth;
+            } else if (direction == HEADING.WEST) {
+                animation = knifeslashwest;
+            } else if(direction == HEADING.EAST) {
+                animation = knifeslasheast;
+            } else if(direction == HEADING.SOUTH) {
+                animation = knifeslashsouth;
+            }
         }
         body.setLinearVelocity(x, y);
 

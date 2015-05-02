@@ -1,0 +1,48 @@
+
+Kelde_knife.png
+size: 576, 256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0001
+  rotate: false
+  xy: 0, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0002
+  rotate: false
+  xy: 64, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0003
+  rotate: false
+  xy: 128, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0004
+  rotate: false
+  xy: 192, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0005
+  rotate: false
+  xy: 254, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0006
+  rotate: false
+  xy: 318, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
