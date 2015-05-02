@@ -157,13 +157,13 @@ public class GameScreen implements Screen {
 
     private void createKnifeSlash() {
         keldeNorthKnife = new TextureAtlas(Gdx.files.internal("kslashNorth.atlas"));
-        knifeslashnorth = new Animation(0.1f, keldeNorthKnife.getRegions());
+        knifeslashnorth = new Animation(0.05f, keldeNorthKnife.getRegions());
         keldeEastKnife = new TextureAtlas((Gdx.files.internal("kslashEast.atlas")));
-        knifeslasheast = new Animation(0.1f, keldeEastKnife.getRegions());
+        knifeslasheast = new Animation(0.05f, keldeEastKnife.getRegions());
         keldeSouthKnife = new TextureAtlas((Gdx.files.internal("kslashSouth.atlas")));
-        knifeslashsouth = new Animation(0.1f, keldeSouthKnife.getRegions());
+        knifeslashsouth = new Animation(0.05f, keldeSouthKnife.getRegions());
         keldeWestKnife = new TextureAtlas((Gdx.files.internal("kslashWest.atlas")));
-        knifeslashwest = new Animation(0.1f, keldeWestKnife.getRegions());
+        knifeslashwest = new Animation(0.05f, keldeWestKnife.getRegions());
 
     }
 
