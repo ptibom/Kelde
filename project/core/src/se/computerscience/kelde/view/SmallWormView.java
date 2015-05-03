@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.Waypoints;
 
 import java.util.Random;
 
@@ -26,16 +25,10 @@ public class SmallWormView {
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasEast, textureAtlasWest, textureAtlasUp;
     private Animation animation,animationN,animationE,animationS,animationW,animationUp;
     private float ELAPSED_TIME = 0;
-    private float BOX2D_SCALE = 0.01f;
-    private Vector2 SPAWNPOINT;
-    private final Waypoints WAYPOINTS;
-    private float DELAY = 5;
-    private float END_DELAY = 7;
 
-    public SmallWormView(Vector2 startVector, Waypoints points) {
+
+    public SmallWormView(Vector2 startVector) {
         camera = new OrthographicCamera();
-        SPAWNPOINT = startVector;
-        WAYPOINTS = points;
         batch = new SpriteBatch();
         createUpTexture();
     }
@@ -45,20 +38,11 @@ public class SmallWormView {
         animationUp = new Animation(0.3f, textureAtlasUp.getRegions());
     }
 
-    public void  render(OrthographicCamera camera) {
-        this.camera = camera;
+    public void render(Vector2 position) {
 
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         batch.begin();
-        if(ELAPSED_TIME > DELAY) {
-
-            batch.draw(animationUp.getKeyFrame(ELAPSED_TIME, true), SPAWNPOINT.x, SPAWNPOINT.y);
-
-            if(ELAPSED_TIME > END_DELAY) {
-                SPAWNPOINT = WAYPOINTS.getNextWaypoint();
-                ELAPSED_TIME = 0;
-            }
-        }
+        batch.draw(animationUp.getKeyFrame(ELAPSED_TIME, true), position.x, position.y);
         batch.end();
     }
 

@@ -17,23 +17,16 @@ public class ViewBat {
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animationN, animationS, animationE, animationW;
 
-    private OrthographicCamera camera;
     private SpriteBatch batch;
     private Animation animation;
     private float ELAPSED_TIME = 0;
-    private Vector2 CURRENT_VECTOR, NEXT_VECTOR;
-    private final Vector2[] VECTOR_ARRAY;
-    private int index = 0;
+    private Vector2 OLD_POSITION;
 
     /**
      * Public constructor
      */
-    public ViewBat(Vector2 startVector, Vector2[] nextVector) {
-        CURRENT_VECTOR = startVector;
-        VECTOR_ARRAY = nextVector;
-        NEXT_VECTOR = VECTOR_ARRAY[index];
+    public ViewBat() {
         batch = new SpriteBatch();
-        camera = new OrthographicCamera();
 
         createNorthTexture();
         createSouthTexture();
@@ -61,37 +54,28 @@ public class ViewBat {
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
     }
 
-    public void render(Vector2 position, OrthographicCamera camera) {
-        this.camera = camera;
-        CURRENT_VECTOR = position;
-
+    public void render(Vector2 position) {
+        if(OLD_POSITION == null) {
+            OLD_POSITION = position;
+            animation = animationN;
+        }
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         batch.begin();
 
-        if(CURRENT_VECTOR.x == NEXT_VECTOR.x && CURRENT_VECTOR.y == NEXT_VECTOR.y) {
-            NEXT_VECTOR = VECTOR_ARRAY[index];
-            index++;
-            if(index == 9) {
-                index = 0;
-            }
-        }
-        if(CURRENT_VECTOR.x > NEXT_VECTOR.x) {
-            CURRENT_VECTOR.x -= 1;
+        if(OLD_POSITION.x > position.x) {
             animation = animationE;
-        } else if (CURRENT_VECTOR.x < NEXT_VECTOR.x) {
-            CURRENT_VECTOR.x += 1;
+        } else if (OLD_POSITION.x < position.x) {
             animation = animationW;
         }
-        if(CURRENT_VECTOR.y > NEXT_VECTOR.y) {
-            CURRENT_VECTOR.y -= 1;
+        if(OLD_POSITION.y > position.y) {
             animation = animationS;
-        } else if(CURRENT_VECTOR.y < NEXT_VECTOR.y) {
-            CURRENT_VECTOR.y += 1;
+        } else if(OLD_POSITION.y < position.y)  {
             animation = animationN;
         }
         if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0f; }
-        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), CURRENT_VECTOR.x, CURRENT_VECTOR.y);
+        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), position.x, position.y);
         batch.end();
+        OLD_POSITION = position;
     }
 
     public void resize(OrthographicCamera camera) {

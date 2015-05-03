@@ -13,26 +13,29 @@ import java.util.Random;
 public class EyeController {
 
     //Variables
-    private EntityEye eye;
-    private EyeView eyeview;
-    private Vector2 vector;
+    private EntityEye entity_eye;
+    private EyeView eye_view;
+    private Vector2 RENDER_POINT;
+    private int INDEX = 0;
+    private int LAST_POINT = 9;
 
-    private Vector2[] waypoint = new Vector2[10];
-    private int index = 0;
+
+    private Vector2[] WAYPOINT = new Vector2[10];
+
 
     public EyeController(Vector2 startVector) {
         setVectors();
-        eyeview = new EyeView(startVector, waypoint);
-        vector = startVector;
+        eye_view = new EyeView();
+        RENDER_POINT = startVector;
     }
 
 
     public void render(OrthographicCamera camera) {
-        eyeview.render(vector, camera);
+        eye_view.render(newSpritePosition());
     }
 
     public void resize(OrthographicCamera camera) {
-        eyeview.resize(camera);
+        eye_view.resize(camera);
     }
 
     private Vector2 setNewPosition() {
@@ -42,17 +45,30 @@ public class EyeController {
         return new Vector2(x,y);
     }
 
-    public Vector2 getWayPoint() {
-        index++;
-        if(index == 9){
-            index = 0;
-        }
-        return waypoint[index];
-    }
-
     private void setVectors() {
         for (int i = 0; i < 10 ; i++) {
-            waypoint[i] = setNewPosition();
+            WAYPOINT[i] = setNewPosition();
         }
+    }
+
+    private Vector2 newSpritePosition() {
+        if(RENDER_POINT.x == WAYPOINT[INDEX].x && RENDER_POINT.y == WAYPOINT[INDEX].y) {
+            RENDER_POINT = WAYPOINT[INDEX];
+            INDEX++;
+            if(INDEX == LAST_POINT) {
+                INDEX = 0;
+            }
+        }
+        if(RENDER_POINT.x > WAYPOINT[INDEX].x) {
+            RENDER_POINT.x -= 0.5f;
+        } else if (RENDER_POINT.x <  WAYPOINT[INDEX].x) {
+            RENDER_POINT.x += 0.5f;
+        }
+        if(RENDER_POINT.y >  WAYPOINT[INDEX].y) {
+            RENDER_POINT.y -= 0.5f;
+        } else if(RENDER_POINT.y <  WAYPOINT[INDEX].y) {
+            RENDER_POINT.y += 0.5f;
+        }
+        return RENDER_POINT;
     }
 }

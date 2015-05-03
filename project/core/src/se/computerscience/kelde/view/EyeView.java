@@ -2,10 +2,7 @@ package se.computerscience.kelde.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -21,30 +18,22 @@ public class EyeView {
 
 
     //Variables
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
+    private Batch batch;
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animation,animationN,animationE,animationS,animationW;
     private float ELAPSED_TIME = 0;
-    private float BOX2D_SCALE = 0.01f;
-    private Vector2 CURRENT_VECTOR, NEXT_VECTOR;
-    private final Vector2[] VECTOR_ARRAY;
+    private Vector2 CURRENT_VECTOR, OLD_POSITION;
     private int index = 0;
-    Vector2 direction;
+    private Vector2 direction;
 
-    public EyeView(Vector2 startVector, Vector2[] nextVector) {
-        camera = new OrthographicCamera();
-        CURRENT_VECTOR = startVector;
-        VECTOR_ARRAY = nextVector;
-        NEXT_VECTOR = VECTOR_ARRAY[index];
+    public EyeView() {
         batch = new SpriteBatch();
+
         createSouthTexture();
         createNorthTexture();
         createEastTexture();
         createWestTexture();
 
-        CURRENT_VECTOR = startVector;
-        direction = startVector;
     }
 
     private void createWestTexture() {
@@ -67,38 +56,33 @@ public class EyeView {
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
     }
 
-    public void  render(Vector2 position, OrthographicCamera camera) {
-        this.camera = camera;
-
-
+    public void  render(Vector2 position) {
+        if(OLD_POSITION == null) {
+            OLD_POSITION = position;
+            animation = animationN;
+        }
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         batch.begin();
 
-        if(CURRENT_VECTOR.x == NEXT_VECTOR.x && CURRENT_VECTOR.y == NEXT_VECTOR.y) {
-            NEXT_VECTOR = VECTOR_ARRAY[index];
-            index++;
-            if(index == 9) {
-                index = 0;
-            }
-        }
-        if(CURRENT_VECTOR.x > NEXT_VECTOR.x) {
-            CURRENT_VECTOR.x -= 0.5;
+        if(OLD_POSITION.x > position.x) {
             animation = animationE;
-        } else if (CURRENT_VECTOR.x < NEXT_VECTOR.x) {
-            CURRENT_VECTOR.x += 0.5;
+        } else if (OLD_POSITION.x < position.x) {
             animation = animationW;
         }
-        if(CURRENT_VECTOR.y > NEXT_VECTOR.y) {
-            CURRENT_VECTOR.y -= 0.5;
+        if(OLD_POSITION.y > position.y) {
             animation = animationS;
-        } else if(CURRENT_VECTOR.y < NEXT_VECTOR.y) {
-            CURRENT_VECTOR.y += 0.5;
+        } else if(OLD_POSITION.y < position.y)  {
             animation = animationN;
         }
-
+        if(OLD_POSITION.x == position.x && OLD_POSITION.y < position.y) {
+            animation = animationE;
+        } else if(OLD_POSITION.x == position.x && OLD_POSITION.y > position.y) {
+            animation = animationW;
+        }
         if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0f; }
-        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), direction.x, direction.y);
+        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), position.x, position.y);
         batch.end();
+        OLD_POSITION = position;
     }
 
     public void resize(OrthographicCamera camera) {

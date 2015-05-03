@@ -17,24 +17,27 @@ public class ControlBat {
     //Variables
     private final EntityBat ebat;
     private final ViewBat vbat;
-    private Vector2 startPos;
+    private Vector2 RENDER_POINT;
+    private int INDEX = 0;
+    private int LAST_POINT = 9;
+    private int BATBITE_DAMAGE = 10;
 
-    private Vector2[] waypoint = new Vector2[10];
+    private Vector2[] WAYPOINT = new Vector2[10];
 
     public ControlBat(Vector2 startVector) {
         setWayVectors();
-        ebat = new EntityBat(10);
-        vbat = new ViewBat(startVector,waypoint);
-        startPos = startVector;
+        ebat = new EntityBat(BATBITE_DAMAGE);
+        vbat = new ViewBat();
+        RENDER_POINT = startVector;
     }
 
     private void setWayVectors() {
         for (int i = 0; i < 10 ; i++) {
-            waypoint[i] = setNewPosition();
+            WAYPOINT[i] = setNewPosition();
         }
     }
     public void render(OrthographicCamera camera) {
-        vbat.render(startPos, camera);
+        vbat.render(newSpritePosition());
     }
 
 
@@ -47,5 +50,26 @@ public class ControlBat {
         int x = random.nextInt(500) + 1;
         int y = random.nextInt(500) + 1;
         return new Vector2(x,y);
+    }
+
+    private Vector2 newSpritePosition() {
+        if(RENDER_POINT.x == WAYPOINT[INDEX].x && RENDER_POINT.y == WAYPOINT[INDEX].y) {
+            RENDER_POINT = WAYPOINT[INDEX];
+            INDEX++;
+            if(INDEX == LAST_POINT) {
+                INDEX = 0;
+            }
+        }
+        if(RENDER_POINT.x > WAYPOINT[INDEX].x) {
+            RENDER_POINT.x -= 1;
+        } else if (RENDER_POINT.x <  WAYPOINT[INDEX].x) {
+            RENDER_POINT.x += 1;
+        }
+        if(RENDER_POINT.y >  WAYPOINT[INDEX].y) {
+            RENDER_POINT.y -= 1;
+        } else if(RENDER_POINT.y <  WAYPOINT[INDEX].y) {
+            RENDER_POINT.y += 1;
+        }
+        return RENDER_POINT;
     }
 }

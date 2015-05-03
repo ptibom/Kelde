@@ -98,7 +98,7 @@ public class GameScreen implements Screen {
         worm1.render(gameWorld.getCamera());
         renderTestPlayer();
         eye1.render(gameWorld.getCamera());
-
+        bat1.render(gameWorld.getCamera());
 
     }
 
