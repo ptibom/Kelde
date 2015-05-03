@@ -8,9 +8,9 @@ public class EntityPlayer implements IPlayerEntity {
     private int health = 100;
     private int mana = 100;
     private int strength = 10;
-    private int intelligence = 10;
+    private int magic = 10;
 
-    /* Getters */
+    /* Getters & Setters */
     @Override
     public int getHealth() {
         return health;
@@ -27,24 +27,27 @@ public class EntityPlayer implements IPlayerEntity {
     }
 
     @Override
-    public int getIntelligence() {
-        return intelligence;
+    public int getMagic() {
+        return magic;
     }
 
-    /* Temporary setters */
+    @Override
     public void setHealth(int health) {
         this.health = health;
     }
 
+    @Override
     public void setMana(int mana) {
         this.mana = mana;
     }
 
+    @Override
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+    @Override
+    public void setMagic(int magic) {
+        this.magic = magic;
     }
 }

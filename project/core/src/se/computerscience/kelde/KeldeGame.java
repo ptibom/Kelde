@@ -5,7 +5,7 @@
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.Game;
-import se.computerscience.kelde.view.screens.GameScreen;
+import se.computerscience.kelde.screens.GameScreen;
 
 public class KeldeGame extends Game {
 
