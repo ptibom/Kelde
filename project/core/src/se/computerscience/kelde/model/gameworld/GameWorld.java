@@ -1,5 +1,5 @@
-/* Description: World includes most of the game. Such as monsters, players, terrain, objects, camera etc.
- * @author: Philip Tibom
+/** Description: World includes most of the game. Such as monsters, players, terrain, objects, camera etc.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.gameworld;
@@ -11,40 +11,53 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import jdk.nashorn.internal.objects.annotations.Setter;
 
+import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
+import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
+import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
+import se.computerscience.kelde.model.encapsulation.libgdx.Map;
+import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.physics.WorldPhysics;
+
 public class GameWorld {
 
     private static final String MAP_LOCATION = "map.tmx";
+    private final WorldPhysics worldPhysics;
+    private final EntityPlayerKelde entityPlayerKelde;
 
-    private TiledMap map;
-    private OrthographicCamera camera;
+    private IMap map;
+    private ICamera camera;
 
     public GameWorld() {
-        map = new TmxMapLoader().load(MAP_LOCATION);
-        camera = new OrthographicCamera();
-    }
-
-    public TiledMap getMap() {
-        return map;
+        map = new Map(MAP_LOCATION);
+        camera = new Camera();
+        worldPhysics = new WorldPhysics(map);
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
-        if (height%2 == 1) {
-            height--; // Keeps viewport "even" and prevents texture-distortion.
-        }
-        if (width%2 == 1) {
-            width--; // Keeps viewport "even" and prevents texture-distortion.
-        }
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-        camera.position.set(width / 2, height / 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
+        camera.setViewPortWidth(width);
+        camera.setViewPortHeight(height);
+        camera.setPosition(width / (float) 2, height / (float) 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
     }
 
-    public OrthographicCamera getCamera() {
+    public ICamera getCamera() {
         return camera;
     }
 
     public void dispose() {
         map.dispose();
+    }
+
+    public WorldPhysics getWorldPhysics() {
+        return worldPhysics;
+    }
+
+    public IMap getMap() {
+        return map;
+    }
+
+    public EntityPlayerKelde getEntityPlayerKelde() {
+        return entityPlayerKelde;
     }
 }

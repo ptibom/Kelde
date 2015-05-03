@@ -1,5 +1,5 @@
-/* Description: This is a player controlled character with base-stats. The used player character will be extend this class for modularity.
- * @author: Philip Tibom
+/** Description: This is a player controlled character with base-stats. The used player character will be extend this class for modularity.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;
@@ -9,8 +9,8 @@ public class EntityPlayer implements IPlayerEntity {
     private int mana = 100;
     private int strength = 10;
     private int intelligence = 10;
-    private int posX;
-    private int posY;
+    private float posX;
+    private float posY;
     private int movementSpeed=2;
     private String direction;
 
@@ -52,8 +52,9 @@ public class EntityPlayer implements IPlayerEntity {
     }
 
 
+    private int magic = 10;
 
-    /* Getters */
+    /* Getters & Setters */
     @Override
     public int getHealth() {
         return health;
@@ -70,24 +71,27 @@ public class EntityPlayer implements IPlayerEntity {
     }
 
     @Override
-    public int getIntelligence() {
-        return intelligence;
+    public int getMagic() {
+        return magic;
     }
 
-    /* Temporary setters */
+    @Override
     public void setHealth(int health) {
         this.health = health;
     }
 
+    @Override
     public void setMana(int mana) {
         this.mana = mana;
     }
 
+    @Override
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+    @Override
+    public void setMagic(int magic) {
+        this.magic = magic;
     }
 }

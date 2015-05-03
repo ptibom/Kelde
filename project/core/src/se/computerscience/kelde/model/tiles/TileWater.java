@@ -1,5 +1,5 @@
-/* Description: Water tile. Entities cannot walk on it.
- * @author: Philip Tibom
+/** Description: Water tile. Entities cannot walk on it.
+ *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.tiles;
