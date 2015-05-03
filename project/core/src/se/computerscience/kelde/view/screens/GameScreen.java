@@ -12,19 +12,18 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
-import se.computerscience.kelde.controller.gameworld.GameWorldController;
+import se.computerscience.kelde.controller.gameworld.*;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
+import se.computerscience.kelde.model.MyContactListener;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.physics.WorldPhysics;
-import se.computerscience.kelde.view.gameworld.GameWorldView;
+import se.computerscience.kelde.view.gameworld.*;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 
-public class GameScreen implements Screen {
+public class GameScreen implements Screen  {
     private OrthographicCamera box2dCamera; // Camera is the view from where the scene is rendered.
 
     private GameWorld gameWorld;
@@ -35,15 +34,24 @@ public class GameScreen implements Screen {
     private WorldPhysicsView worldPhysicsView;
     private WorldPhysicsController worldPhysicsController;
 
+
     private Body body;
     private Texture texture;
     private SpriteBatch batch;
     private final float BOX2D_SCALE = 0.01f; // Exists in WorldPhysics, this is temporary for testing
 
+    private BigRockController rock;
+    private BarrelController barrel;
+    private BigRockView rockView;
+    private BarrelView barrelView;
+    private TreasureController treasure;
+    private TreasureController treasure2;
+    private TreasureView treasureView;
+    private TreasureView treasureView2;
+
     @Override
     public void show() {
         // Initialises objects, like a constructor
-
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView();
         gameWorldController = new GameWorldController(gameWorld, gameWorldView);
@@ -52,7 +60,19 @@ public class GameScreen implements Screen {
         worldPhysicsView = new WorldPhysicsView(worldPhysics);
         worldPhysicsController = new WorldPhysicsController(worldPhysics, worldPhysicsView);
 
+        rock = new BigRockController(false,200,100);
+        barrel = new BarrelController(true,100,100);
+
+        rock.loadObj(worldPhysics);
+        barrel.loadObj(worldPhysics);
+
+        rockView = new BigRockView(rock.getObjBody());
+        barrelView = new BarrelView(barrel.getObjBody());
+
         loadTestPlayer();
+
+
+
     }
     @Override
     public void render(float delta) {
@@ -67,7 +87,10 @@ public class GameScreen implements Screen {
         worldPhysicsController.update(delta);
         worldPhysicsController.renderDebug(delta); // Comment this line to remove debugging.
 
+        rockView.render();
+        barrelView.render();
         renderTestPlayer();
+
     }
 
     @Override
@@ -75,6 +98,9 @@ public class GameScreen implements Screen {
         gameWorldController.resizeCamera(width, height);
         worldPhysicsController.resizeCamera(width, height);
         batch.setProjectionMatrix(gameWorld.getCamera().combined);
+
+        barrelView.resize(height, width, gameWorld.getCamera()); // barrel won't resize when scaling the screen
+        rockView.resize(height, width, gameWorld.getCamera()); // barrel won't resize when scaling the screen
     }
 
     @Override
@@ -116,6 +142,7 @@ public class GameScreen implements Screen {
         // End of temporary player
     }
 
+
     public void renderTestPlayer() {
         // Testing temporary player for collisions
         int x = 0, y = 0;
@@ -134,11 +161,11 @@ public class GameScreen implements Screen {
         body.setLinearVelocity(x, y);
 
         Sprite player = new Sprite(texture, 32, 48);
-        player.setPosition(body.getPosition().x/BOX2D_SCALE - 16, body.getPosition().y/BOX2D_SCALE - 6);
-
+        player.setPosition(body.getPosition().x / BOX2D_SCALE - 16, body.getPosition().y / BOX2D_SCALE - 6);
         batch.begin();
         player.draw(batch);
         batch.end();
+
         // End of temporary player
     }
 }

@@ -7,8 +7,12 @@ package se.computerscience.kelde.model.gameworld;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import jdk.nashorn.internal.objects.annotations.Setter;
 
 public class GameWorld {
+
     private static final String MAP_LOCATION = "map.tmx";
 
     private TiledMap map;

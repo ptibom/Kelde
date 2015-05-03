@@ -6,4 +6,7 @@ package se.computerscience.kelde.model.entities;
 
 public class EntityPlayerKelde extends EntityPlayer {
 
+    public EntityPlayerKelde(int posX, int posY) {
+        super(posX, posY);
+    }
 }

@@ -4,8 +4,6 @@
 
 package se.computerscience.kelde.controller.gameworld;
 
-
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
@@ -24,6 +22,7 @@ public class GameWorldController {
         // Sets the camera to render from.
         gameWorldView.getRenderer().setView(gameWorld.getCamera());
         gameWorldView.render(delta);
+
     }
 
     public void resizeCamera(int width, int height) {

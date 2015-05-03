@@ -4,5 +4,5 @@
 
 package se.computerscience.kelde.model.gameworld;
 
-public class GameWorldObjectBox extends GameWorldObjects {
+public class GameWorldObjectBox {
 }
