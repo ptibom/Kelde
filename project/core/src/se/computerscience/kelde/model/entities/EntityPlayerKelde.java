@@ -4,6 +4,7 @@
 
 package se.computerscience.kelde.model.entities;
 
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
@@ -15,9 +16,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     IEntityBody entityBody;
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld) {
-        super(START_POSITION_X,START_POSITION_Y);
-
-        entityBody = new EntityBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld);
+        entityBody = new EntityBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,BodyDef.BodyType.DynamicBody, this);
     }
 
     public void setVelocity(float x, float y) {
@@ -26,10 +25,6 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     public float getPositionY() {
         return entityBody.getPositionY()-BODY_HEIGHT;
-    }
-
-    public EntityPlayerKelde(int posX, int posY) {
-        super(posX, posY);
     }
     public float getPositionX() {
         return entityBody.getPositionX()-BODY_WIDTH;

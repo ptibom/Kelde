@@ -47,7 +47,7 @@ public class WorldObjectController {
             objBodyDef.type = BodyDef.BodyType.StaticBody;
         }
 
-        objBody = wp.getBox2dWorld().createBody(objBodyDef);
+        //objBody = wp.getBox2dWorld().createBody(objBodyDef);
         FixtureDef objFixtureDef = new FixtureDef();
         PolygonShape objShape = new PolygonShape();
         objShape.setAsBox(16*BOX2D_SCALE, 16*BOX2D_SCALE);

@@ -22,10 +22,6 @@ public class EntityPlayer implements IPlayerEntity {
         this.direction = direction;
     }
 
-    public EntityPlayer(int posX, int posY) {
-        this.posX = posX;
-        this.posY = posY;
-    }
 
     public int getMovementSpeed() {
         return movementSpeed;
@@ -35,7 +31,7 @@ public class EntityPlayer implements IPlayerEntity {
         this.movementSpeed = movementSpeed;
     }
 
-    public int getPosY() {
+    public float getPosY() {
         return posY;
     }
 
@@ -43,7 +39,7 @@ public class EntityPlayer implements IPlayerEntity {
         this.posY = posY;
     }
 
-    public int getPosX() {
+    public float getPosX() {
         return posX;
     }
 

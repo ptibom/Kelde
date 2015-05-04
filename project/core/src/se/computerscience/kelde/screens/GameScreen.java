@@ -7,6 +7,7 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import se.computerscience.kelde.controller.gameworld.BarrelController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
@@ -15,10 +16,12 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
 
+
     @Override
     public void show() {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController();
+
     }
     @Override
     public void render(float delta) {
@@ -28,6 +31,7 @@ public class GameScreen implements Screen {
 
         // Render the world
         gameWorldController.render(delta);
+
     }
 
     @Override
@@ -55,4 +59,5 @@ public class GameScreen implements Screen {
     public void dispose() {
         gameWorldController.dispose();
     }
+
 }

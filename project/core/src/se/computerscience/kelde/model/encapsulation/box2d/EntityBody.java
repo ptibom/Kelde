@@ -8,23 +8,55 @@ package se.computerscience.kelde.model.encapsulation.box2d;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import se.computerscience.kelde.MyContactListener;
+import se.computerscience.kelde.controller.gameworld.TreasureController;
+import se.computerscience.kelde.model.gameworld.GameWorld;
+import se.computerscience.kelde.model.gameworld.TreasureModell;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.screens.GameScreen;
+import se.computerscience.kelde.view.gameworld.TreasureView;
+
+import java.util.Objects;
 
 public class EntityBody implements IEntityBody {
     private final World worldPhysics;
     private final Body body;
-
+    private final FixtureDef fdef = new FixtureDef();
     public EntityBody(float x, float y, float width, float height, IB2DWorld ib2DWorld) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         BodyDef def = new BodyDef();
         def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
         def.type = BodyType.DynamicBody;
-        body = worldPhysics.createBody(def);
+        //body = worldPhysics.createBody(def);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
+        fdef.shape = shape;
+        body = ib2DWorld.getBox2DWorld().createBody(def);
+        body.createFixture(fdef);
+
+    }
+
+    public EntityBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, BodyType bType, Object o)  {
+        worldPhysics = ib2DWorld.getBox2DWorld();
+        BodyDef def = new BodyDef();
+        def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
+        def.type = bType;
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
-        body.createFixture(fdef);
+        body = ib2DWorld.getBox2DWorld().createBody(def);
+        body.createFixture(fdef).setUserData(o);
+
+    }
+
+
+    public Body getBody() {
+        return body;
+    }
+
+    public FixtureDef getFdef() {
+        return fdef;
     }
 
     @Override
@@ -47,4 +79,6 @@ public class EntityBody implements IEntityBody {
     public void destroy() {
         worldPhysics.destroyBody(body);
     }
+
+
 }

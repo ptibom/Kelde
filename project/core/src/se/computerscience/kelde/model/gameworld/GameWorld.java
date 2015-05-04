@@ -4,13 +4,6 @@
 
 package se.computerscience.kelde.model.gameworld;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
@@ -24,6 +17,8 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
 
+    private final BarrelModel barrelModel;
+    private final TreasureModell treasureModell;
     private IMap map;
     private ICamera camera;
 
@@ -32,6 +27,9 @@ public class GameWorld {
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
+
+        barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33); //init a barrel with position
+        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30); // init a treasure box w. position
     }
 
     public void resizeCamera (int width, int height) {
@@ -59,5 +57,13 @@ public class GameWorld {
 
     public EntityPlayerKelde getEntityPlayerKelde() {
         return entityPlayerKelde;
+    }
+
+    public BarrelModel getBarrelModel() {
+        return barrelModel;
+    }
+
+    public TreasureModell getTreasureModell() {
+        return treasureModell;
     }
 }

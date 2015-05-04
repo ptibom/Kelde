@@ -24,10 +24,12 @@ public class WorldObjectModel {
     public void initWorld(){
         // Initialises objects, like a constructor
         gameWorld = new GameWorld();
-        gameWorldView = new GameWorldView();
-        gameWorldController = new GameWorldController(gameWorld, gameWorldView);
+        gameWorldView = new GameWorldView(gameWorld);
+        //gameWorldController = new GameWorldController(gameWorld, gameWorldView);
+        gameWorldController = new GameWorldController();
 
-        worldPhysics = new WorldPhysics(gameWorld);
+        worldPhysics = new WorldPhysics(gameWorld.getMap());
+
         worldPhysicsView = new WorldPhysicsView(worldPhysics);
         worldPhysicsController = new WorldPhysicsController(worldPhysics, worldPhysicsView);
     }

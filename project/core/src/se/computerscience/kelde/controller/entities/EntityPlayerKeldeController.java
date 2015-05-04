@@ -9,10 +9,11 @@ package se.computerscience.kelde.controller.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 
-public class EntityPlayerKeldeController {
+public class EntityPlayerKeldeController implements IWorldObjectsController {
     EntityPlayerKelde entityPlayerKelde;
     EntityPlayerKeldeView entityPlayerKeldeView;
     Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)

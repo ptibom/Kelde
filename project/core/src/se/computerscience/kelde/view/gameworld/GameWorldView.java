@@ -18,6 +18,9 @@ public class GameWorldView {
     private final WorldPhysicsView worldPhysicsView;
     private final EntityPlayerKeldeView entityPlayerKeldeView;
 
+    private final BarrelView barrelView;
+    private final TreasureView treasureView;
+
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
@@ -26,7 +29,12 @@ public class GameWorldView {
 
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
+
+        barrelView = new BarrelView(gameWorld.getBarrelModel());
+        treasureView = new TreasureView(gameWorld.getTreasureModell());
     }
+
+
 
     public void render(float delta) {
         // Draw map
@@ -35,6 +43,8 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
+        barrelView.draw(batch);
+        treasureView.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -60,5 +70,11 @@ public class GameWorldView {
 
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
+    }
+    public BarrelView getBarrelView(){
+        return barrelView;
+    }
+    public TreasureView getTreasureView() {
+        return treasureView;
     }
 }
