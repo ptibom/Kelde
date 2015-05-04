@@ -21,8 +21,8 @@ public class BarrelModel implements IWorldObjectsModel{
 
     IEntityBody entityBody;
 
-    public BarrelModel(IB2DWorld ib2DWorld,float x,float y) {
-        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.DynamicBody, this);
+    public BarrelModel(IB2DWorld ib2DWorld,float x,float y, String userdata) {
+        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.DynamicBody, userdata);
     }
     public float getPositionY() {
         return entityBody.getPositionY()-BODY_HEIGHT;

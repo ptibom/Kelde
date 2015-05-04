@@ -17,8 +17,8 @@ public class TreasureModell implements IWorldObjectsModel {
 
     IEntityBody entityBody;
 
-    public TreasureModell(IB2DWorld ib2DWorld,float x,float y) {
-        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, this);
+    public TreasureModell(IB2DWorld ib2DWorld,float x,float y,String userdata) {
+        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, userdata);
     }
 
     public float getPositionY() {

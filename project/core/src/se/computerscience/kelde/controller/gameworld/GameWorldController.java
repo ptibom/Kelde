@@ -24,6 +24,7 @@ public class GameWorldController {
 
     private final BarrelController barrelController;
     private final TreasureController treasureController;
+    private final TreasureController treasureController2;
 
     private IWorldObjectsController[] worldObjectsList;
 
@@ -35,10 +36,12 @@ public class GameWorldController {
 
         barrelController = new BarrelController(gameWorld.getBarrelModel(), gameWorldView.getBarrelView());
         treasureController = new TreasureController(gameWorld.getTreasureModell(), gameWorldView.getTreasureView());
+        treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
 
-        worldObjectsList = new IWorldObjectsController[3];
+        worldObjectsList = new IWorldObjectsController[4];
         worldObjectsList[0] = barrelController;
         worldObjectsList[1] = treasureController;
+        worldObjectsList[3] = treasureController2;
         worldObjectsList[2] = entityPlayerKeldeController;
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new MyContactListener(worldObjectsList));

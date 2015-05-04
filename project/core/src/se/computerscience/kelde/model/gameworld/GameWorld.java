@@ -19,6 +19,7 @@ public class GameWorld {
 
     private final BarrelModel barrelModel;
     private final TreasureModell treasureModell;
+    private final TreasureModell treasureModell2;
     private IMap map;
     private ICamera camera;
 
@@ -28,8 +29,9 @@ public class GameWorld {
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
 
-        barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33); //init a barrel with position
-        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30); // init a treasure box w. position
+        barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1"); //init a barrel with position
+        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30, "treasure 1"); // init a treasure box w. position
+        treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),100,30, "treasure 2"); // init a treasure box w. position
     }
 
     public void resizeCamera (int width, int height) {
@@ -65,5 +67,9 @@ public class GameWorld {
 
     public TreasureModell getTreasureModell() {
         return treasureModell;
+    }
+
+    public TreasureModell getTreasureModell2() {
+        return treasureModell2;
     }
 }

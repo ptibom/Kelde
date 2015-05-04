@@ -1,20 +1,12 @@
 package se.computerscience.kelde;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import se.computerscience.kelde.controller.gameworld.BarrelController;
-import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.controller.gameworld.TreasureController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.gameworld.BarrelModel;
-import se.computerscience.kelde.model.gameworld.TreasureModell;
-
-import java.util.Objects;
 
 /**
  * Created by Hossein on 2015-05-03.
@@ -29,17 +21,20 @@ public class MyContactListener implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if (isTreasure(contact) && worldObjects[1] instanceof TreasureController && isPlayer(contact))
+        if (isObject("treasure 1",contact) && isPlayer(contact))
             ((TreasureController)worldObjects[1]).openTreasure();
-
-        if (isBarrel(contact) && worldObjects[0] instanceof BarrelController )
+        else if (isObject("treasure 2",contact) && isPlayer(contact))
+            ((TreasureController)worldObjects[3]).openTreasure();
+        else if (isObject("barrel 1",contact) && isPlayer(contact))
             System.out.println("just a barrel stop cry");
     }
 
     @Override
     public void endContact(Contact contact) {
-        if (isTreasure(contact) && worldObjects[1] instanceof TreasureController)
+        if (isObject("treasure 1",contact) && isPlayer(contact))
             ((TreasureController)worldObjects[1]).closeTreasure();
+        else if (isObject("treasure 2",contact) && isPlayer(contact))
+            ((TreasureController)worldObjects[3]).closeTreasure();
     }
 
     @Override
@@ -51,14 +46,11 @@ public class MyContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
-
-    public boolean isTreasure(Contact contact){
-        return contact.getFixtureB().getUserData() instanceof TreasureModell;
+    //checking if the contacted is the input userdata
+    public boolean isObject(String userdata, Contact contact){
+        return contact.getFixtureB().getUserData().equals(userdata);
     }
-    public boolean isBarrel(Contact contact){
-        return contact.getFixtureB().getUserData() instanceof BarrelModel;
-    }
-
+    //checks if the players collided
     public boolean isPlayer(Contact contact){
         return contact.getFixtureA().getUserData() instanceof EntityPlayerKelde;
     }

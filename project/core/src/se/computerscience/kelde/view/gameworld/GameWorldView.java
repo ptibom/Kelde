@@ -20,6 +20,7 @@ public class GameWorldView {
 
     private final BarrelView barrelView;
     private final TreasureView treasureView;
+    private final TreasureView treasureView2;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -32,6 +33,7 @@ public class GameWorldView {
 
         barrelView = new BarrelView(gameWorld.getBarrelModel());
         treasureView = new TreasureView(gameWorld.getTreasureModell());
+        treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
     }
 
 
@@ -45,6 +47,7 @@ public class GameWorldView {
         batch.begin();
         barrelView.draw(batch);
         treasureView.draw(batch);
+        treasureView2.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -76,5 +79,8 @@ public class GameWorldView {
     }
     public TreasureView getTreasureView() {
         return treasureView;
+    }
+    public TreasureView getTreasureView2() {
+        return treasureView2;
     }
 }
