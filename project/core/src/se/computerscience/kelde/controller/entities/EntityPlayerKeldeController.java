@@ -31,16 +31,16 @@ public class EntityPlayerKeldeController {
     public void getKeyInput() {
         velocityControl.set(0, 0);
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            velocityControl.y = 2;
+            velocityControl.y = 1;
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            velocityControl.y = -2;
+            velocityControl.y = -1;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            velocityControl.x = 2;
+            velocityControl.x = 1;
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            velocityControl.x = -2;
+            velocityControl.x = -1;
         }
     }
 }

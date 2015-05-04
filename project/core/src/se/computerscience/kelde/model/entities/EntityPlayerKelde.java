@@ -4,6 +4,7 @@
 
 package se.computerscience.kelde.model.entities;
 
+import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
@@ -28,5 +29,9 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     public float getPositionX() {
         return entityBody.getPositionX()-BODY_WIDTH;
+    }
+
+    public Vector2 getPosition() {
+        return new Vector2(entityBody.getPositionX()-BODY_WIDTH, entityBody.getPositionY()-BODY_HEIGHT);
     }
 }

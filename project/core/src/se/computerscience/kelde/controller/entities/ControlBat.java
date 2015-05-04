@@ -72,4 +72,8 @@ public class ControlBat {
         }
         return RENDER_POINT;
     }
+
+    public void update(float delta) {
+
+    }
 }
