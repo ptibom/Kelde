@@ -7,6 +7,7 @@
 package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeView {
+public class EntityPlayerKeldeView implements InputProcessor {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Sprite sprite;
     private final Texture texture;
@@ -29,12 +30,34 @@ public class EntityPlayerKeldeView {
     private Animation knifeslashnorth, knifeslasheast,knifeslashwest,knifeslashsouth;
     private HEADING direction;
     private float oldX, oldY;
+    private int SPACE_KEY = 62, RIGHT_ARROW = 22, LEFT_ARROW = 21, UP_ARROW = 19, DOWN_ARROW = 20;
+    private Boolean SLASH = false;
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if(keycode == SPACE_KEY) {
+            SLASH = true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        if(keycode == SPACE_KEY) {
+            SLASH = false;
+        }
+        return false;
+    }
+
+
+
 
     public enum HEADING {
         NORTH, SOUTH, WEST, EAST
     }
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
+        Gdx.input.setInputProcessor(this);
         this.entityPlayerKelde = entityPlayerKelde;
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
@@ -50,9 +73,6 @@ public class EntityPlayerKeldeView {
 
     public void draw (SpriteBatch batch) {
 
-        Vector2 direct = new Vector2(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        direct.sub(entityPlayerKelde.getPosition());
-        direct.nor();
         Boolean walk = false;
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         float newX = entityPlayerKelde.getPositionX();
@@ -90,6 +110,16 @@ public class EntityPlayerKeldeView {
         }
         if(direction == HEADING.SOUTH && oldY == newY && walk == false) {
             animation = STANDING_STILL_SOUTH;
+        }
+
+        if(SLASH && direction == HEADING.NORTH) {
+            animation = knifeslashnorth;
+        } else if (SLASH && direction == HEADING.WEST) {
+            animation = knifeslashwest;
+        } else if(SLASH && direction == HEADING.EAST) {
+            animation = knifeslasheast;
+        } else if(SLASH && direction == HEADING.SOUTH) {
+            animation = knifeslashsouth;
         }
 
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
@@ -142,4 +172,33 @@ public class EntityPlayerKeldeView {
         animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
     }
 
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
+    }
 }

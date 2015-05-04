@@ -8,6 +8,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
@@ -21,6 +22,7 @@ public class EntityPlayerKeldeController {
         this.entityPlayerKelde = entityPlayerKelde;
         this.entityPlayerKeldeView = entityPlayerKeldeView;
         velocityControl = new Vector2(0, 0);
+
     }
 
     public void update(float delta) {
