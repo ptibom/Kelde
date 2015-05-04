@@ -27,17 +27,23 @@ public class EntityPlayerKeldeView implements InputProcessor {
     private TextureAtlas keldeWalkNorth, keldeWalkWest, keldeWalkSouth, keldeWalkEast, keldeLookNorth, keldeLookEast, keldeLookSouth, keldeLookWest;
     private Animation animation, animationWalkNorth, animationWalkWest, animationWalkSouth, animationWalkEast, STANDING_STILL_NORTH, STANDING_STILL_WEST, STANDING_STILL_EAST, STANDING_STILL_SOUTH;
     private TextureAtlas keldeNorthKnife, keldeEastKnife, keldeSouthKnife, keldeWestKnife;
+    private TextureAtlas keldeNorthArrow, keldeWestArrow, keldeSouthArrow, keldeEastArrow;
     private Animation knifeslashnorth, knifeslasheast,knifeslashwest,knifeslashsouth;
+    private Animation keldeShootArrowNorth, keldeShootArrowWest, keldeShootArrowSouth, keldeShootArrowEast;
     private HEADING direction;
     private float oldX, oldY;
-    private int SPACE_KEY = 62, RIGHT_ARROW = 22, LEFT_ARROW = 21, UP_ARROW = 19, DOWN_ARROW = 20;
-    private Boolean SLASH = false;
+    private int SPACE_KEY = 62, RIGHT_ARROW = 22, LEFT_ARROW = 21, UP_ARROW = 19, DOWN_ARROW = 20, SHOOT_ARROW = 57;
+    private Boolean SLASH = false, ARROW = false;
 
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == SPACE_KEY) {
             SLASH = true;
         }
+        if(keycode == SHOOT_ARROW) {
+            ARROW = true;
+        }
+        System.out.print(keycode+"\n");
         return false;
     }
 
@@ -46,11 +52,11 @@ public class EntityPlayerKeldeView implements InputProcessor {
         if(keycode == SPACE_KEY) {
             SLASH = false;
         }
+        if(keycode == SHOOT_ARROW) {
+            ARROW = false;
+        }
         return false;
     }
-
-
-
 
     public enum HEADING {
         NORTH, SOUTH, WEST, EAST
@@ -69,6 +75,7 @@ public class EntityPlayerKeldeView implements InputProcessor {
         createEastTexture();
         createKeldeStanding();
         createKnifeSlash();
+        createArrowShoot();
     }
 
     public void draw (SpriteBatch batch) {
@@ -99,16 +106,16 @@ public class EntityPlayerKeldeView implements InputProcessor {
             walk = true;
         }
 
-        if(direction == HEADING.NORTH && oldX == newX && walk == false) {
+        if(direction == HEADING.NORTH && walk == false) {
             animation = STANDING_STILL_NORTH;
         }
-        if (direction == HEADING.WEST && oldY == newY && walk == false) {
+        if (direction == HEADING.WEST && walk == false) {
             animation = STANDING_STILL_WEST;
         }
-        if(direction == HEADING.EAST && oldX == newX && walk == false) {
+        if(direction == HEADING.EAST && walk == false) {
             animation = STANDING_STILL_EAST;
         }
-        if(direction == HEADING.SOUTH && oldY == newY && walk == false) {
+        if(direction == HEADING.SOUTH && walk == false) {
             animation = STANDING_STILL_SOUTH;
         }
 
@@ -122,11 +129,32 @@ public class EntityPlayerKeldeView implements InputProcessor {
             animation = knifeslashsouth;
         }
 
+        if(ARROW && direction == HEADING.NORTH) {
+            animation = keldeShootArrowNorth;
+        } else if(ARROW && direction == HEADING.WEST) {
+            animation = keldeShootArrowWest;
+        } else if(ARROW && direction == HEADING.SOUTH) {
+            animation = keldeShootArrowSouth;
+        } else if(ARROW && direction == HEADING.EAST) {
+            animation = keldeShootArrowEast;
+        }
+
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         sprite.draw(batch);
         oldX = entityPlayerKelde.getPositionX();
         oldY = entityPlayerKelde.getPositionY();
+    }
+
+    private void createArrowShoot() {
+        keldeNorthArrow = new TextureAtlas(Gdx.files.internal("kArrowNorth.atlas"));
+        keldeShootArrowNorth = new Animation(0.05f,keldeNorthArrow.getRegions());
+        keldeWestArrow = new TextureAtlas((Gdx.files.internal("kArrowWest.atlas")));
+        keldeShootArrowWest = new Animation(0.05f,keldeWestArrow.getRegions());
+        keldeSouthArrow = new TextureAtlas(Gdx.files.internal("kArrowSouth.atlas"));
+        keldeShootArrowSouth = new Animation(0.05f, keldeSouthArrow.getRegions());
+        keldeEastArrow = new TextureAtlas(Gdx.files.internal("kArrowEast.atlas"));
+        keldeShootArrowEast = new Animation(0.05f, keldeEastArrow.getRegions());
     }
 
     private void createKnifeSlash() {
