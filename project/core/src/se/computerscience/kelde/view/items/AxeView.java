@@ -3,6 +3,7 @@ package se.computerscience.kelde.view.items;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.items.AxeModel;
 
 /**
@@ -13,11 +14,13 @@ public class AxeView {
     private final Sprite sprite;
     private final Texture texture;
     private final int WIDTH = 32, HEIGHT = 32;
-    private final String SPRITE_LOCATION = "items.png";
+    private TextureAtlas atlas;
+    private final String SPRITE_LOCATION = "items.atlas";
     private boolean visble = false;
 
     public AxeView(AxeModel axeModel) {
         this.axeModel = axeModel;
+        atlas = new TextureAtlas(SPRITE_LOCATION);
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
 
