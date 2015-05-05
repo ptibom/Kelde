@@ -5,7 +5,9 @@ import se.computerscience.kelde.model.items.SwordModel;
 import se.computerscience.kelde.view.items.SwordView;
 
 /**
- * Created by Hassan on 2015-05-05.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class SwordController implements IWorldObjectsController {
     SwordModel swordModel;

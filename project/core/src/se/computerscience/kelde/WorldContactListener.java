@@ -11,7 +11,9 @@ import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 /**
- * Created by Hossein on 2015-05-03.
+ * Description: ContactListener
+ *
+ * @author: Hossein Hussain
  */
 public class WorldContactListener implements ContactListener {
 

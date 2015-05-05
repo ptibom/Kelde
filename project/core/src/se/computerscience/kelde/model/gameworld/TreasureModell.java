@@ -1,13 +1,13 @@
 package se.computerscience.kelde.model.gameworld;
 
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBodyStatic;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 
 /**
- * Created by Hossein on 2015-04-28.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 
 public class TreasureModell implements IWorldObjectsModel {
@@ -18,7 +18,6 @@ public class TreasureModell implements IWorldObjectsModel {
 
     public TreasureModell(IB2DWorld ib2DWorld,float x,float y,String userdata) {
         entityBody = new EntityBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld, userdata);
-        //entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, userdata,false);
     }
 
     public float getPositionY() {

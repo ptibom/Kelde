@@ -5,7 +5,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 
 /**
- * Created by Hossein on 2015-04-27.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class BarrelModel implements IWorldObjectsModel{
     private final float BODY_WIDTH = 16, BODY_HEIGHT = 16;

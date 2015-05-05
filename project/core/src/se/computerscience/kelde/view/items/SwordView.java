@@ -3,11 +3,12 @@ package se.computerscience.kelde.view.items;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.model.items.AxeModel;
 import se.computerscience.kelde.model.items.SwordModel;
 
 /**
- * Created by Hassan on 2015-05-05.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class SwordView {
     private final SwordModel swordModel;

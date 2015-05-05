@@ -3,9 +3,10 @@ package se.computerscience.kelde.controller.items;
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.model.items.AxeModel;
 import se.computerscience.kelde.view.items.AxeView;
-
 /**
- * Created by Hassan on 2015-05-05.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class AxeController implements IWorldObjectsController {
     AxeModel axeModel;

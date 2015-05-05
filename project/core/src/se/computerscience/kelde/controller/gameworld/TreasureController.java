@@ -2,15 +2,12 @@ package se.computerscience.kelde.controller.gameworld;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.physics.box2d.*;
-import se.computerscience.kelde.model.gameworld.BarrelModel;
 import se.computerscience.kelde.model.gameworld.TreasureModell;
-import se.computerscience.kelde.model.physics.WorldPhysics;
-import se.computerscience.kelde.view.gameworld.BarrelView;
 import se.computerscience.kelde.view.gameworld.TreasureView;
-
 /**
- * Created by Hossein on 2015-04-28.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class TreasureController implements IWorldObjectsController {
     TreasureModell treasureModell;

@@ -1,15 +1,14 @@
 package se.computerscience.kelde.view.gameworld;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Body;
-import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.gameworld.BarrelModel;
 
 /**
- * Created by Hossein.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class BarrelView{
     private final BarrelModel barrelModel;

@@ -1,7 +1,9 @@
 package se.computerscience.kelde.model.gameworld;
 
 /**
- * Created by Hossein on 2015-05-04.
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public interface IWorldObjectsModel {
 
