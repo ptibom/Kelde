@@ -2,6 +2,7 @@ package se.computerscience.kelde.model.items;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
+import se.computerscience.kelde.model.encapsulation.box2d.EntitySensor;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 import se.computerscience.kelde.model.gameworld.IWorldObjectsModel;
@@ -20,7 +21,8 @@ public class AxeModel implements IItems , IWorldObjectsModel{
     IEntityBody entityBody;
 
     public AxeModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
-        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, userdata,true);
+        entityBody = new EntitySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
+        //entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, userdata,true);
     }
 
     public void setVelocity(float x, float y) {

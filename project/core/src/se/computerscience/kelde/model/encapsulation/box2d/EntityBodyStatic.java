@@ -1,52 +1,29 @@
-/**
- * Description: Physical bodies for entities in the game. Characters, boxes etc.
- *
- * @author: Philip Tibom
- */
-
 package se.computerscience.kelde.model.encapsulation.box2d;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
-public class EntityBody implements IEntityBody {
+/**
+ * Created by Hassan on 2015-05-05.
+ */
+public class EntityBodyStatic implements IEntityBody{
     private final World worldPhysics;
     private final Body body;
     private final FixtureDef fdef = new FixtureDef();
     private BodyDef def;
-    /*public EntityBody(float x, float y, float width, float height, IB2DWorld ib2DWorld) {
-        worldPhysics = ib2DWorld.getBox2DWorld();
-        BodyDef def = new BodyDef();
-        def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
-        def.type = BodyType.DynamicBody;
 
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
-        fdef.shape = shape;
-        body = ib2DWorld.getBox2DWorld().createBody(def);
-        body.createFixture(fdef);
-
-    }*/
-
-    public EntityBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata)  {
+    public EntityBodyStatic(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();
-        def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
-        //def.type = bType;
+        def.position.set(x* WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
+        def.type = BodyDef.BodyType.StaticBody;
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
-        //if (isSensor)
-            //fdef.isSensor = true;
-        //fdef.isSensor = false;
+        fdef.isSensor = false;
         body = ib2DWorld.getBox2DWorld().createBody(def);
         body.createFixture(fdef).setUserData(userdata);
-    }
-
-    public BodyDef getDef() {
-        return def;
     }
 
     public Body getBody() {

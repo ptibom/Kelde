@@ -5,7 +5,7 @@ import se.computerscience.kelde.model.items.AxeModel;
 import se.computerscience.kelde.view.items.AxeView;
 
 /**
- * Created by Hassan on 2015-05-04.
+ * Created by Hassan on 2015-05-05.
  */
 public class AxeController implements IWorldObjectsController {
     AxeModel axeModel;
