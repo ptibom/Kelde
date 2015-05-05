@@ -9,6 +9,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.items.AxeModel;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
 public class GameWorld {
@@ -20,6 +21,8 @@ public class GameWorld {
     private final BarrelModel barrelModel;
     private final TreasureModell treasureModell;
     private final TreasureModell treasureModell2;
+    private final AxeModel axeModel;
+
     private IMap map;
     private ICamera camera;
 
@@ -32,6 +35,7 @@ public class GameWorld {
         barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1"); //init a barrel with position
         treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30, "treasure 1"); // init a treasure box w. position
         treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),100,30, "treasure 2"); // init a treasure box w. position
+        axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,100,"axe 1");
     }
 
     public void resizeCamera (int width, int height) {
@@ -71,5 +75,9 @@ public class GameWorld {
 
     public TreasureModell getTreasureModell2() {
         return treasureModell2;
+    }
+
+    public AxeModel getAxeModel() {
+        return axeModel;
     }
 }

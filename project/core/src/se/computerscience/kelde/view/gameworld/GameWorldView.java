@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
+import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 public class GameWorldView {
@@ -21,6 +22,7 @@ public class GameWorldView {
     private final BarrelView barrelView;
     private final TreasureView treasureView;
     private final TreasureView treasureView2;
+    private final AxeView axeView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -34,6 +36,7 @@ public class GameWorldView {
         barrelView = new BarrelView(gameWorld.getBarrelModel());
         treasureView = new TreasureView(gameWorld.getTreasureModell());
         treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
+        axeView = new AxeView(gameWorld.getAxeModel());
     }
 
 
@@ -45,6 +48,9 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
+        if (axeView.isVisble())
+            axeView.draw(batch);
+
         barrelView.draw(batch);
         treasureView.draw(batch);
         treasureView2.draw(batch);
@@ -52,7 +58,7 @@ public class GameWorldView {
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        worldPhysicsView.render(delta);
+        //worldPhysicsView.render(delta);
     }
 
     public void updateProjectionMatrix() {
@@ -82,5 +88,9 @@ public class GameWorldView {
     }
     public TreasureView getTreasureView2() {
         return treasureView2;
+    }
+
+    public AxeView getAxeView() {
+        return axeView;
     }
 }

@@ -24,15 +24,11 @@ public class TreasureController implements IWorldObjectsController {
         //
     }
     public void openTreasure(){
-        treasureView.setSprite(new Sprite(new Texture("chest1.png"),32,30));
+        treasureView.setSprite(new Sprite(new Texture("chest1.png"),30,32));
         System.out.println("treasure open");
     }
     public void closeTreasure(){
         treasureView.setSprite(new Sprite(new Texture("chest2.png"),32,32));
         System.out.println("treasure closed");
     }
-    public void dropItems(){
-
-    }
-
 }

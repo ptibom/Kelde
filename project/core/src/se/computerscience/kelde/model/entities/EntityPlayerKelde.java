@@ -16,7 +16,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     IEntityBody entityBody;
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld) {
-        entityBody = new EntityBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,BodyDef.BodyType.DynamicBody, this);
+        entityBody = new EntityBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,BodyDef.BodyType.DynamicBody, this,false);
     }
 
     public void setVelocity(float x, float y) {
