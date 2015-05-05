@@ -12,8 +12,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.entities.ControlBat;
-import se.computerscience.kelde.controller.entities.EyeController;
+import se.computerscience.kelde.controller.entities.EntityBatController;
+import se.computerscience.kelde.controller.entities.EntityEyeController;
 import se.computerscience.kelde.controller.entities.SmallWormController;
 
 public class MapScreen implements Screen {
@@ -21,8 +21,8 @@ public class MapScreen implements Screen {
     private OrthogonalTiledMapRenderer renderer; // Renders the map
     private TiledMap map; // Loads the map
 
-    private ControlBat bat1;
-    private EyeController eye1;
+    private EntityBatController bat1;
+    private EntityEyeController eye1;
     private SmallWormController worm1;
 
     @Override
@@ -31,8 +31,8 @@ public class MapScreen implements Screen {
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
-        bat1 = new ControlBat(new Vector2(300,300));
-        eye1 = new EyeController(new Vector2(200,200));
+        bat1 = new EntityBatController(new Vector2(300,300));
+        eye1 = new EntityEyeController(new Vector2(200,200));
         worm1 = new SmallWormController(new Vector2(300,300));
     }
 

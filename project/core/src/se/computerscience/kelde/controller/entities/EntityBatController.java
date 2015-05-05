@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Created by Anders on 2015-04-06.
  */
-public class ControlBat {
+public class EntityBatController {
 
     //Variables
     private final EntityBat ebat;
@@ -24,7 +24,7 @@ public class ControlBat {
 
     private Vector2[] WAYPOINT = new Vector2[10];
 
-    public ControlBat(Vector2 startVector) {
+    public EntityBatController(Vector2 startVector) {
         setWayVectors();
         ebat = new EntityBat(BATBITE_DAMAGE);
         vbat = new ViewBat();

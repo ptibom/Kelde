@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeView implements InputProcessor {
+public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Sprite sprite;
     private final Texture texture;
@@ -33,37 +33,13 @@ public class EntityPlayerKeldeView implements InputProcessor {
     private HEADING direction;
     private float oldX, oldY;
     private int SPACE_KEY = 62, RIGHT_ARROW = 22, LEFT_ARROW = 21, UP_ARROW = 19, DOWN_ARROW = 20, SHOOT_ARROW = 57;
-    private Boolean SLASH = false, ARROW = false;
 
-    @Override
-    public boolean keyDown(int keycode) {
-        if(keycode == SPACE_KEY) {
-            SLASH = true;
-        }
-        if(keycode == SHOOT_ARROW) {
-            ARROW = true;
-        }
-        System.out.print(keycode+"\n");
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        if(keycode == SPACE_KEY) {
-            SLASH = false;
-        }
-        if(keycode == SHOOT_ARROW) {
-            ARROW = false;
-        }
-        return false;
-    }
 
     public enum HEADING {
         NORTH, SOUTH, WEST, EAST
     }
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
-        Gdx.input.setInputProcessor(this);
         this.entityPlayerKelde = entityPlayerKelde;
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
@@ -79,7 +55,8 @@ public class EntityPlayerKeldeView implements InputProcessor {
     }
 
     public void draw (SpriteBatch batch) {
-
+        Boolean SLASH = entityPlayerKelde.getSlash();
+        Boolean ARROW = entityPlayerKelde.getArrow();
         Boolean walk = false;
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         float newX = entityPlayerKelde.getPositionX();
@@ -200,33 +177,4 @@ public class EntityPlayerKeldeView implements InputProcessor {
         animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
     }
 
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
-    }
 }

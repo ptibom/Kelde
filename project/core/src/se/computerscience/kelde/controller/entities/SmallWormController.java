@@ -2,14 +2,9 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.Waypoints;
-import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntitySmallWorm;
-import se.computerscience.kelde.view.EyeView;
 import se.computerscience.kelde.view.SmallWormView;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**

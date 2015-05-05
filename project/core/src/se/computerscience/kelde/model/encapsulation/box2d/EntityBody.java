@@ -44,6 +44,16 @@ public class EntityBody implements IEntityBody {
     }
 
     @Override
+    public float getVelocityX() {
+        return 0;
+    }
+
+    @Override
+    public float getVelocityY() {
+        return 0;
+    }
+
+    @Override
     public void destroy() {
         worldPhysics.destroyBody(body);
     }

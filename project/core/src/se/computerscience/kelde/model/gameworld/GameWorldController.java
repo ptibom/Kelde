@@ -2,10 +2,11 @@
  *  @author: Philip Tibom
  */
 
-package se.computerscience.kelde.controller.gameworld;
+package se.computerscience.kelde.model.gameworld;
 
 
 import com.badlogic.gdx.math.Vector2;
+import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
@@ -31,9 +32,13 @@ public class GameWorldController {
     }
 
     public void render(float delta) {
+
+        // Uppdaterar spelet
         entityPlayerKeldeController.update(delta);
         bat.update(delta);
         worldPhysicsController.update(delta);
+
+        // Ritar ut alla synliga sprites etc...
         gameWorldView.render(delta);
     }
 
@@ -53,8 +58,5 @@ public class GameWorldController {
 
     public void setKeyDown(int keycode) {
         entityPlayerKeldeController.setKeyDown(keycode);
-    }
-
-    public void setKeyUp(int keycode) { entityPlayerKeldeController.setKeyUp(keycode);
     }
 }

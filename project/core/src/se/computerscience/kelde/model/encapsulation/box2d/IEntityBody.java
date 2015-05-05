@@ -11,4 +11,6 @@ public interface IEntityBody {
     public void setVelocity(float x, float y);
     public float getPositionY();
     public float getPositionX();
+    public float getVelocityX();
+    public float getVelocityY();
 }

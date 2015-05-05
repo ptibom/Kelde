@@ -8,8 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
-import se.computerscience.kelde.model.gameworld.GameWorld;
-import se.computerscience.kelde.view.gameworld.GameWorldView;
+import se.computerscience.kelde.controller.InputController;
 
 
 public class GameScreen implements Screen {
@@ -19,6 +18,7 @@ public class GameScreen implements Screen {
     public void show() {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController();
+        Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
     @Override
     public void render(float delta) {

@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by Anders on 2015-04-08.
  */
-public class EyeController {
+public class EntityEyeController {
 
     //Variables
     private EntityEye entity_eye;
@@ -23,7 +23,7 @@ public class EyeController {
     private Vector2[] WAYPOINT = new Vector2[10];
 
 
-    public EyeController(Vector2 startVector) {
+    public EntityEyeController(Vector2 startVector) {
         setVectors();
         eye_view = new EyeView();
         RENDER_POINT = startVector;
