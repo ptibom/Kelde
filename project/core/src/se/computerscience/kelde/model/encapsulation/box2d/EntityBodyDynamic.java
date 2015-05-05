@@ -6,13 +6,13 @@ import se.computerscience.kelde.model.physics.WorldPhysics;
 /**
  * Created by Hassan on 2015-05-05.
  */
-public class EntiryBodyDynamic implements IEntityBody {
+public class EntityBodyDynamic implements IEntityBody {
     private final World worldPhysics;
     private final Body body;
     private final FixtureDef fdef = new FixtureDef();
     private BodyDef def;
 
-    public EntiryBodyDynamic(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
+    public EntityBodyDynamic(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();
         def.position.set(x* WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);

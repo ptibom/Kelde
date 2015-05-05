@@ -4,7 +4,7 @@
 
 package se.computerscience.kelde.model.entities;
 
-import se.computerscience.kelde.model.encapsulation.box2d.EntiryBodyDynamic;
+import se.computerscience.kelde.model.encapsulation.box2d.EntityBodyDynamic;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 
@@ -14,7 +14,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     IEntityBody entityBody;
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld) {
-        entityBody = new EntiryBodyDynamic(START_POSITION_X,START_POSITION_Y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
+        entityBody = new EntityBodyDynamic(START_POSITION_X,START_POSITION_Y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
     }
 
     public void setVelocity(float x, float y) {

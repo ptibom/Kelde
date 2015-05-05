@@ -1,29 +1,29 @@
 package se.computerscience.kelde.controller.items;
 
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
-import se.computerscience.kelde.model.items.AxeModel;
-import se.computerscience.kelde.view.items.AxeView;
+import se.computerscience.kelde.model.items.SwordModel;
+import se.computerscience.kelde.view.items.SwordView;
 
 /**
  * Created by Hassan on 2015-05-05.
  */
-public class AxeController implements IWorldObjectsController {
-    AxeModel axeModel;
-    AxeView axeView;
+public class SwordController implements IWorldObjectsController {
+    SwordModel swordModel;
+    SwordView swordView;
     private boolean picked = false;
-    public AxeController(AxeModel axeModel, AxeView axeView) {
-        this.axeModel = axeModel;
-        this.axeView = axeView;
+    public SwordController(SwordModel swordModel,SwordView swordView) {
+        this.swordModel = swordModel;
+        this.swordView = swordView;
     }
     public void update(float delta){
         //
     }
     public void setVisble(boolean visble){
-        axeView.setVisble(visble);
+        swordView.setVisble(visble);
     }
 
     public boolean isVisble() {
-        return axeView.isVisble();
+        return swordView.isVisble();
     }
 
     public boolean isPicked() {

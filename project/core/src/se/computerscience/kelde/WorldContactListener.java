@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.controller.gameworld.TreasureController;
 import se.computerscience.kelde.controller.items.AxeController;
+import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 /**
@@ -31,8 +32,12 @@ public class WorldContactListener implements ContactListener {
                 ((AxeController)worldObjects[4]).setVisble(true); // making a drop visble when player open treasure chest
         }
 
-        if (isObject("treasure 2",contact) && isPlayer(contact))
+        if (isObject("treasure 2",contact) && isPlayer(contact)){
             ((TreasureController)worldObjects[3]).openTreasure();
+            if (!(((SwordController)worldObjects[5]).isPicked()))
+                ((SwordController)worldObjects[5]).setVisble(true); // making a drop visble when player open treasure chest
+        }
+
 
 
         if (isObject("barrel 1",contact) && isPlayer(contact))
@@ -45,6 +50,17 @@ public class WorldContactListener implements ContactListener {
                 ((AxeController)worldObjects[4]).setPicked(true);
                 ((AxeController)worldObjects[4]).setVisble(false);
                 System.out.println("kelde just picked up the axe");
+                // add code to put the axe in keldes inventory here
+            }
+        }
+
+        if (isObject("sword 1",contact) && isPlayer(contact) ){
+            // if the drop is visble and player colides with the drop,
+            // the item disapears (won't respawn if opening treasure chest again)
+            if (((SwordController)worldObjects[5]).isVisble()){
+                ((SwordController)worldObjects[5]).setPicked(true);
+                ((SwordController)worldObjects[5]).setVisble(false);
+                System.out.println("kelde just picked up the sword");
                 // add code to put the axe in keldes inventory here
             }
         }

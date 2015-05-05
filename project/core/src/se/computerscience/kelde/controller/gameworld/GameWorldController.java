@@ -8,6 +8,7 @@ package se.computerscience.kelde.controller.gameworld;
 import se.computerscience.kelde.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
+import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 
 import se.computerscience.kelde.model.gameworld.GameWorld;
@@ -24,6 +25,7 @@ public class GameWorldController {
     private final TreasureController treasureController;
     private final TreasureController treasureController2;
     private final AxeController axeController;
+    private final SwordController swordController;
 
     private IWorldObjectsController[] worldObjectsList;
 
@@ -37,13 +39,15 @@ public class GameWorldController {
         treasureController = new TreasureController(gameWorld.getTreasureModell(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
         axeController = new AxeController(gameWorld.getAxeModel(),gameWorldView.getAxeView());
+        swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
 
-        worldObjectsList = new IWorldObjectsController[5];
+        worldObjectsList = new IWorldObjectsController[6];
         worldObjectsList[0] = barrelController;
         worldObjectsList[1] = treasureController;
         worldObjectsList[3] = treasureController2;
         worldObjectsList[2] = entityPlayerKeldeController;
         worldObjectsList[4] = axeController;
+        worldObjectsList[5] = swordController;
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjectsList));
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.items.AxeView;
+import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
 public class GameWorldView {
@@ -23,6 +24,7 @@ public class GameWorldView {
     private final TreasureView treasureView;
     private final TreasureView treasureView2;
     private final AxeView axeView;
+    private final SwordView swordView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -37,6 +39,7 @@ public class GameWorldView {
         treasureView = new TreasureView(gameWorld.getTreasureModell());
         treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
         axeView = new AxeView(gameWorld.getAxeModel());
+        swordView = new SwordView(gameWorld.getSwordModel());
     }
 
 
@@ -50,6 +53,8 @@ public class GameWorldView {
         batch.begin();
         if (axeView.isVisble())
             axeView.draw(batch);
+        if (swordView.isVisble())
+            swordView.draw(batch);
 
         barrelView.draw(batch);
         treasureView.draw(batch);
@@ -72,11 +77,9 @@ public class GameWorldView {
     public OrthogonalTiledMapRenderer getMapRenderer() {
         return mapRenderer;
     }
-
     public WorldPhysicsView getWorldPhysicsView() {
         return worldPhysicsView;
     }
-
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
     }
@@ -89,8 +92,10 @@ public class GameWorldView {
     public TreasureView getTreasureView2() {
         return treasureView2;
     }
-
     public AxeView getAxeView() {
         return axeView;
+    }
+    public SwordView getSwordView() {
+        return swordView;
     }
 }

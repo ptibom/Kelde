@@ -5,4 +5,5 @@
 package se.computerscience.kelde.model.items;
 
 public class PlayerInventory {
+
 }

@@ -1,30 +1,22 @@
+/** Description: A sword item. Used by player to damage enemies.
+ *  @author: Philip Tibom
+ */
+
 package se.computerscience.kelde.model.items;
 
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.EntitySensor;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
-import se.computerscience.kelde.model.gameworld.IWorldObjectsModel;
 
-/**
- * @author hossein on 2015-05-04.
- */
-public class AxeModel implements IItems , IWorldObjectsModel{
-    private final boolean  isConsumable = false;
-    private final boolean isWeapon = true;
+public class SwordModel implements IItems {
+    private boolean isConsumable = false;
+    private boolean isWeapon = true;
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
 
     private IEntityBody entityBody;
-
-    public AxeModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
+    public SwordModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
         entityBody = new EntitySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
-        //entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, BodyDef.BodyType.StaticBody, userdata,true);
-    }
-
-    public void setVelocity(float x, float y) {
-        entityBody.setVelocity(x, y);
     }
 
     public float getPositionY() {
