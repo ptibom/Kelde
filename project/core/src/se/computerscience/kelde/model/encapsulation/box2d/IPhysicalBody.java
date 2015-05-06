@@ -9,7 +9,8 @@ package se.computerscience.kelde.model.encapsulation.box2d;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-public interface IEntityBody {
+
+public interface IPhysicalBody {
     public void destroy();
     public void setVelocity(float x, float y);
     public float getPositionY();

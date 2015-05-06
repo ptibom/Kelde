@@ -1,7 +1,8 @@
 package se.computerscience.kelde.model.gameworld;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
+import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
 /**
  * Description:
@@ -11,10 +12,10 @@ import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 public class BarrelModel implements IWorldObjectsModel{
     private final float BODY_WIDTH = 16, BODY_HEIGHT = 4;
 
-    IEntityBody entityBody;
+    IPhysicalBody entityBody;
 
     public BarrelModel(IB2DWorld ib2DWorld,float x,float y, String userdata) {
-        //entityBody = new EntityBodyDynamic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
+        entityBody = new PhysicalBody(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
     }
     @Override
     public float getPositionY() {

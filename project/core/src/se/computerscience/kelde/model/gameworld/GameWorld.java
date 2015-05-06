@@ -33,7 +33,7 @@ public class GameWorld {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),"kelde");
 
         barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1"); //init a barrel with position
         treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30, "treasure 1"); // init a treasure box w. position
