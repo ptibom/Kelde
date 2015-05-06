@@ -11,10 +11,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.entities.EntityBatController;
-import se.computerscience.kelde.controller.entities.EntityEyeController;
-import se.computerscience.kelde.controller.entities.SmallWormController;
 
 public class MapScreen implements Screen {
     private OrthographicCamera camera; // Camera is the view from where the scene is rendered.

@@ -1,4 +1,4 @@
-package se.computerscience.kelde.view;
+package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.gameworld.Heading;
 
 import java.util.Random;
@@ -14,7 +15,9 @@ import java.util.Random;
 /**
  * Created by Anders on 2015-04-06.
  */
-public class ViewBat {
+public class EntityBatView {
+
+    private final EntityBat entityBat;
 
     //Variables
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
@@ -22,14 +25,14 @@ public class ViewBat {
 
     private SpriteBatch batch;
     private Animation animation;
-    private float ELAPSED_TIME = 0;
-    private Vector2 position;
+    private float elapsedTime = 0, delta = 0;
     private Heading direction;
     /**
      * Public constructor
      */
-    public ViewBat() {
-        position = new Vector2(300f,300f);
+    public EntityBatView(EntityBat entityBat) {
+        this.entityBat = entityBat;
+
         createNorthTexture();
         createSouthTexture();
         createEastTexture();
@@ -67,9 +70,15 @@ public class ViewBat {
         } else if(direction == Heading.WEST) {
             animation = animationW;
         }
+        elapsedTime += delta;
+        if(elapsedTime > 100.0f) {
+            elapsedTime = 0f;
+        }
+        batch.draw(animation.getKeyFrame(elapsedTime, true), entityBat.getPositionX(), entityBat.getPositionY());
+    }
 
-        if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0f; }
-        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), position.x, position.y);
+    public void update(float delta) {
+        this.delta = delta;
     }
 
     public void resize(OrthographicCamera camera) {
@@ -83,10 +92,5 @@ public class ViewBat {
         float x = rnd.nextFloat() * (maxX - minX) + minX;
         float y = rnd.nextFloat() * (maxX - minX) + minX;
         return new Vector2(x,y);
-    }
-
-    public void update(Vector2 render_point, Heading direction) {
-        position = render_point;
-        this.direction = direction;
     }
 }

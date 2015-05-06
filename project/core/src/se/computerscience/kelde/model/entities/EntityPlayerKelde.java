@@ -5,11 +5,9 @@
 package se.computerscience.kelde.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
-import se.computerscience.kelde.model.physics.WorldPhysics;
 
 public class EntityPlayerKelde extends EntityPlayer {
     private final float BODY_WIDTH = 16, BODY_HEIGHT = 8, START_POSITION_X = 70, START_POSITION_Y = 50;

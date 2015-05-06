@@ -2,7 +2,6 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.view.EyeView;
 
 import java.util.Random;

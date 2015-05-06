@@ -5,7 +5,6 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
@@ -19,7 +18,7 @@ public class GameWorldController {
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
-    private final EntityBatController entitybatcontroller;
+    private final EntityBatController entityBatController;
 
 
     public GameWorldController() {
@@ -27,12 +26,12 @@ public class GameWorldController {
         gameWorldView = new GameWorldView(gameWorld);
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
-        entitybatcontroller = gameWorld.getEntitybat();
+        entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
     }
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
-        entitybatcontroller.update(delta);
+        entityBatController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
     }

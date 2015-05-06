@@ -1,13 +1,9 @@
 package se.computerscience.kelde.model.entities;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.particles.values.PointSpawnShapeValue;
-import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 
-import java.awt.*;
 import java.util.Random;
 
 /**
@@ -16,27 +12,24 @@ import java.util.Random;
 public class EntityBat {
 
     //Variables
-    private int DEALT_DAMAGE;
-    private int HEALTH = 100;
-    private int BODY_WIDTH = 32, BODY_HEIGHT = 32;
-    private static final int ATTACK_DISTANCE = 100;
+    private int DAMAGE = 10;
+    private int health = 100;
+    private final int BODY_WIDTH = 32, BODY_HEIGHT = 32;
+    private final int ATTACK_DISTANCE = 100;
     private boolean ALIVE = true;
     private static final int LOOT = 15;
-    IEntityBody entityBody;
-
+    private float elapsedTime = 0;
+    private final IEntityBody entityBody;
+    private final Random random;
 
     //Constructor
-    public EntityBat(int damage, IB2DWorld ib2DWorld, float START_POSITION_X, float START_POSITION_Y){
-        entityBody = new EntityBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld);
-        this.DEALT_DAMAGE = damage;
+    public EntityBat(float x, float y, IB2DWorld ib2DWorld){
+        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld);
+        random = new Random();
     }
 
-    public int getHEALTH() {
-        return HEALTH;
-    }
-
-    public static int getATTACK_DISTANCE() {
-        return ATTACK_DISTANCE;
+    public int getHealth() {
+        return health;
     }
 
     public int getLoot() {
@@ -44,10 +37,32 @@ public class EntityBat {
     }
 
     public void setTakenDamage(int takenDamage) {
-        this.HEALTH = this.HEALTH - takenDamage;
-        if(this.HEALTH <= 0) {
+        health -= takenDamage;
+        if(health <= 0) {
             ALIVE = false;
         }
+    }
+
+    public void update(float delta) {
+        elapsedTime += delta;
+        if (elapsedTime > 2) {
+            setRandomSpeed();
+            elapsedTime = 0;
+        }
+    }
+
+    private void setRandomSpeed() {
+        int vx = random.nextInt(3) - 1;
+        int vy = random.nextInt(3) - 1;
+        entityBody.setVelocity(vx, vy);
+    }
+
+    public int getPositionX() {
+        return (int) (entityBody.getPositionX());
+    }
+    
+    public int getPositionY() {
+        return (int) (entityBody.getPositionY()); 
     }
 
 }
