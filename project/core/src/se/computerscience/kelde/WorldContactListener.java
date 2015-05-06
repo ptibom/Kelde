@@ -50,8 +50,6 @@ public class WorldContactListener implements ContactListener {
                 ((SwordController)worldObjects.get(5)).setVisble(true); // making a drop visble when player open treasure chest
         }
 
-
-
         if (isObject("barrel 1",contact) && isPlayer(contact))
             System.out.println("barrel 1");
 

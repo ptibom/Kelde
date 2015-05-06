@@ -2,7 +2,7 @@ package se.computerscience.kelde.model.gameworld;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
  * @author Hossein Hussain
@@ -13,7 +13,7 @@ public class SensorModel implements IWorldObjectsModel {
     IPhysicalBody entityBody;
 
     public SensorModel(IB2DWorld ib2DWorld,float x,float y,String userdata) {
-        entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld, userdata);
+        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld, userdata);
     }
     @Override
     public float getPositionY() {

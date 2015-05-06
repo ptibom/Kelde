@@ -14,14 +14,16 @@ public class PhysicalBody implements IPhysicalBody {
     private final World worldPhysics;
     private final Body body;
     protected final BodyDef def;
+    protected final FixtureDef fdef;
 
-    public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, String userdata) {
+    public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();
         def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
         setBodyType(); // May call method in subclass
         body = worldPhysics.createBody(def);
-        FixtureDef fdef = new FixtureDef();
+        fdef = new FixtureDef();
+        setIsSensor(); // call method in subclass
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
@@ -32,6 +34,7 @@ public class PhysicalBody implements IPhysicalBody {
     protected void setBodyType() {
         def.type = BodyType.DynamicBody;
     }
+    protected void setIsSensor() {fdef.isSensor = false;}
 
     @Override
     public void setVelocity(float x, float y) {
@@ -51,7 +54,7 @@ public class PhysicalBody implements IPhysicalBody {
 
     @Override
     public Body getBody() {
-        return null;
+        return body;
     }
 
     @Override

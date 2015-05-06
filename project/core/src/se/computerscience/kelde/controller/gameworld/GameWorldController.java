@@ -66,7 +66,6 @@ public class GameWorldController {
 
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
-        //gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjectsList));
 
     }
 

@@ -11,9 +11,11 @@ public class PhysicalBodySensor extends PhysicalBody {
     public PhysicalBodySensor(float x, float y, float width, float height, IB2DWorld ib2DWorld, String userdata) {
         super(x, y, width, height, ib2DWorld, userdata);
     }
-    
+
     @Override
     protected void setBodyType() {
         def.type = BodyDef.BodyType.StaticBody;
     }
+    @Override
+    protected void setIsSensor() { fdef.isSensor = true;}
 }

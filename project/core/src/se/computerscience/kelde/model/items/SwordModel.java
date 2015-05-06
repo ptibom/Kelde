@@ -7,6 +7,7 @@ package se.computerscience.kelde.model.items;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 import se.computerscience.kelde.model.gameworld.IWorldObjectsModel;
 
@@ -19,7 +20,7 @@ public class SwordModel implements IItems,IWorldObjectsModel {
 
      IPhysicalBody entityBody;
     public SwordModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
-        entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
+        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
     }
     @Override
     public float getPositionY() {

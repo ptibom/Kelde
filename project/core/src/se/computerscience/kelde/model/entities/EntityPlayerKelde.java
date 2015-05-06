@@ -15,10 +15,11 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     IPhysicalBody entityBody;
 
-    public EntityPlayerKelde(IB2DWorld ib2DWorld,String userdata) {
+    public EntityPlayerKelde(IB2DWorld ib2DWorld/*,String userdata*/) {
 
         //entityBody = new EntityBodyDynamic(START_POSITION_X,START_POSITION_Y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
-        entityBody = new PhysicalBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,userdata);
+        entityBody = new PhysicalBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,this);
+        System.out.println(this);
     }
 
     public void setVelocity(float x, float y) {
