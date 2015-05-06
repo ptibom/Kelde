@@ -61,13 +61,13 @@ public class EntityBatView {
     }
 
     public void draw(Batch batch) {
-        if(direction == Heading.NORTH) {
+        if(entityBat.getDirection() == Heading.NORTH) {
             animation = animationN;
-        } else if(direction == Heading.SOUTH) {
+        } else if(entityBat.getDirection() == Heading.SOUTH) {
             animation = animationS;
-        } else if(direction == Heading.EAST) {
+        } else if(entityBat.getDirection() == Heading.EAST) {
             animation = animationE;
-        } else if(direction == Heading.WEST) {
+        } else if(entityBat.getDirection() == Heading.WEST) {
             animation = animationW;
         }
         elapsedTime += delta;
@@ -85,12 +85,4 @@ public class EntityBatView {
         batch.setProjectionMatrix(camera.combined);
     }
 
-    private Vector2 getNewWaypoint() {
-        float minX = 1.0f;
-        float maxX = 100.0f;
-        Random rnd = new Random();
-        float x = rnd.nextFloat() * (maxX - minX) + minX;
-        float y = rnd.nextFloat() * (maxX - minX) + minX;
-        return new Vector2(x,y);
-    }
 }

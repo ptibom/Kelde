@@ -1,3 +1,8 @@
+/**
+ * Created by
+ * @author: Anders Bolin
+ */
+
 package se.computerscience.kelde.controller.entities;
 
 

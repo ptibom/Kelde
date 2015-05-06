@@ -3,6 +3,7 @@ package se.computerscience.kelde.model.entities;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
+import se.computerscience.kelde.model.gameworld.Heading;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class EntityBat {
     private float elapsedTime = 0;
     private final IEntityBody entityBody;
     private final Random random;
+    private Heading direction;
 
     //Constructor
     public EntityBat(float x, float y, IB2DWorld ib2DWorld){
@@ -62,7 +64,21 @@ public class EntityBat {
     }
     
     public int getPositionY() {
-        return (int) (entityBody.getPositionY()); 
+        return (int) (entityBody.getPositionY());
     }
 
+    public Heading getDirection() {
+        direction = Heading.SOUTH;
+        if(getPositionX() > 0 && getPositionY() > 0) {
+            direction = Heading.NORTH;
+        } else if (getPositionX() < 0 && getPositionY() > 0) {
+            direction = Heading.WEST;
+        }else if(getPositionX() < 0 && getPositionY() < 0) {
+            direction = Heading.SOUTH;
+        } else if(getPositionX() > 0 && getPositionY() < 0) {
+            direction = Heading.EAST;
+        }
+        System.out.print("in entitybat heading: "+direction + "\n");
+        return direction;
+    }
 }
