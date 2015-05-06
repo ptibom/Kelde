@@ -6,5 +6,6 @@ package se.computerscience.kelde.model.gameworld;
  * @author: Hossein Hussain
  */
 public interface IWorldObjectsModel {
-
+    public float getPositionY();
+    public float getPositionX();
 }

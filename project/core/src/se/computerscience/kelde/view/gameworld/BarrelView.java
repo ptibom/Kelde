@@ -10,7 +10,7 @@ import se.computerscience.kelde.model.gameworld.BarrelModel;
  *
  * @author: Hossein Hussain
  */
-public class BarrelView{
+public class BarrelView implements IWorldObjectView{
     private final BarrelModel barrelModel;
     private final Sprite sprite;
     private final Texture texture;
@@ -22,7 +22,7 @@ public class BarrelView{
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
-
+    @Override
     public void draw (SpriteBatch batch) {
         sprite.setPosition(barrelModel.getPositionX(), barrelModel.getPositionY());
         sprite.draw(batch);

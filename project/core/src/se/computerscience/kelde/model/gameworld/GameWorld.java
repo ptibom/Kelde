@@ -24,6 +24,7 @@ public class GameWorld {
     private final TreasureModell treasureModell2;
     private final AxeModel axeModel;
     private final SwordModel swordModel;
+    private final SensorModel sensorModel1;
 
     private IMap map;
     private ICamera camera;
@@ -39,6 +40,8 @@ public class GameWorld {
         treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),120,30, "treasure 2"); // init a treasure box w. position
         axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,100,"axe 1");
         swordModel = new SwordModel(worldPhysics.getIb2DWorld(),120,100,"sword 1");
+
+        sensorModel1 = new SensorModel(worldPhysics.getIb2DWorld(),100,500,"sensor 1");
     }
 
     public void resizeCamera (int width, int height) {
@@ -87,5 +90,8 @@ public class GameWorld {
     public SwordModel getSwordModel() {
         return swordModel;
     }
-}
 
+    public SensorModel getSensorModel1() {
+        return sensorModel1;
+    }
+}

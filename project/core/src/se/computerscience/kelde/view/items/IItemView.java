@@ -1,7 +1,12 @@
 package se.computerscience.kelde.view.items;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 /**
- * Created by Hassan on 2015-05-05.
+ * @author Hossein Hussain
  */
 public interface IItemView {
+    public void draw (SpriteBatch batch);
+    public boolean isVisble();
+    public void setVisble(boolean visble);
 }

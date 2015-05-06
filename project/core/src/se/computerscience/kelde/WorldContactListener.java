@@ -4,11 +4,16 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.controller.gameworld.TreasureController;
 import se.computerscience.kelde.controller.items.AxeController;
+import se.computerscience.kelde.controller.items.IitemController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.items.IItems;
+
+import java.util.List;
 
 /**
  * Description: ContactListener
@@ -17,8 +22,9 @@ import se.computerscience.kelde.model.entities.EntityPlayerKelde;
  */
 public class WorldContactListener implements ContactListener {
 
-    IWorldObjectsController[] worldObjects;
-    public WorldContactListener(IWorldObjectsController[] worldObjects) {
+    //IWorldObjectsController[] worldObjects;
+    List<IWorldObjectsController> worldObjects;
+    public WorldContactListener(List<IWorldObjectsController> worldObjects) {
         this.worldObjects = worldObjects;
     }
 
@@ -26,18 +32,22 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
 
-        //***contact listener for WorldObjects and items***
-        if (isObject("treasure 1",contact) && isPlayer(contact)){
-            ((TreasureController)worldObjects[1]).openTreasure();
+        //***contact listener for WorldObjects, sensors and items ***
 
-            if (!(((AxeController)worldObjects[4]).isPicked()))
-                ((AxeController)worldObjects[4]).setVisble(true); // making a drop visble when player open treasure chest
+        if (isObject("sensor 1",contact) && isPlayer(contact))
+            System.out.println("kelde just pressed on a sensor");
+
+        if (isObject("treasure 1",contact) && isPlayer(contact)){
+            ((TreasureController)worldObjects.get(1)).openTreasure();
+
+            if (!(((AxeController)worldObjects.get(4)).isPicked()))
+                ((AxeController)worldObjects.get(4)).setVisble(true); // making a drop visble when player open treasure chest
         }
 
         if (isObject("treasure 2",contact) && isPlayer(contact)){
-            ((TreasureController)worldObjects[3]).openTreasure();
-            if (!(((SwordController)worldObjects[5]).isPicked()))
-                ((SwordController)worldObjects[5]).setVisble(true); // making a drop visble when player open treasure chest
+            ((TreasureController)worldObjects.get(3)).openTreasure();
+            if (!(((SwordController)worldObjects.get(5)).isPicked()))
+                ((SwordController)worldObjects.get(5)).setVisble(true); // making a drop visble when player open treasure chest
         }
 
 
@@ -48,22 +58,24 @@ public class WorldContactListener implements ContactListener {
         if (isObject("axe 1",contact) && isPlayer(contact) ){
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-            if (((AxeController)worldObjects[4]).isVisble()){
-                ((AxeController)worldObjects[4]).setPicked(true);
-                ((AxeController)worldObjects[4]).setVisble(false);
+            if (((AxeController)worldObjects.get(4)).isVisble()){
+                ((AxeController)worldObjects.get(4)).setPicked(true);
+                ((AxeController)worldObjects.get(4)).setVisble(false);
                 System.out.println("kelde just picked up the axe");
                 // add code to put the axe in keldes inventory here
+                ((EntityPlayerKeldeController)worldObjects.get(2)).getPlayerInventory().addToIventory((IitemController)worldObjects.get(4));
             }
         }
 
         if (isObject("sword 1",contact) && isPlayer(contact) ){
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-            if (((SwordController)worldObjects[5]).isVisble()){
-                ((SwordController)worldObjects[5]).setPicked(true);
-                ((SwordController)worldObjects[5]).setVisble(false);
+            if (((SwordController)worldObjects.get(5)).isVisble()){
+                ((SwordController)worldObjects.get(5)).setPicked(true);
+                ((SwordController)worldObjects.get(5)).setVisble(false);
                 System.out.println("kelde just picked up the sword");
                 // add code to put the axe in keldes inventory here
+                ((EntityPlayerKeldeController)worldObjects.get(2)).getPlayerInventory().addToIventory((IitemController)worldObjects.get(5));
             }
         }
         //***END OF***contact listener for WorldObjects and items***
@@ -72,9 +84,9 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void endContact(Contact contact) {
         if (isObject("treasure 1",contact) && isPlayer(contact))
-            ((TreasureController)worldObjects[1]).closeTreasure();
+            ((TreasureController)worldObjects.get(1)).closeTreasure();
         else if (isObject("treasure 2",contact) && isPlayer(contact))
-            ((TreasureController)worldObjects[3]).closeTreasure();
+            ((TreasureController)worldObjects.get(3)).closeTreasure();
     }
 
     @Override

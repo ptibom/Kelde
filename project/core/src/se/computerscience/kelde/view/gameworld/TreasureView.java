@@ -9,7 +9,7 @@ import se.computerscience.kelde.model.gameworld.TreasureModell;
  *
  * @author: Hossein Hussain
  */
-public class TreasureView {
+public class TreasureView implements IWorldObjectView {
     private final TreasureModell treasureModell;
     private Sprite sprite;
     private final Texture texture;
@@ -21,7 +21,7 @@ public class TreasureView {
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
-
+    @Override
     public void draw (SpriteBatch batch) {
         sprite.setPosition(treasureModell.getPositionX(), treasureModell.getPositionY());
         sprite.draw(batch);

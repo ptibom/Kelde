@@ -8,7 +8,7 @@ import se.computerscience.kelde.view.items.AxeView;
  *
  * @author: Hossein Hussain
  */
-public class AxeController implements IWorldObjectsController {
+public class AxeController implements IWorldObjectsController,IitemController {
     AxeModel axeModel;
     AxeView axeView;
     private boolean picked = false;
@@ -33,5 +33,10 @@ public class AxeController implements IWorldObjectsController {
 
     public void setPicked(boolean picked) {
         this.picked = picked;
+    }
+
+    @Override
+    public String itemName() {
+        return "axe 1";
     }
 }

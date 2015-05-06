@@ -9,7 +9,7 @@ import se.computerscience.kelde.view.items.SwordView;
  *
  * @author: Hossein Hussain
  */
-public class SwordController implements IWorldObjectsController {
+public class SwordController implements IWorldObjectsController,IitemController{
     SwordModel swordModel;
     SwordView swordView;
     private boolean picked = false;
@@ -34,5 +34,10 @@ public class SwordController implements IWorldObjectsController {
 
     public void setPicked(boolean picked) {
         this.picked = picked;
+    }
+
+    @Override
+    public String itemName() {
+        return "sword 1";
     }
 }

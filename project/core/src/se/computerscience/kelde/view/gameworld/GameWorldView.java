@@ -25,6 +25,7 @@ public class GameWorldView {
     private final TreasureView treasureView2;
     private final AxeView axeView;
     private final SwordView swordView;
+    private final SensorView sensorView1;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -40,9 +41,8 @@ public class GameWorldView {
         treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
         axeView = new AxeView(gameWorld.getAxeModel());
         swordView = new SwordView(gameWorld.getSwordModel());
+        sensorView1 = new SensorView(gameWorld.getSensorModel1());
     }
-
-
 
     public void render(float delta) {
         // Draw map
@@ -51,19 +51,24 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
+
+        entityPlayerKeldeView.draw(batch);
+
         if (axeView.isVisble())
             axeView.draw(batch);
         if (swordView.isVisble())
             swordView.draw(batch);
 
-        barrelView.draw(batch);
+
         treasureView.draw(batch);
         treasureView2.draw(batch);
-        entityPlayerKeldeView.draw(batch);
+        barrelView.draw(batch);
+        sensorView1.draw(batch);
+
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        //worldPhysicsView.render(delta);
+        worldPhysicsView.render(delta);
     }
 
     public void updateProjectionMatrix() {
@@ -97,5 +102,8 @@ public class GameWorldView {
     }
     public SwordView getSwordView() {
         return swordView;
+    }
+    public SensorView getSensorView1() {
+        return sensorView1;
     }
 }

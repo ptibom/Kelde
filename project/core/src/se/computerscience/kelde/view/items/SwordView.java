@@ -10,12 +10,12 @@ import se.computerscience.kelde.model.items.SwordModel;
  *
  * @author: Hossein Hussain
  */
-public class SwordView {
+public class SwordView implements IItemView {
     private final SwordModel swordModel;
     private final Sprite sprite;
     private final Texture texture;
-    private final int WIDTH = 32, HEIGHT = 32;
-    private final String SPRITE_LOCATION = "items.png";
+    private final int WIDTH = 29, HEIGHT = 29;
+    private final String SPRITE_LOCATION = "sword_1.png";
     private boolean visble = false;
 
     public SwordView(SwordModel swordModel) {
@@ -23,15 +23,16 @@ public class SwordView {
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
-
+    @Override
     public void draw (SpriteBatch batch) {
         sprite.setPosition(swordModel.getPositionX(), swordModel.getPositionY());
         sprite.draw(batch);
     }
-
+    @Override
     public boolean isVisble() {
         return visble;
     }
+    @Override
     public void setVisble(boolean visble) {
         this.visble = visble;
     }

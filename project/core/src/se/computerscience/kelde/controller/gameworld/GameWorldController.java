@@ -14,6 +14,9 @@ import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameWorldController {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
@@ -26,8 +29,10 @@ public class GameWorldController {
     private final TreasureController treasureController2;
     private final AxeController axeController;
     private final SwordController swordController;
+    private final SensorController sensorController;
 
     private IWorldObjectsController[] worldObjectsList;
+    private List<IWorldObjectsController> worldObjList = new ArrayList<IWorldObjectsController>();
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -40,23 +45,33 @@ public class GameWorldController {
         treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
         axeController = new AxeController(gameWorld.getAxeModel(),gameWorldView.getAxeView());
         swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
+        sensorController = new SensorController(gameWorld.getSensorModel1(),gameWorldView.getSensorView1());
 
-        worldObjectsList = new IWorldObjectsController[6];
+        worldObjectsList = new IWorldObjectsController[7];
         worldObjectsList[0] = barrelController;
         worldObjectsList[1] = treasureController;
-        worldObjectsList[3] = treasureController2;
         worldObjectsList[2] = entityPlayerKeldeController;
+        worldObjectsList[3] = treasureController2;
         worldObjectsList[4] = axeController;
         worldObjectsList[5] = swordController;
+        worldObjectsList[6] = sensorController;
 
-        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjectsList));
+        worldObjList.add(barrelController);     // pos 0
+        worldObjList.add(treasureController);   // pos 1
+        worldObjList.add(entityPlayerKeldeController); // pos 2
+        worldObjList.add(treasureController2);  // pos 3
+        worldObjList.add(axeController);        // pos 4
+        worldObjList.add(swordController);      // pos 5
+        worldObjList.add(sensorController);     // pos 6
+
+
+        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
+        //gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjectsList));
 
     }
 
     public void render(float delta) {
         barrelController.update(delta);
-        //treasureController.update(delta);
-
         entityPlayerKeldeController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
