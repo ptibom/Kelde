@@ -1,3 +1,8 @@
+/**
+ * Description:
+ *
+ * @author: Hossein Hussain
+ */
 package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -5,9 +10,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.gameworld.SensorModel;
 
-/**
- * Created by Hassan on 2015-05-05.
- */
 public class SensorView implements IWorldObjectView {
     private final SensorModel sensorModel;
     private Sprite sprite;

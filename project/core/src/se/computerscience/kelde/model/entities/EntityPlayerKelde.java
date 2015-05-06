@@ -5,9 +5,7 @@
 package se.computerscience.kelde.model.entities;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 
 public class EntityPlayerKelde extends EntityPlayer {
@@ -15,9 +13,8 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     IPhysicalBody entityBody;
 
-    public EntityPlayerKelde(IB2DWorld ib2DWorld/*,String userdata*/) {
+    public EntityPlayerKelde(IB2DWorld ib2DWorld) {
 
-        //entityBody = new EntityBodyDynamic(START_POSITION_X,START_POSITION_Y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
         entityBody = new PhysicalBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,this);
         System.out.println(this);
     }

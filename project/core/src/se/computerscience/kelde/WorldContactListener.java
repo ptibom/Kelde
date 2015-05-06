@@ -1,3 +1,8 @@
+/**
+ * Description: ContactListener
+ *
+ * @author: Hossein Hussain
+ */
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -11,18 +16,12 @@ import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.IitemController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.IItems;
 
 import java.util.List;
 
-/**
- * Description: ContactListener
- *
- * @author: Hossein Hussain
- */
+
 public class WorldContactListener implements ContactListener {
 
-    //IWorldObjectsController[] worldObjects;
     List<IWorldObjectsController> worldObjects;
     public WorldContactListener(List<IWorldObjectsController> worldObjects) {
         this.worldObjects = worldObjects;
@@ -89,17 +88,17 @@ public class WorldContactListener implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
-
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-
     }
+
     //checking if the contacted is the input userdata
     public boolean isObject(String userdata, Contact contact){
         return contact.getFixtureB().getUserData().equals(userdata);
     }
+
     //checks if the players collided
     public boolean isPlayer(Contact contact){
         return contact.getFixtureA().getUserData() instanceof EntityPlayerKelde;

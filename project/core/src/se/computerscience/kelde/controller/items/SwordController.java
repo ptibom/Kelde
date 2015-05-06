@@ -1,14 +1,15 @@
+/**
+ * Description:
+ *
+ * @author: Hossein Hussain
+ */
 package se.computerscience.kelde.controller.items;
 
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.model.items.SwordModel;
 import se.computerscience.kelde.view.items.SwordView;
 
-/**
- * Description:
- *
- * @author: Hossein Hussain
- */
+
 public class SwordController implements IWorldObjectsController,IitemController{
     SwordModel swordModel;
     SwordView swordView;

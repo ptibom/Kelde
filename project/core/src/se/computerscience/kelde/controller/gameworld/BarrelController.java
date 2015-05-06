@@ -1,13 +1,14 @@
-package se.computerscience.kelde.controller.gameworld;
-
-import se.computerscience.kelde.model.gameworld.BarrelModel;
-import se.computerscience.kelde.view.gameworld.BarrelView;
-
 /**
  * Description:
  *
  * @author: Hossein Hussain
  */
+package se.computerscience.kelde.controller.gameworld;
+
+import se.computerscience.kelde.model.gameworld.BarrelModel;
+import se.computerscience.kelde.view.gameworld.BarrelView;
+
+
 public class BarrelController implements IWorldObjectsController {
     BarrelModel barrelModel;
     BarrelView barrelView;

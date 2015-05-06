@@ -1,13 +1,14 @@
-package se.computerscience.kelde.controller.items;
-
-import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
-import se.computerscience.kelde.model.items.AxeModel;
-import se.computerscience.kelde.view.items.AxeView;
 /**
  * Description:
  *
  * @author: Hossein Hussain
  */
+package se.computerscience.kelde.controller.items;
+
+import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
+import se.computerscience.kelde.model.items.AxeModel;
+import se.computerscience.kelde.view.items.AxeView;
+
 public class AxeController implements IWorldObjectsController,IitemController {
     AxeModel axeModel;
     AxeView axeView;

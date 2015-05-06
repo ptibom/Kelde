@@ -36,10 +36,10 @@ public class GameWorld {
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
 
         barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1"); //init a barrel with position
-        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,30, "treasure 1"); // init a treasure box w. position
-        treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),120,30, "treasure 2"); // init a treasure box w. position
-        axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,100,"axe 1");
-        swordModel = new SwordModel(worldPhysics.getIb2DWorld(),120,100,"sword 1");
+        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,70, "treasure 1"); // init a treasure box w. position
+        treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),120,70, "treasure 2"); // init a treasure box w. position
+        axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,170,"axe 1");
+        swordModel = new SwordModel(worldPhysics.getIb2DWorld(),120,170,"sword 1");
 
         sensorModel1 = new SensorModel(worldPhysics.getIb2DWorld(),100,500,"sensor 1");
     }

@@ -51,9 +51,6 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
-
-        entityPlayerKeldeView.draw(batch);
-
         if (axeView.isVisble())
             axeView.draw(batch);
         if (swordView.isVisble())
@@ -65,6 +62,7 @@ public class GameWorldView {
         barrelView.draw(batch);
         sensorView1.draw(batch);
 
+        entityPlayerKeldeView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.

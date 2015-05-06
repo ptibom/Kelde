@@ -1,6 +1,6 @@
 /** Description: A sword item. Used by player to damage enemies.
  *  @author: Philip Tibom
- *  @co-aothor Hossein Husain
+ *  @co-author Hossein Husain
  */
 
 package se.computerscience.kelde.model.items;
@@ -8,7 +8,6 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 import se.computerscience.kelde.model.gameworld.IWorldObjectsModel;
 
 public class SwordModel implements IItems,IWorldObjectsModel {
@@ -18,7 +17,7 @@ public class SwordModel implements IItems,IWorldObjectsModel {
     private final float BODY_HEIGHT = 16;
     private final int damage = 10;
 
-     IPhysicalBody entityBody;
+    IPhysicalBody entityBody;
     public SwordModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
         entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
     }

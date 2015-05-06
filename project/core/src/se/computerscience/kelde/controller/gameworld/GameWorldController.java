@@ -31,8 +31,7 @@ public class GameWorldController {
     private final SwordController swordController;
     private final SensorController sensorController;
 
-    private IWorldObjectsController[] worldObjectsList;
-    private List<IWorldObjectsController> worldObjList = new ArrayList<IWorldObjectsController>();
+    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -47,22 +46,13 @@ public class GameWorldController {
         swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
         sensorController = new SensorController(gameWorld.getSensorModel1(),gameWorldView.getSensorView1());
 
-        worldObjectsList = new IWorldObjectsController[7];
-        worldObjectsList[0] = barrelController;
-        worldObjectsList[1] = treasureController;
-        worldObjectsList[2] = entityPlayerKeldeController;
-        worldObjectsList[3] = treasureController2;
-        worldObjectsList[4] = axeController;
-        worldObjectsList[5] = swordController;
-        worldObjectsList[6] = sensorController;
-
-        worldObjList.add(barrelController);     // pos 0
-        worldObjList.add(treasureController);   // pos 1
-        worldObjList.add(entityPlayerKeldeController); // pos 2
-        worldObjList.add(treasureController2);  // pos 3
-        worldObjList.add(axeController);        // pos 4
-        worldObjList.add(swordController);      // pos 5
-        worldObjList.add(sensorController);     // pos 6
+        worldObjList.add(barrelController);              // pos 0
+        worldObjList.add(treasureController);            // pos 1
+        worldObjList.add(entityPlayerKeldeController);   // pos 2
+        worldObjList.add(treasureController2);           // pos 3
+        worldObjList.add(axeController);                 // pos 4
+        worldObjList.add(swordController);               // pos 5
+        worldObjList.add(sensorController);              // pos 6
 
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
@@ -74,7 +64,6 @@ public class GameWorldController {
         entityPlayerKeldeController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
-
     }
 
     public void resizeCamera(int width, int height) {

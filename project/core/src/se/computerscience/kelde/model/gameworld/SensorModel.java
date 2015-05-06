@@ -5,7 +5,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
- * @author Hossein Hussain
+ * Description:
+ *
+ * @author: Hossein Hussain
  */
 public class SensorModel implements IWorldObjectsModel {
     private final float BODY_WIDTH = 16;

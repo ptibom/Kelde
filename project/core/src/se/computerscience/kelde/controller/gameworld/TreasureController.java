@@ -1,14 +1,15 @@
+/**
+ * Description:
+ *
+ * @author: Hossein Hussain
+ */
 package se.computerscience.kelde.controller.gameworld;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import se.computerscience.kelde.model.gameworld.TreasureModell;
 import se.computerscience.kelde.view.gameworld.TreasureView;
-/**
- * Description:
- *
- * @author: Hossein Hussain
- */
+
 public class TreasureController implements IWorldObjectsController {
     TreasureModell treasureModell;
     TreasureView treasureView;
