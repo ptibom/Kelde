@@ -14,7 +14,6 @@ public class SmallWormController {
 
     //Variables
     private SmallWormView wormview;
-    private EntitySmallWorm worm;
     private Vector2[] WAYPOINT = new Vector2[10];
     private Vector2 RENDER_POINT;
     private int INDEX = 0;
@@ -23,7 +22,6 @@ public class SmallWormController {
 
     public SmallWormController(Vector2 startVector) {
         wormview = new SmallWormView(startVector);
-        worm = new EntitySmallWorm(WORM_DAMAGE);
         setWaypoints();
         RENDER_POINT = startVector;
     }

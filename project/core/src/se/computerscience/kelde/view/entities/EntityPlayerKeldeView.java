@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.gameworld.Heading;
 
 public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;
@@ -30,20 +31,15 @@ public class EntityPlayerKeldeView {
     private TextureAtlas keldeNorthArrow, keldeWestArrow, keldeSouthArrow, keldeEastArrow;
     private Animation knifeslashnorth, knifeslasheast,knifeslashwest,knifeslashsouth;
     private Animation keldeShootArrowNorth, keldeShootArrowWest, keldeShootArrowSouth, keldeShootArrowEast;
-    private HEADING direction;
+    private Heading direction;
     private float oldX, oldY;
-    private int SPACE_KEY = 62, RIGHT_ARROW = 22, LEFT_ARROW = 21, UP_ARROW = 19, DOWN_ARROW = 20, SHOOT_ARROW = 57;
 
-
-    public enum HEADING {
-        NORTH, SOUTH, WEST, EAST
-    }
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
         this.entityPlayerKelde = entityPlayerKelde;
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
-        direction = HEADING.NORTH;
+        direction = Heading.NORTH;
 
         createNorthTexture();
         createWestTexture();
@@ -64,55 +60,55 @@ public class EntityPlayerKeldeView {
         animation = animationWalkNorth;
         if (oldY < newY) {
             animation = animationWalkNorth;
-            direction = HEADING.NORTH;
+            direction = Heading.NORTH;
             walk = true;
         }
         else if (oldY > newY) {
             animation = animationWalkSouth;
-            direction = HEADING.SOUTH;
+            direction = Heading.SOUTH;
             walk = true;
         }
         if (oldX < newX) {
             animation = animationWalkEast;
-            direction = HEADING.EAST;
+            direction = Heading.EAST;
             walk = true;
         }
         else if (oldX > newX) {
             animation = animationWalkWest;
-            direction = HEADING.WEST;
+            direction = Heading.WEST;
             walk = true;
         }
 
-        if(direction == HEADING.NORTH && walk == false) {
+        if(direction == Heading.NORTH && walk == false) {
             animation = STANDING_STILL_NORTH;
         }
-        if (direction == HEADING.WEST && walk == false) {
+        if (direction == Heading.WEST && walk == false) {
             animation = STANDING_STILL_WEST;
         }
-        if(direction == HEADING.EAST && walk == false) {
+        if(direction == Heading.EAST && walk == false) {
             animation = STANDING_STILL_EAST;
         }
-        if(direction == HEADING.SOUTH && walk == false) {
+        if(direction == Heading.SOUTH && walk == false) {
             animation = STANDING_STILL_SOUTH;
         }
 
-        if(SLASH && direction == HEADING.NORTH) {
+        if(SLASH && direction == Heading.NORTH) {
             animation = knifeslashnorth;
-        } else if (SLASH && direction == HEADING.WEST) {
+        } else if (SLASH && direction == Heading.WEST) {
             animation = knifeslashwest;
-        } else if(SLASH && direction == HEADING.EAST) {
+        } else if(SLASH && direction == Heading.EAST) {
             animation = knifeslasheast;
-        } else if(SLASH && direction == HEADING.SOUTH) {
+        } else if(SLASH && direction == Heading.SOUTH) {
             animation = knifeslashsouth;
         }
 
-        if(ARROW && direction == HEADING.NORTH) {
+        if(ARROW && direction == Heading.NORTH) {
             animation = keldeShootArrowNorth;
-        } else if(ARROW && direction == HEADING.WEST) {
+        } else if(ARROW && direction == Heading.WEST) {
             animation = keldeShootArrowWest;
-        } else if(ARROW && direction == HEADING.SOUTH) {
+        } else if(ARROW && direction == Heading.SOUTH) {
             animation = keldeShootArrowSouth;
-        } else if(ARROW && direction == HEADING.EAST) {
+        } else if(ARROW && direction == Heading.EAST) {
             animation = keldeShootArrowEast;
         }
 

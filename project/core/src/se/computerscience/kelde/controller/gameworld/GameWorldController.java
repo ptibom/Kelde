@@ -19,7 +19,7 @@ public class GameWorldController {
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
-    private final EntityBatController bat;
+    private final EntityBatController entitybatcontroller;
 
 
     public GameWorldController() {
@@ -27,12 +27,12 @@ public class GameWorldController {
         gameWorldView = new GameWorldView(gameWorld);
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
-        bat = new EntityBatController(new Vector2(100,100));
+        entitybatcontroller = gameWorld.getEntitybat();
     }
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
-        bat.update(delta);
+        entitybatcontroller.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
     }

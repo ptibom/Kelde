@@ -37,7 +37,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     }
 
     public float getPositionX() {
-        return entityBody.getPositionX()-BODY_WIDTH;
+        return entityBody.getPositionX()-BODY_WIDTH*2;
     }
 
     public Vector2 getPosition() {

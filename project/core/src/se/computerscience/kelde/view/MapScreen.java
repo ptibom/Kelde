@@ -21,9 +21,7 @@ public class MapScreen implements Screen {
     private OrthogonalTiledMapRenderer renderer; // Renders the map
     private TiledMap map; // Loads the map
 
-    private EntityBatController bat1;
-    private EntityEyeController eye1;
-    private SmallWormController worm1;
+
 
     @Override
     public void show() {
@@ -31,9 +29,6 @@ public class MapScreen implements Screen {
         map = new TmxMapLoader().load("map.tmx");
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(map);
-        bat1 = new EntityBatController(new Vector2(300,300));
-        eye1 = new EntityEyeController(new Vector2(200,200));
-        worm1 = new SmallWormController(new Vector2(300,300));
     }
 
     @Override
@@ -45,9 +40,6 @@ public class MapScreen implements Screen {
         // Choose to render from Camera's perspective and then render it.
         renderer.setView(camera);
         renderer.render();
-        eye1.render(camera);
-        bat1.render(camera);
-        worm1.render(camera);
 
     }
 
@@ -65,9 +57,6 @@ public class MapScreen implements Screen {
         camera.viewportHeight = height;
         camera.position.set(width / 2, height / 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
-        bat1.resize(camera);
-        eye1.resize(camera);
-        worm1.resize(camera);
     }
 
     @Override

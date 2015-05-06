@@ -20,9 +20,5 @@ public class EntityTests {
         Assert.assertEquals(false, entityKnight.isFriendly());
     }
 
-    @Test
-    public void testBat() {
-        EntityBat bat = new EntityBat(100);
-        Assert.assertNotNull(bat.getHEALTH());
-    }
+
 }

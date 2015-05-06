@@ -13,7 +13,6 @@ import java.util.Random;
 public class EntityEyeController {
 
     //Variables
-    private EntityEye entity_eye;
     private EyeView eye_view;
     private Vector2 RENDER_POINT;
     private int INDEX = 0;
@@ -25,7 +24,6 @@ public class EntityEyeController {
 
     public EntityEyeController(Vector2 startVector) {
         setVectors();
-        eye_view = new EyeView();
         RENDER_POINT = startVector;
     }
 
