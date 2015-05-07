@@ -18,37 +18,49 @@ public class StartMenu {
 
    private static final String BACKGROUND = "StartMenuBackground.png";
    private static final String FOREGROUND = "StartMenuForeground.png";
-    TextureAtlas spriteSheet64 = new TextureAtlas("MenuSpriteSheet64.txt");
-    TextureAtlas spriteSheet128 = new TextureAtlas("MenuSpriteSheet128.txt");
-    private Array<Sprite> skeleton64 = spriteSheet64.createSprites();
-    private Array<Sprite> skeleton128 = spriteSheet128.createSprites();
-
+    private static final String WALKING_CHARACTER_PATH_PICTURE = "walkingcharacters.png";
+    private static final String WALKING_CHARACTER_PATH_DATA = "walkingcharacters.txt";
+    private static final String BACKGROUND_SOUND = "dethrone.mp3";
+   private static final String NEW_GAME_BUTTON_PATH_PICTURE = "loadbutton.png";
+    private static final String LOAD_GAME_BUTTON_PATH_PICTURE ="newgamebutton.png";
+    private static final String DEMON_STATUES_PATH_PICTURE = "demonsbackground.png";
 
     public StartMenu(){
 
-        for(int i=0; i<skeleton64.size; i++){
-            skeleton64.get(i).setSize(64.0f, 64.0f);
-        }
 
-        for(int i=0; i<skeleton128.size; i++){
-            skeleton128.get(i).setSize(128.0f, 128.0f);
-        }
 
 
     }
 
-    public Array<Sprite> get64x64sprites(){
+    public String getNewGameButtonPathPicture(){
 
-        return skeleton64;
-
-    }
-
-    public Array<Sprite> get128x128sprites(){
-
-        return skeleton128;
+    return NEW_GAME_BUTTON_PATH_PICTURE;
 
     }
 
+    public String getDemonBackgroundPathPicture(){
+
+        return DEMON_STATUES_PATH_PICTURE;
+    }
+
+    public String getLoadGameButtonPathPicture(){
+        return LOAD_GAME_BUTTON_PATH_PICTURE;
+    }
+
+    public String getWalkingCharacterPathPicture(){
+
+        return WALKING_CHARACTER_PATH_PICTURE;
+
+    }
+    public String getWalkingCharacterPathData(){
+
+        return WALKING_CHARACTER_PATH_DATA;
+
+    }
+
+    public String getBackgroundSoundPath(){
+        return BACKGROUND_SOUND;
+    }
     public String getBackground(){
 
         return BACKGROUND;

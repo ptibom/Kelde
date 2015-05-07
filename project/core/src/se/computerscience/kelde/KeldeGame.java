@@ -12,7 +12,7 @@ public class KeldeGame extends Game {
 	/** Called when application is created */
 	@Override
 	public void create () {
-		setScreen(new MenuScreen());
+		setScreen(new MenuScreen(this));
 	}
 
 
