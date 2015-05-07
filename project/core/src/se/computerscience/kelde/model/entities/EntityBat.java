@@ -15,7 +15,7 @@ public class EntityBat {
     //Variables
     private int DAMAGE = 10;
     private int health = 100;
-    private final int BODY_WIDTH = 32, BODY_HEIGHT = 32;
+    private final int BODY_WIDTH = 8, BODY_HEIGHT = 8;
     private final int ATTACK_DISTANCE = 100;
     private boolean ALIVE = true;
     private static final int LOOT = 15;
@@ -23,6 +23,7 @@ public class EntityBat {
     private final IEntityBody entityBody;
     private final Random random;
     private Heading direction;
+    private float oldx,oldy;
 
     //Constructor
     public EntityBat(float x, float y, IB2DWorld ib2DWorld){
@@ -51,34 +52,39 @@ public class EntityBat {
             setRandomSpeed();
             elapsedTime = 0;
         }
+
     }
 
     private void setRandomSpeed() {
         int vx = random.nextInt(3) - 1;
         int vy = random.nextInt(3) - 1;
         entityBody.setVelocity(vx, vy);
+
     }
 
     public int getPositionX() {
-        return (int) (entityBody.getPositionX());
+        return (int) (entityBody.getPositionX()-BODY_HEIGHT*2);
     }
     
     public int getPositionY() {
-        return (int) (entityBody.getPositionY());
+        return (int) (entityBody.getPositionY()-BODY_WIDTH*2);
     }
 
     public Heading getDirection() {
+
         direction = Heading.SOUTH;
-        if(getPositionX() > 0 && getPositionY() > 0) {
-            direction = Heading.NORTH;
-        } else if (getPositionX() < 0 && getPositionY() > 0) {
+        if(entityBody.getVelocityX() > oldx) {
+            direction = Heading.EAST;
+        } else if (entityBody.getVelocityX() < oldx) {
             direction = Heading.WEST;
-        }else if(getPositionX() < 0 && getPositionY() < 0) {
+        }else if(entityBody.getVelocityY() < oldy) {
             direction = Heading.SOUTH;
-        } else if(getPositionX() > 0 && getPositionY() < 0) {
+        } else if(entityBody.getVelocityY() > oldy) {
             direction = Heading.EAST;
         }
-        System.out.print("in entitybat heading: "+direction + "\n");
+        oldx = entityBody.getPositionX();
+        oldy = entityBody.getPositionY();
+        System.out.print("value:"+entityBody.getPositionX()+"\n");
         return direction;
     }
 }
