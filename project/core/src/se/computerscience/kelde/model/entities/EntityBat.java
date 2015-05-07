@@ -1,11 +1,10 @@
 package se.computerscience.kelde.model.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
-import se.computerscience.kelde.model.gameworld.Heading;
+import se.computerscience.kelde.model.encapsulation.Heading;
 
 import java.util.Random;
 
@@ -26,7 +25,6 @@ public class EntityBat {
     private final IEntityBody entityBody;
     private final Random random;
     private Heading direction;
-    private float oldx,oldy;
 
     //Constructor
     public EntityBat(float x, float y, IB2DWorld ib2DWorld){
@@ -55,8 +53,6 @@ public class EntityBat {
             setRandomSpeed();
             elapsedTime = 0;
         }
-        oldx = entityBody.getPositionX();
-        oldy = entityBody.getPositionY();
     }
 
     private void setRandomSpeed() {

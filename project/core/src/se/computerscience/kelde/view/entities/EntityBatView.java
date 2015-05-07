@@ -6,11 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityBat;
-import se.computerscience.kelde.model.gameworld.Heading;
-
-import java.util.Random;
+import se.computerscience.kelde.model.encapsulation.Heading;
 
 /**
  * Created by Anders on 2015-04-06.
@@ -26,43 +23,29 @@ public class EntityBatView {
     private SpriteBatch batch;
     private Animation animation;
     private float elapsedTime = 0, delta = 0;
-    private Heading direction;
     /**
      * Public constructor
      */
     public EntityBatView(EntityBat entityBat) {
         this.entityBat = entityBat;
 
-        createNorthTexture();
-        createSouthTexture();
-        createEastTexture();
-        createWestTexture();
+        createTextures();
         animation = animationN;
     }
 
-    private void createWestTexture() {
+    private void createTextures() {
         textureAtlasW = new TextureAtlas(Gdx.files.internal("batWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
-    }
-
-    private void createEastTexture() {
         textureAtlasE = new TextureAtlas(Gdx.files.internal("batEast.atlas"));
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
-    }
-
-    private void createNorthTexture() {
         textureAtlasNorth = new TextureAtlas(Gdx.files.internal("bat.atlas"));
         animationN = new Animation(0.15f, textureAtlasNorth.getRegions());
-    }
-
-    public void createSouthTexture() {
         textureAtlasSouth = new TextureAtlas(Gdx.files.internal("batSouth.atlas"));
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
     }
 
     public void draw(Batch batch) {
         Heading direction = entityBat.getHeading();
-        System.out.print(direction+"\n");
         if(direction == Heading.EAST) {
             animation = animationE;
         } else if(direction == Heading.NORTH) {

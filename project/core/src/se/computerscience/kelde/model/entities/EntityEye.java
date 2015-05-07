@@ -1,24 +1,36 @@
 package se.computerscience.kelde.model.entities;
 
+import com.badlogic.gdx.math.Vector2;
+import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
+import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
+import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
+import se.computerscience.kelde.model.encapsulation.Heading;
+
+import java.util.Random;
+
 /**
  * Created by Anders on 2015-04-08.
  */
 public class EntityEye {
 
     //Variables
-    private int DAMAGE;
+    private final IEntityBody entityBody;
+    private final Random random;
+    private int DAMAGE = 15;
     private int HEALTH = 100;
     private static final int ATTACK_DISTANCE = 150;
+    private final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private float elapsedTime = 0;
     private static final int LOOT = 25;
     private boolean ALIVE = true;
-    private static final int DEAD = 0;
+    private Heading direction;
 
     /**
      * Public constructor
-     * @param damage value the monster will have is set
      */
-    public EntityEye(int damage) {
-        this.DAMAGE = damage;
+    public EntityEye(float x, float y, IB2DWorld ib2DWorld) {
+        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld);
+        random = new Random();
 
     }
 
@@ -51,11 +63,45 @@ public class EntityEye {
      * @param takenDamage is the damage value taken
      */
     public void setTakenDamage(int takenDamage) {
-        this.HEALTH = this.HEALTH - takenDamage;
-        if(this.HEALTH <= DEAD) {
-            ALIVE = false;
+        HEALTH -= takenDamage;
+    }
+
+    private void setRandomSpeed() {
+        int vx = random.nextInt(3) - 1;
+        int vy = random.nextInt(3) - 1;
+        entityBody.setVelocity(vx, vy);
+
+    }
+
+    public void update(float delta) {
+        elapsedTime += delta;
+        if (elapsedTime > 2) {
+            setRandomSpeed();
+            elapsedTime = 0;
         }
     }
 
 
+    public Heading getHeading() {
+        Vector2 angle = entityBody.getLinearVelocity();
+        float degree = (float)Math.toDegrees(Math.atan2(angle.x, angle.y));
+        if(degree > 45.0f && degree < 135.0f) {
+            direction = Heading.WEST;
+        } else if(degree <= -135.0f || degree >= 135.0f) {
+            direction = Heading.SOUTH;
+        } else if(degree <= 45.0f && degree >= -45.0f) {
+            direction = Heading.NORTH;
+        } else if(degree < -45.0f && degree > -135.0f) {
+            direction = Heading.EAST;
+        }
+        return direction;
+    }
+
+    public float getPositionX() {
+        return (int) (entityBody.getPositionX()-BODY_HEIGHT);
+    }
+
+    public float getPositionY() {
+        return (int) (entityBody.getPositionY()-BODY_WIDTH);
+    }
 }

@@ -9,6 +9,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityBat;
+import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
@@ -17,6 +18,7 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
     private final EntityBat entityBat;
+    private final EntityEye entityEye;
 
     private IMap map;
     private ICamera camera;
@@ -27,6 +29,7 @@ public class GameWorld {
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
+        entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
@@ -59,4 +62,6 @@ public class GameWorld {
     public EntityBat getEntityBat() {
         return entityBat;
     }
+
+    public EntityEye getEntityEye() { return entityEye; }
 }

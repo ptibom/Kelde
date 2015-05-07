@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.entities.EntityBatView;
+import se.computerscience.kelde.view.entities.EntityEyeView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
@@ -19,6 +20,7 @@ public class GameWorldView {
     private final WorldPhysicsView worldPhysicsView;
     private final EntityPlayerKeldeView entityPlayerKeldeView;
     private final EntityBatView entityBatView;
+    private final EntityEyeView entityEyeView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -29,6 +31,7 @@ public class GameWorldView {
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
         entityBatView = new EntityBatView(gameWorld.getEntityBat());
+        entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
     }
 
     public void render(float delta) {
@@ -40,6 +43,7 @@ public class GameWorldView {
         batch.begin();
         entityPlayerKeldeView.draw(batch);
         entityBatView.draw(batch);
+        entityEyeView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -68,5 +72,9 @@ public class GameWorldView {
 
     public EntityBatView getEntityBatView() {
         return entityBatView;
+    }
+
+    public EntityEyeView getEntityEyeView() {
+        return entityEyeView;
     }
 }

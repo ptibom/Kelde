@@ -9,7 +9,6 @@ package se.computerscience.kelde.model.encapsulation.box2d;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import se.computerscience.kelde.model.gameworld.Heading;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
 public class EntityBody implements IEntityBody {

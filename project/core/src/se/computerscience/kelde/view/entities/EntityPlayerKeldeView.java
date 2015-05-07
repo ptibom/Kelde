@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.gameworld.Heading;
+import se.computerscience.kelde.model.encapsulation.Heading;
 
 public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;

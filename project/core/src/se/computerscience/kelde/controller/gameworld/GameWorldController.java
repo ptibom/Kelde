@@ -6,6 +6,7 @@ package se.computerscience.kelde.controller.gameworld;
 
 
 import se.computerscience.kelde.controller.entities.EntityBatController;
+import se.computerscience.kelde.controller.entities.EntityEyeController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
@@ -19,6 +20,7 @@ public class GameWorldController {
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
     private final EntityBatController entityBatController;
+    private final EntityEyeController entityEyeController;
 
 
     public GameWorldController() {
@@ -27,11 +29,14 @@ public class GameWorldController {
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
         entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
+        entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
     }
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
         entityBatController.update(delta);
+        entityEyeController.update(delta);
+
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
     }
