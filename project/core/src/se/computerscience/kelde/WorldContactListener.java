@@ -36,11 +36,11 @@ public class WorldContactListener implements ContactListener {
         //***contact listener for WorldObjects, sensors and items ***
 
         if (isObject("sensor 1",contact) && isPlayer(contact)){
-            ((GameScreen)screen).setX(1); // change to shop screen
+            ((GameScreen)screen).setNumScreen(1); // change to shop screen
         }
 
         if (isObject("sensor ut",contact) && isPlayer(contact)){
-            ((GameScreen)screen).setX(0); // change to Game screen
+            ((GameScreen)screen).setNumScreen(0); // change to Game screen
         }
 
 

@@ -15,10 +15,10 @@ import se.computerscience.kelde.controller.gameworld.ShopWorldContoller;
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
     private ShopWorldContoller shopWorldContoller;
-    int x=0;
+    private int numScreen = 0;
 
-    public void setX(int x) {
-        this.x = x;
+    public void setNumScreen(int numScreen) {
+        this.numScreen = numScreen;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
 
 
         // Render the world
-        if (x==1) {
+        if (numScreen == 1) {
             shopWorldContoller.render(delta);
         }else{
             gameWorldController.render(delta);
