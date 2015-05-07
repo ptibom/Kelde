@@ -1,5 +1,7 @@
 package se.computerscience.kelde.model.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
@@ -9,6 +11,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-04-06.
+ * @author: Anders Bolin
  */
 public class EntityBat {
 
@@ -52,7 +55,8 @@ public class EntityBat {
             setRandomSpeed();
             elapsedTime = 0;
         }
-
+        oldx = entityBody.getPositionX();
+        oldy = entityBody.getPositionY();
     }
 
     private void setRandomSpeed() {
@@ -70,21 +74,18 @@ public class EntityBat {
         return (int) (entityBody.getPositionY()-BODY_WIDTH*2);
     }
 
-    public Heading getDirection() {
-
-        direction = Heading.SOUTH;
-        if(entityBody.getVelocityX() > oldx) {
-            direction = Heading.EAST;
-        } else if (entityBody.getVelocityX() < oldx) {
+    public Heading getHeading() {
+        Vector2 angle = entityBody.getLinearVelocity();
+        float degree = (float)Math.toDegrees(Math.atan2(angle.x, angle.y));
+        if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
-        }else if(entityBody.getVelocityY() < oldy) {
+        } else if(degree <= -135.0f || degree >= 135.0f) {
             direction = Heading.SOUTH;
-        } else if(entityBody.getVelocityY() > oldy) {
+        } else if(degree <= 45.0f && degree >= -45.0f) {
+            direction = Heading.NORTH;
+        } else if(degree < -45.0f && degree > -135.0f) {
             direction = Heading.EAST;
         }
-        oldx = entityBody.getPositionX();
-        oldy = entityBody.getPositionY();
-        System.out.print("value:"+entityBody.getPositionX()+"\n");
         return direction;
     }
 }

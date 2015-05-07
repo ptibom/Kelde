@@ -61,15 +61,18 @@ public class EntityBatView {
     }
 
     public void draw(Batch batch) {
-        if(entityBat.getDirection() == Heading.NORTH) {
-            animation = animationN;
-        } else if(entityBat.getDirection() == Heading.SOUTH) {
-            animation = animationS;
-        } else if(entityBat.getDirection() == Heading.EAST) {
+        Heading direction = entityBat.getHeading();
+        System.out.print(direction+"\n");
+        if(direction == Heading.EAST) {
             animation = animationE;
-        } else if(entityBat.getDirection() == Heading.WEST) {
+        } else if(direction == Heading.NORTH) {
+            animation = animationN;
+        } else if(direction == Heading.WEST) {
             animation = animationW;
+        } else if(direction == Heading.SOUTH) {
+            animation = animationS;
         }
+
         elapsedTime += delta;
         if(elapsedTime > 100.0f) {
             elapsedTime = 0f;
