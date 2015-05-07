@@ -9,14 +9,12 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 
 public class EntityPlayerKelde extends EntityPlayer {
-    private final float BODY_WIDTH = 16, BODY_HEIGHT = 8, START_POSITION_X = 70, START_POSITION_Y = 50;
+    private final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
 
     IPhysicalBody entityBody;
 
-    public EntityPlayerKelde(IB2DWorld ib2DWorld) {
-
-        entityBody = new PhysicalBody(START_POSITION_X, START_POSITION_Y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,this);
-        System.out.println(this);
+    public EntityPlayerKelde(IB2DWorld ib2DWorld,float startPosX,float startPosY) {
+        entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,this);
     }
 
     public void setVelocity(float x, float y) {

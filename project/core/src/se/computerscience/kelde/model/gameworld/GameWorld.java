@@ -33,15 +33,14 @@ public class GameWorld {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
 
         barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1"); //init a barrel with position
         treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,70, "treasure 1"); // init a treasure box w. position
         treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),120,70, "treasure 2"); // init a treasure box w. position
         axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,170,"axe 1");
         swordModel = new SwordModel(worldPhysics.getIb2DWorld(),120,170,"sword 1");
-
-        sensorModel1 = new SensorModel(worldPhysics.getIb2DWorld(),100,500,"sensor 1");
+        sensorModel1 = new SensorModel(worldPhysics.getIb2DWorld(),20,100,"sensor 1");
     }
 
     public void resizeCamera (int width, int height) {

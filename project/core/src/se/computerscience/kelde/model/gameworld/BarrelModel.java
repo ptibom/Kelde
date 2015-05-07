@@ -10,7 +10,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
  * @author: Hossein Hussain
  */
 public class BarrelModel implements IWorldObjectsModel{
-    private final float BODY_WIDTH = 16, BODY_HEIGHT = 4;
+    private final float BODY_WIDTH = 16, BODY_HEIGHT = 16;
 
     IPhysicalBody entityBody;
 

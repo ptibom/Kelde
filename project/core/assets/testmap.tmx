@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="cement" tilewidth="32" tileheight="32">
-  <image source="../../../SpritesForProject/LPC Base Assets/tiles/cement.png" width="96" height="192"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="32" tileheight="32" nextobjectid="3">
+ <tileset firstgid="1" name="lava" tilewidth="32" tileheight="32">
+  <image source="lava.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="19" name="dungeon" tilewidth="32" tileheight="32">
-  <image source="../../../SpritesForProject/LPC Base Assets/tiles/dungeon.png" width="416" height="256"/>
+ <tileset firstgid="19" name="grass" tilewidth="32" tileheight="32">
+  <image source="grass.png" width="96" height="192"/>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object id="0" x="2" y="1" width="28" height="30"/>
+   </objectgroup>
+  </tile>
  </tileset>
- <tileset firstgid="123" name="lava" tilewidth="32" tileheight="32">
-  <image source="../../../SpritesForProject/LPC Base Assets/tiles/lava.png" width="96" height="192"/>
- </tileset>
+ <objectgroup name="Object Layer 1" visible="0"/>
  <layer name="Tile Layer 1" width="20" height="10">
   <data encoding="base64" compression="zlib">
-   eJxrZGBgaKISbgbiFiBupRJuGzVv1DwSzWsH4g4q4U4gBgCLNmfp
+   eJxjZ2Bg4KAS5gRiLiDmphLmGTVv1DwSzeMFYj4qYX4gBgDWzAiZ
   </data>
  </layer>
+ <objectgroup name="Object Layer 2">
+  <object id="2" x="299" y="57">
+   <polyline points="0,0 108,3 112,103 22,190 -104,93 1,0"/>
+  </object>
+ </objectgroup>
 </map>

@@ -56,7 +56,6 @@ public class GameWorldView {
         if (swordView.isVisble())
             swordView.draw(batch);
 
-
         treasureView.draw(batch);
         treasureView2.draw(batch);
         barrelView.draw(batch);
@@ -66,7 +65,7 @@ public class GameWorldView {
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        worldPhysicsView.render(delta);
+        // worldPhysicsView.render(delta);
     }
 
     public void updateProjectionMatrix() {

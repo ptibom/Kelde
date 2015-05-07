@@ -5,12 +5,12 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 
 /**
- * Description:
- *
+ * Description: a model for a treasure!
  * @author: Hossein Hussain
  */
 
 public class TreasureModell implements IWorldObjectsModel {
+
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
 
@@ -22,8 +22,9 @@ public class TreasureModell implements IWorldObjectsModel {
 
     @Override
     public float getPositionY() {
-        return entityBody.getPositionY()-BODY_HEIGHT;
+        return entityBody.getPositionY() - BODY_HEIGHT;
     }
+
     @Override
     public float getPositionX() {
         return entityBody.getPositionX() - BODY_WIDTH;

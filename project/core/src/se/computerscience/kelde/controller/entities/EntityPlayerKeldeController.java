@@ -8,6 +8,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
@@ -50,7 +51,6 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
                 playerInventory.printInventory();
          }
     }
-
     public PlayerInventory getPlayerInventory() {
         return playerInventory;
     }

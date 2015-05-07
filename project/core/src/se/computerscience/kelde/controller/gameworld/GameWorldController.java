@@ -5,6 +5,7 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
+import com.badlogic.gdx.Screen;
 import se.computerscience.kelde.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
@@ -33,18 +34,19 @@ public class GameWorldController {
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
-    public GameWorldController() {
+    public GameWorldController(Screen screen) {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
+
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
 
         barrelController = new BarrelController(gameWorld.getBarrelModel(), gameWorldView.getBarrelView());
         treasureController = new TreasureController(gameWorld.getTreasureModell(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
-        axeController = new AxeController(gameWorld.getAxeModel(),gameWorldView.getAxeView());
+        axeController = new AxeController(gameWorld.getAxeModel(), gameWorldView.getAxeView());
         swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
-        sensorController = new SensorController(gameWorld.getSensorModel1(),gameWorldView.getSensorView1());
+        sensorController = new SensorController(gameWorld.getSensorModel1(), gameWorldView.getSensorView1());
 
         worldObjList.add(barrelController);              // pos 0
         worldObjList.add(treasureController);            // pos 1
@@ -54,8 +56,7 @@ public class GameWorldController {
         worldObjList.add(swordController);               // pos 5
         worldObjList.add(sensorController);              // pos 6
 
-
-        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
+        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList,screen));
 
     }
 

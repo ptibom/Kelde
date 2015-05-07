@@ -3,8 +3,10 @@
  *
  * @author: Hossein Hussain
  */
+
 package se.computerscience.kelde;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -16,30 +18,36 @@ import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.IitemController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.screens.GameScreen;
 
 import java.util.List;
 
 
 public class WorldContactListener implements ContactListener {
-
+    Screen screen;
     List<IWorldObjectsController> worldObjects;
-    public WorldContactListener(List<IWorldObjectsController> worldObjects) {
+    public WorldContactListener(List<IWorldObjectsController> worldObjects , Screen screen) {
         this.worldObjects = worldObjects;
+        this.screen = screen;
     }
-
 
     @Override
     public void beginContact(Contact contact) {
-
         //***contact listener for WorldObjects, sensors and items ***
 
-        if (isObject("sensor 1",contact) && isPlayer(contact))
-            System.out.println("kelde just pressed on a sensor");
+        if (isObject("sensor 1",contact) && isPlayer(contact)){
+            ((GameScreen)screen).setX(1); // change to shop screen
+        }
 
-        if (isObject("treasure 1",contact) && isPlayer(contact)){
-            ((TreasureController)worldObjects.get(1)).openTreasure();
+        if (isObject("sensor ut",contact) && isPlayer(contact)){
+            ((GameScreen)screen).setX(0); // change to Game screen
+        }
 
-            if (!(((AxeController)worldObjects.get(4)).isPicked()))
+
+        if (isObject("treasure 1",contact) && isPlayer(contact)) {
+            ((TreasureController)worldObjects.get(1)).openTreasure();  //when player touch the object it will run openTreasure metod!
+
+            if (!(((AxeController)worldObjects.get(4)).isPicked()))   //checks if the items is picked
                 ((AxeController)worldObjects.get(4)).setVisble(true); // making a drop visble when player open treasure chest
         }
 
@@ -75,14 +83,15 @@ public class WorldContactListener implements ContactListener {
                 ((EntityPlayerKeldeController)worldObjects.get(2)).getPlayerInventory().addToIventory((IitemController)worldObjects.get(5));
             }
         }
-        //***END OF***contact listener for WorldObjects and items***
+        //***END OF*** contact listener for WorldObjects and items***
     }
 
     @Override
     public void endContact(Contact contact) {
-        if (isObject("treasure 1",contact) && isPlayer(contact))
+        if (isObject("treasure 1",contact) && isPlayer(contact) )
             ((TreasureController)worldObjects.get(1)).closeTreasure();
         else if (isObject("treasure 2",contact) && isPlayer(contact))
+           // ((TreasureController)contact.getFixtureB().getUserData()).closeTreasure();
             ((TreasureController)worldObjects.get(3)).closeTreasure();
     }
 
@@ -95,12 +104,12 @@ public class WorldContactListener implements ContactListener {
     }
 
     //checking if the contacted is the input userdata
-    public boolean isObject(String userdata, Contact contact){
+    public boolean isObject(String userdata, Contact contact) {
         return contact.getFixtureB().getUserData().equals(userdata);
     }
 
     //checks if the players collided
-    public boolean isPlayer(Contact contact){
+    public boolean isPlayer(Contact contact) {
         return contact.getFixtureA().getUserData() instanceof EntityPlayerKelde;
     }
 }
