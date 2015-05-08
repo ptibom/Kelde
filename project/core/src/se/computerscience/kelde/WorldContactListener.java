@@ -45,24 +45,22 @@ public class WorldContactListener implements ContactListener {
 
 
         if (isObject("treasure 1",contact) && isPlayer(contact)) {
-            ((TreasureController)worldObjects.get(1)).openTreasure();  //when player touch the object it will run openTreasure metod!
+            ((TreasureController)worldObjects.get(1)).openTreasure();  // when player touch the object it will run openTreasure metod!
 
-            if (!(((AxeController)worldObjects.get(4)).isPicked()))   //checks if the items is picked
+            if (!(((AxeController)worldObjects.get(4)).isPicked()))   // checks if the items is not already picked
                 ((AxeController)worldObjects.get(4)).setVisble(true); // making a drop visble when player open treasure chest
         }
 
         if (isObject("treasure 2",contact) && isPlayer(contact)){
-            ((TreasureController)worldObjects.get(3)).openTreasure();
-            if (!(((SwordController)worldObjects.get(5)).isPicked()))
+            ((TreasureController)worldObjects.get(3)).openTreasure();   // when player colides, will run openTreasure
+            if (!(((SwordController)worldObjects.get(5)).isPicked()))   // checks if the items is not already picked
                 ((SwordController)worldObjects.get(5)).setVisble(true); // making a drop visble when player open treasure chest
         }
-
-        if (isObject("barrel 1",contact) && isPlayer(contact))
-            System.out.println("barrel 1");
 
         if (isObject("axe 1",contact) && isPlayer(contact) ){
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
+
             if (((AxeController)worldObjects.get(4)).isVisble()){
                 ((AxeController)worldObjects.get(4)).setPicked(true);
                 ((AxeController)worldObjects.get(4)).setVisble(false);

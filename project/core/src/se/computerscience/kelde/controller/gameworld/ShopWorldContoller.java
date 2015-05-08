@@ -40,7 +40,6 @@ public class ShopWorldContoller {
         entityPlayerKeldeController.update(delta);
         worldPhysicsController.update(delta);
         shopWorldView.render(delta);
-
     }
 
     public void resizeCamera(int width, int height) {

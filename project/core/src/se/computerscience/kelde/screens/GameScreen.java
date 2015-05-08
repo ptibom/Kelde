@@ -5,7 +5,6 @@
 package se.computerscience.kelde.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
@@ -15,7 +14,7 @@ import se.computerscience.kelde.controller.gameworld.ShopWorldContoller;
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
     private ShopWorldContoller shopWorldContoller;
-    private int numScreen = 0;
+    private int numScreen = 0; // used to swap screen
 
     public void setNumScreen(int numScreen) {
         this.numScreen = numScreen;
@@ -26,7 +25,6 @@ public class GameScreen implements Screen {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController(this);
         shopWorldContoller = new ShopWorldContoller(this);
-
     }
     @Override
     public void render(float delta) {
@@ -34,14 +32,12 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
-        // Render the world
+        // Render the world based om woth screen is set.
         if (numScreen == 1) {
             shopWorldContoller.render(delta);
-        }else{
+        }else if (numScreen == 0){
             gameWorldController.render(delta);
         }
-
     }
 
     @Override

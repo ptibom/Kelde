@@ -10,13 +10,10 @@ import se.computerscience.kelde.screens.ShopScreen;
 
 public class KeldeGame extends Game {
 	GameScreen gameScreen;
-	ShopScreen shopScreen;
-
 	/** Called when application is created */
 	@Override
 	public void create () {
 		gameScreen = new GameScreen();
-		shopScreen = new ShopScreen();
 		setScreen(new GameScreen());
 	}
 }
