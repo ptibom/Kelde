@@ -8,19 +8,20 @@ package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.encapsulation.Heading;
+import se.computerscience.kelde.model.Heading;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Sprite sprite;
     private final Texture texture;
-    private final int WIDTH = 32, HEIGHT = 48;
-    private final String SPRITE_LOCATION = "testSprite.png";
+    private final int WIDTH = 32, HEIGHT = 32;
+    private final String SPRITE_LOCATION = "arrow.png";
 
     private float ELAPSED_TIME = 0;
     private TextureAtlas keldeWalkNorth, keldeWalkWest, keldeWalkSouth, keldeWalkEast, keldeLookNorth, keldeLookEast, keldeLookSouth, keldeLookWest;
@@ -31,6 +32,9 @@ public class EntityPlayerKeldeView {
     private Animation keldeShootArrowNorth, keldeShootArrowWest, keldeShootArrowSouth, keldeShootArrowEast;
     private Heading direction;
     private float oldX, oldY;
+    private boolean arrow_fired = false;
+
+    private ArrayList<EntityArrowView> arrowViews;
 
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
@@ -38,6 +42,8 @@ public class EntityPlayerKeldeView {
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
         direction = Heading.NORTH;
+
+        arrowViews = new ArrayList<EntityArrowView>();
 
         createNorthTexture();
         createWestTexture();
@@ -110,11 +116,36 @@ public class EntityPlayerKeldeView {
             animation = keldeShootArrowEast;
         }
 
+        if(ARROW && !arrow_fired) {
+            EntityArrowView entityArrowView = new EntityArrowView(direction, entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY()+12);
+            arrowViews.add(entityArrowView);
+            arrow_fired = true;
+        }
+
+        if(!arrowViews.isEmpty()) {
+
+
+                Iterator<EntityArrowView> i = arrowViews.iterator();
+                while (i.hasNext()) {
+                    EntityArrowView arrow = i.next();
+                    arrow.update(ELAPSED_TIME);
+                    arrow.draw(batch);
+                    if(arrow.getPositionX() > 620 || arrow.getPositionX() < 0|| arrow.getPositionY() > 500 || arrow.getPositionY() < 0) {
+                        i.remove();
+                        arrow_fired = false;
+                    }
+                }
+
+
+        }
+
+
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        sprite.draw(batch);
+        //sprite.draw(batch);
         oldX = entityPlayerKelde.getPositionX();
         oldY = entityPlayerKelde.getPositionY();
+        if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0; }
     }
 
     private void createArrowShoot() {

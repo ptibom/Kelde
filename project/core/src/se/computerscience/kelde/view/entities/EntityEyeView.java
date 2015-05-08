@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.entities.EntityEye;
-import se.computerscience.kelde.model.encapsulation.Heading;
+import se.computerscience.kelde.model.Heading;
 
 
 /**

@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
-import se.computerscience.kelde.model.encapsulation.Heading;
+import se.computerscience.kelde.model.Heading;
 
 import java.util.Random;
 
@@ -102,6 +102,6 @@ public class EntityEye {
     }
 
     public float getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH);
+        return (int) (entityBody.getPositionY()-BODY_WIDTH-6);
     }
 }

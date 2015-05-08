@@ -1,4 +1,4 @@
-package se.computerscience.kelde.model.encapsulation;
+package se.computerscience.kelde.model;
 
 /**
  * Created by Anders on 2015-05-06.
