@@ -12,16 +12,11 @@ import se.computerscience.kelde.controller.gameworld.GameWorldController;
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
-    private int numScreen = 0; // used to swap screen
-
-    public void setNumScreen(int numScreen) {
-        this.numScreen = numScreen;
-    }
 
     @Override
     public void show() {
         // Initialises objects, like a constructor
-        gameWorldController = new GameWorldController(this);
+        gameWorldController = new GameWorldController();
     }
     @Override
     public void render(float delta) {
@@ -31,7 +26,6 @@ public class GameScreen implements Screen {
 
         // Render the world based om woth screen is set.
         gameWorldController.render(delta);
-
     }
 
     @Override

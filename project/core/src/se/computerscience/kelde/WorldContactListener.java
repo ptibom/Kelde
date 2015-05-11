@@ -24,11 +24,9 @@ import java.util.List;
 
 
 public class WorldContactListener implements ContactListener {
-    Screen screen;
     List<IWorldObjectsController> worldObjects;
-    public WorldContactListener(List<IWorldObjectsController> worldObjects , Screen screen) {
+    public WorldContactListener(List<IWorldObjectsController> worldObjects) {
         this.worldObjects = worldObjects;
-        this.screen = screen;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class GameWorldController {
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
-    public GameWorldController(Screen screen) {
+    public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
 
@@ -56,7 +56,7 @@ public class GameWorldController {
         worldObjList.add(swordController);               // pos 5
         worldObjList.add(doorController);                // pos 6
 
-        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList,screen));
+        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
     }
 
     public void render(float delta) {
