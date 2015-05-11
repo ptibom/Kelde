@@ -4,7 +4,7 @@
  * @author: Hossein Hussain
  */
 
-package se.computerscience.kelde;
+package se.computerscience.kelde.controller;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -18,17 +18,14 @@ import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.IitemController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.screens.GameScreen;
 
 import java.util.List;
 
 
 public class WorldContactListener implements ContactListener {
-    Screen screen;
     List<IWorldObjectsController> worldObjects;
-    public WorldContactListener(List<IWorldObjectsController> worldObjects , Screen screen) {
+    public WorldContactListener(List<IWorldObjectsController> worldObjects) {
         this.worldObjects = worldObjects;
-        this.screen = screen;
     }
 
     @Override
@@ -83,7 +80,6 @@ public class WorldContactListener implements ContactListener {
         if (isObject("treasure 1",contact) && isPlayer(contact) )
             ((TreasureController)worldObjects.get(1)).closeTreasure();
         else if (isObject("treasure 2",contact) && isPlayer(contact))
-           // ((TreasureController)contact.getFixtureB().getUserData()).closeTreasure();
             ((TreasureController)worldObjects.get(3)).closeTreasure();
     }
 
