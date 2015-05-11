@@ -57,7 +57,6 @@ public class WorldContactListener implements ContactListener {
                 ((AxeController)worldObjects.get(4)).setVisble(false);
                 System.out.println("kelde just picked up the axe");
                 // add code to put the axe in keldes inventory here
-                ((EntityPlayerKeldeController)worldObjects.get(2)).getPlayerInventory().addToIventory((IitemController)worldObjects.get(4));
             }
         }
 
@@ -69,7 +68,6 @@ public class WorldContactListener implements ContactListener {
                 ((SwordController)worldObjects.get(5)).setVisble(false);
                 System.out.println("kelde just picked up the sword");
                 // add code to put the axe in keldes inventory here
-                ((EntityPlayerKeldeController)worldObjects.get(2)).getPlayerInventory().addToIventory((IitemController)worldObjects.get(5));
             }
         }
         //***END OF*** contact listener for WorldObjects and items***
