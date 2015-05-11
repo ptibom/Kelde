@@ -18,9 +18,6 @@ public class TreasureController implements IWorldObjectsController {
         this.treasureModell = treasureModell;
         this.treasureView = treasureView;
     }
-    public void update(float delta){
-        //
-    }
     public void openTreasure(){
         treasureView.setSprite(new Sprite(new Texture("chest1.png"),30,32));
         System.out.println("treasure open");

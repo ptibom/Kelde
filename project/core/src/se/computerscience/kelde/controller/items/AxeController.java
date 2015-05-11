@@ -17,9 +17,6 @@ public class AxeController implements IWorldObjectsController,IitemController {
         this.axeModel = axeModel;
         this.axeView = axeView;
     }
-    public void update(float delta){
-        //
-    }
     public void setVisble(boolean visble){
         axeView.setVisble(visble);
     }

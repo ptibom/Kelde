@@ -18,9 +18,6 @@ public class SwordController implements IWorldObjectsController,IitemController{
         this.swordModel = swordModel;
         this.swordView = swordView;
     }
-    public void update(float delta){
-        //
-    }
     public void setVisble(boolean visble){
         swordView.setVisble(visble);
     }

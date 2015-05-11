@@ -8,12 +8,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
-import se.computerscience.kelde.controller.gameworld.ShopWorldContoller;
 
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
-    private ShopWorldContoller shopWorldContoller;
     private int numScreen = 0; // used to swap screen
 
     public void setNumScreen(int numScreen) {
@@ -24,7 +22,6 @@ public class GameScreen implements Screen {
     public void show() {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController(this);
-        shopWorldContoller = new ShopWorldContoller(this);
     }
     @Override
     public void render(float delta) {
@@ -33,17 +30,13 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Render the world based om woth screen is set.
-        if (numScreen == 1) {
-            shopWorldContoller.render(delta);
-        }else if (numScreen == 0){
-            gameWorldController.render(delta);
-        }
+        gameWorldController.render(delta);
+
     }
 
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);
-        shopWorldContoller.resizeCamera(width, height);
     }
 
     @Override
@@ -65,7 +58,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameWorldController.dispose();
-        shopWorldContoller.dispose();
     }
 
 }

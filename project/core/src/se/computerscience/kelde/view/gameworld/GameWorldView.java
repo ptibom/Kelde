@@ -25,7 +25,7 @@ public class GameWorldView {
     private final TreasureView treasureView2;
     private final AxeView axeView;
     private final SwordView swordView;
-    private final SensorView sensorView1;
+    private final SensorView doorView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -41,7 +41,7 @@ public class GameWorldView {
         treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
         axeView = new AxeView(gameWorld.getAxeModel());
         swordView = new SwordView(gameWorld.getSwordModel());
-        sensorView1 = new SensorView(gameWorld.getSensorModel1());
+        doorView = new SensorView(gameWorld.getDoorModel(),"door2");
     }
 
     public void render(float delta) {
@@ -53,13 +53,14 @@ public class GameWorldView {
         batch.begin();
         if (axeView.isVisble())
             axeView.draw(batch);
+
         if (swordView.isVisble())
             swordView.draw(batch);
 
         treasureView.draw(batch);
         treasureView2.draw(batch);
         barrelView.draw(batch);
-        sensorView1.draw(batch);
+        doorView.draw(batch);
 
         entityPlayerKeldeView.draw(batch);
         batch.end();
@@ -100,7 +101,7 @@ public class GameWorldView {
     public SwordView getSwordView() {
         return swordView;
     }
-    public SensorView getSensorView1() {
-        return sensorView1;
+    public SensorView getDoorView() {
+        return doorView;
     }
 }

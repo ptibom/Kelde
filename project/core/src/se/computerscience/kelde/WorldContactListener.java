@@ -34,15 +34,9 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
         //***contact listener for WorldObjects, sensors and items ***
-
         if (isObject("sensor 1",contact) && isPlayer(contact)){
-            ((GameScreen)screen).setNumScreen(1); // change to shop screen
+            System.out.println("kelde just pressed a sensor");
         }
-
-        if (isObject("sensor ut",contact) && isPlayer(contact)){
-            ((GameScreen)screen).setNumScreen(0); // change to Game screen
-        }
-
 
         if (isObject("treasure 1",contact) && isPlayer(contact)) {
             ((TreasureController)worldObjects.get(1)).openTreasure();  // when player touch the object it will run openTreasure metod!

@@ -30,7 +30,7 @@ public class GameWorldController {
     private final TreasureController treasureController2;
     private final AxeController axeController;
     private final SwordController swordController;
-    private final SensorController sensorController;
+    private final SensorController doorController;
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class GameWorldController {
         treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
         axeController = new AxeController(gameWorld.getAxeModel(), gameWorldView.getAxeView());
         swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
-        sensorController = new SensorController(gameWorld.getSensorModel1(), gameWorldView.getSensorView1());
+        doorController = new SensorController(gameWorld.getDoorModel(), gameWorldView.getDoorView());
 
         worldObjList.add(barrelController);              // pos 0
         worldObjList.add(treasureController);            // pos 1
@@ -54,10 +54,9 @@ public class GameWorldController {
         worldObjList.add(treasureController2);           // pos 3
         worldObjList.add(axeController);                 // pos 4
         worldObjList.add(swordController);               // pos 5
-        worldObjList.add(sensorController);              // pos 6
+        worldObjList.add(doorController);                // pos 6
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList,screen));
-
     }
 
     public void render(float delta) {
