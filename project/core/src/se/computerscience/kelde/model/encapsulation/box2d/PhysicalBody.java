@@ -19,7 +19,7 @@ public class PhysicalBody implements IPhysicalBody {
     public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();
-        def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
+        def.position.set(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE);
         setBodyType(); // May call method in subclass
         body = worldPhysics.createBody(def);
         fdef = new FixtureDef();
@@ -27,6 +27,7 @@ public class PhysicalBody implements IPhysicalBody {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
+        fdef.friction = 0.1f;
         body.createFixture(fdef).setUserData(userdata);
     }
 
@@ -43,6 +44,11 @@ public class PhysicalBody implements IPhysicalBody {
     }
 
     @Override
+    public void setDampening(float dampening) {
+        body.setLinearDamping(dampening);
+    }
+
+    @Override
     public float getPositionY() {
         return body.getPosition().y/WorldPhysics.BOX2D_SCALE;
     }
@@ -50,6 +56,16 @@ public class PhysicalBody implements IPhysicalBody {
     @Override
     public float getPositionX() {
         return body.getPosition().x/WorldPhysics.BOX2D_SCALE;
+    }
+
+    @Override
+    public float getVelocityX() {
+        return body.getLinearVelocity().x;
+    }
+
+    @Override
+    public float getVelocityY() {
+        return body.getLinearVelocity().y;
     }
 
     @Override

@@ -5,16 +5,16 @@
  */
 package se.computerscience.kelde.controller.items;
 
-import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
-import se.computerscience.kelde.model.items.AxeModel;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
+import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.view.items.AxeView;
 
-public class AxeController implements IWorldObjectsController,IitemController {
-    AxeModel axeModel;
+public class AxeController implements IWorldObjectsController,IItemController {
+    Axe axe;
     AxeView axeView;
     private boolean picked = false;
-    public AxeController(AxeModel axeModel, AxeView axeView) {
-        this.axeModel = axeModel;
+    public AxeController(Axe axe, AxeView axeView) {
+        this.axe = axe;
         this.axeView = axeView;
     }
     public void setVisble(boolean visble){
@@ -34,7 +34,8 @@ public class AxeController implements IWorldObjectsController,IitemController {
     }
 
     @Override
-    public String itemName() {
-        return "axe 1";
+    public void update(float delta) {
+
     }
+
 }

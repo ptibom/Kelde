@@ -5,17 +5,17 @@
  */
 package se.computerscience.kelde.controller.items;
 
-import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
-import se.computerscience.kelde.model.items.SwordModel;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
+import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.view.items.SwordView;
 
 
-public class SwordController implements IWorldObjectsController,IitemController{
-    SwordModel swordModel;
+public class SwordController implements IWorldObjectsController, IItemController {
+    Sword sword;
     SwordView swordView;
     private boolean picked = false;
-    public SwordController(SwordModel swordModel,SwordView swordView) {
-        this.swordModel = swordModel;
+    public SwordController(Sword sword,SwordView swordView) {
+        this.sword = sword;
         this.swordView = swordView;
     }
     public void setVisble(boolean visble){
@@ -30,12 +30,12 @@ public class SwordController implements IWorldObjectsController,IitemController{
         return picked;
     }
 
-    public void setPicked(boolean picked) {
-        this.picked = picked;
+    @Override
+    public void update(float delta) {
+
     }
 
-    @Override
-    public String itemName() {
-        return "sword 1";
+    public void setPicked(boolean picked) {
+        this.picked = picked;
     }
 }

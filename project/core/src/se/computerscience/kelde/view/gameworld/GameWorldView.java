@@ -11,6 +11,9 @@ import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
+import se.computerscience.kelde.view.worldobjects.BarrelView;
+import se.computerscience.kelde.view.worldobjects.DoorView;
+import se.computerscience.kelde.view.worldobjects.TreasureView;
 
 public class GameWorldView {
     private final OrthogonalTiledMapRenderer mapRenderer;
@@ -25,7 +28,7 @@ public class GameWorldView {
     private final TreasureView treasureView2;
     private final AxeView axeView;
     private final SwordView swordView;
-    private final SensorView doorView;
+    private final DoorView doorView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -36,12 +39,12 @@ public class GameWorldView {
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
 
-        barrelView = new BarrelView(gameWorld.getBarrelModel());
-        treasureView = new TreasureView(gameWorld.getTreasureModell());
-        treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
-        axeView = new AxeView(gameWorld.getAxeModel());
-        swordView = new SwordView(gameWorld.getSwordModel());
-        doorView = new SensorView(gameWorld.getDoorModel(),"door2");
+        barrelView = new BarrelView(gameWorld.getBarrel());
+        treasureView = new TreasureView(gameWorld.getTreasure());
+        treasureView2 = new TreasureView(gameWorld.getTreasure2());
+        axeView = new AxeView(gameWorld.getAxe());
+        swordView = new SwordView(gameWorld.getSword());
+        doorView = new DoorView(gameWorld.getDoor(),"door2");
     }
 
     public void render(float delta) {
@@ -66,7 +69,7 @@ public class GameWorldView {
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        // worldPhysicsView.render(delta);
+        worldPhysicsView.render(delta);
     }
 
     public void updateProjectionMatrix() {
@@ -101,7 +104,7 @@ public class GameWorldView {
     public SwordView getSwordView() {
         return swordView;
     }
-    public SensorView getDoorView() {
+    public DoorView getDoorView() {
         return doorView;
     }
 }

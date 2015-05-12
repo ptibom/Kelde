@@ -8,18 +8,18 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
-import se.computerscience.kelde.model.gameworld.IWorldObjectsModel;
+import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
-public class SwordModel implements IItems,IWorldObjectsModel {
+public class Sword implements IWorldObjects, IItems {
     private boolean isConsumable = false;
     private boolean isWeapon = true;
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
-    private final int damage = 10;
+    private final int DAMAGE = 10;
 
     IPhysicalBody entityBody;
-    public SwordModel(IB2DWorld ib2DWorld,float x, float y,String userdata) {
-        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
+    public Sword(IB2DWorld ib2DWorld, float x, float y) {
+        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
     }
     @Override
     public float getPositionY() {
@@ -30,6 +30,10 @@ public class SwordModel implements IItems,IWorldObjectsModel {
         return entityBody.getPositionX()-BODY_WIDTH;
     }
 
+    public int getDamage() {
+        return DAMAGE;
+    }
+
     @Override
     public boolean isConsumable() {
         return isConsumable;
@@ -38,14 +42,5 @@ public class SwordModel implements IItems,IWorldObjectsModel {
     @Override
     public boolean isWeapon() {
         return isWeapon;
-    }
-
-    @Override
-    public String itemName() {
-        return "sword 1";
-    }
-
-    public int getDamage() {
-        return damage;
     }
 }

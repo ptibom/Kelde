@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class PhysicalBodyStatic extends PhysicalBody {
 
-    public PhysicalBodyStatic(float x, float y, float width, float height, IB2DWorld ib2DWorld, String userdata) {
+    public PhysicalBodyStatic(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         super(x, y, width, height, ib2DWorld, userdata);
     }
 

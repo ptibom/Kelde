@@ -7,5 +7,4 @@ package se.computerscience.kelde.model.items;
 public interface IItems {
     public boolean isConsumable();
     public boolean isWeapon();
-    public String itemName();
 }

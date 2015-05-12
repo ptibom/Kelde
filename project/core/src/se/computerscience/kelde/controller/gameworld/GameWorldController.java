@@ -5,14 +5,18 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import com.badlogic.gdx.Screen;
 import se.computerscience.kelde.controller.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 
+import se.computerscience.kelde.controller.worldobjects.BarrelController;
+import se.computerscience.kelde.controller.worldobjects.DoorController;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
+import se.computerscience.kelde.controller.worldobjects.TreasureController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
+import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ public class GameWorldController {
     private final TreasureController treasureController2;
     private final AxeController axeController;
     private final SwordController swordController;
-    private final SensorController doorController;
+    private final DoorController doorController;
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
@@ -41,12 +45,12 @@ public class GameWorldController {
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
 
-        barrelController = new BarrelController(gameWorld.getBarrelModel(), gameWorldView.getBarrelView());
-        treasureController = new TreasureController(gameWorld.getTreasureModell(), gameWorldView.getTreasureView());
-        treasureController2 = new TreasureController(gameWorld.getTreasureModell2(), gameWorldView.getTreasureView2());
-        axeController = new AxeController(gameWorld.getAxeModel(), gameWorldView.getAxeView());
-        swordController = new SwordController(gameWorld.getSwordModel(), gameWorldView.getSwordView());
-        doorController = new SensorController(gameWorld.getDoorModel(), gameWorldView.getDoorView());
+        barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
+        treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
+        treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
+        axeController = new AxeController(gameWorld.getAxe(), gameWorldView.getAxeView());
+        swordController = new SwordController(gameWorld.getSword(), gameWorldView.getSwordView());
+        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
 
         worldObjList.add(barrelController);              // pos 0
         worldObjList.add(treasureController);            // pos 1
@@ -60,8 +64,13 @@ public class GameWorldController {
     }
 
     public void render(float delta) {
-        barrelController.update(delta);
         entityPlayerKeldeController.update(delta);
+        for (IWorldObjectsController worldObj : worldObjList) {
+            worldObj.update(delta);
+        }
+       // barrelController.update(delta);
+        //treasureController.update(delta);
+       // treasureController2.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
     }

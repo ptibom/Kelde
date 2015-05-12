@@ -1,11 +1,10 @@
-package se.computerscience.kelde.model.gameworld;
+package se.computerscience.kelde.model.worldobjects;
 
 /**
  * Description:
- *
  * @author: Hossein Hussain
  */
-public interface IWorldObjectsModel {
+public interface IWorldObjects {
     public float getPositionY();
     public float getPositionX();
 }
