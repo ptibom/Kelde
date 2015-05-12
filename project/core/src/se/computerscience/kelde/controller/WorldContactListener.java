@@ -23,12 +23,6 @@ import java.util.List;
 
 
 public class WorldContactListener implements ContactListener {
-    List<IWorldObjectsController> worldObjects;
-
-    public WorldContactListener(List<IWorldObjectsController> worldObjects) {
-        this.worldObjects = worldObjects;
-    }
-
     @Override
     public void beginContact(Contact contact) {
         //*** contact listener for WorldObjects, sensors and items ***

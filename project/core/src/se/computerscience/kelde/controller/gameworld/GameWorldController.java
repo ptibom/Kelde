@@ -67,7 +67,7 @@ public class GameWorldController {
         worldObjList.add(doorController);
         worldObjList.add(swordController2);
 
-        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(worldObjList));
+        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
     }
 
     public void render(float delta) {
