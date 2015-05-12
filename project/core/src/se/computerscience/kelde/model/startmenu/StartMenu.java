@@ -29,7 +29,7 @@ public class StartMenu {
     private static final String NEW_GAME_BUTTON_PATH_PICTURE = "loadbutton.png";
     private static final String LOAD_GAME_BUTTON_PATH_PICTURE = "newgamebutton.png";
     private static final String DEMON_STATUES_PATH_PICTURE = "demonsbackground.png";
-    private static final String[] INFO_TEXT_PATH_IMAGES = new String[5];
+    private static final String[] INFO_TEXT_PATH_IMAGES = new String[8];
     private static final String INTRO_BACKGROUND_PATH_IMAGE = "intro/backgroundintro.png";
     private static final String INTRO_BORDER_PATH_IMAGE = "intro/borderintro.png";
     private static final String FOREGROUND_INTRO_PATH_IMAGE = "intro/foregroundintro.png";
@@ -38,16 +38,21 @@ public class StartMenu {
     private static final String INTRO_CAVE_BACKGROUND = "intro/cavebackground.png";
     private static final int[] INTRO_WIZARD_ANIMATION_LENGTH_DATA = new int[]{3, 3, 2};
     private static final int[] INTRO_WIZARD_TALK_COORDINATES = new int[18];
-    private static final int[] INTRO_DEMON_ANIMATION_COORDINATES = new int[70];
-    private static final int[] INTRO_DEMON_ANIMATION_LENGTH_DATA = new int[]{4, 3, 2, 1, 3, 2, 4, 3, 3, 3, 1, 1, 1, 3, 4};
+    private static final int[] INTRO_DEMON_ANIMATION_COORDINATES = new int[84];
+    private static final int[] INTRO_DEMON_ANIMATION_LENGTH_DATA = new int[]{4, 3, 2, 1, 3, 2, 4, 3, 3, 3, 1, 1, 1, 3,3, 4};
     private static final String FADE_SCREEN_PATH_IMAGE = "intro/blackfadescreen.png";
     private static final String INTRO_SOUND_PATH = "intro/dfear2.mp3";
+    private static final String[] INTRO_DIALOGUE_IMAGES = new String[30];
 
 
     public StartMenu() throws IOException {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             INFO_TEXT_PATH_IMAGES[i] = "intro/introtext" + (i + 1) + ".png";
+        }
+
+        for (int i = 0; i < 30; i++) {
+            INTRO_DIALOGUE_IMAGES[i] = "intro/dialogues/dialogue" + (i + 1) + ".png";
         }
 
 
@@ -81,7 +86,7 @@ public class StartMenu {
             String[] tempFormat = demonDataLines[i-1].split(" ");
             INTRO_DEMON_ANIMATION_COORDINATES[dataIndex] = Integer.parseInt(tempFormat[3]);
             INTRO_DEMON_ANIMATION_COORDINATES[dataIndex+1] = Integer.parseInt(tempFormat[4].replaceAll("\r",""));
-            dataIndex++;
+            dataIndex += 2;
             }
 
         dataIndex = 2;
@@ -102,7 +107,18 @@ public class StartMenu {
 
         }
 
+    public String getDemonAnd2ndWizardImage(){
 
+        return INTRO_DEMON_ANIMATION_PATH_IMAGE;
+    }
+
+    public String[] getDialogues(){
+        return INTRO_DIALOGUE_IMAGES;
+    }
+public int[] getDemonAnimationData(){
+
+    return INTRO_DEMON_ANIMATION_LENGTH_DATA;
+}
 public String getCaveBackground(){
     return INTRO_CAVE_BACKGROUND;
 }
