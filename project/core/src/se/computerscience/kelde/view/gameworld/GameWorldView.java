@@ -27,7 +27,9 @@ public class GameWorldView {
     private final TreasureView treasureView;
     private final TreasureView treasureView2;
     private final AxeView axeView;
+    private final AxeView axeView2;
     private final SwordView swordView;
+    private final SwordView swordView2;
     private final DoorView doorView;
 
     public GameWorldView(GameWorld gameWorld) {
@@ -42,8 +44,11 @@ public class GameWorldView {
         barrelView = new BarrelView(gameWorld.getBarrel());
         treasureView = new TreasureView(gameWorld.getTreasure());
         treasureView2 = new TreasureView(gameWorld.getTreasure2());
-        axeView = new AxeView(gameWorld.getAxe());
-        swordView = new SwordView(gameWorld.getSword());
+        axeView = new AxeView(gameWorld.getTreasure().getAxe());
+        axeView2 = new AxeView(gameWorld.getTreasure2().getAxe());
+        swordView = new SwordView(gameWorld.getTreasure().getSword());
+        swordView2 = new SwordView(gameWorld.getTreasure2().getSword());
+
         doorView = new DoorView(gameWorld.getDoor(),"door2");
     }
 
@@ -54,12 +59,18 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
-        if (axeView.isVisble())
+        if (axeView.isVisble()){
             axeView.draw(batch);
-
-        if (swordView.isVisble())
+        }
+        if (axeView2.isVisble()){
+            axeView2.draw(batch);
+        }
+        if (swordView.isVisble()){
             swordView.draw(batch);
-
+        }
+        if (swordView2.isVisble()){
+            swordView2.draw(batch);
+        }
         treasureView.draw(batch);
         treasureView2.draw(batch);
         barrelView.draw(batch);
@@ -106,5 +117,11 @@ public class GameWorldView {
     }
     public DoorView getDoorView() {
         return doorView;
+    }
+    public SwordView getSwordView2() {
+        return swordView2;
+    }
+    public AxeView getAxeView2() {
+        return axeView2;
     }
 }

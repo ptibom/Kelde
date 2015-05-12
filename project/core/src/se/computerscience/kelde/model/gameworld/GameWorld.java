@@ -25,8 +25,6 @@ public class GameWorld {
     private final Barrel barrel;
     private final Treasure treasure;
     private final Treasure treasure2;
-    private final Axe axe;
-    private final Sword sword;
     private final Door door;
 
     private IMap map;
@@ -40,10 +38,8 @@ public class GameWorld {
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
         barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70);
-        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70);
-        axe = new Axe(worldPhysics.getIb2DWorld(),300,170);
-        sword = new Sword(worldPhysics.getIb2DWorld(),120,170);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70,3);
+        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70,3);
         door = new Door(worldPhysics.getIb2DWorld(),20,100);
     }
 
@@ -84,14 +80,6 @@ public class GameWorld {
 
     public Treasure getTreasure2() {
         return treasure2;
-    }
-
-    public Axe getAxe() {
-        return axe;
-    }
-
-    public Sword getSword() {
-        return sword;
     }
 
     public Door getDoor() {

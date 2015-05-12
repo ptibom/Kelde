@@ -3,6 +3,7 @@ package se.computerscience.kelde.view.worldobjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 /**
  * Description:
@@ -25,6 +26,7 @@ public class TreasureView implements IWorldObjectView {
         sprite = new Sprite(texture, WIDTH, HEIGHT);
         SPRITE_CLOSED = new Sprite(new Texture(SPRITE_LOCATION2), 30, 32);
         SPRITE_OPENED = new Sprite(new Texture(SPRITE_LOCATION1), 30, 32);
+
     }
 
     public void update(float delta) {

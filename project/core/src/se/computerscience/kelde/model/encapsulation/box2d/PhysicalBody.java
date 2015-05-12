@@ -27,7 +27,6 @@ public class PhysicalBody implements IPhysicalBody {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
-        fdef.friction = 0.1f;
         body.createFixture(fdef).setUserData(userdata);
     }
 

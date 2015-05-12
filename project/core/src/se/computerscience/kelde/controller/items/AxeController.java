@@ -35,7 +35,15 @@ public class AxeController implements IWorldObjectsController,IItemController {
 
     @Override
     public void update(float delta) {
-
+        if (axe.isVisible()){
+            if (!this.isPicked()){
+                this.setVisble(true);
+            }
+        }
+        if (axe.isPicked()){
+            this.setPicked(true);
+            this.setVisble(false);
+        }
     }
 
 }

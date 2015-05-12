@@ -16,6 +16,8 @@ public class Sword implements IWorldObjects, IItems {
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
     private final int DAMAGE = 10;
+    private boolean visible;
+    private boolean picked;
 
     IPhysicalBody entityBody;
     public Sword(IB2DWorld ib2DWorld, float x, float y) {
@@ -42,5 +44,21 @@ public class Sword implements IWorldObjects, IItems {
     @Override
     public boolean isWeapon() {
         return isWeapon;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public boolean isPicked() {
+        return picked;
+    }
+
+    public void setPicked(boolean picked) {
+        this.picked = picked;
     }
 }

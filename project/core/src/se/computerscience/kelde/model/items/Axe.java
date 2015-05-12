@@ -16,6 +16,8 @@ public class Axe implements IWorldObjects, IItems {
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
     private final int DAMAGE = 10;
+    private boolean visible;
+    private boolean picked;
 
     IPhysicalBody entityBody;
 
@@ -44,5 +46,21 @@ public class Axe implements IWorldObjects, IItems {
 
     public int getDamage() {
         return DAMAGE;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public boolean isPicked() {
+        return picked;
+    }
+
+    public void setPicked(boolean picked) {
+        this.picked = picked;
     }
 }

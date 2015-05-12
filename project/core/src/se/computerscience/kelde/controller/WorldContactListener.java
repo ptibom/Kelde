@@ -38,30 +38,24 @@ public class WorldContactListener implements ContactListener {
 
         if (isWorldObject(contact, Treasure.class) && isPlayer(contact)) {
             ((Treasure) contact.getFixtureB().getUserData()).setIsOpen(true);
-            if (!(((AxeController) worldObjects.get(4)).isPicked())) { // checks if the items is not already picked
-                ((AxeController) worldObjects.get(4)).setVisble(true); // making a drop visble when player open treasure chest
-            }
+            ((Treasure) contact.getFixtureB().getUserData()).setVisble();
         }
 
         if (isWorldObject(contact, Axe.class)&& isPlayer(contact)) {
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-
-            if (((AxeController) worldObjects.get(4)).isVisble()) {
-                ((AxeController) worldObjects.get(4)).setPicked(true);
-                ((AxeController) worldObjects.get(4)).setVisble(false);
-                System.out.println("kelde just picked up the axe");
+            if (((Axe)contact.getFixtureB().getUserData()).isVisible() && !(((Axe) contact.getFixtureB().getUserData()).isPicked())){
+                ((Axe)contact.getFixtureB().getUserData()).setPicked(true);
+                System.out.println("axe picked");
             }
         }
 
         if (isWorldObject(contact, Sword.class) && isPlayer(contact)) {
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-            if (((SwordController) worldObjects.get(5)).isVisble()) {
-                ((SwordController) worldObjects.get(5)).setPicked(true);
-                ((SwordController) worldObjects.get(5)).setVisble(false);
-                System.out.println("kelde just picked up the sword");
-                // add code to put the axe in keldes inventory here
+            if (((Sword)contact.getFixtureB().getUserData()).isVisible() && !((Sword) contact.getFixtureB().getUserData()).isPicked() ){
+                ((Sword)contact.getFixtureB().getUserData()).setPicked(true);
+                System.out.println("sword picked");
             }
         }
         //***END OF*** contact listener for WorldObjects and items***

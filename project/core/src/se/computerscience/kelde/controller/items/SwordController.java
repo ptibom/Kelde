@@ -32,7 +32,15 @@ public class SwordController implements IWorldObjectsController, IItemController
 
     @Override
     public void update(float delta) {
-
+        if (sword.isVisible()){
+            if (!this.isPicked()){
+                this.setVisble(true);
+            }
+        }
+        if (sword.isPicked()){
+            this.setPicked(true);
+            this.setVisble(false);
+        }
     }
 
     public void setPicked(boolean picked) {
