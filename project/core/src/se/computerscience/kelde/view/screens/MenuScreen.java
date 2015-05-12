@@ -13,6 +13,9 @@ import se.computerscience.kelde.controller.startmenu.StartMenuController;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 import se.computerscience.kelde.view.startMenu.StartMenuView;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Created by MonoMan on 4/27/2015.
  */
@@ -31,11 +34,15 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-
+    try {
         StartMenu startMenuModel = new StartMenu();
+
         startmenuViewController = new StartMenuController(startMenuModel, new StartMenuView(startMenuModel, keldeGame));
         startmenuViewController.init();
-
+    }
+    catch( IOException e){
+        System.out.println(e.toString());
+    }
 
     }
 

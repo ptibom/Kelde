@@ -18,7 +18,7 @@ public class StartMenuController {
 
 
     public void render(float delta) {
-        startMenuView.renderStartMenu();
+        startMenuView.renderMenu();
 
     }
 

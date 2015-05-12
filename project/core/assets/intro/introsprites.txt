@@ -1,0 +1,291 @@
+introsprites.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+DemonHitWithSpellAnimation1
+  rotate: false
+  xy: 2 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonHitWithSpellAnimation2
+  rotate: false
+  xy: 132 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonHitWithSpellAnimation3
+  rotate: false
+  xy: 262 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonHitWithSpellAnimation4
+  rotate: false
+  xy: 392 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLeftLaughAnimation1
+  rotate: false
+  xy: 522 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLeftLaughAnimation2
+  rotate: false
+  xy: 652 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLeftLaughAnimation3
+  rotate: false
+  xy: 782 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLeftTalkAnimation1
+  rotate: false
+  xy: 522 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLeftTalkAnimation2
+  rotate: false
+  xy: 2 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonLookSide
+  rotate: false
+  xy: 132 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonRightLaughAnimation1
+  rotate: false
+  xy: 2 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonRightLaughAnimation2
+  rotate: false
+  xy: 262 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonRightLaughAnimation3
+  rotate: false
+  xy: 392 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonRightTalkAnimation1
+  rotate: false
+  xy: 522 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonRightTalkAnimation2
+  rotate: false
+  xy: 652 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonStandingANimation1
+  rotate: false
+  xy: 782 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonStandingANimation2
+  rotate: false
+  xy: 2 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonStandingANimation3
+  rotate: false
+  xy: 132 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonStandingANimation4
+  rotate: false
+  xy: 262 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWalkAnimation1
+  rotate: false
+  xy: 392 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWalkAnimation2
+  rotate: false
+  xy: 522 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWalkAnimation3
+  rotate: false
+  xy: 652 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWaveWithStickAnimation1
+  rotate: false
+  xy: 782 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWaveWithStickAnimation2
+  rotate: false
+  xy: 2 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+DemonWaveWithStickAnimation3
+  rotate: false
+  xy: 132 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManAttackAnimation1
+  rotate: false
+  xy: 262 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManAttackAnimation2
+  rotate: false
+  xy: 392 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManAttackAnimation3
+  rotate: false
+  xy: 522 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManLookingFromBehind
+  rotate: false
+  xy: 652 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManStandingStill
+  rotate: false
+  xy: 782 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalk1 copy
+  rotate: false
+  xy: 2 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationLeft1
+  rotate: false
+  xy: 2 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationLeft2
+  rotate: false
+  xy: 132 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationLeft3
+  rotate: false
+  xy: 262 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationRight1
+  rotate: false
+  xy: 392 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationRight2
+  rotate: false
+  xy: 522 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManTalkingAnimationRight3
+  rotate: false
+  xy: 652 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManWalkingAnimation1
+  rotate: false
+  xy: 392 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManWalkingAnimation2
+  rotate: false
+  xy: 782 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManWalkingAnimation4
+  rotate: false
+  xy: 782 392
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ManWalkingAnimaton3
+  rotate: false
+  xy: 392 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
