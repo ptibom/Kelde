@@ -5,7 +5,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
- * Description:
+ * Description: An axe-item, used by player to damage enemies.
  *
  * @author: Hossein Hussain
  */
