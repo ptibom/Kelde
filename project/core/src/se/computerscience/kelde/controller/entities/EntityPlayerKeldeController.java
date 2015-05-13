@@ -8,18 +8,15 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.controller.gameworld.IWorldObjectsController;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.PlayerInventory;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 
 public class EntityPlayerKeldeController implements IWorldObjectsController {
     EntityPlayerKelde entityPlayerKelde;
     EntityPlayerKeldeView entityPlayerKeldeView;
     Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
-    private PlayerInventory playerInventory = new PlayerInventory();
 
     public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde, EntityPlayerKeldeView entityPlayerKeldeView) {
         this.entityPlayerKelde = entityPlayerKelde;
@@ -46,12 +43,5 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
         else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             velocityControl.x = -2;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.I)){
-                System.out.println("player inventory");
-                playerInventory.printInventory();
-         }
-    }
-    public PlayerInventory getPlayerInventory() {
-        return playerInventory;
     }
 }

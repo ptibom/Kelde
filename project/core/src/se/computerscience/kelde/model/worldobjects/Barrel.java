@@ -1,4 +1,4 @@
-package se.computerscience.kelde.model.gameworld;
+package se.computerscience.kelde.model.worldobjects;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -9,13 +9,13 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
  *
  * @author: Hossein Hussain
  */
-public class BarrelModel implements IWorldObjectsModel{
+public class Barrel implements IWorldObjects {
     private final float BODY_WIDTH = 16, BODY_HEIGHT = 16;
-
     IPhysicalBody entityBody;
 
-    public BarrelModel(IB2DWorld ib2DWorld,float x,float y, String userdata) {
-        entityBody = new PhysicalBody(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,userdata);
+    public Barrel(IB2DWorld ib2DWorld, float x, float y) {
+        entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        entityBody.setDampening(15f);
     }
     @Override
     public float getPositionY() {
@@ -25,8 +25,10 @@ public class BarrelModel implements IWorldObjectsModel{
     public float getPositionX() {
         return entityBody.getPositionX()-BODY_WIDTH;
     }
-
-    public void barrelMovement(){
-        entityBody.setVelocity(0, 0);
-    }
 }
+
+
+
+
+
+

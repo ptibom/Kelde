@@ -4,14 +4,17 @@
 
 package se.computerscience.kelde.model.gameworld;
 
+import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.AxeModel;
-import se.computerscience.kelde.model.items.SwordModel;
+import se.computerscience.kelde.model.items.Axe;
+import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.worldobjects.Barrel;
+import se.computerscience.kelde.model.worldobjects.Treasure;
 
 public class GameWorld {
 
@@ -19,12 +22,10 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
 
-    private final BarrelModel barrelModel;
-    private final TreasureModell treasureModell;
-    private final TreasureModell treasureModell2;
-    private final AxeModel axeModel;
-    private final SwordModel swordModel;
-    private final SensorModel doorModel;
+    private final Barrel barrel;
+    private final Treasure treasure;
+    private final Treasure treasure2;
+    private final Door door;
 
     private IMap map;
     private ICamera camera;
@@ -36,12 +37,10 @@ public class GameWorld {
 
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
-        barrelModel = new BarrelModel(worldPhysics.getIb2DWorld(),200,33, "barrel 1");
-        treasureModell = new TreasureModell(worldPhysics.getIb2DWorld(),300,70, "treasure 1");
-        treasureModell2 = new TreasureModell(worldPhysics.getIb2DWorld(),120,70, "treasure 2");
-        axeModel = new AxeModel(worldPhysics.getIb2DWorld(),300,170,"axe 1");
-        swordModel = new SwordModel(worldPhysics.getIb2DWorld(),120,170,"sword 1");
-        doorModel = new SensorModel(worldPhysics.getIb2DWorld(),20,100,"sensor 1");
+        barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70,3);
+        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70,3);
+        door = new Door(worldPhysics.getIb2DWorld(),20,100);
     }
 
     public void resizeCamera (int width, int height) {
@@ -71,27 +70,19 @@ public class GameWorld {
         return entityPlayerKelde;
     }
 
-    public BarrelModel getBarrelModel() {
-        return barrelModel;
+    public Barrel getBarrel() {
+        return barrel;
     }
 
-    public TreasureModell getTreasureModell() {
-        return treasureModell;
+    public Treasure getTreasure() {
+        return treasure;
     }
 
-    public TreasureModell getTreasureModell2() {
-        return treasureModell2;
+    public Treasure getTreasure2() {
+        return treasure2;
     }
 
-    public AxeModel getAxeModel() {
-        return axeModel;
-    }
-
-    public SwordModel getSwordModel() {
-        return swordModel;
-    }
-
-    public SensorModel getDoorModel() {
-        return doorModel;
+    public Door getDoor() {
+        return door;
     }
 }

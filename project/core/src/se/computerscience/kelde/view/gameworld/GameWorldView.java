@@ -11,6 +11,9 @@ import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
+import se.computerscience.kelde.view.worldobjects.BarrelView;
+import se.computerscience.kelde.view.worldobjects.DoorView;
+import se.computerscience.kelde.view.worldobjects.TreasureView;
 
 public class GameWorldView {
     private final OrthogonalTiledMapRenderer mapRenderer;
@@ -24,8 +27,10 @@ public class GameWorldView {
     private final TreasureView treasureView;
     private final TreasureView treasureView2;
     private final AxeView axeView;
+    private final AxeView axeView2;
     private final SwordView swordView;
-    private final SensorView doorView;
+    private final SwordView swordView2;
+    private final DoorView doorView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -36,12 +41,15 @@ public class GameWorldView {
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
 
-        barrelView = new BarrelView(gameWorld.getBarrelModel());
-        treasureView = new TreasureView(gameWorld.getTreasureModell());
-        treasureView2 = new TreasureView(gameWorld.getTreasureModell2());
-        axeView = new AxeView(gameWorld.getAxeModel());
-        swordView = new SwordView(gameWorld.getSwordModel());
-        doorView = new SensorView(gameWorld.getDoorModel(),"door2");
+        barrelView = new BarrelView(gameWorld.getBarrel());
+        treasureView = new TreasureView(gameWorld.getTreasure());
+        treasureView2 = new TreasureView(gameWorld.getTreasure2());
+        axeView = new AxeView(gameWorld.getTreasure().getAxe());
+        axeView2 = new AxeView(gameWorld.getTreasure2().getAxe());
+        swordView = new SwordView(gameWorld.getTreasure().getSword());
+        swordView2 = new SwordView(gameWorld.getTreasure2().getSword());
+
+        doorView = new DoorView(gameWorld.getDoor(),"door2");
     }
 
     public void render(float delta) {
@@ -51,12 +59,18 @@ public class GameWorldView {
 
         // Draw sprites
         batch.begin();
-        if (axeView.isVisble())
+        if (axeView.isVisble()){
             axeView.draw(batch);
-
-        if (swordView.isVisble())
+        }
+        if (axeView2.isVisble()){
+            axeView2.draw(batch);
+        }
+        if (swordView.isVisble()){
             swordView.draw(batch);
-
+        }
+        if (swordView2.isVisble()){
+            swordView2.draw(batch);
+        }
         treasureView.draw(batch);
         treasureView2.draw(batch);
         barrelView.draw(batch);
@@ -66,7 +80,7 @@ public class GameWorldView {
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        // worldPhysicsView.render(delta);
+        worldPhysicsView.render(delta);
     }
 
     public void updateProjectionMatrix() {
@@ -101,7 +115,13 @@ public class GameWorldView {
     public SwordView getSwordView() {
         return swordView;
     }
-    public SensorView getDoorView() {
+    public DoorView getDoorView() {
         return doorView;
+    }
+    public SwordView getSwordView2() {
+        return swordView2;
+    }
+    public AxeView getAxeView2() {
+        return axeView2;
     }
 }

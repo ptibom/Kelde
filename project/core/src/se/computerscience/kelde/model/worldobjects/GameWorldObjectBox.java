@@ -2,7 +2,7 @@
  *  @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model.gameworld;
+package se.computerscience.kelde.model.worldobjects;
 
 public class GameWorldObjectBox {
 }

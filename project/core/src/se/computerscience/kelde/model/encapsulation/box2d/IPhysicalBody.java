@@ -17,5 +17,7 @@ public interface IPhysicalBody {
     public float getPositionX();
     public Body getBody();
     public FixtureDef getFdef();
-
+    public float getVelocityX();
+    public float getVelocityY();
+    public void setDampening(float dampening);
 }
