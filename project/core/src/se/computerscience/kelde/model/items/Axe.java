@@ -3,14 +3,13 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
-import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
 /**
  * Description:
  *
  * @author: Hossein Hussain
  */
-public class Axe implements IWorldObjects, IItems {
+public class Axe implements IItems {
     private final boolean  isConsumable = false;
     private final boolean isWeapon = true;
     private final float BODY_WIDTH = 16;

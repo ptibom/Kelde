@@ -8,9 +8,8 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
-import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
-public class Sword implements IWorldObjects, IItems {
+public class Sword implements  IItems {
     private boolean isConsumable = false;
     private boolean isWeapon = true;
     private final float BODY_WIDTH = 16;
@@ -23,6 +22,7 @@ public class Sword implements IWorldObjects, IItems {
     public Sword(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
     }
+
     @Override
     public float getPositionY() {
         return entityBody.getPositionY()-BODY_HEIGHT;
