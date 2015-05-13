@@ -12,6 +12,7 @@ import se.computerscience.kelde.model.Heading;
 
 /**
  * Created by Anders on 2015-04-08.
+ * @author Anders
  */
 public class EntityEyeView {
 

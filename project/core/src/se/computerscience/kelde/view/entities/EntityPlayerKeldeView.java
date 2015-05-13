@@ -34,7 +34,6 @@ public class EntityPlayerKeldeView {
     private float oldX, oldY;
     private boolean arrow_fired = false;
 
-    private ArrayList<EntityArrowView> arrowViews;
 
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
@@ -43,7 +42,7 @@ public class EntityPlayerKeldeView {
         sprite = new Sprite(texture, WIDTH, HEIGHT);
         direction = Heading.NORTH;
 
-        arrowViews = new ArrayList<EntityArrowView>();
+
 
         createNorthTexture();
         createWestTexture();
@@ -116,28 +115,7 @@ public class EntityPlayerKeldeView {
             animation = keldeShootArrowEast;
         }
 
-        if(ARROW && !arrow_fired) {
-            EntityArrowView entityArrowView = new EntityArrowView(direction, entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY()+12);
-            arrowViews.add(entityArrowView);
-            arrow_fired = true;
-        }
 
-        if(!arrowViews.isEmpty()) {
-
-
-                Iterator<EntityArrowView> i = arrowViews.iterator();
-                while (i.hasNext()) {
-                    EntityArrowView arrow = i.next();
-                    arrow.update(ELAPSED_TIME);
-                    arrow.draw(batch);
-                    if(arrow.getPositionX() > 620 || arrow.getPositionX() < 0|| arrow.getPositionY() > 500 || arrow.getPositionY() < 0) {
-                        i.remove();
-                        arrow_fired = false;
-                    }
-                }
-
-
-        }
 
 
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());

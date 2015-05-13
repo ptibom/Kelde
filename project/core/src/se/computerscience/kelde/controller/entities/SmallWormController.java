@@ -8,6 +8,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-04-25.
+ * @author Anders
  */
 public class SmallWormController {
 

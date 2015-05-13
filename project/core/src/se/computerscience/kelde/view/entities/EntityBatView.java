@@ -11,6 +11,7 @@ import se.computerscience.kelde.model.Heading;
 
 /**
  * Created by Anders on 2015-04-06.
+ * @author Anders Bolin
  */
 public class EntityBatView {
 

@@ -13,6 +13,7 @@ import se.computerscience.kelde.view.entities.EntityBatView;
 
 /**
  * Created by Anders on 2015-04-06.
+ * @author Anders
  */
 public class EntityBatController {
 
