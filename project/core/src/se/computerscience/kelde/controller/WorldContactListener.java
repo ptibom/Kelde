@@ -31,34 +31,62 @@ public class WorldContactListener implements ContactListener {
         }
 
         if (isWorldObject(contact, Treasure.class) && isPlayer(contact)) {
-            ((Treasure) contact.getFixtureB().getUserData()).setIsOpen(true);
-            ((Treasure) contact.getFixtureB().getUserData()).setVisble();
+            if (isFixtureB(contact,Treasure.class)){
+                ((Treasure) contact.getFixtureB().getUserData()).setIsOpen(true);
+                ((Treasure) contact.getFixtureB().getUserData()).setVisble();
+            }else {
+                ((Treasure) contact.getFixtureA().getUserData()).setIsOpen(true);
+                ((Treasure) contact.getFixtureA().getUserData()).setVisble();
+            }
+
+
         }
 
         if (isWorldObject(contact, Axe.class)&& isPlayer(contact)) {
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-            if (((Axe)contact.getFixtureB().getUserData()).isVisible() && !(((Axe) contact.getFixtureB().getUserData()).isPicked())){
-                ((Axe)contact.getFixtureB().getUserData()).setPicked(true);
-                System.out.println("axe picked");
+            if (isFixtureB(contact, Axe.class)){
+                if (((Axe)contact.getFixtureB().getUserData()).isVisible() && !(((Axe) contact.getFixtureB().getUserData()).isPicked())){
+                    ((Axe)contact.getFixtureB().getUserData()).setPicked(true);
+                    System.out.println("axe picked");
+                }
+            }else {
+                if (((Axe)contact.getFixtureA().getUserData()).isVisible() && !(((Axe) contact.getFixtureA().getUserData()).isPicked())){
+                    ((Axe)contact.getFixtureA().getUserData()).setPicked(true);
+                    System.out.println("axe picked");
+                }
             }
+
         }
 
         if (isWorldObject(contact, Sword.class) && isPlayer(contact)) {
             // if the drop is visble and player colides with the drop,
             // the item disapears (won't respawn if opening treasure chest again)
-            if (((Sword)contact.getFixtureB().getUserData()).isVisible() && !((Sword) contact.getFixtureB().getUserData()).isPicked() ){
-                ((Sword)contact.getFixtureB().getUserData()).setPicked(true);
-                System.out.println("sword picked");
+            if (isFixtureB(contact,Sword.class)){
+                if (((Sword)contact.getFixtureB().getUserData()).isVisible() && !((Sword) contact.getFixtureB().getUserData()).isPicked() ){
+                    ((Sword)contact.getFixtureB().getUserData()).setPicked(true);
+                    System.out.println("sword picked");
+                }
+            }else {
+                if (((Sword)contact.getFixtureA().getUserData()).isVisible() && !((Sword) contact.getFixtureA().getUserData()).isPicked() ){
+                    ((Sword)contact.getFixtureA().getUserData()).setPicked(true);
+                    System.out.println("sword picked");
+                }
             }
+
         }
         //***END OF*** contact listener for WorldObjects and items***
     }
 
     @Override
     public void endContact(Contact contact) {
+        //when player no longer is in contact, trasure closes.
         if (isWorldObject(contact, Treasure.class)) {
-            ((Treasure) contact.getFixtureB().getUserData()).setIsOpen(false);
+            if (isFixtureB(contact,Treasure.class)) {
+                ((Treasure) contact.getFixtureB().getUserData()).setIsOpen(false);
+            }else {
+                ((Treasure) contact.getFixtureA().getUserData()).setIsOpen(false);
+            }
         }
     }
 
@@ -70,7 +98,7 @@ public class WorldContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
     }
 
-    //checks if the players collided
+    //check if the player is actully the one contact or get contacted by another object.
     public boolean isPlayer(Contact contact) {
         if (!isFixtrueNull(contact)){
             return (contact.getFixtureA().getUserData() instanceof EntityPlayerKelde
@@ -80,6 +108,8 @@ public class WorldContactListener implements ContactListener {
         }
 
     }
+
+    //checks if the contacted object actully is the object u are looking for.
     public boolean isWorldObject(Contact contact, Class object){
         if (!isFixtrueNull(contact)){
             return (contact.getFixtureA().getUserData().getClass().isAssignableFrom(object)
@@ -89,6 +119,15 @@ public class WorldContactListener implements ContactListener {
         }
 
     }
+    //checks if checks with fixture the object is
+    public boolean isFixtureA(Contact contact, Class object){
+        return (contact.getFixtureA().getUserData().getClass().isAssignableFrom(object));
+    }
+    public boolean isFixtureB(Contact contact, Class object){
+        return (contact.getFixtureB().getUserData().getClass().isAssignableFrom(object));
+    }
+
+    //checks if the fixture with got contacted is null, if so return true else false.
     public boolean isFixtrueNull(Contact contact){
         if (contact.getFixtureA().getUserData() == null || contact.getFixtureB() == null){
             return true;
