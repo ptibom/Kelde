@@ -44,4 +44,8 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
             velocityControl.x = -2;
         }
     }
+
+    public Vector2 getVelocityControl() {
+        return velocityControl;
+    }
 }

@@ -1,51 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="22">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="3">
  <tileset firstgid="1" name="lava" tilewidth="32" tileheight="32">
   <image source="lava.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="19" name="grass" tilewidth="32" tileheight="32">
-  <image source="grass.png" width="96" height="192"/>
-  <tile id="6">
-   <objectgroup draworder="index">
-    <object id="0" x="32" y="9">
-     <polyline points="0,0 -14,9 -19,23"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="10">
-   <objectgroup draworder="index">
-    <object id="0" x="2" y="1" width="28" height="30"/>
-   </objectgroup>
-  </tile>
- </tileset>
- <tileset firstgid="37" name="dirt" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="dirt" tilewidth="32" tileheight="32">
   <image source="dirt.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="55" name="rock" tilewidth="32" tileheight="32">
-  <image source="rock.png" width="64" height="32"/>
+ <tileset firstgid="37" name="water" tilewidth="32" tileheight="32">
+  <image source="water.png" width="96" height="192"/>
  </tileset>
- <layer name="ground" width="20" height="20">
+ <layer name="lava" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJwzY2BgMBvFo3gUj+JRPIpJxABqeFRh
+   eJztz7sNwDAMxFB1cfxJ9t/WKlJ5Aipg8XDAdbwiohV3p55GcdMOFDtY7GCxg8UOFjtY7GCxg8UOFjtY7GCxg8UOFjtY7GCxg8UOFjtY7GCxg8UOFjtY7GD5U8dKTyHvt+v4Nvh8a20=
   </data>
  </layer>
- <layer name="lava" width="20" height="20">
+ <layer name="dirt" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlNEKgCAMRfdmluX//20bNRhLzdyilwYXQS+HXR0GAJicFFEzakFtRhEjnTxan1QQ/XAxZ4THmZLaG+WtcGTMTrxSfcGje48de7280lnN//Ouc2/l6bm38vTc3/FkHo/7k3k8eDLPm+9LPZf+W/0nQcPPXu65pqx4LT95d3G+CPw=
+   eJztmd1uwyAMhXmIVsvWrWve/yWXXCAhZptjfpJDFUu+Khh/lIPjJITLGO1z86+J/KFwfG/+M5E/Cxy3zV9Ovxvr1cRD1ipxaL9bZv2Xe7xeZ/YB5DmSo9eZTWOdyVF7xu5CrDM5amLnuY3k+A36Xq6NsfPcRnJ48kAsvxeW0Iej9r6JtSrG/gDGpuN767z2vnk65qfravcCckYRjhjXqntSbpZ+pLqW55Keh0UY7+Xw7C+qB2ldZD0GDml/d+3kemLhSHWN6piRA9VxrpHZOEp5S/dEy/Pu2RxonhdHX454L1g1YgYORMvMHFq9Xyfj8BgjR/78q73LYedA9MDMIelhr29Sf5L/R0wcUl+2APPYOLT5ad+kPX8wckj9XikfRg5L12wccc+RvWbmsHpsrc9i5ijNQfO9ON6Xw3oflfsqzIm14SaMO5Kj1Rjuqx7flUrvBEdz9PajOTx68LjU743kOMNaOaxvFEe6piGUg829HKM00OpoXZnNLg4ueyeOV/jP8QdMraIa
   </data>
  </layer>
- <layer name="walking" width="20" height="20">
+ <layer name="lava dots" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFtAb6SHgkmKcNxDpArEsl8/QYIG4zGDVv1LxR8waVeQDr6wjI
+   eJzt1MsKgCAURVGDoHf9/9/m0Flk0Q1ZC/b8iGhKAPf00QNe1EUPeKilu4CveT/AFf8ExBlyY9EUO6fanFuK1tg51ZzjX1o5x5bbi47YOQAAAAA05AROKAFc
   </data>
  </layer>
- <objectgroup name="Collision">
-  <object id="16" type="object" x="416" y="232">
-   <polyline points="0,0 -24,24 -16,408 224,408 224,-232 -416,-232 -408,408 -128,408 -128,-8 -192,-8 -192,352 -360,344 -360,-160 -344,-184 152,-184 168,-160 168,336 144,352 40,352 32,336 24,24 0,0"/>
+ <layer name="water" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <objectgroup name="collision">
+  <object id="2" type="object" x="0" y="0">
+   <polyline points="0,0 1608,0 1592,1608 8,1616 8,0"/>
   </object>
-  <object id="18" type="object" x="432" y="304">
-   <polyline points="0,0 8,0"/>
-  </object>
-  <object id="20" type="object" x="0" y="0" width="640" height="640"/>
  </objectgroup>
 </map>

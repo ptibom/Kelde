@@ -6,6 +6,7 @@
 
 package se.computerscience.kelde.controller;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -18,16 +19,24 @@ import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.model.worldobjects.Door;
+import se.computerscience.kelde.screens.GameScreen;
 
 import java.util.List;
 
 
 public class WorldContactListener implements ContactListener {
+    private Screen screen;
+
+    public WorldContactListener(Screen screen) {
+        this.screen = screen;
+    }
+
     @Override
     public void beginContact(Contact contact) {
         //*** contact listener for WorldObjects, sensors and items ***
         if (isWorldObject(contact, Door.class) && isPlayer(contact)) {
             System.out.println("kelde just pressed a sensor");
+            ((GameScreen)screen).setChangeScreen("LavaWorld");
         }
 
         if (isWorldObject(contact, Treasure.class) && isPlayer(contact)) {
@@ -38,8 +47,6 @@ public class WorldContactListener implements ContactListener {
                 ((Treasure) contact.getFixtureA().getUserData()).setIsOpen(true);
                 ((Treasure) contact.getFixtureA().getUserData()).setVisble();
             }
-
-
         }
 
         if (isWorldObject(contact, Axe.class)&& isPlayer(contact)) {

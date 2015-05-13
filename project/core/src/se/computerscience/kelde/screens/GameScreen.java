@@ -8,15 +8,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
+import se.computerscience.kelde.controller.gameworld.LavaWorldController;
 
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
+    private LavaWorldController lavaWorldController;
+    private String changeScreen = "GameWorld";
 
     @Override
     public void show() {
         // Initialises objects, like a constructor
-        gameWorldController = new GameWorldController();
+        gameWorldController = new GameWorldController(this);
+        lavaWorldController = new LavaWorldController(this);
     }
     @Override
     public void render(float delta) {
@@ -25,12 +29,26 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Render the world based om woth screen is set.
-        gameWorldController.render(delta);
+        if (changeScreen.equals("LavaWorld")){
+            lavaWorldController.render(delta);
+        }else{
+            gameWorldController.render(delta);
+        }
+
+    }
+
+    public String getChangeScreen() {
+        return changeScreen;
+    }
+
+    public void setChangeScreen(String changeScreen) {
+        this.changeScreen = changeScreen;
     }
 
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);
+        lavaWorldController.resizeCamera(width, height);
     }
 
     @Override
@@ -52,6 +70,7 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameWorldController.dispose();
+        lavaWorldController.dispose();
     }
 
 }
