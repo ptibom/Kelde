@@ -6,6 +6,8 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.Sword;
 
+import java.util.Random;
+
 /**
  * Description: a model for a treasure!
  * @author: Hossein Hussain
@@ -20,13 +22,13 @@ public class Treasure implements IWorldObjects {
     private final int SWORDPACK=2;
     private final Sword sword; // set to final
     private final Axe axe;
-
+    Random random = new Random();
     IPhysicalBody entityBody;
 
     public Treasure(IB2DWorld ib2DWorld, float x, float y, int packNumber) {
-        entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld, this);
-            sword = new Sword(ib2DWorld,x+50,y);
-            axe = new Axe(ib2DWorld,x+100,y);
+        entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld, this);       // init the drop inside the treasure
+            sword = new Sword(ib2DWorld,x+(random.nextInt(50)+10),y+(random.nextInt(100)+20)); // makes an instance of sxe, in a random position
+            axe = new Axe(ib2DWorld,x-(random.nextInt(50)+10),y+(random.nextInt(100)+20));     // makes an instance of axe, in a random position
     }
 
     public void setIsOpen(boolean isOpen) {
