@@ -62,5 +62,4 @@ public class LavaWorldController {
         lavaWorld.dispose();
         worldPhysicsController.dispose();
     }
-
 }

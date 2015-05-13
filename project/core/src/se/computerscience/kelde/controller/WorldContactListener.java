@@ -36,7 +36,11 @@ public class WorldContactListener implements ContactListener {
         //*** contact listener for WorldObjects, sensors and items ***
         if (isWorldObject(contact, Door.class) && isPlayer(contact)) {
             System.out.println("kelde just pressed a sensor");
-            ((GameScreen)screen).setChangeScreen("LavaWorld");
+            if (((GameScreen)screen).getChangeScreen().equals("LavaWorld")){
+                ((GameScreen)screen).setChangeScreen("GameWorld");
+            }else {
+                ((GameScreen)screen).setChangeScreen("LavaWorld");
+            }
         }
 
         if (isWorldObject(contact, Treasure.class) && isPlayer(contact)) {
