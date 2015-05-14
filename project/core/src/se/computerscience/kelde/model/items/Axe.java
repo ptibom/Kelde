@@ -2,7 +2,7 @@ package se.computerscience.kelde.model.items;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensorStatic;
 
 /**
  * Description: An axe-item, used by player to damage enemies.
@@ -21,7 +21,7 @@ public class Axe implements IItems {
     IPhysicalBody entityBody;
 
     public Axe(IB2DWorld ib2DWorld, float x, float y) {
-        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
+        entityBody = new PhysicalBodySensorStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
     }
 
     @Override
