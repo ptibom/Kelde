@@ -29,7 +29,7 @@ public class LavaWorldController {
 
     private final DoorController doorController;
     private final LavaRingController lavaRingController;
-    private final LavaSplashController lavaSplashController;
+    private final LavaSplashController[] lavaSplashController;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
     public LavaWorldController() {
@@ -40,15 +40,22 @@ public class LavaWorldController {
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde(), lavaWorldView.getEntityPlayerKeldeView());
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
-        lavaSplashController = new LavaSplashController(lavaWorld.getLavaRing().getLavaSplash(),lavaWorldView.getLavaSplashView());
+
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new LavaContactListener());
+
+        lavaSplashController = new LavaSplashController[lavaWorld.getLavaRing().getLavaSplash().length];
+        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
+            lavaSplashController[i] = new LavaSplashController(lavaWorld.getLavaRing().getLavaSplash()[i],lavaWorldView.getLavaSplashView()[i]);
+        }
     }
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
         doorController.update(delta);
         lavaRingController.update(delta);
-        lavaSplashController.update(delta);
+        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
+            lavaSplashController[i].update(delta);
+        }
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);
     }

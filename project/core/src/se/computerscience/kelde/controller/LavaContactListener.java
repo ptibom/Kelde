@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
+import se.computerscience.kelde.model.worldobjects.LavaSplash;
 
 public class LavaContactListener implements ContactListener {
     private ScreenChanger screenChanger = ScreenChanger.getInstance();
@@ -22,16 +23,11 @@ public class LavaContactListener implements ContactListener {
         Object fixtureB = contact.getFixtureB().getUserData();
 
         //*** contact listener for WorldObjects, sensors and items ***
-        if ((fixtureA instanceof Door || fixtureB instanceof Door)) {
+        if (((fixtureA instanceof Door || fixtureB instanceof Door) && (fixtureA instanceof EntityPlayerKelde || fixtureB instanceof EntityPlayerKelde))) {
             screenChanger.setCurrentScreen("Game");
         }
-        if (fixtureA instanceof LavaRing && fixtureB instanceof EntityPlayerKelde) {
-            ((LavaRing)fixtureA).setLavasplash(true);
-            System.out.println("splash");
-        }
-        if (fixtureB instanceof LavaRing && fixtureA instanceof EntityPlayerKelde){
-            ((LavaRing)fixtureB).setLavasplash(true);
-            System.out.println("splah");
+        if (((fixtureA instanceof LavaSplash || fixtureB instanceof LavaSplash) && (fixtureA instanceof EntityPlayerKelde || fixtureB instanceof EntityPlayerKelde))){
+            System.out.println("hit!");
         }
     }
 
