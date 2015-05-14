@@ -2,7 +2,7 @@ package se.computerscience.kelde.model.worldobjects;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensorStatic;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
  * Description:
@@ -15,7 +15,7 @@ public class Door implements IWorldObjects {
     IPhysicalBody entityBody;
 
     public Door(IB2DWorld ib2DWorld, float x, float y) {
-        entityBody = new PhysicalBodySensorStatic(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
     }
     @Override
     public float getPositionY() {
