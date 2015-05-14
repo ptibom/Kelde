@@ -12,6 +12,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Door;
+import se.computerscience.kelde.model.worldobjects.LavaRing;
 
 public class LavaWorld {
 
@@ -19,6 +20,7 @@ public class LavaWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
     private final Door door;
+    private final LavaRing lavaRing;
     private IMap map;
     private ICamera camera;
 
@@ -28,6 +30,7 @@ public class LavaWorld {
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,100);
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
+        lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
     }
 
     public void resizeCamera (int width, int height) {
@@ -61,4 +64,7 @@ public class LavaWorld {
         return door;
     }
 
+    public LavaRing getLavaRing() {
+        return lavaRing;
+    }
 }
