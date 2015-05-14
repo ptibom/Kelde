@@ -5,9 +5,7 @@
  */
 package se.computerscience.kelde.controller.gameworld;
 
-import com.badlogic.gdx.Screen;
 import se.computerscience.kelde.controller.LavaContactListener;
-import se.computerscience.kelde.controller.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
@@ -18,7 +16,7 @@ import se.computerscience.kelde.view.gameworld.LavaWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LavaWorldController implements IWorldController {
+public class LavaWorldController {
 
     private final LavaWorld lavaWorld;
     private final LavaWorldView lavaWorldView;
@@ -27,7 +25,6 @@ public class LavaWorldController implements IWorldController {
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
     private final DoorController doorController;
-    private boolean isCurrentScreen = false;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
     public LavaWorldController() {
@@ -36,12 +33,8 @@ public class LavaWorldController implements IWorldController {
 
         worldPhysicsController = new WorldPhysicsController(lavaWorld.getWorldPhysics(), lavaWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde(), lavaWorldView.getEntityPlayerKeldeView());
-
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
-
-
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new LavaContactListener());
-
     }
 
     public void render(float delta) {
@@ -62,13 +55,5 @@ public class LavaWorldController implements IWorldController {
         lavaWorldView.dispose();
         lavaWorld.dispose();
         worldPhysicsController.dispose();
-    }
-
-    public boolean isCurrentScreen() {
-        return isCurrentScreen;
-    }
-
-    public void setIsCurrentScreen(boolean isCurrentScreen) {
-        this.isCurrentScreen = isCurrentScreen;
     }
 }

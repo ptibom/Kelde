@@ -10,8 +10,6 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import se.computerscience.kelde.controller.gameworld.GameWorldController;
-import se.computerscience.kelde.controller.gameworld.IWorldController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.model.items.Axe;

@@ -21,7 +21,7 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameWorldController implements IWorldController {
+public class GameWorldController {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
 
