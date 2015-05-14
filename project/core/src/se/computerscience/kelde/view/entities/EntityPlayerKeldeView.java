@@ -9,30 +9,24 @@ package se.computerscience.kelde.view.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.Heading;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import javax.xml.soap.Text;
 
 public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;
-    private final Sprite sprite;
     private final Texture texture;
+    private final Sprite sprite;
     private final int WIDTH = 32, HEIGHT = 32;
     private final String SPRITE_LOCATION = "arrow.png";
-
     private float ELAPSED_TIME = 0;
-    private TextureAtlas keldeWalkNorth, keldeWalkWest, keldeWalkSouth, keldeWalkEast, keldeLookNorth, keldeLookEast, keldeLookSouth, keldeLookWest;
-    private Animation animation, animationWalkNorth, animationWalkWest, animationWalkSouth, animationWalkEast, STANDING_STILL_NORTH, STANDING_STILL_WEST, STANDING_STILL_EAST, STANDING_STILL_SOUTH;
-    private TextureAtlas keldeNorthKnife, keldeEastKnife, keldeSouthKnife, keldeWestKnife;
-    private TextureAtlas keldeNorthArrow, keldeWestArrow, keldeSouthArrow, keldeEastArrow;
-    private Animation knifeslashnorth, knifeslasheast,knifeslashwest,knifeslashsouth;
-    private Animation keldeShootArrowNorth, keldeShootArrowWest, keldeShootArrowSouth, keldeShootArrowEast;
+    private Animation animation;
+    private Animation[] walkAnimation;
+    private Animation[] weaponAnimation;
     private Heading direction;
     private float oldX, oldY;
-    private boolean arrow_fired = false;
 
 
 
@@ -41,13 +35,9 @@ public class EntityPlayerKeldeView {
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
         direction = Heading.NORTH;
-
-
-
-        createNorthTexture();
-        createWestTexture();
-        createSouthTexture();
-        createEastTexture();
+        weaponAnimation = new Animation[8];
+        walkAnimation = new Animation[8];
+        createTexture();
         createKeldeStanding();
         createKnifeSlash();
         createArrowShoot();
@@ -60,59 +50,61 @@ public class EntityPlayerKeldeView {
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         float newX = entityPlayerKelde.getPositionX();
         float newY = entityPlayerKelde.getPositionY();
-        animation = animationWalkNorth;
+        animation = walkAnimation[4];
         if (oldY < newY) {
-            animation = animationWalkNorth;
+            animation = walkAnimation[4];
             direction = Heading.NORTH;
             walk = true;
         }
         else if (oldY > newY) {
-            animation = animationWalkSouth;
+            animation = walkAnimation[6];
             direction = Heading.SOUTH;
             walk = true;
         }
         if (oldX < newX) {
-            animation = animationWalkEast;
+            animation = walkAnimation[7];
             direction = Heading.EAST;
             walk = true;
         }
         else if (oldX > newX) {
-            animation = animationWalkWest;
+            animation = walkAnimation[5];
             direction = Heading.WEST;
             walk = true;
         }
 
-        if(direction == Heading.NORTH && walk == false) {
-            animation = STANDING_STILL_NORTH;
-        }
-        if (direction == Heading.WEST && walk == false) {
-            animation = STANDING_STILL_WEST;
-        }
-        if(direction == Heading.EAST && walk == false) {
-            animation = STANDING_STILL_EAST;
-        }
-        if(direction == Heading.SOUTH && walk == false) {
-            animation = STANDING_STILL_SOUTH;
+        if(!walk) {
+            if (direction == Heading.NORTH) {
+                animation = walkAnimation[0];
+            }
+            if (direction == Heading.WEST) {
+                animation = walkAnimation[3];
+            }
+            if (direction == Heading.EAST) {
+                animation = walkAnimation[1];
+            }
+            if (direction == Heading.SOUTH) {
+                animation = walkAnimation[2];
+            }
         }
 
         if(SLASH && direction == Heading.NORTH) {
-            animation = knifeslashnorth;
+            animation = weaponAnimation[4];
         } else if (SLASH && direction == Heading.WEST) {
-            animation = knifeslashwest;
+            animation = weaponAnimation[7];
         } else if(SLASH && direction == Heading.EAST) {
-            animation = knifeslasheast;
+            animation = weaponAnimation[5];
         } else if(SLASH && direction == Heading.SOUTH) {
-            animation = knifeslashsouth;
+            animation = weaponAnimation[6];
         }
 
         if(ARROW && direction == Heading.NORTH) {
-            animation = keldeShootArrowNorth;
+            animation = weaponAnimation[0];
         } else if(ARROW && direction == Heading.WEST) {
-            animation = keldeShootArrowWest;
+            animation = weaponAnimation[1];
         } else if(ARROW && direction == Heading.SOUTH) {
-            animation = keldeShootArrowSouth;
+            animation = weaponAnimation[2];
         } else if(ARROW && direction == Heading.EAST) {
-            animation = keldeShootArrowEast;
+            animation = weaponAnimation[3];
         }
 
 
@@ -127,57 +119,62 @@ public class EntityPlayerKeldeView {
     }
 
     private void createArrowShoot() {
-        keldeNorthArrow = new TextureAtlas(Gdx.files.internal("kArrowNorth.atlas"));
-        keldeShootArrowNorth = new Animation(0.05f,keldeNorthArrow.getRegions());
-        keldeWestArrow = new TextureAtlas((Gdx.files.internal("kArrowWest.atlas")));
-        keldeShootArrowWest = new Animation(0.05f,keldeWestArrow.getRegions());
-        keldeSouthArrow = new TextureAtlas(Gdx.files.internal("kArrowSouth.atlas"));
-        keldeShootArrowSouth = new Animation(0.05f, keldeSouthArrow.getRegions());
-        keldeEastArrow = new TextureAtlas(Gdx.files.internal("kArrowEast.atlas"));
-        keldeShootArrowEast = new Animation(0.05f, keldeEastArrow.getRegions());
+        TextureAtlas keldeNorthArrow = new TextureAtlas(Gdx.files.internal("kArrowNorth.atlas"));
+        Animation keldeShootArrowNorth = new Animation(0.05f,keldeNorthArrow.getRegions());
+        weaponAnimation[0] = keldeShootArrowNorth;
+        TextureAtlas keldeWestArrow = new TextureAtlas((Gdx.files.internal("kArrowWest.atlas")));
+        Animation keldeShootArrowWest = new Animation(0.05f,keldeWestArrow.getRegions());
+        weaponAnimation[1] = keldeShootArrowWest;
+        TextureAtlas keldeSouthArrow = new TextureAtlas(Gdx.files.internal("kArrowSouth.atlas"));
+        Animation keldeShootArrowSouth = new Animation(0.05f, keldeSouthArrow.getRegions());
+        weaponAnimation[2] = keldeShootArrowSouth;
+        TextureAtlas keldeEastArrow = new TextureAtlas(Gdx.files.internal("kArrowEast.atlas"));
+        Animation keldeShootArrowEast = new Animation(0.05f, keldeEastArrow.getRegions());
+        weaponAnimation[3] = keldeShootArrowEast;
     }
 
     private void createKnifeSlash() {
-        keldeNorthKnife = new TextureAtlas(Gdx.files.internal("kslashNorth.atlas"));
-        knifeslashnorth = new Animation(0.05f, keldeNorthKnife.getRegions());
-        keldeEastKnife = new TextureAtlas((Gdx.files.internal("kslashEast.atlas")));
-        knifeslasheast = new Animation(0.05f, keldeEastKnife.getRegions());
-        keldeSouthKnife = new TextureAtlas((Gdx.files.internal("kslashSouth.atlas")));
-        knifeslashsouth = new Animation(0.05f, keldeSouthKnife.getRegions());
-        keldeWestKnife = new TextureAtlas((Gdx.files.internal("kslashWest.atlas")));
-        knifeslashwest = new Animation(0.05f, keldeWestKnife.getRegions());
-
+        TextureAtlas keldeNorthKnife = new TextureAtlas(Gdx.files.internal("kslashNorth.atlas"));
+        Animation knifeslashnorth = new Animation(0.05f, keldeNorthKnife.getRegions());
+        weaponAnimation[4] = knifeslashnorth;
+        TextureAtlas keldeEastKnife = new TextureAtlas((Gdx.files.internal("kslashEast.atlas")));
+        Animation knifeslasheast = new Animation(0.05f, keldeEastKnife.getRegions());
+        weaponAnimation[5] = knifeslasheast;
+        TextureAtlas keldeSouthKnife = new TextureAtlas((Gdx.files.internal("kslashSouth.atlas")));
+        Animation knifeslashsouth = new Animation(0.05f, keldeSouthKnife.getRegions());
+        weaponAnimation[6] = knifeslashsouth;
+        TextureAtlas keldeWestKnife = new TextureAtlas((Gdx.files.internal("kslashWest.atlas")));
+        Animation knifeslashwest = new Animation(0.05f, keldeWestKnife.getRegions());
+        weaponAnimation[7] = knifeslashwest;
     }
 
     private void createKeldeStanding() {
-        keldeLookNorth = new TextureAtlas(Gdx.files.internal("keldelooknorth.atlas"));
-        STANDING_STILL_NORTH = new Animation(0.1f, keldeLookNorth.getRegions());
-        keldeLookEast = new TextureAtlas(Gdx.files.internal("keldelookeast.atlas"));
-        STANDING_STILL_EAST = new Animation(0.1f, keldeLookEast.getRegions());
-        keldeLookSouth = new TextureAtlas(Gdx.files.internal("keldelooksouth.atlas"));
-        STANDING_STILL_SOUTH = new Animation(0.1f, keldeLookSouth.getRegions());
-        keldeLookWest = new TextureAtlas(Gdx.files.internal("keldelookwest.atlas"));
-        STANDING_STILL_WEST = new Animation(0.1f, keldeLookWest.getRegions());
+        TextureAtlas keldeLookNorth = new TextureAtlas(Gdx.files.internal("keldelooknorth.atlas"));
+        Animation STANDING_STILL_NORTH = new Animation(0.1f, keldeLookNorth.getRegions());
+        walkAnimation[0] = STANDING_STILL_NORTH;
+        TextureAtlas keldeLookEast = new TextureAtlas(Gdx.files.internal("keldelookeast.atlas"));
+        Animation STANDING_STILL_EAST = new Animation(0.1f, keldeLookEast.getRegions());
+        walkAnimation[1] = STANDING_STILL_EAST;
+        TextureAtlas keldeLookSouth = new TextureAtlas(Gdx.files.internal("keldelooksouth.atlas"));
+        Animation STANDING_STILL_SOUTH = new Animation(0.1f, keldeLookSouth.getRegions());
+        walkAnimation[2] = STANDING_STILL_SOUTH;
+        TextureAtlas keldeLookWest = new TextureAtlas(Gdx.files.internal("keldelookwest.atlas"));
+        Animation STANDING_STILL_WEST = new Animation(0.1f, keldeLookWest.getRegions());
+        walkAnimation[3] = STANDING_STILL_WEST;
     }
 
-    private void createNorthTexture() {
-        keldeWalkNorth = new TextureAtlas(Gdx.files.internal("kelde_walk.atlas"));
-        animationWalkNorth = new Animation(0.07f, keldeWalkNorth.getRegions());
+    private void createTexture() {
+        TextureAtlas keldeWalkNorth = new TextureAtlas(Gdx.files.internal("kelde_walk.atlas"));
+        Animation animationWalkNorth = new Animation(0.07f, keldeWalkNorth.getRegions());
+        walkAnimation[4] = animationWalkNorth;
+        TextureAtlas keldeWalkWest = new TextureAtlas(Gdx.files.internal("kelde_walk_west.atlas"));
+        Animation animationWalkWest = new Animation(0.07f, keldeWalkWest.getRegions());
+        walkAnimation[5] = animationWalkWest;
+        TextureAtlas keldeWalkSouth = new TextureAtlas(Gdx.files.internal("kelde_walk_south.atlas"));
+        Animation animationWalkSouth = new Animation(0.07f, keldeWalkSouth.getRegions());
+        walkAnimation[6] = animationWalkSouth;
+        TextureAtlas keldeWalkEast = new TextureAtlas(Gdx.files.internal("kelde_walk_east.atlas"));
+        Animation animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
+        walkAnimation[7] = animationWalkEast;
     }
-
-    private void createWestTexture() {
-        keldeWalkWest = new TextureAtlas(Gdx.files.internal("kelde_walk_west.atlas"));
-        animationWalkWest = new Animation(0.07f, keldeWalkWest.getRegions());
-    }
-
-    private void createSouthTexture() {
-        keldeWalkSouth = new TextureAtlas(Gdx.files.internal("kelde_walk_south.atlas"));
-        animationWalkSouth = new Animation(0.07f, keldeWalkSouth.getRegions());
-    }
-
-    private void createEastTexture() {
-        keldeWalkEast = new TextureAtlas(Gdx.files.internal("kelde_walk_east.atlas"));
-        animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
-    }
-
 }
