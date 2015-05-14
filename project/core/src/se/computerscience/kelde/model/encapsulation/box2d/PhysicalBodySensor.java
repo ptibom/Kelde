@@ -20,4 +20,5 @@ public class PhysicalBodySensor extends PhysicalBody {
     protected void setIsSensor() {
         fdef.isSensor = true;
     }
+
 }

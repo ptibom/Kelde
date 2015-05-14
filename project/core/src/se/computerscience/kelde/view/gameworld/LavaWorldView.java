@@ -12,6 +12,7 @@ import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 import se.computerscience.kelde.view.worldobjects.LavaRingView;
+import se.computerscience.kelde.view.worldobjects.LavaSplashView;
 
 public class LavaWorldView {
 
@@ -24,6 +25,7 @@ public class LavaWorldView {
 
     private final DoorView doorView;
     private final LavaRingView lavaRingView;
+    private final LavaSplashView lavaSplashView;
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -34,6 +36,7 @@ public class LavaWorldView {
         entityPlayerKeldeView = new EntityPlayerKeldeView(lavaWorld.getEntityPlayerKelde());
         doorView = new DoorView(lavaWorld.getDoor(),"door2");
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
+        lavaSplashView = new LavaSplashView(lavaWorld.getLavaRing().getLavaSplash());
     }
 
     public void render(float delta) {
@@ -45,6 +48,7 @@ public class LavaWorldView {
         batch.begin();
         doorView.draw(batch);
         lavaRingView.draw(batch);
+        lavaSplashView.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -76,5 +80,9 @@ public class LavaWorldView {
 
     public LavaRingView getLavaRingView() {
         return lavaRingView;
+    }
+
+    public LavaSplashView getLavaSplashView() {
+        return lavaSplashView;
     }
 }

@@ -11,6 +11,7 @@ import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.controller.worldobjects.LavaRingController;
+import se.computerscience.kelde.controller.worldobjects.LavaSplashController;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
 import se.computerscience.kelde.view.gameworld.LavaWorldView;
@@ -28,6 +29,7 @@ public class LavaWorldController {
 
     private final DoorController doorController;
     private final LavaRingController lavaRingController;
+    private final LavaSplashController lavaSplashController;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
     public LavaWorldController() {
@@ -38,6 +40,7 @@ public class LavaWorldController {
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde(), lavaWorldView.getEntityPlayerKeldeView());
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
+        lavaSplashController = new LavaSplashController(lavaWorld.getLavaRing().getLavaSplash(),lavaWorldView.getLavaSplashView());
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new LavaContactListener());
     }
 
@@ -45,6 +48,7 @@ public class LavaWorldController {
         entityPlayerKeldeController.update(delta);
         doorController.update(delta);
         lavaRingController.update(delta);
+        lavaSplashController.update(delta);
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);
     }

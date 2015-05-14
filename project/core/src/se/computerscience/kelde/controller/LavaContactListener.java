@@ -9,7 +9,9 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.worldobjects.Door;
+import se.computerscience.kelde.model.worldobjects.LavaRing;
 
 public class LavaContactListener implements ContactListener {
     private ScreenChanger screenChanger = ScreenChanger.getInstance();
@@ -22,6 +24,14 @@ public class LavaContactListener implements ContactListener {
         //*** contact listener for WorldObjects, sensors and items ***
         if ((fixtureA instanceof Door || fixtureB instanceof Door)) {
             screenChanger.setCurrentScreen("Game");
+        }
+        if (fixtureA instanceof LavaRing && fixtureB instanceof EntityPlayerKelde) {
+            ((LavaRing)fixtureA).setLavasplash(true);
+            System.out.println("splash");
+        }
+        if (fixtureB instanceof LavaRing && fixtureA instanceof EntityPlayerKelde){
+            ((LavaRing)fixtureB).setLavasplash(true);
+            System.out.println("splah");
         }
     }
 

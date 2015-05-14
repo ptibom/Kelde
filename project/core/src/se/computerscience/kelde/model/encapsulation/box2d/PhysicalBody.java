@@ -28,6 +28,8 @@ public class PhysicalBody implements IPhysicalBody {
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(userdata);
+
+
     }
 
     // Sub class may override this method
