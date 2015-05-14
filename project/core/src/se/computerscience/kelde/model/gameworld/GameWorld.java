@@ -4,16 +4,16 @@
 
 package se.computerscience.kelde.model.gameworld;
 
-import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
+import se.computerscience.kelde.model.entities.EntityBat;
+import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.Axe;
-import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
+import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 
 public class GameWorld {
@@ -21,6 +21,8 @@ public class GameWorld {
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
+    private final EntityBat entityBat;
+    private final EntityEye entityEye;
 
     private final Barrel barrel;
     private final Treasure treasure;
@@ -41,6 +43,8 @@ public class GameWorld {
         treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70,3);
         treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70,3);
         door = new Door(worldPhysics.getIb2DWorld(),20,100);
+        entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
+        entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
@@ -85,4 +89,10 @@ public class GameWorld {
     public Door getDoor() {
         return door;
     }
+
+    public EntityBat getEntityBat() {
+        return entityBat;
+    }
+
+    public EntityEye getEntityEye() { return entityEye; }
 }
