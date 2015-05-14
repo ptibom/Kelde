@@ -47,7 +47,7 @@ public class EntityBatView {
 
     public void draw(Batch batch) {
         Heading direction = entityBat.getHeading();
-        if(direction == Heading.EAST) {
+        if(direction == Heading.EAST) { // TODO: Change as in KeldeView
             animation = animationE;
         } else if(direction == Heading.NORTH) {
             animation = animationN;
