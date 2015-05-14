@@ -3,7 +3,6 @@ package se.computerscience.kelde.view.worldobjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 /**
  * Description:

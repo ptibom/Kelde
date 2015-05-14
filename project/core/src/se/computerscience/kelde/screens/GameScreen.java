@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.ScreenChanger;
+import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.controller.gameworld.LavaWorldController;
 
@@ -22,6 +23,7 @@ public class GameScreen implements Screen {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController();
         lavaWorldController = new LavaWorldController();
+        Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
     @Override
     public void render(float delta) {
@@ -65,5 +67,4 @@ public class GameScreen implements Screen {
         gameWorldController.dispose();
         lavaWorldController.dispose();
     }
-
 }
