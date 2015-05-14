@@ -19,4 +19,6 @@ public class EntityTests {
         INPCEntity entityKnight = new EntityKnight();
         Assert.assertEquals(false, entityKnight.isFriendly());
     }
+
+
 }
