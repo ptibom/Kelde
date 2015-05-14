@@ -6,24 +6,21 @@
 
 package se.computerscience.kelde.controller;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.controller.gameworld.GameWorldController;
+import se.computerscience.kelde.controller.gameworld.IWorldController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.model.worldobjects.Door;
-import se.computerscience.kelde.screens.GameScreen;
 
 public class WorldContactListener implements ContactListener {
-    private Screen screen;
 
-    public WorldContactListener(Screen screen) {
-        this.screen = screen;
-    }
+    private ScreenChanger screenChanger = ScreenChanger.getInstance();
 
     @Override
     public void beginContact(Contact contact) {
@@ -33,11 +30,7 @@ public class WorldContactListener implements ContactListener {
         //*** contact listener for WorldObjects, sensors and items ***
         if ((fixtureA instanceof Door || fixtureB instanceof Door) && isPlayer(contact)) {
             System.out.println("kelde just pressed a sensor");
-            if (((GameScreen)screen).getChangeScreen().equals("LavaWorld")){
-                ((GameScreen)screen).setChangeScreen("GameWorld");
-            }else {
-                ((GameScreen)screen).setChangeScreen("LavaWorld");
-            }
+            screenChanger.setCurrentScreen("Lava");
         }
 
         if ((fixtureA instanceof Treasure || fixtureB instanceof Treasure) && isPlayer(contact)){

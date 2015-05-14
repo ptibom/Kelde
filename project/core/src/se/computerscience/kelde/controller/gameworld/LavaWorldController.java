@@ -6,6 +6,7 @@
 package se.computerscience.kelde.controller.gameworld;
 
 import com.badlogic.gdx.Screen;
+import se.computerscience.kelde.controller.LavaContactListener;
 import se.computerscience.kelde.controller.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
@@ -17,7 +18,7 @@ import se.computerscience.kelde.view.gameworld.LavaWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LavaWorldController {
+public class LavaWorldController implements IWorldController {
 
     private final LavaWorld lavaWorld;
     private final LavaWorldView lavaWorldView;
@@ -26,10 +27,10 @@ public class LavaWorldController {
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
     private final DoorController doorController;
-
+    private boolean isCurrentScreen = false;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
-    public LavaWorldController(Screen screen) {
+    public LavaWorldController() {
         lavaWorld = new LavaWorld();
         lavaWorldView = new LavaWorldView(lavaWorld);
 
@@ -39,7 +40,7 @@ public class LavaWorldController {
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
 
 
-        lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(screen));
+        lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new LavaContactListener());
 
     }
 
@@ -61,5 +62,13 @@ public class LavaWorldController {
         lavaWorldView.dispose();
         lavaWorld.dispose();
         worldPhysicsController.dispose();
+    }
+
+    public boolean isCurrentScreen() {
+        return isCurrentScreen;
+    }
+
+    public void setIsCurrentScreen(boolean isCurrentScreen) {
+        this.isCurrentScreen = isCurrentScreen;
     }
 }

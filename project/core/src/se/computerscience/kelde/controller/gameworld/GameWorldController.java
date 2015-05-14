@@ -5,7 +5,6 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import com.badlogic.gdx.Screen;
 import se.computerscience.kelde.controller.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
@@ -22,7 +21,7 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameWorldController {
+public class GameWorldController implements IWorldController {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
 
@@ -40,7 +39,7 @@ public class GameWorldController {
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
-    public GameWorldController(Screen screen) {
+    public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
 
@@ -68,7 +67,7 @@ public class GameWorldController {
         worldObjList.add(doorController);
         worldObjList.add(swordController2);
 
-        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener(screen));
+        gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
     }
 
