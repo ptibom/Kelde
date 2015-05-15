@@ -15,7 +15,7 @@ public class LavaSplashView implements IWorldObjectView {
     private Sprite sprite;
     private final Texture texture;
     private final int WIDTH = 24, HEIGHT = 27;
-    private final String SPRITE_LOCATION = "lavasplash.png";
+    private final String SPRITE_LOCATION = "lava-splash.png";
 
     public LavaSplashView(LavaSplash lavaSplash) {
         this.lavaSplash = lavaSplash;
