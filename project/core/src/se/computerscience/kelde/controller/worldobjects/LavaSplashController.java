@@ -14,11 +14,10 @@ import java.util.Random;
 public class LavaSplashController implements IWorldObjectsController {
     private LavaSplash lavaSplash;
     private LavaSplashView lavaSplashView;
-    Vector2 velocityControl;
-    private float x, y,sx,sy;
+    private Vector2 velocityControl;
+    private float x, y,startPosX,startPosY;
     private Random random = new Random();
-    private boolean lavaOn= false;
-
+    private boolean lavaOn = false;
     final float maxt = 1f , mint = .6f; // the velocity range for the splash
     final float maxf = -1f , minf = -.6f; // the velocity range for the splash
     public LavaSplashController(LavaSplash lavaSplash, LavaSplashView lavaSplashView) {
@@ -36,13 +35,13 @@ public class LavaSplashController implements IWorldObjectsController {
         }else {
             y = random.nextFloat() * (minf - (maxf)) + (maxf);
         }
-        sx = lavaSplash.getPositionX();
-        sy = lavaSplash.getPositionY();
+        startPosX = lavaSplash.getPositionX();
+        startPosY = lavaSplash.getPositionY();
     }
 
     @Override
     public void update(float delta) {
-        int max = 1000;
+        int max = 100000;
         int min = 0;
         if (((max + random.nextInt(max - min + 1)) == (max+ random.nextInt(max - min + 1)) || lavaOn )) {
             lavaOn = true;
@@ -50,7 +49,7 @@ public class LavaSplashController implements IWorldObjectsController {
             velocityControl.y += y;
             lavaSplash.setVelocity(velocityControl.x, velocityControl.y);
             if (lavaSplash.getPositionX() > 400 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 400 || lavaSplash.getPositionY() < 0){
-                lavaSplash.setPosition(sx,sy);
+                lavaSplash.setPosition(startPosX,startPosY);
                 lavaOn = false;
             }
         }
