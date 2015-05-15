@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import se.computerscience.kelde.model.Direction;
+import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 public class EntityPlayerKeldeView {

@@ -4,7 +4,7 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.constants;
 
 public class Direction {
     public static final int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;

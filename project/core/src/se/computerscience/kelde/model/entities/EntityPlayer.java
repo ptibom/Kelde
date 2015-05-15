@@ -4,7 +4,7 @@
 
 package se.computerscience.kelde.model.entities;
 
-import se.computerscience.kelde.model.Direction;
+import se.computerscience.kelde.model.constants.Direction;
 
 public class EntityPlayer implements IPlayerEntity {
     private int health = 100;

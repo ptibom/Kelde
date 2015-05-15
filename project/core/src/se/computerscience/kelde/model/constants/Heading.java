@@ -1,4 +1,4 @@
-package se.computerscience.kelde.model;
+package se.computerscience.kelde.model.constants;
 
 /**
  * Created by Anders on 2015-05-06.
