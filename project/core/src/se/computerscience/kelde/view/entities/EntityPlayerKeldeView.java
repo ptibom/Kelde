@@ -46,7 +46,6 @@ public class EntityPlayerKeldeView {
         ELAPSED_TIME += Gdx.graphics.getDeltaTime();
         float newX = entityPlayerKelde.getPositionX();
         float newY = entityPlayerKelde.getPositionY();
-        // animation = standAnimation[NORTH];
         if (oldY < newY) {
             direction = NORTH;
             animation = standAnimation[direction];
@@ -83,8 +82,8 @@ public class EntityPlayerKeldeView {
         batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.draw(batch);
-        oldX = entityPlayerKelde.getPositionX();
-        oldY = entityPlayerKelde.getPositionY();
+        oldX = newX;
+        oldY = newY;
         if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0; }
     }
 

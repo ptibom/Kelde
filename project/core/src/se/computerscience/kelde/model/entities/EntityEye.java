@@ -84,7 +84,7 @@ public class EntityEye {
 
     public Heading getHeading() {
         float x = entityBody.getVelocityX();
-        float y = entityBody.getPositionY();
+        float y = entityBody.getVelocityY();
         float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
