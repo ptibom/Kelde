@@ -10,7 +10,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
 public class Bomb implements IWorldObjects {
-    private final float BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private final float BODY_WIDTH = 40, BODY_HEIGHT = 40;
     IPhysicalBody entityBody;
     private boolean detonate = false;
     public Bomb(IB2DWorld ib2DWorld, float x, float y) {
@@ -19,11 +19,11 @@ public class Bomb implements IWorldObjects {
     }
     @Override
     public float getPositionY() {
-        return entityBody.getPositionY()-BODY_HEIGHT;
+        return entityBody.getPositionY()-BODY_HEIGHT  +20;
     }
     @Override
     public float getPositionX() {
-        return entityBody.getPositionX()-BODY_WIDTH;
+        return entityBody.getPositionX()-BODY_WIDTH + 20;
     }
 
     public boolean isDetonate() {
@@ -32,5 +32,8 @@ public class Bomb implements IWorldObjects {
 
     public void setDetonate(boolean detonate) {
         this.detonate = detonate;
+    }
+    public void destroy(){
+        entityBody.destroy();
     }
 }

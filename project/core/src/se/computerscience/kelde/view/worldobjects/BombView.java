@@ -13,9 +13,8 @@ import se.computerscience.kelde.model.worldobjects.Bomb;
 
 public class BombView implements IWorldObjectView {
     private final Bomb bomb;
-    private final int WIDTH = 32, HEIGHT = 64;
     private final String SPRITE_LOCATION = "BombExploding.atlas";
-    private boolean stop=false;
+    private boolean display = true;
 
     private TextureAtlas textureAtlas;
     private Animation animation;
@@ -29,19 +28,14 @@ public class BombView implements IWorldObjectView {
     @Override
     public void draw (SpriteBatch batch) {
         elapsedTime += delta;
-        if (elapsedTime >= 2.4f){
+        if (elapsedTime >= 1.5f){
             bomb.setDetonate(false);
             stopAnimation();
+            display = false;
         }
-
-        if(elapsedTime > 100.0f) {
-            elapsedTime = 0f;
+        if (display){
+            batch.draw(animation.getKeyFrame(elapsedTime, true), bomb.getPositionX(), bomb.getPositionY());
         }
-
-        batch.draw(animation.getKeyFrame(elapsedTime, true), bomb.getPositionX(), bomb.getPositionY());
-        //System.out.println(elapsedTime);
-
-
     }
     public void update(float delta) {
         this.delta = delta;
@@ -49,13 +43,6 @@ public class BombView implements IWorldObjectView {
     public void stopAnimation(){
         this.delta = 0;
         this.elapsedTime  = 0;
-    }
-
-    public boolean isStop() {
-        return stop;
-    }
-
-    public void setStop(boolean stop) {
-        this.stop = stop;
+        bomb.destroy();
     }
 }
