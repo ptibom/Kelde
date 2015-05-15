@@ -11,6 +11,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
 
@@ -21,6 +22,7 @@ public class LavaWorld {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Door door;
     private final LavaRing lavaRing;
+    private final Bomb bomb;
     private IMap map;
     private ICamera camera;
 
@@ -31,6 +33,8 @@ public class LavaWorld {
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,100);
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
+        bomb = new Bomb(worldPhysics.getIb2DWorld(), 300,300);
+
     }
 
     public void resizeCamera (int width, int height) {
@@ -66,5 +70,9 @@ public class LavaWorld {
 
     public LavaRing getLavaRing() {
         return lavaRing;
+    }
+
+    public Bomb getBomb() {
+        return bomb;
     }
 }

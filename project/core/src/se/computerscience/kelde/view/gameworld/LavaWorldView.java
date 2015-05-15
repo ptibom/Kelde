@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
+import se.computerscience.kelde.view.worldobjects.BombView;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 import se.computerscience.kelde.view.worldobjects.LavaRingView;
 import se.computerscience.kelde.view.worldobjects.LavaSplashView;
@@ -26,6 +27,7 @@ public class LavaWorldView {
     private final DoorView doorView;
     private final LavaRingView lavaRingView;
     private final LavaSplashView[] lavaSplashView;
+    private final BombView bombView;
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -37,7 +39,7 @@ public class LavaWorldView {
         doorView = new DoorView(lavaWorld.getDoor(),"door2");
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
         lavaSplashView = new LavaSplashView[lavaWorld.getLavaRing().getLavaSplash().length];
-
+        bombView = new BombView(lavaWorld.getBomb());
         for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length ; i++) {
             lavaSplashView[i] = new LavaSplashView(lavaWorld.getLavaRing().getLavaSplash()[i]);
         }
@@ -55,6 +57,7 @@ public class LavaWorldView {
             lavaSplashView[i].draw(batch);
         }
         lavaRingView.draw(batch);
+        bombView.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -87,5 +90,9 @@ public class LavaWorldView {
     }
     public LavaSplashView[] getLavaSplashView() {
         return lavaSplashView;
+    }
+
+    public BombView getBombView() {
+        return bombView;
     }
 }

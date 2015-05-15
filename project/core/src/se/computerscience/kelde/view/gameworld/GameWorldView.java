@@ -14,6 +14,7 @@ import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.BarrelView;
+import se.computerscience.kelde.view.worldobjects.BombView;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 import se.computerscience.kelde.view.worldobjects.TreasureView;
 
@@ -35,6 +36,7 @@ public class GameWorldView {
     private final SwordView swordView;
     private final SwordView swordView2;
     private final DoorView doorView;
+    private final BombView bombView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -52,10 +54,10 @@ public class GameWorldView {
         axeView2 = new AxeView(gameWorld.getTreasure2().getAxe());
         swordView = new SwordView(gameWorld.getTreasure().getSword());
         swordView2 = new SwordView(gameWorld.getTreasure2().getSword());
-
         doorView = new DoorView(gameWorld.getDoor(),"door2");
         entityBatView = new EntityBatView(gameWorld.getEntityBat());
         entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
+        bombView = new BombView(gameWorld.getBomb());
     }
 
     public void render(float delta) {
@@ -85,6 +87,7 @@ public class GameWorldView {
         entityPlayerKeldeView.draw(batch);
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
+        bombView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -139,5 +142,9 @@ public class GameWorldView {
 
     public EntityEyeView getEntityEyeView() {
         return entityEyeView;
+    }
+
+    public BombView getBombView() {
+        return bombView;
     }
 }

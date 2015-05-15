@@ -6,14 +6,12 @@
 
 package se.computerscience.kelde.controller.physics;
 
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.*;
 import se.computerscience.kelde.controller.ScreenChanger;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.Sword;
+import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 
@@ -27,6 +25,13 @@ public class WorldContactListener implements ContactListener {
         Object fixtureB = contact.getFixtureB().getUserData();
 
         //*** contact listener for WorldObjects, sensors and items ***
+
+        if ((fixtureA instanceof Bomb || fixtureB instanceof Bomb) && isPlayer(contact)){
+            if (fixtureB instanceof Bomb){
+                ((Bomb)fixtureB).setDetonate(true);
+            }
+        }
+
         if ((fixtureA instanceof Door || fixtureB instanceof Door) && isPlayer(contact)) {
             System.out.println("kelde just pressed a sensor");
             screenChanger.setCurrentScreen("Lava");
@@ -90,6 +95,7 @@ public class WorldContactListener implements ContactListener {
             }
         }
     }
+
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {

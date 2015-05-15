@@ -12,10 +12,7 @@ import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
-import se.computerscience.kelde.controller.worldobjects.BarrelController;
-import se.computerscience.kelde.controller.worldobjects.DoorController;
-import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
-import se.computerscience.kelde.controller.worldobjects.TreasureController;
+import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 
@@ -42,6 +39,8 @@ public class GameWorldController {
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
 
+    private final BombController bombController;
+
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -60,6 +59,7 @@ public class GameWorldController {
 
         doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
 
+        bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
         worldObjList.add(barrelController);
         worldObjList.add(treasureController);
         worldObjList.add(entityPlayerKeldeController);
@@ -83,6 +83,7 @@ public class GameWorldController {
         }
         entityBatController.update(delta);
         entityEyeController.update(delta);
+        bombController.update(delta);
 
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
