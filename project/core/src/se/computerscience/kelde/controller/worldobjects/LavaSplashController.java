@@ -15,26 +15,44 @@ public class LavaSplashController implements IWorldObjectsController {
     private LavaSplash lavaSplash;
     private LavaSplashView lavaSplashView;
     Vector2 velocityControl;
-    private float x, y;
+    private float x, y,sx,sy;
     private Random random = new Random();
     private boolean lavaOn= false;
+
+    final float maxt = 1f , mint = .6f; // the velocity range for the splash
+    final float maxf = -1f , minf = -.6f; // the velocity range for the splash
     public LavaSplashController(LavaSplash lavaSplash, LavaSplashView lavaSplashView) {
         this.lavaSplash = lavaSplash;
         this.lavaSplashView = lavaSplashView;
         velocityControl = new Vector2(0, 0);
-        x = random.nextFloat() * (0.05f - (-0.05f)) + (-0.05f);
-        y = random.nextFloat() * (0.05f - (-0.05f)) + (-0.05f);
+
+        if (random.nextBoolean()){
+            x = random.nextFloat() * (maxt - (mint)) + (mint);
+        }else {
+            x = random.nextFloat() * (minf - (maxf)) + (maxf);
+        }
+        if (random.nextBoolean()){
+            y = random.nextFloat() * (maxt - (mint)) + (mint);
+        }else {
+            y = random.nextFloat() * (minf - (maxf)) + (maxf);
+        }
+        sx = lavaSplash.getPositionX();
+        sy = lavaSplash.getPositionY();
     }
 
     @Override
     public void update(float delta) {
-        int max = 100;
+        int max = 1000;
         int min = 0;
         if (((max + random.nextInt(max - min + 1)) == (max+ random.nextInt(max - min + 1)) || lavaOn )) {
             lavaOn = true;
             velocityControl.x += x;
             velocityControl.y += y;
             lavaSplash.setVelocity(velocityControl.x, velocityControl.y);
+            if (lavaSplash.getPositionX() > 400 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 400 || lavaSplash.getPositionY() < 0){
+                lavaSplash.setPosition(sx,sy);
+                lavaOn = false;
+            }
         }
     }
 }
