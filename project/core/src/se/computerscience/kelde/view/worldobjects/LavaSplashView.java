@@ -29,7 +29,4 @@ public class LavaSplashView implements IWorldObjectView {
         sprite.setPosition(lavaSplash.getPositionX(), lavaSplash.getPositionY());
         sprite.draw(batch);
     }
-    public void setPos(float x,float y){
-        sprite.setPosition(x,y);
-    }
 }

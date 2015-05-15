@@ -5,7 +5,6 @@
  */
 package se.computerscience.kelde.controller.gameworld;
 
-import se.computerscience.kelde.controller.LavaContactListener;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
@@ -13,9 +12,7 @@ import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.controller.worldobjects.LavaRingController;
 import se.computerscience.kelde.controller.worldobjects.LavaSplashController;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
-import se.computerscience.kelde.model.worldobjects.LavaRing;
 import se.computerscience.kelde.view.gameworld.LavaWorldView;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,12 +3,13 @@
  *
  * @author: Hossein Hussain
  */
-package se.computerscience.kelde.controller;
+package se.computerscience.kelde.controller.gameworld;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.controller.ScreenChanger;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.LavaRing;

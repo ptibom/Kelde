@@ -26,8 +26,9 @@ public class LavaSplash implements IWorldObjects{
     public float getPositionX() {
         return entityBody.getPositionX() - BODY_WIDTH;
     }
+
     public void setPosition(float x, float y){
-        entityBody.setPosition(x,y);
+        entityBody.setPosition(x, y);
     }
     public void setVelocity(float x, float y) {
         entityBody.setVelocity(x, y);
