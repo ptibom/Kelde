@@ -1,4 +1,4 @@
-package se.computerscience.kelde.controller;
+package se.computerscience.kelde.controller.utils;
 
 public class ScreenChanger {
     private static ScreenChanger ourInstance = new ScreenChanger();

@@ -2,7 +2,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.view.SmallWormView;
+import se.computerscience.kelde.view.entities.SmallWormView;
 
 import java.util.Random;
 

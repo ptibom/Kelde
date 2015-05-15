@@ -26,6 +26,9 @@ public class AxeView implements IItemView{
     public void draw (SpriteBatch batch) {
         sprite.setPosition(axe.getPositionX(), axe.getPositionY());
         sprite.draw(batch);
+        if (axe.isPicked()){
+            axe.destroy();
+        }
     }
     @Override
     public boolean isVisble() {

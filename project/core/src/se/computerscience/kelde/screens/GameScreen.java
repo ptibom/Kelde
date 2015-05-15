@@ -7,7 +7,7 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import se.computerscience.kelde.controller.ScreenChanger;
+import se.computerscience.kelde.controller.utils.ScreenChanger;
 import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 import se.computerscience.kelde.controller.gameworld.LavaWorldController;

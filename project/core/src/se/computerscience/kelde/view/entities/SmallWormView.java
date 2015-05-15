@@ -3,7 +3,7 @@
  * @author: Anders Bolin
  */
 
-package se.computerscience.kelde.view;
+package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;

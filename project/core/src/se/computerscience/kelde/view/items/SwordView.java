@@ -27,6 +27,9 @@ public class SwordView implements IItemView {
     public void draw (SpriteBatch batch) {
         sprite.setPosition(sword.getPositionX(), sword.getPositionY());
         sprite.draw(batch);
+        if (sword.isPicked()){
+            sword.destroy();
+        }
     }
     @Override
     public boolean isVisble() {

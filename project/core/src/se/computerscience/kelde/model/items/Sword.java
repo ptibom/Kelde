@@ -61,4 +61,8 @@ public class Sword implements  IItems {
     public void setPicked(boolean picked) {
         this.picked = picked;
     }
+
+    public void destroy(){
+        entityBody.destroy();
+    }
 }

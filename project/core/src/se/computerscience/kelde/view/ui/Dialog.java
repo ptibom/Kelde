@@ -2,7 +2,7 @@
  *  @author: Philip Tibom
  */
 
-package se.computerscience.kelde.view;
+package se.computerscience.kelde.view.ui;
 
 public class Dialog {
 }

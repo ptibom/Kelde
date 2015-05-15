@@ -42,8 +42,8 @@ public class GameWorld {
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
         barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70,3);
-        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70,3);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70);
+        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70);
         door = new Door(worldPhysics.getIb2DWorld(),20,100);
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());

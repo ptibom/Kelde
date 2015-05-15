@@ -6,6 +6,7 @@
 package se.computerscience.kelde.controller.gameworld;
 
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
+import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
@@ -35,7 +36,7 @@ public class LavaWorldController {
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
-        lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new LavaContactListener());
+        lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
         lavaSplashController = new LavaSplashController[lavaWorld.getLavaRing().getLavaSplash().length];
         for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {

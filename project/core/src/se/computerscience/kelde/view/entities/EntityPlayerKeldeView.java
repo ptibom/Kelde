@@ -10,141 +10,105 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 public class EntityPlayerKeldeView {
     private final EntityPlayerKelde entityPlayerKelde;
-    private float ELAPSED_TIME = 0;
-    private Animation animation;
-    private Animation[] standAnimation;
-    private Animation[] daggerAnimation;
-    private Animation[] bowAnimation;
-    private Animation[] walkAnimation;
+    private float elapsedTime = 0;
+
+    private Animation[] standAnimation = new Animation[4];
+    private Animation[] daggerAnimation = new Animation[4];
+    private Animation[] bowAnimation = new Animation[4];
+    private Animation[] walkAnimation = new Animation[4];
+
     private int direction;
-    private float oldX, oldY;
-    private final int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
-
-
 
     public EntityPlayerKeldeView(EntityPlayerKelde entityPlayerKelde) {
         this.entityPlayerKelde = entityPlayerKelde;
-        direction = NORTH;
-        daggerAnimation = new Animation[4];
-        bowAnimation = new Animation[4];
-        walkAnimation = new Animation[4];
-        standAnimation = new Animation[4];
-        createTexture();
-        createKeldeStanding();
+        direction = Direction.NORTH;
+        createKeldeWalkingAnimation();
+        createKeldeStandingAnimation();
         createDaggerAnimation();
         createBowAnimation();
     }
 
-    public void draw (SpriteBatch batch) {
-        Boolean slashing = entityPlayerKelde.getSlash();
-        Boolean shooting = entityPlayerKelde.getArrow();
-        Boolean walk = false;
-        ELAPSED_TIME += Gdx.graphics.getDeltaTime();
-        float newX = entityPlayerKelde.getPositionX();
-        float newY = entityPlayerKelde.getPositionY();
-        // animation = standAnimation[NORTH];
-        if (oldY < newY) {
-            direction = NORTH;
-            animation = standAnimation[direction];
-            walk = true;
-        }
-        else if (oldY > newY) {
-            direction = SOUTH;
-            walk = true;
-        }
-        if (oldX < newX) {
-            direction = EAST;
-            walk = true;
-        }
-        else if (oldX > newX) {
-            direction = WEST;
-            walk = true;
+    public void draw(SpriteBatch batch) {
+        direction = entityPlayerKelde.getDirection();
+        Animation currentAnimation = standAnimation[direction];
+        if (entityPlayerKelde.isWalking()) {
+            currentAnimation = walkAnimation[direction];
         }
 
-        if (!walk) {
-            animation = standAnimation[direction];
-        }
-        else {
-            animation = walkAnimation[direction];
+        if (entityPlayerKelde.getIsSlashing()) {
+            currentAnimation = daggerAnimation[direction];
         }
 
-        if (slashing) {
-            animation = daggerAnimation[direction];
+        if (entityPlayerKelde.getIsShooting()) {
+            currentAnimation = bowAnimation[direction];
         }
 
-        if (shooting) {
-            animation = bowAnimation[direction];
-        }
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
 
-        batch.draw(animation.getKeyFrame(ELAPSED_TIME, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        //sprite.draw(batch);
-        oldX = entityPlayerKelde.getPositionX();
-        oldY = entityPlayerKelde.getPositionY();
-        if(ELAPSED_TIME > 100.0f) { ELAPSED_TIME = 0; }
+        if (elapsedTime > 100.0f) {
+            elapsedTime = 0;
+        }
     }
 
     private void createBowAnimation() {
-        TextureAtlas keldeNorthArrow = new TextureAtlas(Gdx.files.internal("kArrowNorth.atlas"));
-        Animation keldeShootArrowNorth = new Animation(0.05f,keldeNorthArrow.getRegions());
-        bowAnimation[NORTH] = keldeShootArrowNorth;
-        TextureAtlas keldeWestArrow = new TextureAtlas((Gdx.files.internal("kArrowWest.atlas")));
-        Animation keldeShootArrowWest = new Animation(0.05f,keldeWestArrow.getRegions());
-        bowAnimation[WEST] = keldeShootArrowWest;
-        TextureAtlas keldeSouthArrow = new TextureAtlas(Gdx.files.internal("kArrowSouth.atlas"));
-        Animation keldeShootArrowSouth = new Animation(0.05f, keldeSouthArrow.getRegions());
-        bowAnimation[SOUTH] = keldeShootArrowSouth;
-        TextureAtlas keldeEastArrow = new TextureAtlas(Gdx.files.internal("kArrowEast.atlas"));
-        Animation keldeShootArrowEast = new Animation(0.05f, keldeEastArrow.getRegions());
-        bowAnimation[EAST] = keldeShootArrowEast;
+        TextureAtlas keldeNorthBow = new TextureAtlas("kArrowNorth.atlas");
+        bowAnimation[Direction.NORTH] = new Animation(0.05f, keldeNorthBow.getRegions());
+
+        TextureAtlas keldeEastBow = new TextureAtlas("kArrowEast.atlas");
+        bowAnimation[Direction.EAST] = new Animation(0.05f, keldeEastBow.getRegions());
+
+        TextureAtlas keldeSouthBow = new TextureAtlas("kArrowSouth.atlas");
+        bowAnimation[Direction.SOUTH] = new Animation(0.05f, keldeSouthBow.getRegions());
+
+        TextureAtlas keldeWestBow = new TextureAtlas("kArrowWest.atlas");
+        bowAnimation[Direction.WEST] = new Animation(0.05f, keldeWestBow.getRegions());
     }
 
     private void createDaggerAnimation() {
-        TextureAtlas keldeNorthKnife = new TextureAtlas(Gdx.files.internal("kslashNorth.atlas"));
-        Animation knifeslashnorth = new Animation(0.05f, keldeNorthKnife.getRegions());
-        daggerAnimation[NORTH] = knifeslashnorth;
-        TextureAtlas keldeEastKnife = new TextureAtlas((Gdx.files.internal("kslashEast.atlas")));
-        Animation knifeslasheast = new Animation(0.05f, keldeEastKnife.getRegions());
-        daggerAnimation[EAST] = knifeslasheast;
-        TextureAtlas keldeSouthKnife = new TextureAtlas((Gdx.files.internal("kslashSouth.atlas")));
-        Animation knifeslashsouth = new Animation(0.05f, keldeSouthKnife.getRegions());
-        daggerAnimation[SOUTH] = knifeslashsouth;
-        TextureAtlas keldeWestKnife = new TextureAtlas((Gdx.files.internal("kslashWest.atlas")));
-        Animation knifeslashwest = new Animation(0.05f, keldeWestKnife.getRegions());
-        daggerAnimation[WEST] = knifeslashwest;
+        TextureAtlas keldeNorthDagger = new TextureAtlas("kslashNorth.atlas");
+        daggerAnimation[Direction.NORTH] = new Animation(0.05f, keldeNorthDagger.getRegions());
+
+        TextureAtlas keldeEastDagger = new TextureAtlas("kslashEast.atlas");
+        daggerAnimation[Direction.EAST] = new Animation(0.05f, keldeEastDagger.getRegions());
+
+        TextureAtlas keldeSouthDagger = new TextureAtlas("kslashSouth.atlas");
+        daggerAnimation[Direction.SOUTH] = new Animation(0.05f, keldeSouthDagger.getRegions());
+
+        TextureAtlas keldeWestDagger = new TextureAtlas("kslashWest.atlas");
+        daggerAnimation[Direction.WEST] = new Animation(0.05f, keldeWestDagger.getRegions());
     }
 
-    private void createKeldeStanding() {
-        TextureAtlas keldeLookNorth = new TextureAtlas(Gdx.files.internal("keldelooknorth.atlas"));
-        Animation STANDING_STILL_NORTH = new Animation(0.1f, keldeLookNorth.getRegions());
-        standAnimation[NORTH] = STANDING_STILL_NORTH;
-        TextureAtlas keldeLookEast = new TextureAtlas(Gdx.files.internal("keldelookeast.atlas"));
-        Animation STANDING_STILL_EAST = new Animation(0.1f, keldeLookEast.getRegions());
-        standAnimation[EAST] = STANDING_STILL_EAST;
-        TextureAtlas keldeLookSouth = new TextureAtlas(Gdx.files.internal("keldelooksouth.atlas"));
-        Animation STANDING_STILL_SOUTH = new Animation(0.1f, keldeLookSouth.getRegions());
-        standAnimation[SOUTH] = STANDING_STILL_SOUTH;
-        TextureAtlas keldeLookWest = new TextureAtlas(Gdx.files.internal("keldelookwest.atlas"));
-        Animation STANDING_STILL_WEST = new Animation(0.1f, keldeLookWest.getRegions());
-        standAnimation[WEST] = STANDING_STILL_WEST;
+    private void createKeldeStandingAnimation() {
+        TextureAtlas keldeStandNorth = new TextureAtlas("keldelooknorth.atlas");
+        standAnimation[Direction.NORTH] = new Animation(0.1f, keldeStandNorth.getRegions());
+
+        TextureAtlas keldeStandEast = new TextureAtlas("keldelookeast.atlas");
+        standAnimation[Direction.EAST] = new Animation(0.1f, keldeStandEast.getRegions());
+
+        TextureAtlas keldeStandSouth = new TextureAtlas("keldelooksouth.atlas");
+        standAnimation[Direction.SOUTH] = new Animation(0.1f, keldeStandSouth.getRegions());
+
+        TextureAtlas keldeStandWest = new TextureAtlas("keldelookwest.atlas");
+        standAnimation[Direction.WEST] = new Animation(0.1f, keldeStandWest.getRegions());
     }
 
-    private void createTexture() {
-        TextureAtlas keldeWalkNorth = new TextureAtlas(Gdx.files.internal("kelde_walk.atlas"));
-        Animation animationWalkNorth = new Animation(0.07f, keldeWalkNorth.getRegions());
-        walkAnimation[NORTH] = animationWalkNorth;
-        TextureAtlas keldeWalkWest = new TextureAtlas(Gdx.files.internal("kelde_walk_west.atlas"));
-        Animation animationWalkWest = new Animation(0.07f, keldeWalkWest.getRegions());
-        walkAnimation[WEST] = animationWalkWest;
-        TextureAtlas keldeWalkSouth = new TextureAtlas(Gdx.files.internal("kelde_walk_south.atlas"));
-        Animation animationWalkSouth = new Animation(0.07f, keldeWalkSouth.getRegions());
-        walkAnimation[SOUTH] = animationWalkSouth;
-        TextureAtlas keldeWalkEast = new TextureAtlas(Gdx.files.internal("kelde_walk_east.atlas"));
-        Animation animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
-        walkAnimation[EAST] = animationWalkEast;
+    private void createKeldeWalkingAnimation() {
+        TextureAtlas keldeWalkNorth = new TextureAtlas("kelde_walk.atlas");
+        walkAnimation[Direction.NORTH] = new Animation(0.07f, keldeWalkNorth.getRegions());
+
+        TextureAtlas keldeWalkEast = new TextureAtlas("kelde_walk_east.atlas");
+        walkAnimation[Direction.EAST] = new Animation(0.07f, keldeWalkEast.getRegions());
+
+        TextureAtlas keldeWalkSouth = new TextureAtlas("kelde_walk_south.atlas");
+        walkAnimation[Direction.SOUTH] = new Animation(0.07f, keldeWalkSouth.getRegions());
+
+        TextureAtlas keldeWalkWest = new TextureAtlas("kelde_walk_west.atlas");
+        walkAnimation[Direction.WEST] = new Animation(0.07f, keldeWalkWest.getRegions());
     }
 }
