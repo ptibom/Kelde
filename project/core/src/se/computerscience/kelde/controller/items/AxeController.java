@@ -5,17 +5,21 @@
  */
 package se.computerscience.kelde.controller.items;
 
+import se.computerscience.kelde.controller.events.CollisionEvent;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
+import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.view.items.AxeView;
 
-public class AxeController implements IWorldObjectsController, IItemController{
+public class AxeController implements IWorldObjectsController, IItemController, ICollisionEventHandler{
     Axe axe;
     AxeView axeView;
     private boolean picked = false;
     public AxeController(Axe axe, AxeView axeView) {
         this.axe = axe;
         this.axeView = axeView;
+        CollisionEventBus.INSTANCE.register(this);
     }
     @Override
     public void setVisble(boolean visble){
@@ -47,4 +51,15 @@ public class AxeController implements IWorldObjectsController, IItemController{
         }
     }
 
+    @Override
+    public void onCollisionEvent(CollisionEvent event) {
+        if (event.getObject() != axe) {
+            return;
+        }
+        axe.setPicked(true);
+    }
+
+    public void dispose() {
+        CollisionEventBus.INSTANCE.unregister(this);
+    }
 }
