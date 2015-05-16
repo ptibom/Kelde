@@ -23,7 +23,6 @@ public class LavaWorldView {
 
     private final DoorView doorView;
     private final LavaRingView lavaRingView;
-    private final LavaSplashView[] lavaSplashView;
     private final BombView bombView;
     private final TreasureView treasureView;
     public LavaWorldView(LavaWorld lavaWorld) {
@@ -36,14 +35,11 @@ public class LavaWorldView {
         entityPlayerKeldeView = new EntityPlayerKeldeView(lavaWorld.getEntityPlayerKelde());
         doorView = new DoorView(lavaWorld.getDoor(),"door2");
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
-        lavaSplashView = new LavaSplashView[lavaWorld.getLavaRing().getLavaSplash().length];
+
         bombView = new BombView(lavaWorld.getBomb());
 
         treasureView = new TreasureView(lavaWorld.getTreasure());
 
-        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length ; i++) {
-            lavaSplashView[i] = new LavaSplashView(lavaWorld.getLavaRing().getLavaSplash()[i]);
-        }
     }
 
     public void render(float delta) {
@@ -54,9 +50,6 @@ public class LavaWorldView {
         // Draw sprites
         batch.begin();
         doorView.draw(batch);
-        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
-            lavaSplashView[i].draw(batch);
-        }
         treasureView.draw(batch);
         lavaRingView.draw(batch);
         bombView.draw(batch);
@@ -89,9 +82,6 @@ public class LavaWorldView {
     }
     public LavaRingView getLavaRingView() {
         return lavaRingView;
-    }
-    public LavaSplashView[] getLavaSplashView() {
-        return lavaSplashView;
     }
 
     public BombView getBombView() {

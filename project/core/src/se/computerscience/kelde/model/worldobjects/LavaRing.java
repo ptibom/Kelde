@@ -35,13 +35,8 @@ public class LavaRing implements IWorldObjects {
         return entityBody.getPositionX() - BODY_WIDTH;
     }
 
-
-
     public LavaSplash[] getLavaSplash() {
         return lavaSplash;
     }
 
-    /*public LavaSplash getLavaSplash() {
-        return lavaSplash;
-    }*/
 }

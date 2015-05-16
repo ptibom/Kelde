@@ -24,7 +24,6 @@ public class LavaWorldController {
 
     private final DoorController doorController;
     private final LavaRingController lavaRingController;
-    private final LavaSplashController[] lavaSplashController;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final BombController bombController;
 
@@ -40,10 +39,6 @@ public class LavaWorldController {
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
         treasureController = new TreasureController(lavaWorld.getTreasure(),lavaWorldView.getTreasureView());
-        lavaSplashController = new LavaSplashController[lavaWorld.getLavaRing().getLavaSplash().length];
-        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
-            lavaSplashController[i] = new LavaSplashController(lavaWorld.getLavaRing().getLavaSplash()[i],lavaWorldView.getLavaSplashView()[i]);
-        }
     }
 
     public void render(float delta) {
@@ -51,9 +46,7 @@ public class LavaWorldController {
         doorController.update(delta);
         lavaRingController.update(delta);
         treasureController.update(delta);
-        for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
-            lavaSplashController[i].update(delta);
-        }
+
         bombController.update(delta);
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);

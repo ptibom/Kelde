@@ -41,7 +41,7 @@ public class LavaSplashController implements IWorldObjectsController {
 
     @Override
     public void update(float delta) {
-        int max = 100000;
+        int max = 1000;
         int min = 0;
         if (((max + random.nextInt(max - min + 1)) == (max+ random.nextInt(max - min + 1)) || lavaOn )) {
             lavaOn = true;
