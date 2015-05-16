@@ -11,27 +11,41 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
-public class EntityBody implements IEntityBody {
+public class PhysicalBody implements IPhysicalBody {
     private final World worldPhysics;
     private final Body body;
+    protected final BodyDef def;
+    protected final FixtureDef fdef;
 
-    public EntityBody(float x, float y, float width, float height, IB2DWorld ib2DWorld) {
+    public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
-        BodyDef def = new BodyDef();
-        def.position.set(x*WorldPhysics.BOX2D_SCALE, y*WorldPhysics.BOX2D_SCALE);
-        def.type = BodyType.DynamicBody;
+        def = new BodyDef();
+        def.position.set(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE);
+        setBodyType(); // May call method in subclass
         body = worldPhysics.createBody(def);
-        FixtureDef fdef = new FixtureDef();
+        fdef = new FixtureDef();
+        setIsSensor(); // call method in subclass
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
-        body.createFixture(fdef);
+        body.createFixture(fdef).setUserData(userdata);
     }
+
+    // Sub class may override this method
+    protected void setBodyType() {
+        def.type = BodyType.DynamicBody;
+    }
+    protected void setIsSensor() {fdef.isSensor = false;}
 
     @Override
     public void setVelocity(float x, float y) {
         // x & y is meters per second. Not pixels.
         body.setLinearVelocity(x, y);
+    }
+
+    @Override
+    public void setDampening(float dampening) {
+        body.setLinearDamping(dampening);
     }
 
     @Override
@@ -46,12 +60,22 @@ public class EntityBody implements IEntityBody {
 
     @Override
     public float getVelocityX() {
-        return 0;
+        return body.getLinearVelocity().x;
     }
 
     @Override
     public float getVelocityY() {
-        return 0;
+        return body.getLinearVelocity().y;
+    }
+
+    @Override
+    public Body getBody() {
+        return body;
+    }
+
+    @Override
+    public FixtureDef getFdef() {
+        return null; // TODO: RETURN NULL ????
     }
 
     @Override

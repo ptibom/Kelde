@@ -1,10 +1,9 @@
 package se.computerscience.kelde.model.entities;
 
-import com.badlogic.gdx.math.Vector2;
-import se.computerscience.kelde.model.encapsulation.box2d.EntityBody;
-import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.model.encapsulation.box2d.IEntityBody;
 import se.computerscience.kelde.model.Heading;
+import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
+import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
 import java.util.Random;
 
@@ -22,13 +21,13 @@ public class EntityBat {
     private boolean ALIVE = true;
     private static final int LOOT = 15;
     private float elapsedTime = 0;
-    private final IEntityBody entityBody;
+    private final IPhysicalBody entityBody;
     private final Random random;
     private Heading direction;
 
     //Constructor
     public EntityBat(float x, float y, IB2DWorld ib2DWorld){
-        entityBody = new EntityBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld);
+        entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
     }
 
@@ -71,8 +70,9 @@ public class EntityBat {
     }
 
     public Heading getHeading() {
-        Vector2 angle = entityBody.getLinearVelocity();
-        float degree = (float)Math.toDegrees(Math.atan2(angle.x, angle.y));
+        float x = entityBody.getVelocityX();
+        float y = entityBody.getVelocityY();
+        float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
         } else if(degree <= -135.0f || degree >= 135.0f) {

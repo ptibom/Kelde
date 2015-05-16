@@ -10,15 +10,26 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityEye;
+import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.worldobjects.Barrel;
+import se.computerscience.kelde.model.worldobjects.Door;
+import se.computerscience.kelde.model.worldobjects.Treasure;
 
 public class GameWorld {
+
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
     private final EntityBat entityBat;
     private final EntityEye entityEye;
+    private final EntityGhost entityGhost;
+
+    private final Barrel barrel;
+    private final Treasure treasure;
+    private final Treasure treasure2;
+    private final Door door;
 
     private IMap map;
     private ICamera camera;
@@ -27,9 +38,16 @@ public class GameWorld {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld());
+
+        // objects in the gameworld, init each obj with position
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
+        barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70,3);
+        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70,3);
+        door = new Door(worldPhysics.getIb2DWorld(),20,100);
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
+        entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
@@ -59,9 +77,27 @@ public class GameWorld {
         return entityPlayerKelde;
     }
 
+    public Barrel getBarrel() {
+        return barrel;
+    }
+
+    public Treasure getTreasure() {
+        return treasure;
+    }
+
+    public Treasure getTreasure2() {
+        return treasure2;
+    }
+
+    public Door getDoor() {
+        return door;
+    }
+
     public EntityBat getEntityBat() {
         return entityBat;
     }
 
     public EntityEye getEntityEye() { return entityEye; }
+
+    public EntityGhost getEntityGhost() { return entityGhost; }
 }

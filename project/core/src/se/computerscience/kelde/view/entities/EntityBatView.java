@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.Heading;
+import se.computerscience.kelde.model.entities.EntityBat;
 
 /**
  * Created by Anders on 2015-04-06.
@@ -47,7 +47,7 @@ public class EntityBatView {
 
     public void draw(Batch batch) {
         Heading direction = entityBat.getHeading();
-        if(direction == Heading.EAST) {
+        if(direction == Heading.EAST) { // TODO: Change as in KeldeView
             animation = animationE;
         } else if(direction == Heading.NORTH) {
             animation = animationN;

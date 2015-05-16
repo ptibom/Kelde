@@ -8,10 +8,11 @@ import com.badlogic.gdx.Game;
 import se.computerscience.kelde.screens.GameScreen;
 
 public class KeldeGame extends Game {
-
+	GameScreen gameScreen;
 	/** Called when application is created */
 	@Override
 	public void create () {
+		gameScreen = new GameScreen();
 		setScreen(new GameScreen());
 	}
 }

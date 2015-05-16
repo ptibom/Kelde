@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="cabinets" tilewidth="32" tileheight="32">
+  <image source="cabinets.png" width="192" height="416"/>
+ </tileset>
+ <tileset firstgid="79" name="castlefloors" tilewidth="32" tileheight="32">
+  <image source="castlefloors.png" width="320" height="320"/>
+ </tileset>
+ <layer name="floor" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyLYmBgiKYSjgHiFCBOpRJOGzVv1LxR84a0eXlAnE8lXADEAPmidl0=
+  </data>
+ </layer>
+ <layer name="obj" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzti0EKgDAMBIvtQT3YgoiIiIj//6MbSCCUQEQ8eHBhCNlMYgihAYlnBDMYq37iW8P3pNyovA60oOdJ+waWql+Vu3Evbqe8DAZQeNJ+gr3qD+We3Iublfd2JoOnf8RqcCfWH3EY3In1RyQHiecJvYPE84TiIPG82v/zjVxmjQjI
+  </data>
+ </layer>
+</map>
