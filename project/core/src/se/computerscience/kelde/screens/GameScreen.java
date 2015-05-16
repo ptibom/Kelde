@@ -16,8 +16,6 @@ import se.computerscience.kelde.controller.gameworld.LavaWorldController;
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
     private LavaWorldController lavaWorldController;
-    private ScreenChanger screenChanger = ScreenChanger.getInstance();
-
     @Override
     public void show() {
         // Initialises objects, like a constructor
@@ -34,11 +32,12 @@ public class GameScreen implements Screen {
 
 
         // Render the world based om woth screen is set.
-        if (screenChanger.getCurrentScreen().equals("Game"))
-            gameWorldController.render(delta);
-        if (screenChanger.getCurrentScreen().equals("Lava"))
-            lavaWorldController.render(delta);
 
+        if (ScreenChanger.INSTANCE.getScreen().equals("Game")){
+            gameWorldController.render(delta);
+        }else if (ScreenChanger.INSTANCE.getScreen().equals("Lava")){
+            lavaWorldController.render(delta);
+        }
     }
     @Override
     public void resize(int width, int height) {

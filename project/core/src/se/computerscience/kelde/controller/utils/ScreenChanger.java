@@ -1,20 +1,14 @@
 package se.computerscience.kelde.controller.utils;
 
-public class ScreenChanger {
-    private static ScreenChanger ourInstance = new ScreenChanger();
+public enum ScreenChanger {
+    INSTANCE;
+    private String screen = "Game";
 
-    public static ScreenChanger getInstance() {
-        return ourInstance;
-    }
-    private String currentScreen = "Game";
-    private ScreenChanger() {
+    public String getScreen() {
+        return screen;
     }
 
-    public String getCurrentScreen() {
-        return currentScreen;
-    }
-
-    public void setCurrentScreen(String currentScreen) {
-        this.currentScreen = currentScreen;
+    public void setScreen(String screen) {
+        this.screen = screen;
     }
 }

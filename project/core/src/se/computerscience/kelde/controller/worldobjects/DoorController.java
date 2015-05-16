@@ -15,7 +15,6 @@ import se.computerscience.kelde.view.worldobjects.DoorView;
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
     Door door;
     DoorView doorView;
-    private ScreenChanger screenChanger = ScreenChanger.getInstance();
 
     public DoorController(Door door, DoorView doorView) {
         this.door = door;
@@ -33,10 +32,10 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
         if (event.getObject() != door) {
             return;
         }
-        if (screenChanger.getCurrentScreen().equals("Game")){
-            screenChanger.setCurrentScreen("Lava");
+        if (ScreenChanger.INSTANCE.getScreen().equals("Game")){
+            ScreenChanger.INSTANCE.setScreen("Lava");
         }else {
-            screenChanger.setCurrentScreen("Game");
+            ScreenChanger.INSTANCE.setScreen("Game");
         }
     }
 }
