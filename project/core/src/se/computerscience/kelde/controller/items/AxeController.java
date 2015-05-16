@@ -8,11 +8,10 @@ package se.computerscience.kelde.controller.items;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
-import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.view.items.AxeView;
 
-public class AxeController implements IWorldObjectsController, IItemController, ICollisionEventHandler{
+public class AxeController implements IItemController, ICollisionEventHandler{
     Axe axe;
     AxeView axeView;
     private boolean picked = false;
@@ -38,7 +37,6 @@ public class AxeController implements IWorldObjectsController, IItemController, 
         this.picked = picked;
     }
 
-    @Override
     public void update(float delta) {
         if (axe.isVisible()){
             if (!this.isPicked()){

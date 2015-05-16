@@ -13,7 +13,7 @@ import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.view.items.SwordView;
 
 
-public class SwordController implements IWorldObjectsController, IItemController, ICollisionEventHandler {
+public class SwordController implements IItemController, ICollisionEventHandler {
     Sword sword;
     SwordView swordView;
     private boolean picked = false;
@@ -43,8 +43,7 @@ public class SwordController implements IWorldObjectsController, IItemController
     public void setPicked(boolean picked) {
         this.picked = picked;
     }
-
-    @Override
+    
     public void update(float delta) {
         if (sword.isVisible()) {
             if (!this.isPicked()) {
