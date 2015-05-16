@@ -14,10 +14,12 @@ import se.computerscience.kelde.view.worldobjects.BombView;
 public class BombController implements  IWorldObjectsController, ICollisionEventHandler{
     private Bomb bomb;
     private BombView bombView;
+    private BombAreaController bombAreaController;
 
     public BombController(Bomb bomb, BombView bombView) {
         this.bomb = bomb;
         this.bombView = bombView;
+        bombAreaController = new BombAreaController(bomb.getBombArea());
         CollisionEventBus.INSTANCE.register(this);
     }
 
@@ -26,6 +28,7 @@ public class BombController implements  IWorldObjectsController, ICollisionEvent
         if (bomb.isDetonate()){
             bombView.update(delta);
         }
+        bombAreaController.updatePos(bomb.getPositionX(),bomb.getPositionY());
     }
 
     @Override
@@ -34,5 +37,9 @@ public class BombController implements  IWorldObjectsController, ICollisionEvent
             return;
         }
         bomb.setDetonate(true);
+        bombAreaController.setBlow(true);
+    }
+    public void dispose() {
+        CollisionEventBus.INSTANCE.unregister(this);
     }
 }

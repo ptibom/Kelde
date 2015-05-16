@@ -44,5 +44,6 @@ public class BombView implements IWorldObjectView {
         this.delta = 0;
         this.elapsedTime  = 0;
         bomb.destroy();
+        bomb.getBombArea().destroy();
     }
 }

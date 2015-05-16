@@ -63,7 +63,6 @@ public class SwordController implements IItemController, ICollisionEventHandler 
         }
         if (sword.isVisible()) {
             sword.setPicked(true);
-            //sword.destroy();
         }
     }
 

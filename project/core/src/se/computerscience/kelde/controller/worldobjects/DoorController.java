@@ -38,4 +38,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
             ScreenChanger.INSTANCE.setScreen("Game");
         }
     }
+    public void dispose() {
+        CollisionEventBus.INSTANCE.unregister(this);
+    }
 }
