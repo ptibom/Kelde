@@ -29,10 +29,6 @@ public class GameWorldController {
     private final BarrelController barrelController;
     private final TreasureController treasureController;
     private final TreasureController treasureController2;
-    private final AxeController axeController;
-    private final AxeController axeController2;
-    private final SwordController swordController;
-    private final SwordController swordController2;
     private final DoorController doorController;
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
@@ -51,12 +47,6 @@ public class GameWorldController {
         barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
         treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
-
-        axeController = new AxeController(gameWorld.getTreasure().getAxe(), gameWorldView.getAxeView());
-        axeController2 = new AxeController(gameWorld.getTreasure2().getAxe(), gameWorldView.getAxeView2());
-        swordController = new SwordController(gameWorld.getTreasure().getSword(), gameWorldView.getSwordView());
-        swordController2 = new SwordController(gameWorld.getTreasure2().getSword(), gameWorldView.getSwordView2());
-
         doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
 
         bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
@@ -64,11 +54,7 @@ public class GameWorldController {
         worldObjList.add(treasureController);
         worldObjList.add(entityPlayerKeldeController);
         worldObjList.add(treasureController2);
-        worldObjList.add(axeController);
-        worldObjList.add(axeController2);
-        worldObjList.add(swordController);
-        worldObjList.add(doorController);
-        worldObjList.add(swordController2);
+        worldObjList.add(doorController);;
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 

@@ -8,21 +8,28 @@ package se.computerscience.kelde.controller.worldobjects;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+import se.computerscience.kelde.controller.items.AxeController;
+import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.view.worldobjects.TreasureView;
 
 public class TreasureController implements IWorldObjectsController, ICollisionEventHandler {
-    Treasure treasure;
-    TreasureView treasureView;
-
+    private Treasure treasure;
+    private TreasureView treasureView;
+    private SwordController swordController;
+    private AxeController axeController;
     public TreasureController(Treasure treasure, TreasureView treasureView) {
         this.treasure = treasure;
         this.treasureView = treasureView;
         CollisionEventBus.INSTANCE.register(this);
+        swordController = new SwordController(treasure.getSword(),treasureView.getSwordView());
+        axeController = new AxeController(treasure.getAxe(),treasureView.getAxeView());
     }
 
     public void update(float delta) {
         treasureView.update(delta);
+        swordController.update(delta);
+        axeController.update(delta);
     }
 
     @Override

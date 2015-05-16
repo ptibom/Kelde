@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.worldobjects.Treasure;
+import se.computerscience.kelde.view.items.AxeView;
+import se.computerscience.kelde.view.items.SwordView;
+
 /**
  * Description:
  *
@@ -19,6 +22,8 @@ public class TreasureView implements IWorldObjectView {
     private final Sprite SPRITE_OPENED;
     private final Sprite SPRITE_CLOSED;
 
+    private SwordView swordView;
+    private AxeView axeView;
     public TreasureView(Treasure treasure) {
         this.treasure = treasure;
         texture = new Texture(SPRITE_LOCATION1);
@@ -26,6 +31,8 @@ public class TreasureView implements IWorldObjectView {
         SPRITE_CLOSED = new Sprite(new Texture(SPRITE_LOCATION2), 30, 32);
         SPRITE_OPENED = new Sprite(new Texture(SPRITE_LOCATION1), 30, 32);
 
+        swordView = new SwordView(treasure.getSword());
+        axeView = new AxeView(treasure.getAxe());
     }
 
     public void update(float delta) {
@@ -41,5 +48,20 @@ public class TreasureView implements IWorldObjectView {
     public void draw (SpriteBatch batch) {
         sprite.setPosition(treasure.getPositionX(), treasure.getPositionY());
         sprite.draw(batch);
+
+        if (swordView.isVisble()){
+            swordView.draw(batch);
+        }
+        if (axeView.isVisble()){
+            axeView.draw(batch);
+        }
+    }
+
+    public SwordView getSwordView() {
+        return swordView;
+    }
+
+    public AxeView getAxeView() {
+        return axeView;
     }
 }

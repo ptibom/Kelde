@@ -14,6 +14,7 @@ import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
+import se.computerscience.kelde.model.worldobjects.Treasure;
 
 public class LavaWorld {
 
@@ -25,7 +26,7 @@ public class LavaWorld {
     private final Bomb bomb;
     private IMap map;
     private ICamera camera;
-
+    private Treasure treasure;
     public LavaWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
@@ -33,7 +34,8 @@ public class LavaWorld {
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,100);
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
-        bomb = new Bomb(worldPhysics.getIb2DWorld(), 300,300);
+        bomb = new Bomb(worldPhysics.getIb2DWorld(), 370,300);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,300);
 
     }
 
@@ -74,5 +76,9 @@ public class LavaWorld {
 
     public Bomb getBomb() {
         return bomb;
+    }
+
+    public Treasure getTreasure() {
+        return treasure;
     }
 }

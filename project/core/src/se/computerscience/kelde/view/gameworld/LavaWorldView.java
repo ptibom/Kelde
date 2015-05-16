@@ -10,10 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
-import se.computerscience.kelde.view.worldobjects.BombView;
-import se.computerscience.kelde.view.worldobjects.DoorView;
-import se.computerscience.kelde.view.worldobjects.LavaRingView;
-import se.computerscience.kelde.view.worldobjects.LavaSplashView;
+import se.computerscience.kelde.view.worldobjects.*;
 
 public class LavaWorldView {
 
@@ -28,6 +25,7 @@ public class LavaWorldView {
     private final LavaRingView lavaRingView;
     private final LavaSplashView[] lavaSplashView;
     private final BombView bombView;
+    private final TreasureView treasureView;
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -40,6 +38,9 @@ public class LavaWorldView {
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
         lavaSplashView = new LavaSplashView[lavaWorld.getLavaRing().getLavaSplash().length];
         bombView = new BombView(lavaWorld.getBomb());
+
+        treasureView = new TreasureView(lavaWorld.getTreasure());
+
         for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length ; i++) {
             lavaSplashView[i] = new LavaSplashView(lavaWorld.getLavaRing().getLavaSplash()[i]);
         }
@@ -56,6 +57,7 @@ public class LavaWorldView {
         for (int i = 0; i < lavaWorld.getLavaRing().getLavaSplash().length; i++) {
             lavaSplashView[i].draw(batch);
         }
+        treasureView.draw(batch);
         lavaRingView.draw(batch);
         bombView.draw(batch);
         entityPlayerKeldeView.draw(batch);
@@ -94,5 +96,9 @@ public class LavaWorldView {
 
     public BombView getBombView() {
         return bombView;
+    }
+
+    public TreasureView getTreasureView() {
+        return treasureView;
     }
 }
