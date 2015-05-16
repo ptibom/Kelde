@@ -24,7 +24,7 @@ public enum CollisionEventBus {
         handlers.remove(handler);
     }
 
-    public void publish(CollisionEvent event) { // No need for Event-Tags. We want to reduce uses of "new" in game-loop.
+    public void publish(CollisionEvent event) {
         for (ICollisionEventHandler handler : handlers) {
             handler.onCollisionEvent(event);
         }
