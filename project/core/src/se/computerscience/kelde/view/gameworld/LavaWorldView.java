@@ -83,11 +83,9 @@ public class LavaWorldView {
     public LavaRingView getLavaRingView() {
         return lavaRingView;
     }
-
     public BombView getBombView() {
         return bombView;
     }
-
     public TreasureView getTreasureView() {
         return treasureView;
     }

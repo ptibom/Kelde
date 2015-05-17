@@ -16,7 +16,7 @@ public class SwordView implements IItemView {
     private final Texture texture;
     private final int WIDTH = 29, HEIGHT = 29;
     private final String SPRITE_LOCATION = "sword_1.png";
-    private boolean visble = false;
+    private boolean visible = false;
 
     public SwordView(Sword sword) {
         this.sword = sword;
@@ -32,11 +32,11 @@ public class SwordView implements IItemView {
         }
     }
     @Override
-    public boolean isVisble() {
-        return visble;
+    public boolean isVisible() {
+        return visible;
     }
     @Override
-    public void setVisble(boolean visble) {
-        this.visble = visble;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

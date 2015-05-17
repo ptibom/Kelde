@@ -40,7 +40,7 @@ public class TreasureController implements IWorldObjectsController, ICollisionEv
         // Contact start
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
             treasure.setIsOpen(true);
-            treasure.setVisble();
+            treasure.setVisible();
         }
         // Contact end
         else if (event.getTag() == CollisionEvent.Tag.END) {

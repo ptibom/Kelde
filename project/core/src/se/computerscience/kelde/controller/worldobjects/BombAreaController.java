@@ -35,7 +35,7 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
         CollisionEventBus.INSTANCE.unregister(this);
     }
     public void updatePos(float x, float y){
-        bombArea.updatePos(x, y);
+        bombArea.updatePos(x + 10, y+15);
     }
 
     public void setBlow(boolean blow) {

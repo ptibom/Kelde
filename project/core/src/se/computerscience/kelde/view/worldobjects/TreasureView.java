@@ -49,10 +49,10 @@ public class TreasureView implements IWorldObjectView {
         sprite.setPosition(treasure.getPositionX(), treasure.getPositionY());
         sprite.draw(batch);
 
-        if (swordView.isVisble()){
+        if (swordView.isVisible()){
             swordView.draw(batch);
         }
-        if (axeView.isVisble()){
+        if (axeView.isVisible()){
             axeView.draw(batch);
         }
     }

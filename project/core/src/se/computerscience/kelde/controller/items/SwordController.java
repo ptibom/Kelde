@@ -14,8 +14,8 @@ import se.computerscience.kelde.view.items.SwordView;
 
 
 public class SwordController implements IItemController, ICollisionEventHandler {
-    Sword sword;
-    SwordView swordView;
+    private Sword sword;
+    private SwordView swordView;
     private boolean picked = false;
 
     public SwordController(Sword sword, SwordView swordView) {
@@ -25,13 +25,13 @@ public class SwordController implements IItemController, ICollisionEventHandler 
     }
 
     @Override
-    public void setVisble(boolean visble) {
-        swordView.setVisble(visble);
+    public void setVisible(boolean visble) {
+        swordView.setVisible(visble);
     }
 
     @Override
-    public boolean isVisble() {
-        return swordView.isVisble();
+    public boolean isVisible() {
+        return swordView.isVisible();
     }
 
     @Override
@@ -47,12 +47,12 @@ public class SwordController implements IItemController, ICollisionEventHandler 
     public void update(float delta) {
         if (sword.isVisible()) {
             if (!this.isPicked()) {
-                this.setVisble(true);
+                this.setVisible(true);
             }
         }
         if (sword.isPicked()) {
             this.setPicked(true);
-            this.setVisble(false);
+            this.setVisible(false);
         }
     }
 

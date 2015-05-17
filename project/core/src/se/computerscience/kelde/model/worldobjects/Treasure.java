@@ -19,10 +19,10 @@ public class Treasure implements IWorldObjects {
     private final float BODY_WIDTH = 16;
     private final float BODY_HEIGHT = 16;
     private boolean isOpen = false;
-    private final Sword sword; // set to final
+    private final Sword sword;
     private final Axe axe;
     Random random = new Random();
-    IPhysicalBody entityBody;
+    private IPhysicalBody entityBody;
 
     public Treasure(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodyStatic(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);       // init the drop inside the treasure
@@ -48,7 +48,7 @@ public class Treasure implements IWorldObjects {
         return entityBody.getPositionX() - BODY_WIDTH;
     }
 
-    public void setVisble() {
+    public void setVisible() {
         sword.setVisible(true);
         axe.setVisible(true);
     }

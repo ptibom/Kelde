@@ -12,8 +12,8 @@ import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.view.items.AxeView;
 
 public class AxeController implements IItemController, ICollisionEventHandler{
-    Axe axe;
-    AxeView axeView;
+    private Axe axe;
+    private AxeView axeView;
     private boolean picked = false;
     public AxeController(Axe axe, AxeView axeView) {
         this.axe = axe;
@@ -21,12 +21,12 @@ public class AxeController implements IItemController, ICollisionEventHandler{
         CollisionEventBus.INSTANCE.register(this);
     }
     @Override
-    public void setVisble(boolean visble){
-        axeView.setVisble(visble);
+    public void setVisible(boolean visible){
+        axeView.setVisible(visible);
     }
     @Override
-    public boolean isVisble() {
-        return axeView.isVisble();
+    public boolean isVisible() {
+        return axeView.isVisible();
     }
     @Override
     public boolean isPicked() {
@@ -40,12 +40,12 @@ public class AxeController implements IItemController, ICollisionEventHandler{
     public void update(float delta) {
         if (axe.isVisible()){
             if (!this.isPicked()){
-                this.setVisble(true);
+                this.setVisible(true);
             }
         }
         if (axe.isPicked()){
             this.setPicked(true);
-            this.setVisble(false);
+            this.setVisible(false);
         }
     }
 
