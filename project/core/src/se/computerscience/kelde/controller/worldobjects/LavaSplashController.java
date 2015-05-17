@@ -55,7 +55,6 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
             velocityControl.y += y;
             lavaSplash.setVelocity(velocityControl.x, velocityControl.y);
             if (lavaSplash.getPositionX() > 400 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 400 || lavaSplash.getPositionY() < 0){
-                System.out.println("returning");
                 lavaSplash.setPosition(startPosX,startPosY);
                 lavaOn = false;
             }

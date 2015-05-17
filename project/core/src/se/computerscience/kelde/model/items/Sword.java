@@ -17,8 +17,8 @@ public class Sword implements  IItems {
     private final int DAMAGE = 10;
     private boolean visible;
     private boolean picked;
+    private IPhysicalBody entityBody;
 
-    IPhysicalBody entityBody;
     public Sword(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
     }

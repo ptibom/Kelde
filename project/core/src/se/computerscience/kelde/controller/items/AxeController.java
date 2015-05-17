@@ -5,47 +5,24 @@
  */
 package se.computerscience.kelde.controller.items;
 
-import se.computerscience.kelde.controller.events.CollisionEvent;
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.view.items.AxeView;
 
-public class AxeController implements IItemController, ICollisionEventHandler{
+public class AxeController implements IItemController, ICollisionEventHandler, IItemEventHandler{
     private Axe axe;
     private AxeView axeView;
-    private boolean picked = false;
+    private boolean destroyed = false;
     public AxeController(Axe axe, AxeView axeView) {
         this.axe = axe;
         this.axeView = axeView;
         CollisionEventBus.INSTANCE.register(this);
+        ItemEventBus.INSTANCE.register(this);
     }
-    @Override
-    public void setVisible(boolean visible){
-        axeView.setVisible(visible);
-    }
-    @Override
-    public boolean isVisible() {
-        return axeView.isVisible();
-    }
-    @Override
-    public boolean isPicked() {
-        return picked;
-    }
-    @Override
-    public void setPicked(boolean picked) {
-        this.picked = picked;
-    }
-
     public void update(float delta) {
-        if (axe.isVisible()){
-            if (!this.isPicked()){
-                this.setVisible(true);
-            }
-        }
-        if (axe.isPicked()){
-            this.setPicked(true);
-            this.setVisible(false);
+        if (destroyed){
+            axe.destroy();
+            destroyed = false;
         }
     }
 
@@ -56,10 +33,19 @@ public class AxeController implements IItemController, ICollisionEventHandler{
         }
         if (axe.isVisible()) {
             axe.setPicked(true);
+            destroyed = true;
         }
     }
 
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);
+    }
+
+    @Override
+    public void onEvent(ItemEvent event) {
+        if (event.getObject() != axe){
+            return;
+        }
+        axe.setVisible(true);
     }
 }

@@ -16,7 +16,6 @@ public class SwordView implements IItemView {
     private final Texture texture;
     private final int WIDTH = 29, HEIGHT = 29;
     private final String SPRITE_LOCATION = "sword_1.png";
-    private boolean visible = false;
 
     public SwordView(Sword sword) {
         this.sword = sword;
@@ -26,17 +25,8 @@ public class SwordView implements IItemView {
     @Override
     public void draw (SpriteBatch batch) {
         sprite.setPosition(sword.getPositionX(), sword.getPositionY());
-        sprite.draw(batch);
-        if (sword.isPicked()){
-            sword.destroy();
+        if (sword.isVisible() && !sword.isPicked()) {
+            sprite.draw(batch);
         }
-    }
-    @Override
-    public boolean isVisible() {
-        return visible;
-    }
-    @Override
-    public void setVisible(boolean visible) {
-        this.visible = visible;
     }
 }

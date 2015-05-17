@@ -48,11 +48,6 @@ public class Treasure implements IWorldObjects {
         return entityBody.getPositionX() - BODY_WIDTH;
     }
 
-    public void setVisible() {
-        sword.setVisible(true);
-        axe.setVisible(true);
-    }
-
     public Sword getSword() {
         return sword;
     }

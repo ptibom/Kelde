@@ -5,7 +5,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
- * Description: An axe-item, used by player to damage enemies.
+ * Description: An axe-item, makes damage.
  *
  * @author: Hossein Hussain
  */
@@ -17,8 +17,7 @@ public class Axe implements IItems {
     private final int DAMAGE = 10;
     private boolean visible;
     private boolean picked;
-
-    IPhysicalBody entityBody;
+    private IPhysicalBody entityBody;
 
     public Axe(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);

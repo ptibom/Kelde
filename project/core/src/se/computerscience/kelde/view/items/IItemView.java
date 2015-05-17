@@ -9,6 +9,4 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public interface IItemView {
     public void draw (SpriteBatch batch);
-    public boolean isVisible();
-    public void setVisible(boolean visible);
 }
