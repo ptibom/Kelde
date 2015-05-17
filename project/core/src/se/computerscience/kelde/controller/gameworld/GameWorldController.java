@@ -5,11 +5,8 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import se.computerscience.kelde.controller.entities.EntityGhostController;
+import se.computerscience.kelde.controller.entities.*;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
-import se.computerscience.kelde.controller.entities.EntityBatController;
-import se.computerscience.kelde.controller.entities.EntityEyeController;
-import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
@@ -44,6 +41,11 @@ public class GameWorldController {
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
 
+    private List<EntityArrowController> keldeArrowList = new ArrayList<>();
+    private final EntityArrowController entityArrowController1;
+    private final EntityArrowController entityArrowController2;
+    private final EntityArrowController entityArrowController3;
+
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -62,6 +64,14 @@ public class GameWorldController {
 
         doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
 
+        entityArrowController1 = new EntityArrowController(gameWorld.getEntityArrow1(), gameWorldView.getEntityArrowView1());
+        entityArrowController2 = new EntityArrowController(gameWorld.getEntityArrow2(), gameWorldView.getEntityArrowView2());
+        entityArrowController3 = new EntityArrowController(gameWorld.getEntityArrow3(), gameWorldView.getEntityArrowView3());
+
+        keldeArrowList.add(entityArrowController1);
+        keldeArrowList.add(entityArrowController2);
+        keldeArrowList.add(entityArrowController3);
+
         worldObjList.add(barrelController);
         worldObjList.add(treasureController);
         worldObjList.add(entityPlayerKeldeController);
@@ -71,6 +81,7 @@ public class GameWorldController {
         worldObjList.add(swordController);
         worldObjList.add(doorController);
         worldObjList.add(swordController2);
+
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
@@ -84,6 +95,11 @@ public class GameWorldController {
         for (IWorldObjectsController worldObj : worldObjList) {
             worldObj.update(delta);
         }
+
+        for(EntityArrowController arrow : keldeArrowList) {
+            arrow.update(delta, gameWorldView.getEntityPlayerKeldeView().getPositionX(), gameWorldView.getEntityPlayerKeldeView().getPositionY());
+        }
+
         entityBatController.update(delta);
         entityEyeController.update(delta);
         entityGhostController.update(delta);
@@ -107,6 +123,9 @@ public class GameWorldController {
     }
 
     public void setKeyDown(int keycode) {
+        for(EntityArrowController arrow : keldeArrowList) {
+            arrow.setKeyDown(keycode);
+        }
         entityPlayerKeldeController.setKeyDown(keycode);
     }
 

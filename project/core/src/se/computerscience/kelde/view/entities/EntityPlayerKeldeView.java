@@ -146,4 +146,12 @@ public class EntityPlayerKeldeView {
         Animation animationWalkEast = new Animation(0.07f, keldeWalkEast.getRegions());
         walkAnimation[EAST] = animationWalkEast;
     }
+
+    public float getPositionX() {
+        return entityPlayerKelde.getPositionX();
+    }
+
+    public float getPositionY() {
+        return entityPlayerKelde.getPositionY();
+    }
 }

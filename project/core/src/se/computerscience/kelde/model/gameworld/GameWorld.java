@@ -8,10 +8,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
-import se.computerscience.kelde.model.entities.EntityBat;
-import se.computerscience.kelde.model.entities.EntityEye;
-import se.computerscience.kelde.model.entities.EntityGhost;
-import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.entities.*;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
 import se.computerscience.kelde.model.worldobjects.Door;
@@ -25,6 +22,7 @@ public class GameWorld {
     private final EntityBat entityBat;
     private final EntityEye entityEye;
     private final EntityGhost entityGhost;
+    private final EntityArrow entityArrow1,entityArrow2,entityArrow3;
 
     private final Barrel barrel;
     private final Treasure treasure;
@@ -48,6 +46,9 @@ public class GameWorld {
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
         entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
+        entityArrow1 = new EntityArrow(300f,100f, worldPhysics.getIb2DWorld());
+        entityArrow2 = new EntityArrow(300f,200f, worldPhysics.getIb2DWorld());
+        entityArrow3 = new EntityArrow(300f,150f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
@@ -100,4 +101,17 @@ public class GameWorld {
     public EntityEye getEntityEye() { return entityEye; }
 
     public EntityGhost getEntityGhost() { return entityGhost; }
+
+    public EntityArrow getEntityArrow1() {
+        return entityArrow1;
+    }
+
+    public EntityArrow getEntityArrow2() {
+        return entityArrow2;
+    }
+
+
+    public EntityArrow getEntityArrow3() {
+        return entityArrow3;
+    }
 }

@@ -86,4 +86,8 @@ public class PhysicalBody implements IPhysicalBody {
     public Vector2 getLinearVelocity() {
         return body.getLinearVelocity();
     }
+
+    public void setPosition(float x, float y) {
+        body.setTransform(x, y, 0f);
+    }
 }

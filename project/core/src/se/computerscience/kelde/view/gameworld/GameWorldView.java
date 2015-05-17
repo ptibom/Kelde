@@ -8,10 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-import se.computerscience.kelde.view.entities.EntityBatView;
-import se.computerscience.kelde.view.entities.EntityEyeView;
-import se.computerscience.kelde.view.entities.EntityGhostView;
-import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
+import se.computerscience.kelde.view.entities.*;
 import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
@@ -38,6 +35,7 @@ public class GameWorldView {
     private final SwordView swordView;
     private final SwordView swordView2;
     private final DoorView doorView;
+    private final EntityArrowView entityArrowView1,entityArrowView2, entityArrowView3;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -60,6 +58,11 @@ public class GameWorldView {
         entityBatView = new EntityBatView(gameWorld.getEntityBat());
         entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
         entityGhostView = new EntityGhostView(gameWorld.getEntityGhost());
+        
+        entityArrowView1 = new EntityArrowView(gameWorld.getEntityArrow1());
+        entityArrowView2 = new EntityArrowView(gameWorld.getEntityArrow2());
+        entityArrowView3 = new EntityArrowView(gameWorld.getEntityArrow3());
+        
     }
 
     public void render(float delta) {
@@ -90,6 +93,10 @@ public class GameWorldView {
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         entityGhostView.draw(batch);
+
+        entityArrowView1.draw(batch);
+        entityArrowView2.draw(batch);
+        entityArrowView3.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -147,4 +154,16 @@ public class GameWorldView {
     }
 
     public EntityGhostView getEntityGhostView() { return entityGhostView; }
+
+    public EntityArrowView getEntityArrowView1() {
+        return entityArrowView1;
+    }
+
+    public EntityArrowView getEntityArrowView2() {
+        return entityArrowView2;
+    }
+
+    public EntityArrowView getEntityArrowView3() {
+        return entityArrowView3;
+    }
 }

@@ -53,4 +53,8 @@ public class EntityArrowView {
     public void update(float delta) {
         elapsed_time += delta;
     }
+
+    public void setArrowStart(int x, int y) {
+        entityArrow.setPosition(x,y);
+    }
 }

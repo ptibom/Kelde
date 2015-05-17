@@ -20,4 +20,6 @@ public interface IPhysicalBody {
     public float getVelocityX();
     public float getVelocityY();
     public void setDampening(float dampening);
+
+    public void setPosition(float x, float y);
 }
