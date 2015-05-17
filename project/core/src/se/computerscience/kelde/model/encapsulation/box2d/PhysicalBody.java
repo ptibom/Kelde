@@ -88,6 +88,6 @@ public class PhysicalBody implements IPhysicalBody {
     }
 
     public void setPosition(float x, float y) {
-        body.setTransform(x, y, 0f);
+        body.setTransform(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE, 0f);
     }
 }
