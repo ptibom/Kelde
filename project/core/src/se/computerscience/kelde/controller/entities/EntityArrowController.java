@@ -22,6 +22,8 @@ public class EntityArrowController {
     }
 
     public void update(float delta, float x, float y) {
+        this.x = x;
+        this.y = y;
         entityArrowView.update(delta);
         entityArrow.update(delta, x, y);
     }

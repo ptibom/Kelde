@@ -103,6 +103,7 @@ public class GameWorldController {
         entityBatController.update(delta);
         entityEyeController.update(delta);
         entityGhostController.update(delta);
+        entityArrowController1.update(delta, gameWorld.getEntityPlayerKelde().getPositionX(), gameWorld.getEntityPlayerKelde().getPositionY());
 
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
