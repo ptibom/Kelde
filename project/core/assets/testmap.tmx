@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="13">
  <tileset firstgid="1" name="lava" tilewidth="32" tileheight="32">
   <image source="lava.png" width="96" height="192"/>
  </tileset>
@@ -37,12 +37,12 @@
  </layer>
  <layer name="walk area" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5QBKIpUjE0njMkwFiWRKx3Kh5o+ZRyTx5IFbAgkWhekWwyCniMY+Qu/G5ZdS8oWseLB0RkzYAiL8SLQ==
+   eJxjYBi5QBKIpUjE0njMkwFiWRKx3Kh5o+bR0DwRIBbFwibXPDkkcTksakbNo5158kCsgIYV0cxDV6OIxzxC9hCjFwCONhmW
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="9" type="object" x="104" y="120">
-   <polyline points="0,0 24,-16 408,-16 432,0 432,272 416,288 280,288 272,296 272,512 264,520 232,520 200,520 192,504 192,296 184,288 16,288 0,272 0,0"/>
+  <object id="10" type="object" x="120" y="104">
+   <polyline points="0,0 -16,16 -8,472 0,496 136,496 144,496 160,480 160,312 168,304 176,312 184,320 184,536 248,536 248,312 264,304 272,304 280,320 280,480 296,488 392,488 408,472 408,24 392,8 360,0 56,0 0,0"/>
   </object>
  </objectgroup>
 </map>

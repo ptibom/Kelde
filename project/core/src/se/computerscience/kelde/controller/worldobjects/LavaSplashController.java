@@ -21,8 +21,7 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
     private float x, y,startPosX,startPosY;
     private Random random = new Random();
     private boolean lavaOn = false;
-    final float maxt = 1f , mint = .6f; // the velocity range for the splash
-    final float maxf = -1f , minf = -.6f; // the velocity range for the splash
+    final float max_velocity = 0.2f , min_velocity = .05f; // the velocity range for the splash
     public LavaSplashController(LavaSplash lavaSplash, LavaSplashView lavaSplashView) {
         this.lavaSplash = lavaSplash;
         this.lavaSplashView = lavaSplashView;
@@ -30,14 +29,14 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
         CollisionEventBus.INSTANCE.register(this);
 
         if (random.nextBoolean()){
-            x = random.nextFloat() * (maxt - (mint)) + (mint);
+            x = random.nextFloat() * (max_velocity - (min_velocity)) + (min_velocity);
         }else {
-            x = random.nextFloat() * (minf - (maxf)) + (maxf);
+            x = random.nextFloat() * (min_velocity*-1 - (max_velocity*-1)) + (max_velocity*-1);
         }
         if (random.nextBoolean()){
-            y = random.nextFloat() * (maxt - (mint)) + (mint);
+            y = random.nextFloat() * (max_velocity - (min_velocity)) + (min_velocity);
         }else {
-            y = random.nextFloat() * (minf - (maxf)) + (maxf);
+            y = random.nextFloat() * (min_velocity*-1 - (max_velocity*-1)) + (max_velocity*-1);
         }
         startPosX = lavaSplash.getPositionX();
         startPosY = lavaSplash.getPositionY();
@@ -45,14 +44,18 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
 
     @Override
     public void update(float delta) {
+        /*
+        * max and min, is the intervall of the random, the higher the max is the less the chance it will execute.
+        * */
         int max = 1000;
         int min = 0;
-        if (((max + random.nextInt(max - min + 1)) == (max+ random.nextInt(max - min + 1)) || lavaOn )) {
+        if (((max + random.nextInt(max - min + 1)) == (max + random.nextInt(max - min + 1)) || lavaOn )) {
             lavaOn = true;
             velocityControl.x += x;
             velocityControl.y += y;
             lavaSplash.setVelocity(velocityControl.x, velocityControl.y);
             if (lavaSplash.getPositionX() > 400 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 400 || lavaSplash.getPositionY() < 0){
+                System.out.println("returning");
                 lavaSplash.setPosition(startPosX,startPosY);
                 lavaOn = false;
             }
