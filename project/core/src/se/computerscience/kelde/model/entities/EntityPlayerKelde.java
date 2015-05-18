@@ -4,6 +4,7 @@
 
 package se.computerscience.kelde.model.entities;
 
+import se.computerscience.kelde.model.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
@@ -13,6 +14,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     private static Boolean SLASH = false;
     private static Boolean ARROW = false;
     IPhysicalBody entityBody;
+    private Heading heading = Heading.NORTH;
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld,float startPosX,float startPosY) {
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld,this);
@@ -26,6 +28,15 @@ public class EntityPlayerKelde extends EntityPlayer {
     }
 
     public void setVelocity(float x, float y) {
+        if(x > 0 && y <= 0) {
+            heading = Heading.EAST;
+        } else if(x <= 0 && y > 0) {
+            heading = Heading.WEST;
+        } else if(x < 0 && y >= 0) {
+            heading = Heading.SOUTH;
+        } else if(x > 0 && y <= 0) {
+            heading = Heading.NORTH;
+        }
         entityBody.setVelocity(x, y);
     }
 
@@ -42,4 +53,5 @@ public class EntityPlayerKelde extends EntityPlayer {
     public Boolean getArrow() {
         return ARROW;
     }
+    public Heading getHeading() { return heading; }
 }

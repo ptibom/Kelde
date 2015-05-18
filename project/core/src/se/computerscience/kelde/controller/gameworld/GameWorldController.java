@@ -14,6 +14,7 @@ import se.computerscience.kelde.controller.worldobjects.BarrelController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.controller.worldobjects.TreasureController;
+import se.computerscience.kelde.model.Heading;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 
@@ -96,14 +97,15 @@ public class GameWorldController {
             worldObj.update(delta);
         }
 
-        for(EntityArrowController arrow : keldeArrowList) {
+       /* for(EntityArrowController arrow : keldeArrowList) {
             arrow.update(delta, gameWorldView.getEntityPlayerKeldeView().getPositionX(), gameWorldView.getEntityPlayerKeldeView().getPositionY());
-        }
+        } */
 
         entityBatController.update(delta);
         entityEyeController.update(delta);
         entityGhostController.update(delta);
-        entityArrowController1.update(delta, gameWorld.getEntityPlayerKelde().getPositionX(), gameWorld.getEntityPlayerKelde().getPositionY());
+        String  heading = gameWorld.getEntityPlayerKelde().getDirection();
+        entityArrowController1.update(delta, gameWorld.getEntityPlayerKelde().getPositionX(), gameWorld.getEntityPlayerKelde().getPositionY(), gameWorld.getEntityPlayerKelde().getHeading());
 
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);

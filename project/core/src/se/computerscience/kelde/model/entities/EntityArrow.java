@@ -25,20 +25,17 @@ public class EntityArrow {
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
     }
 
-    public void update(float delta, float x, float y) {
+    public void update(float delta, float x, float y, Heading heading) {
         elapsedTime += delta;
-        //float x = entityBody.getPositionX();
-        //float y = entityBody.getPositionY();
-        if(x > 0 && y > 0 && elapsedTime > 1f) {
-            Heading shotArrow = getHeading();
-            if(shotArrow == Heading.EAST) {
-                entityBody.setVelocity(0,2);
-            } else if(shotArrow == Heading.NORTH) {
-                entityBody.setVelocity(2,0);
-            } else if(shotArrow == Heading.SOUTH) {
-                entityBody.setVelocity(-2,0);
-            } else if(shotArrow == Heading.WEST) {
-                entityBody.setVelocity(0,-2);
+        if(x > 0 && y > 0 && elapsedTime > 0.5f) {
+            if(heading == Heading.EAST) {
+                entityBody.setVelocity(0,10);
+            } else if(heading == Heading.SOUTH) {
+                entityBody.setVelocity(10,0);
+            } else if(heading == Heading.NORTH) {
+                entityBody.setVelocity(-10,0);
+            } else if(heading == Heading.WEST) {
+                entityBody.setVelocity(0,-10);
             }
             elapsedTime = 0;
         }

@@ -2,6 +2,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import se.computerscience.kelde.model.Heading;
 import se.computerscience.kelde.model.entities.EntityArrow;
 import se.computerscience.kelde.view.entities.EntityArrowView;
 
@@ -14,18 +15,20 @@ public class EntityArrowController {
     private final EntityArrow entityArrow;
     private final EntityArrowView entityArrowView;
     private float x = 0f, y = 0f;
+    private Heading heading;
 
     //Constructor
     public EntityArrowController(EntityArrow entityArrow, EntityArrowView entityArrowView) {
         this.entityArrow = entityArrow;
         this.entityArrowView = entityArrowView;
+        heading = Heading.NORTH;
     }
 
-    public void update(float delta, float x, float y) {
+    public void update(float delta, float x, float y, Heading heading) {
         this.x = x;
         this.y = y;
         entityArrowView.update(delta);
-        entityArrow.update(delta, x, y);
+        entityArrow.update(delta, x, y, heading);
     }
 
     public void draw(SpriteBatch batch) {
