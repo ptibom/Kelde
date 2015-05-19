@@ -23,6 +23,7 @@ public class GameScreen implements Screen {
         lavaWorldController = new LavaWorldController();
         Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
+
     @Override
     public void render(float delta) {
         // Renders the scene, first clear it with black.

@@ -4,10 +4,13 @@
 
 package se.computerscience.kelde.model.items;
 
-public interface IItems {
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
+public interface IItem {
     public boolean isConsumable();
     public boolean isWeapon();
-    public float getPositionY();
-    public float getPositionX();
+    //public float getPositionY();
+    //public float getPositionX();
+    public Sprite getSprite();
 
 }

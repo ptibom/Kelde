@@ -32,10 +32,12 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
         if (event.getObject() != door) {
             return;
         }
-        if (ScreenChanger.INSTANCE.getScreen().equals("Game")){
-            ScreenChanger.INSTANCE.setScreen("Lava");
-        }else {
-            ScreenChanger.INSTANCE.setScreen("Game");
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
+            if (ScreenChanger.INSTANCE.getScreen().equals("Game")) {
+                ScreenChanger.INSTANCE.setScreen("Lava");
+            } else {
+                ScreenChanger.INSTANCE.setScreen("Game");
+            }
         }
     }
     public void dispose() {

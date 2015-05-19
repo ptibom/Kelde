@@ -6,11 +6,16 @@ package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import se.computerscience.kelde.controller.events.IItemEventHandler;
+import se.computerscience.kelde.controller.events.ItemEvent;
+import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.gameworld.GameWorld;
+import se.computerscience.kelde.model.items.ItemEntity;
 import se.computerscience.kelde.view.entities.EntityBatView;
 import se.computerscience.kelde.view.entities.EntityEyeView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.items.AxeView;
+import se.computerscience.kelde.view.items.ItemEntityView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.BarrelView;
@@ -18,7 +23,10 @@ import se.computerscience.kelde.view.worldobjects.BombView;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 import se.computerscience.kelde.view.worldobjects.TreasureView;
 
-public class GameWorldView {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameWorldView{
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final GameWorld gameWorld;
     private final SpriteBatch batch;
@@ -33,6 +41,7 @@ public class GameWorldView {
     private final TreasureView treasureView2;
     private final DoorView doorView;
     private final BombView bombView;
+    private List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -51,6 +60,7 @@ public class GameWorldView {
         entityBatView = new EntityBatView(gameWorld.getEntityBat());
         entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
         bombView = new BombView(gameWorld.getBomb());
+
     }
 
     public void render(float delta) {
@@ -69,6 +79,9 @@ public class GameWorldView {
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         bombView.draw(batch);
+        for (ItemEntityView itemView : itemEntityViews){
+            itemView.draw(batch);
+        }
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -106,7 +119,6 @@ public class GameWorldView {
         return doorView;
     }
 
-
     public EntityBatView getEntityBatView() {
         return entityBatView;
     }
@@ -118,4 +130,9 @@ public class GameWorldView {
     public BombView getBombView() {
         return bombView;
     }
+
+    public List<ItemEntityView> getItemEntityViews() {
+        return itemEntityViews;
+    }
+
 }

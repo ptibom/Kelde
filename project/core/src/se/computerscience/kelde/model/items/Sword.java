@@ -5,64 +5,33 @@
 
 package se.computerscience.kelde.model.items;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
-public class Sword implements  IItems {
+public class Sword implements IItem {
     private boolean isConsumable = false;
     private boolean isWeapon = true;
-    private final float BODY_WIDTH = 16;
-    private final float BODY_HEIGHT = 16;
-    private final int DAMAGE = 10;
-    private boolean visible;
-    private boolean picked;
-    private IPhysicalBody entityBody;
-
-    public Sword(IB2DWorld ib2DWorld, float x, float y) {
-        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
+    private final int damage = 10;
+    private Sprite sprite = new Sprite(new Texture("sword_1.png"),32,32);
+    public Sword() {
     }
 
-    @Override
-    public float getPositionY() {
-        return entityBody.getPositionY()-BODY_HEIGHT;
-    }
-    @Override
-    public float getPositionX() {
-        return entityBody.getPositionX()-BODY_WIDTH;
-    }
-
-    public int getDamage() {
-        return DAMAGE;
-    }
-
-    @Override
     public boolean isConsumable() {
         return isConsumable;
     }
 
-    @Override
     public boolean isWeapon() {
         return isWeapon;
     }
 
-    public boolean isVisible() {
-        return visible;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public boolean isPicked() {
-        return picked;
-    }
-
-    public void setPicked(boolean picked) {
-        this.picked = picked;
-    }
-
-    public void destroy(){
-        entityBody.destroy();
+    public Sprite getSprite() {
+        return sprite;
     }
 }

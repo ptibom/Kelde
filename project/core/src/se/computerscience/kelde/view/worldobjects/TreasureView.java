@@ -22,8 +22,8 @@ public class TreasureView implements IWorldObjectView {
     private final Sprite SPRITE_OPENED;
     private final Sprite SPRITE_CLOSED;
 
-    private SwordView swordView;
-    private AxeView axeView;
+    //private SwordView swordView;
+    //private AxeView axeView;
     public TreasureView(Treasure treasure) {
         this.treasure = treasure;
         texture = new Texture(SPRITE_LOCATION1);
@@ -31,8 +31,8 @@ public class TreasureView implements IWorldObjectView {
         SPRITE_CLOSED = new Sprite(new Texture(SPRITE_LOCATION2), 30, 32);
         SPRITE_OPENED = new Sprite(new Texture(SPRITE_LOCATION1), 30, 32);
 
-        swordView = new SwordView(treasure.getSword());
-        axeView = new AxeView(treasure.getAxe());
+        //swordView = new SwordView(treasure.getSword());
+        //axeView = new AxeView(treasure.getAxe());
     }
 
     public void update(float delta) {
@@ -48,15 +48,15 @@ public class TreasureView implements IWorldObjectView {
     public void draw (SpriteBatch batch) {
         sprite.setPosition(treasure.getPositionX(), treasure.getPositionY());
         sprite.draw(batch);
-        axeView.draw(batch);
-        swordView.draw(batch);
+        //axeView.draw(batch);
+        //swordView.draw(batch);
     }
 
-    public SwordView getSwordView() {
+    /*public SwordView getSwordView() {
         return swordView;
     }
 
     public AxeView getAxeView() {
         return axeView;
-    }
+    }*/
 }

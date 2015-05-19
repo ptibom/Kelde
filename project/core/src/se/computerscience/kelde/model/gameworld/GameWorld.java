@@ -4,6 +4,10 @@
 
 package se.computerscience.kelde.model.gameworld;
 
+import se.computerscience.kelde.controller.events.IItemEventHandler;
+import se.computerscience.kelde.controller.events.ItemEvent;
+import se.computerscience.kelde.controller.events.ItemEventBus;
+import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
@@ -11,13 +15,20 @@ import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.items.Axe;
+import se.computerscience.kelde.model.items.IItem;
+import se.computerscience.kelde.model.items.ItemEntity;
+import se.computerscience.kelde.model.items.Sword;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
 import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 
-public class GameWorld {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameWorld{
 
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
@@ -33,18 +44,19 @@ public class GameWorld {
 
     private IMap map;
     private ICamera camera;
+    private List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
         barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70);
-        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70);
-        door = new Door(worldPhysics.getIb2DWorld(),20,100);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,70, ItemSets.getSet1());
+        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120,70, ItemSets.getSet2());
+
+        door = new Door(worldPhysics.getIb2DWorld(),20,20);
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
         bomb = new Bomb(worldPhysics.getIb2DWorld(),100,50);
@@ -55,6 +67,9 @@ public class GameWorld {
         camera.setViewPortHeight(height);
         camera.setPosition(width / (float) 2, height / (float) 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
+    }
+    public void addItems(IItem item){
+        itemEntities.add(new ItemEntity(20,20,worldPhysics.getIb2DWorld(),item));
     }
 
     public ICamera getCamera() {
@@ -102,4 +117,10 @@ public class GameWorld {
     public Bomb getBomb() {
         return bomb;
     }
+
+    public List<ItemEntity> getItemEntities() {
+        return itemEntities;
+    }
+
+
 }

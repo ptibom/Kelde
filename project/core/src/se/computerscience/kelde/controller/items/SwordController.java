@@ -12,32 +12,32 @@ import se.computerscience.kelde.view.items.SwordView;
 
 
 public class SwordController implements IItemController, ICollisionEventHandler,IItemEventHandler {
-    private Sword sword;
-    private SwordView swordView;
+    //private Sword sword;
+    //private SwordView swordView;
     private boolean destroyed = false;
 
     public SwordController(Sword sword, SwordView swordView) {
-        this.sword = sword;
-        this.swordView = swordView;
+        //this.sword = sword;
+        //this.swordView = swordView;
         CollisionEventBus.INSTANCE.register(this);
         ItemEventBus.INSTANCE.register(this);
     }
     public void update(float delta) {
-        if (destroyed) {
+        /*if (destroyed) {
             sword.destroy();
             destroyed = false;
-        }
+        }*/
     }
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != sword) {
+        /*if (event.getObject() != sword) {
             return;
         }
         if (sword.isVisible()) {
             sword.setPicked(true);
             destroyed = true;
-        }
+        }*/
     }
 
     public void dispose() {
@@ -46,9 +46,9 @@ public class SwordController implements IItemController, ICollisionEventHandler,
 
     @Override
     public void onEvent(ItemEvent event) {
-        if (event.getObject() != sword){
+        /*if (event.getObject() != sword){
             return;
         }
-        sword.setVisible(true);
+        //sword.setVisible(true);*/
     }
 }
