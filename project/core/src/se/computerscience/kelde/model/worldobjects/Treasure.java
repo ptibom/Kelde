@@ -43,6 +43,7 @@ public class Treasure implements IWorldObjects {
             ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM,item));
         }*/
         //
+
         // remove the item for treasure
     }
 
