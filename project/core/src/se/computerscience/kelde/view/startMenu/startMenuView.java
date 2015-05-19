@@ -31,6 +31,10 @@ import java.util.*;
 public class StartMenuView {
 
     Game keldeGame;
+    int[] animPathCordsX =  new int[]{740, 792, 816,871,921,985,1075,1161,1239,1276,1201,1114,1036,966,960,1100,1300,1400,1400,1400};
+    int[] animPathInterpolatedX;
+    int[] animPathCordsY =  new int[]{400,666, 699,747,783,814,831,810,852,801,745,700,658,582,490,418,440,500, 500,500};
+    int[] animPathInterpolatedY;
     Stage menuStage;
     Texture walkingCharacterTexture;
     TextureAtlas walkingCharacterAtlas;
@@ -38,14 +42,16 @@ public class StartMenuView {
     final int SPRITE_SHEET_SIZE = 42/3;
     List<Animation> allWalkingAnimations;
     List<Animation> introAnimationDemonAnimations;
+    List<Animation> introAnimationSpellAnimations;
     List<Animation> introWizardTalkAnimations;
     Map<String, Animation> mappedWizardTalkAnimation;
     Map<String, Animation> mappedDemonTalkAnimation;
+    Map<String, Animation> mappedSpellAnimation;
     TextureRegion currentFrame, currentFrame2, currentFrameDemon1,currentFrameDemon2;
     float stateTime, introStateTime;
     float stateTimeDelta;
     boolean onlyDoOnce = true;
-    boolean[] onlyDoOnceSequence = new boolean[]{true,true,true,true,true,true,true,true,true,true,true, true};
+    boolean[] onlyDoOnceSequence = new boolean[]{true,true,true,true,true,true,true,true,true,true,true, true,true};
     int spreadsheetOffset = 138;
     int spriteSize = 136;
     Texture backgroundTexture, foregroundTexture, introBackgroundTexture1, introBackgroundTexture2;
@@ -63,6 +69,7 @@ public class StartMenuView {
     float fadeTimer;
     float offsetX =1285, offsetX2 =-200;
     float offsetY =580, offsetY2 = 90;
+    float offsetX3 = 729, offsetY3 = 625;
     boolean startIntro = false;
     DecimalFormat df = new DecimalFormat("#.#");
     float newHeight, newHeight2 = 128;
@@ -90,6 +97,7 @@ public class StartMenuView {
         allWalkingAnimations = new ArrayList<Animation>();
         introWizardTalkAnimations = new ArrayList<Animation>();
         introAnimationDemonAnimations = new ArrayList<Animation>();
+        introAnimationSpellAnimations  = new ArrayList<Animation>();
         orderOfCharacterWalk = createRandomArray();
         backgroundTexture = new Texture(startMenuModel.getBackground());
         foregroundTexture = new Texture(startMenuModel.getForegorund());
@@ -99,18 +107,34 @@ public class StartMenuView {
         introForegroundTexture = new Texture(startMenuModel.getForegroundIntroImage());
         mappedWizardTalkAnimation = new HashMap<String, Animation>();
         mappedDemonTalkAnimation = new HashMap<String, Animation>();
+        mappedSpellAnimation = new HashMap<String, Animation>();
         fadeScreenSprite = new Sprite( new Texture(startMenuModel.getFadeScreen()));
         introBackgroundTexture2 = new Texture(startMenuModel.getCaveBackground());
         dialogues = startMenuModel.getDialogues();
         initIntro();
         menuStage = new Stage();
+        animPathInterpolatedX = new int[animPathCordsX.length*4];
+        animPathInterpolatedY = new int[animPathCordsY.length*4];
+        for(int i = 0,  j = 0; j<animPathCordsX.length-1; i+=4, j++){
 
+            double deltaX = animPathCordsX[j+1]-animPathCordsX[j];
+            double deltaY = animPathCordsY[j+1]-animPathCordsY[j];
+            animPathInterpolatedX[i] = animPathCordsX[j];
+            animPathInterpolatedX[i+1] =(int)(animPathCordsX[j] + deltaX*0.25);
+            animPathInterpolatedX[i+2] =(int)(animPathCordsX[j] + deltaX*0.50);
+            animPathInterpolatedX[i+3] =(int)(animPathCordsX[j] + deltaX*0.75);
+            animPathInterpolatedY[i] = animPathCordsY[j];
+            animPathInterpolatedY[i+1] =(int)(animPathCordsY[j] + deltaY*0.25);
+            animPathInterpolatedY[i+2] =(int)(animPathCordsY[j] + deltaY*0.50);
+            animPathInterpolatedY[i+3] =(int)(animPathCordsY[j] + deltaY*0.75);
+        }
+        dialogues = startMenuModel.getDialogues();
 
     }
 
     public void renderMenu(){
         if(result<=0 && !introStarted) {
-            System.out.println(result);
+
             renderStartMenu();
         }
         else{
@@ -125,8 +149,7 @@ public class StartMenuView {
             }
             introPassedTime = System.currentTimeMillis() - startTime -1000;
 
-            System.out.println("IntroPassedTime=" + introPassedTime);
-            System.out.println(result);
+
             if(timeRange(introPassedTime,-1,0)) {
                 renderStartMenu();
                 batch.begin();
@@ -135,9 +158,10 @@ public class StartMenuView {
             }
 
             else if(timeRange(introPassedTime,0,1)) {
+
                 renderIntro();
                 batch.begin();
-              fadeOutScreen();
+                fadeOutScreen();
                 batch.end();
             }
             else{
@@ -300,6 +324,36 @@ public class StartMenuView {
         mappedDemonTalkAnimation.put(keyForAnimations2[i], introAnimationDemonAnimations.get(i));
         }
 
+        int[] spellAnimationLengthData = startMenuModel.getSpellAnimationLength();
+        int[] spellSpriteCoordinaters = startMenuModel.getSpellIntroCoordinaters();
+
+        Texture spellSprite = new Texture(startMenuModel.getSpellSpritePath());
+        spellSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        int width3 = spellSpriteCoordinaters[0];
+        int height3 = spellSpriteCoordinaters[1];
+
+        for(int i = 0, k = 0; i<spellAnimationLengthData.length; i++){
+            TextureRegion[] tempTextRegArray = new TextureRegion[spellAnimationLengthData[i]];
+
+            for(int j = 0; j<spellAnimationLengthData[i]; j++, k+=2){
+
+                int x = spellSpriteCoordinaters[k+2];
+                int y = spellSpriteCoordinaters[k+3];
+                TextureRegion tempRegion = new TextureRegion(spellSprite, x,y,width3, height3);
+                tempTextRegArray[j] = tempRegion;
+            }
+            introAnimationSpellAnimations.add(new Animation(0.15f, tempTextRegArray));
+
+        }
+        String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
+        for(int i = 0; i<introAnimationSpellAnimations.size(); i++){
+
+            mappedSpellAnimation.put(keyForAnimations3[i], introAnimationSpellAnimations.get(i));
+        }
+
+
+
+
     }
 
         public void renderIntro(){
@@ -311,7 +365,7 @@ public class StartMenuView {
             ///////////////////////////////////////////////////////
             // First part of the intro, not so much action only talk.
             ///////////////////////////////////////////////////////
-/*
+
             if(timeRange(introPassedTime, 0,46)) {
 
 
@@ -339,16 +393,20 @@ public class StartMenuView {
 
 
             }
-*/
 
-            drawDemonTalking();
-            drawSecondTalkingWizard();
-            batch.draw(introBorderTexture, 0, 0);
+            if(timeRange(introPassedTime, 46,200)) {
+                introPassedTime = System.currentTimeMillis() - startTime -47000;
+                System.out.println(introPassedTime);
+                drawDemonTalking();
+                drawSecondTalkingWizard();
+                batch.draw(introBorderTexture, 0, 0);
+
+            }
             batch.end();
 
     }
 
-   public boolean timeRange(double time, int x, int y){
+   public boolean timeRange(double time, double x, double y){
        return ((time/1000) >= x) && ((time/1000) < y) ;
 
    }
@@ -615,7 +673,7 @@ public class StartMenuView {
             currentFrame = mappedDemonTalkAnimation.get("demonwalk").getKeyFrame(stateTime, true);
 
 
-            System.out.println("X" + offsetX + "|Y" + offsetY);
+
 
             if(timeRange(introPassedTime,2,3) || timeRange(introPassedTime,4,6)) {
                 if(currentFrame.isFlipX()){
@@ -775,12 +833,21 @@ public class StartMenuView {
             if(timeRange(introPassedTime, 55,56)){
 
 
+                currentFrame = mappedDemonTalkAnimation.get("demonspellhit").getKeyFrame(stateTime, true);
+                batch.draw(currentFrame, offsetX, offsetY, newWidth2, newHeight2);
+
+
+            }
+
+            if(timeRange(introPassedTime, 56,57)){
+
+
                 currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
                 batch.draw(currentFrame, offsetX, offsetY, newWidth2, newHeight2);
 
 
             }
-            if(timeRange(introPassedTime, 56,58)){
+            if(timeRange(introPassedTime, 57,59)){
 
 
                 currentFrame = mappedDemonTalkAnimation.get("demontalkleft").getKeyFrame(stateTime, true);
@@ -789,20 +856,208 @@ public class StartMenuView {
 
             }
 
-            if(timeRange(introPassedTime, 58,140)){
+            if(timeRange(introPassedTime, 59,60)){
 
 
                 currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                flipAndRender(batch, currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+
+            }
+            if(timeRange(introPassedTime, 60,61.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
                 batch.draw(currentFrame, offsetX, offsetY, newWidth2, newHeight2);
+                batch.draw(dialogueImages[12], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 61.5,62)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw(currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 62,64)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw(currentFrame, offsetX, offsetY, newWidth2, newHeight2);
+                batch.draw(dialogueImages[13], 0, 0);
+
+
+            }
+            if(timeRange(introPassedTime, 64,65)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[14], 0, 0);
+            }
+
+            if(timeRange(introPassedTime, 65,66.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 66.5,69)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[15], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 69,69.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 69.5,72)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[16], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 72,72.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 72.5,75)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[17], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 75,75.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 75.5,77.5)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[18], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 77.5,78)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 78,80)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[19], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 80,81)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 81,83)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[20], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 83,84)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+
+            if(timeRange(introPassedTime, 84,86)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[21], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 86,94)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 94,95)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[25], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 95,140)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                flipAndRender(batch, currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 99.5,103)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                flipAndRender(batch, currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime,103,111)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                flipAndRender(batch, currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+
+            }
+            if(timeRange(introPassedTime, 111,114)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demontalkright").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
+                batch.draw(dialogueImages[29], 0, 0);
+
+            }
+            if(timeRange(introPassedTime, 114,140)){
+
+
+                currentFrame = mappedDemonTalkAnimation.get("demonsideleft").getKeyFrame(stateTime, true);
+                batch.draw( currentFrame, offsetX, offsetY, (int) newWidth2, (int) newHeight2);
 
 
             }
 
 
 
-
-
-            if(timeRange(introPassedTime,82,83)) {
+            if(timeRange(introPassedTime,0,1)) {
                 fadeOutScreen();
             }
 
@@ -853,13 +1108,13 @@ public class StartMenuView {
             currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
 
             //flipAndRender(batch, currentFrame, offsetX2, offsetY2 , 420, 420);
-            batch.draw(currentFrame, offsetX2, offsetY2 , (int)420, (int)420);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
         }
         //Talking:Dialogue4
         if(timeRange(introPassedTime, 28,32)) {
 
             currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
-            batch.draw(currentFrame, offsetX2, offsetY2 , 420, 420);
+            batch.draw(currentFrame, offsetX2, offsetY2, 420, 420);
             batch.draw(dialogueImages[3], 0, 0);
 
         }
@@ -872,10 +1127,10 @@ public class StartMenuView {
 
         }
 
-        if(timeRange(introPassedTime, 39,43)) {
+        if (timeRange(introPassedTime, 39,43)) {
 
             currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
-            flipAndRender(batch,currentFrame, offsetX2, offsetY2 , (int)420, (int)420);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
             batch.draw(dialogueImages[6], 0, 0);
 
         }
@@ -887,21 +1142,193 @@ public class StartMenuView {
 
 
         }
-        if(timeRange(introPassedTime, 44,46)) {
+        if (timeRange(introPassedTime, 44,46)) {
 
             currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
-            flipAndRender(batch,currentFrame, offsetX2, offsetY2 , (int)420, (int)420);
-            batch.draw(dialogueImages[7], 0,0);
+            flipAndRender(batch,currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[7], 0, 0);
 
         }
 
-        if(timeRange(introPassedTime, 46,140)) {
+        if(timeRange(introPassedTime, 46,51)) {
 
             currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
-            flipAndRender(batch,currentFrame, offsetX2, offsetY2 , (int)420, (int)420);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
 
 
         }
+
+        if (timeRange(introPassedTime, 51, 52)) {
+            mappedDemonTalkAnimation.get("wizardshoot").setFrameDuration(1f);
+            currentFrame = mappedDemonTalkAnimation.get("wizardshoot").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+        }
+
+        if(timeRange(introPassedTime, 51.5, 52)) {
+            double timePassed = introPassedTime/1000-51.5;
+            float interPolX = (float)(animPathInterpolatedX[(int)(timePassed*24)] );
+            float interPolY  = (float)(animPathInterpolatedY[(int)(timePassed * 24)]);
+            System.out.println(animPathInterpolatedX[(int) (timePassed * 13)]);
+            currentFrame = mappedSpellAnimation.get("start").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, interPolX, interPolY, 100, 100);
+
+
+        }
+        if(timeRange(introPassedTime,52,54.5)) {
+            double timePassed = introPassedTime/1000-51.5;
+            float interPolX = (float) (animPathInterpolatedX[(int) (timePassed * 24)]);
+            float interPolY = (float)(animPathInterpolatedY[(int)(timePassed*24)] );
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+            currentFrame = mappedSpellAnimation.get("loop").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, interPolX, interPolY, 100, 100);
+        }
+
+        if(timeRange(introPassedTime, 54.5,55)) {
+
+            mappedDemonTalkAnimation.get("wizardstandleft").setFrameDuration(0.5f);
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+        }
+        if(timeRange(introPassedTime, 55,86)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+        if (timeRange(introPassedTime, 86,88)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch,currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[22], 0, 0);
+
+        }
+
+        if(timeRange(introPassedTime, 88,89)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+        if (timeRange(introPassedTime, 89,91)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch,currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[23], 0, 0);
+
+        }
+
+        if(timeRange(introPassedTime, 91,92)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+
+        if (timeRange(introPassedTime, 92,94)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch,currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[24], 0, 0);
+
+        }
+
+        if(timeRange(introPassedTime, 94,96)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+
+        if (timeRange(introPassedTime, 96, 97)) {
+            mappedDemonTalkAnimation.get("wizardshoot").setFrameDuration(1f);
+            currentFrame = mappedDemonTalkAnimation.get("wizardshoot").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+        }
+
+        if(timeRange(introPassedTime, 96.5, 97)) {
+            double timePassed = introPassedTime/1000-96.5;
+            float interPolX = (float)(animPathInterpolatedX[(int)(timePassed*24)] );
+            float interPolY  = (float)(animPathInterpolatedY[(int)(timePassed * 24)]);
+            System.out.println(animPathInterpolatedX[(int) (timePassed * 13)]);
+            currentFrame = mappedSpellAnimation.get("start").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, interPolX, interPolY, 100, 100);
+
+
+        }
+        if(timeRange(introPassedTime,97,99.5)) {
+            double timePassed = introPassedTime/1000-96.5;
+            float interPolX = (float) (animPathInterpolatedX[(int) (timePassed * 24)]);
+            float interPolY = (float)(animPathInterpolatedY[(int)(timePassed*24)] );
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+            currentFrame = mappedSpellAnimation.get("loop").getKeyFrame(stateTime, true);
+            batch.draw(currentFrame, interPolX, interPolY, 100, 100);
+        }
+
+        if(timeRange(introPassedTime, 99.5,103)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+        if(timeRange(introPassedTime, 103,104.5)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[26], 0, 0);
+
+
+        }
+        if(timeRange(introPassedTime, 104.5,106)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+        if(timeRange(introPassedTime, 106,108)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[27], 0, 0);
+
+
+        }
+        if(timeRange(introPassedTime, 108,109)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardstandleft").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+
+
+        }
+        if(timeRange(introPassedTime, 109,111)) {
+
+            currentFrame = mappedDemonTalkAnimation.get("wizardtalkright").getKeyFrame(stateTime, true);
+            flipAndRender(batch, currentFrame, offsetX2, offsetY2, (int) 420, (int) 420);
+            batch.draw(dialogueImages[28], 0, 0);
+
+
+        }
+        if(timeRange(introPassedTime, 111,116)) {
+
+            offsetX2 +=  anim3DeltaTime*-120;
+            offsetY2 += anim3DeltaTime *-2;
+            currentFrame = mappedDemonTalkAnimation.get("wizardwalk").getKeyFrame(stateTime, true);
+            flipAndRender(batch,currentFrame, offsetX2, offsetY2 , 420, 420);
+
+
+        }
+
 
 
 
