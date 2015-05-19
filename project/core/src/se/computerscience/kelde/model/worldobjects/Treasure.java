@@ -5,15 +5,10 @@ import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
-import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.IItem;
-import se.computerscience.kelde.model.items.ItemEntity;
-import se.computerscience.kelde.model.items.Sword;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Description: a model for a treasure!
@@ -39,12 +34,7 @@ public class Treasure implements IWorldObjects {
 
     public void setIsOpen(boolean isOpen) {
         this.isOpen = isOpen;
-        /*for (IItem item : itemslist){
-            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM,item));
-        }*/
-        //
-
-        // remove the item for treasure
+        itemslist.clear();
     }
 
     public boolean isOpen() {

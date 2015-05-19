@@ -13,11 +13,22 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
-
+import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
-public class WorldContactListener implements ContactListener {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
+public class WorldContactListener implements ContactListener, ICollisionEventHandler {
+    // Use cache to wait for concurrency locks
+    private final List<CollisionEvent> eventCache = new ArrayList<>();
+
+    public WorldContactListener() {
+        CollisionEventBus.INSTANCE.register(this);
+    }
 
     @Override
     public void beginContact(Contact contact) {
@@ -38,20 +49,40 @@ public class WorldContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
     }
 
+    public void executeCache() {
+        Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
+        while (eventCacheIt.hasNext()) {
+            CollisionEvent event = eventCacheIt.next();
+            CollisionEventBus.INSTANCE.publish(event);
+            eventCacheIt.remove();
+        }
+    }
+
     public void computeCollision(Contact contact, CollisionEvent.Tag state) {
         Object objectA = contact.getFixtureA().getUserData();
         Object objectB = contact.getFixtureB().getUserData();
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
-            if (objectB instanceof IItem || objectB instanceof IWorldObjects) {
-                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectB));
+            if (objectB instanceof IItem || objectB instanceof IWorldObjects) { // IItems or IItem
+                eventCache.add(new CollisionEvent(state, objectB));
             }
         }
         else if (objectB instanceof EntityPlayerKelde) {
-            if (objectA instanceof IItem || objectA instanceof IWorldObjects) {
-                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));
+            if (objectA instanceof IItem || objectA instanceof IWorldObjects) { // IItems or IItem
+                eventCache.add(new CollisionEvent(state, objectA));
             }
         }
+    }
+
+    @Override
+    public void onCollisionEvent(CollisionEvent event) {
+        if (event.getTag() == CollisionEvent.Tag.SEND_CACHE) {
+            executeCache();
+        }
+    }
+
+    public void dispose() {
+        CollisionEventBus.INSTANCE.unregister(this);
     }
 }

@@ -4,9 +4,6 @@
 
 package se.computerscience.kelde.model.gameworld;
 
-import se.computerscience.kelde.controller.events.IItemEventHandler;
-import se.computerscience.kelde.controller.events.ItemEvent;
-import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
@@ -14,11 +11,10 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityEye;
+import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.Axe;
 import se.computerscience.kelde.model.items.IItem;
-import se.computerscience.kelde.model.items.ItemEntity;
-import se.computerscience.kelde.model.items.Sword;
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
 import se.computerscience.kelde.model.worldobjects.Bomb;
@@ -35,6 +31,7 @@ public class GameWorld{
     private final EntityPlayerKelde entityPlayerKelde;
     private final EntityBat entityBat;
     private final EntityEye entityEye;
+    private final EntityGhost entityGhost;
 
     private final Barrel barrel;
     private final Treasure treasure;
@@ -60,6 +57,7 @@ public class GameWorld{
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
         bomb = new Bomb(worldPhysics.getIb2DWorld(),100,50);
+        entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {
@@ -69,7 +67,7 @@ public class GameWorld{
         camera.update();
     }
     public void addItems(IItem item){
-        itemEntities.add(new ItemEntity(20,20,worldPhysics.getIb2DWorld(),item));
+        itemEntities.add(new ItemEntity(100, 120, worldPhysics.getIb2DWorld(), item));
     }
 
     public ICamera getCamera() {
@@ -122,5 +120,5 @@ public class GameWorld{
         return itemEntities;
     }
 
-
+    public EntityGhost getEntityGhost() { return entityGhost; }
 }

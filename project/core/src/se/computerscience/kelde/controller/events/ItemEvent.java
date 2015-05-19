@@ -7,7 +7,9 @@ package se.computerscience.kelde.controller.events;
 
 public class ItemEvent {
     public enum Tag {
-        ITEM;
+        ITEM,
+        ITEM_ENTITY,
+        ITEM_CTRL;
     }
     private final Tag tag;
     private final Object object;

@@ -3,19 +3,20 @@
  *
  * @author: Hossein Hussain
  */
-package se.computerscience.kelde.model.items;
+package se.computerscience.kelde.model.worldobjects;
 
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
-import se.computerscience.kelde.model.worldobjects.IWorldObjects;
+import se.computerscience.kelde.model.items.IItem;
 
 public class ItemEntity implements IWorldObjects {
-    IPhysicalBody physicalBody;
-    IItem item;
+    private final IPhysicalBody physicalBody;
+    private final IItem item;
 
     public ItemEntity(float x, float y, IB2DWorld ib2DWorld, IItem item) {
-        physicalBody = new PhysicalBodySensor(x, y, 32, 32, ib2DWorld, this);
+        physicalBody = new PhysicalBody(x, y, 16, 16, ib2DWorld, this);
         this.item = item;
     }
 
@@ -34,11 +35,11 @@ public class ItemEntity implements IWorldObjects {
     }
     @Override
     public float getPositionY() {
-        return physicalBody.getPositionY() - 32;
+        return physicalBody.getPositionY() - 16;
     }
 
     @Override
     public float getPositionX() {
-        return physicalBody.getPositionX() - 32;
+        return physicalBody.getPositionX() - 16;
     }
 }

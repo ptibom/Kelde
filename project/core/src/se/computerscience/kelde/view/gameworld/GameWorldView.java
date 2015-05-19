@@ -6,17 +6,13 @@ package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import se.computerscience.kelde.controller.events.IItemEventHandler;
-import se.computerscience.kelde.controller.events.ItemEvent;
-import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-import se.computerscience.kelde.model.items.ItemEntity;
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.entities.EntityBatView;
 import se.computerscience.kelde.view.entities.EntityEyeView;
+import se.computerscience.kelde.view.entities.EntityGhostView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
-import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.ItemEntityView;
-import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.BarrelView;
 import se.computerscience.kelde.view.worldobjects.BombView;
@@ -35,6 +31,7 @@ public class GameWorldView{
     private final EntityPlayerKeldeView entityPlayerKeldeView;
     private final EntityBatView entityBatView;
     private final EntityEyeView entityEyeView;
+    private final EntityGhostView entityGhostView;
 
     private final BarrelView barrelView;
     private final TreasureView treasureView;
@@ -61,6 +58,7 @@ public class GameWorldView{
         entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
         bombView = new BombView(gameWorld.getBomb());
 
+        entityGhostView = new EntityGhostView(gameWorld.getEntityGhost());
     }
 
     public void render(float delta) {
@@ -82,10 +80,14 @@ public class GameWorldView{
         for (ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
+        entityGhostView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
         worldPhysicsView.render(delta);
+    }
+    public void addEntityViews(ItemEntity itemEntity){
+        itemEntityViews.add(new ItemEntityView(itemEntity));
     }
 
     public void updateProjectionMatrix() {
@@ -95,7 +97,6 @@ public class GameWorldView{
     public void dispose() {
         mapRenderer.dispose();
     }
-
     public OrthogonalTiledMapRenderer getMapRenderer() {
         return mapRenderer;
     }
@@ -114,25 +115,20 @@ public class GameWorldView{
     public TreasureView getTreasureView2() {
         return treasureView2;
     }
-
     public DoorView getDoorView() {
         return doorView;
     }
-
     public EntityBatView getEntityBatView() {
         return entityBatView;
     }
-
     public EntityEyeView getEntityEyeView() {
         return entityEyeView;
     }
-
     public BombView getBombView() {
         return bombView;
     }
-
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
-
+    public EntityGhostView getEntityGhostView() { return entityGhostView; }
 }

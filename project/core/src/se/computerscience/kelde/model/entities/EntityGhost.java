@@ -1,5 +1,6 @@
 package se.computerscience.kelde.model.entities;
 
+
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -8,11 +9,12 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 import java.util.Random;
 
 /**
- * Created by Anders on 2015-04-08.
- * @author Anders
+ * Created by Anders on 2015-05-16.
+ * @author Anders Bolin
  */
-public class EntityEye {
+public class EntityGhost {
 
+    //Variables
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
@@ -25,46 +27,12 @@ public class EntityEye {
     private boolean ALIVE = true;
     private Heading direction;
 
-    /**
-     * Public constructor
-     */
-    public EntityEye(float x, float y, IB2DWorld ib2DWorld) {
+    public EntityGhost(float x, float y, IB2DWorld ib2DWorld) {
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
-
     }
 
-    /**
-     * A getter for the health value
-     * @return the HEALTH
-     */
-    public int getHEALTH() {
-        return HEALTH;
-    }
 
-    /**
-     * A getter for the distance the attacks
-     * @return the ATTACK_DISTANCE
-     */
-    public int getAttackDistance() {
-        return ATTACK_DISTANCE;
-    }
-
-    /**
-     * A getter for the Loot value
-     * @return the loot value
-     */
-    public int getLoot() {
-        return LOOT;
-    }
-
-    /**
-     * Sets the damage taken to the health value.
-     * @param takenDamage is the damage value taken
-     */
-    public void setTakenDamage(int takenDamage) {
-        HEALTH -= takenDamage;
-    }
 
     private void setRandomSpeed() {
         int vx = random.nextInt(3) - 1;
@@ -103,6 +71,14 @@ public class EntityEye {
     }
 
     public float getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH-6);
+        return (int) (entityBody.getPositionY()-BODY_WIDTH);
+    }
+
+    public int getDAMAGE() {
+        return DAMAGE;
+    }
+
+    public int getHEALTH() {
+        return HEALTH;
     }
 }

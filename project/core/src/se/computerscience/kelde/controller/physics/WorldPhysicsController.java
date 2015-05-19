@@ -4,6 +4,8 @@
 
 package se.computerscience.kelde.controller.physics;
 
+import se.computerscience.kelde.controller.events.CollisionEvent;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
@@ -18,6 +20,7 @@ public class WorldPhysicsController {
 
     public void update(float delta) {
         worldPhysics.update(delta);
+        CollisionEventBus.INSTANCE.publish(new CollisionEvent(CollisionEvent.Tag.SEND_CACHE, this));
     }
 
     public void resizeCamera(int width, int height) {
