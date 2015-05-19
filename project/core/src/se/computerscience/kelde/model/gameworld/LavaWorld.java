@@ -16,6 +16,8 @@ import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 
+import java.util.ArrayList;
+
 public class LavaWorld {
 
     private static final String MAP_LOCATION = "testmap.tmx";
@@ -31,11 +33,11 @@ public class LavaWorld {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,100);
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,140);
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
         bomb = new Bomb(worldPhysics.getIb2DWorld(), 370,300);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,300);
+        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,300, new ArrayList<>());
 
     }
 

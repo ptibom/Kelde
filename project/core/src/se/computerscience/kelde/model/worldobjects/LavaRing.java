@@ -15,7 +15,7 @@ public class LavaRing implements IWorldObjects {
     private final float BODY_WIDTH = 41;
     private final float BODY_HEIGHT = 39;
     private IPhysicalBody entityBody;
-    private final int NUMBER_OF_SPLASHES  = 10;
+    private final int NUMBER_OF_SPLASHES  = 100;
 
     private LavaSplash[] lavaSplash = new LavaSplash[NUMBER_OF_SPLASHES];
     public LavaRing(IB2DWorld ib2DWorld, float x, float y){
