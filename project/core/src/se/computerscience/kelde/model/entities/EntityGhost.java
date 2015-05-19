@@ -1,6 +1,7 @@
 package se.computerscience.kelde.model.entities;
 
-import se.computerscience.kelde.model.Heading;
+
+import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;

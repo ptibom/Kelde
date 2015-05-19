@@ -30,8 +30,8 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
     public void update(float delta) {
         getKeyInput();
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
-        entityPlayerKelde.setSlash(KNIFE_SLASH);
-        entityPlayerKelde.setArrow(ARROW);
+        entityPlayerKelde.setIsSlashing(KNIFE_SLASH);
+        entityPlayerKelde.setIsShooting(ARROW);
 
     }
 

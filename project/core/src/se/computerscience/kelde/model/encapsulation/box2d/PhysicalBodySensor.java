@@ -14,7 +14,7 @@ public class PhysicalBodySensor extends PhysicalBody {
     }
     @Override
     protected void setBodyType() {
-        def.type = BodyDef.BodyType.StaticBody;
+        def.type = BodyDef.BodyType.DynamicBody;
     }
     @Override
     protected void setIsSensor() {

@@ -2,8 +2,7 @@ package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import se.computerscience.kelde.model.Heading;
+import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityArrow;
 
 /**
