@@ -14,6 +14,8 @@ import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 public class EntityPlayerKeldeView {
+
+
     private final EntityPlayerKelde entityPlayerKelde;
     private float elapsedTime = 0;
 
@@ -33,6 +35,7 @@ public class EntityPlayerKeldeView {
         createBowAnimation();
     }
 
+
     public void draw(SpriteBatch batch) {
         direction = entityPlayerKelde.getDirection();
         Animation currentAnimation = standAnimation[direction];
@@ -51,9 +54,16 @@ public class EntityPlayerKeldeView {
         elapsedTime += Gdx.graphics.getDeltaTime();
         batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
 
+
         if (elapsedTime > 100.0f) {
             elapsedTime = 0;
         }
+
+        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        //sprite.draw(batch);
+
+
     }
 
     private void createBowAnimation() {
