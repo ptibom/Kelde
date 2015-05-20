@@ -20,4 +20,12 @@ public class PhysicalBodySensor extends PhysicalBody {
     protected void setIsSensor() {
         fdef.isSensor = true;
     }
+
+    @Override
+    protected void setFilter() {
+        fdef.filter.groupIndex = -2;
+        fdef.filter.categoryBits = 0x0002;
+        short MASK = 0x0001 | 0x0002;
+        fdef.filter.maskBits = MASK;
+    }
 }

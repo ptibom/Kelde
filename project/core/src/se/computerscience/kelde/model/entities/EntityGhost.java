@@ -6,6 +6,7 @@ import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
+import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyMonster;
 
 import java.util.Random;
 
@@ -28,7 +29,7 @@ public class EntityGhost implements IMonster{
     private Heading direction;
 
     public EntityGhost(float x, float y, IB2DWorld ib2DWorld) {
-        entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        entityBody = new PhysicalBodyMonster(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
     }
 

@@ -28,6 +28,7 @@ public class PhysicalBody implements IPhysicalBody {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
+        setFilter();
         body.createFixture(fdef).setUserData(userdata);
     }
 
@@ -36,6 +37,13 @@ public class PhysicalBody implements IPhysicalBody {
         def.type = BodyType.DynamicBody;
     }
     protected void setIsSensor() {fdef.isSensor = false;}
+
+    protected void setFilter(){
+        fdef.filter.groupIndex = 1;
+        fdef.filter.categoryBits = 0x0001;
+        short MASK = 0x0002 | 0x0001;
+        fdef.filter.maskBits = MASK;
+    }
 
     @Override
     public void setVelocity(float x, float y) {
