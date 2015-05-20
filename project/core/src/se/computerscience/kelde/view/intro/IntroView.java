@@ -4,52 +4,43 @@ package se.computerscience.kelde.view.intro;
  */
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.intro.AnimationLoader;
 import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.model.startmenu.StartMenu;
-import se.computerscience.kelde.view.startmenu.*;
 
-/**
- * Created by Daniel on 5/20/2015.
- */
+
 public class IntroView {
 
 
-    Intro introModel;
-    IntroHandler introHandler;
-    AnimationLoader animationLoader;
-    String[] dialogues;
+    private Intro introModel;
+    private IntroHandler introHandler;
 
-    public IntroView(Intro introModel){
+
+    public IntroView(Intro introModel) {
         this.introModel = introModel;
         SpriteBatch batch = new SpriteBatch();
-
-        animationLoader = new AnimationLoader(introModel);
-        introHandler = new IntroHandler(introModel,new AnimationLoader(introModel));
-        dialogues = introModel.getDialogues();
+        introHandler = new IntroHandler(introModel, new AnimationLoader(introModel));
         introHandler.stopIntroMusic();
         introHandler.startIntroMusic();
-        introHandler.drawIntro(batch);
-
     }
 
-    public int renderIntro(){
+    public int renderIntro(float delta) {
         SpriteBatch batch = new SpriteBatch();
-        introModel.updateStateTime();
+        introModel.updateStateTime(delta);
         introModel.updateTimer();
         System.out.println(introModel.getMenuTime());
-        introHandler.drawIntro(batch);
+        introHandler.drawIntro(batch, delta);
+        if (Gdx.input.isTouched()) {
+            introHandler.stopIntroMusic();
+            return 1;
+        }
         return 0;
 
     }
 
-    public void init(){
+    public void init() {
 
-    introModel.resetTimer();
+        introModel.resetTimer();
 
     }
 

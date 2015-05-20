@@ -3,22 +3,25 @@ package se.computerscience.kelde.controller.startmenu;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import se.computerscience.kelde.view.startmenu.StartMenuView;
 import se.computerscience.kelde.model.startmenu.StartMenu;
+
+import java.io.IOException;
+
 /**
  * @author: Daniel Olsson
  */
 public class StartMenuController {
 
-   private StartMenu startMenuModel;
-   private StartMenuView startMenuView;
+    private StartMenu startMenuModel;
+    private StartMenuView startMenuView;
 
-    public StartMenuController(StartMenu startMenuModel, StartMenuView startMenuView ){
-        this.startMenuModel = startMenuModel;
-        this.startMenuView = startMenuView;
+    public StartMenuController() throws IOException {
+        startMenuModel = new StartMenu();
+        this.startMenuView = new StartMenuView(startMenuModel);
     }
 
 
     public int render(float delta) {
-        return startMenuView.renderMenu();
+        return startMenuView.renderMenu(delta);
 
     }
 
@@ -28,7 +31,7 @@ public class StartMenuController {
 
     }
 
-    public Button[] getButton(){
+    public Button[] getButton() {
         return startMenuView.getButton();
 
     }

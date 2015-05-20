@@ -21,35 +21,34 @@ import java.io.IOException;
  */
 public class MenuScreen implements Screen {
 
-    StartMenuController startmenuViewController;
-    Game keldeGame;
-    Stage menuStage;
+    private StartMenuController startmenuViewController;
+    private Game keldeGame;
+    private Stage menuStage;
 
-    public MenuScreen(Game g){
+    public MenuScreen(Game g) {
         keldeGame = g;
         menuStage = new Stage();
 
     }
 
-
     @Override
     public void show() {
-    try {
-        StartMenu startMenuModel = new StartMenu();
+        try {
 
-        startmenuViewController = new StartMenuController(startMenuModel, new StartMenuView(startMenuModel));
-        startmenuViewController.init();
-    }
-    catch( IOException e){
-        System.out.println(e.toString());
-    }
+            startmenuViewController = new StartMenuController();
+            startmenuViewController.init();
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
 
     }
 
     @Override
     public void render(float delta) {
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(startmenuViewController.render(1) == 1){
+        if (startmenuViewController.render(delta) == 1) {
             this.dispose();
             keldeGame.setScreen(new IntroScreen(keldeGame));
         }

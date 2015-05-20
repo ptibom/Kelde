@@ -1,36 +1,49 @@
 package se.computerscience.kelde.controller.intro;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
+
 import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.model.startmenu.StartMenu;
 import se.computerscience.kelde.view.intro.IntroView;
-import se.computerscience.kelde.view.startmenu.StartMenuView;
+
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Daniel on 5/20/2015.
+ * @author: Daniel Olsson
  */
-public class IntroController {
 
+public class IntroController {
 
     private Intro introModel;
     private IntroView introView;
 
-    public IntroController(Intro introModel, IntroView introView ){
-        this.introModel = introModel;
-        this.introView = introView;
+    public IntroController() throws IOException {
+
+        ArrayList<List<String>> allData = new ArrayList<List<String>>();
+        allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt")));
+        allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt")));
+        allData.add(Files.readAllLines(Paths.get("intro/spell.txt")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationdemon.intro")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizardinstr.intro")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizard2instr.intro")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro")));
+        allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro")));
+
+        this.introModel = new Intro(allData);
+        this.introView = new IntroView(introModel);
     }
 
-
     public int render(float delta) {
-        return introView.renderIntro();
-
+        return introView.renderIntro(delta);
     }
 
     public void init() {
 
         introView.init();
-
     }
-
 
 }

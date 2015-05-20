@@ -24,11 +24,11 @@ import java.io.IOException;
  */
 public class IntroScreen implements Screen {
 
-    IntroController introController;
-    Game keldeGame;
-    Stage menuStage;
+    private IntroController introController;
+    private Game keldeGame;
+    private Stage menuStage;
 
-    public IntroScreen(Game g){
+    public IntroScreen(Game g) {
         keldeGame = g;
         menuStage = new Stage();
 
@@ -38,20 +38,20 @@ public class IntroScreen implements Screen {
     @Override
     public void show() {
         try {
-            Intro introModel = new Intro();
-            introController = new IntroController(introModel, new IntroView(introModel));
+            introController = new IntroController();
             introController.init();
-        }
-        catch( IOException e){
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
-
     }
 
     @Override
     public void render(float delta) {
 
-        if(introController.render(1) == 1){
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (introController.render(delta) == 1) {
             this.dispose();
             keldeGame.setScreen(new GameScreen());
         }

@@ -7,6 +7,7 @@ import se.computerscience.kelde.model.startmenu.AnimationLoader;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 
 import java.util.List;
+
 /**
  * @author: Daniel Olsson
  */
@@ -19,32 +20,28 @@ public class MenuAnimationHandler {
     private final List<Animation> allWalkingAnimations;
 
 
-  public  MenuAnimationHandler(StartMenu startMenuModel, AnimationLoader animationLoader){
+    public MenuAnimationHandler(StartMenu startMenuModel, AnimationLoader animationLoader) {
 
-    this.startMenuModel = startMenuModel;
-      this.animationloader = animationLoader;
-      allWalkingAnimations = animationloader.loadWalkingCharacters();
+        this.startMenuModel = startMenuModel;
+        this.animationloader = animationLoader;
+        allWalkingAnimations = animationloader.loadWalkingCharacters();
 
     }
 
 
+    // Draws out all the characters walking in the intro scene
+    public void drawMenuAnimations(SpriteBatch batch) {
+
+        this.batch = batch;
+
+        for (int i = 0; i < allWalkingAnimations.size(); i++) {
+
+            TextureRegion currentFrame = allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true);
+            this.batch.draw(currentFrame, -2400 + 300 * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, 130);
+        }
 
 
-public void drawMenuAnimations(SpriteBatch batch){
-
-this.batch = batch;
-
-    for(int i = 0; i<allWalkingAnimations.size(); i++){
-
-        TextureRegion currentFrame = allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true);
-        this.batch.draw(currentFrame, -2400+300*i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, 130);
     }
-
-
-
-
-}
-
 
 
 }

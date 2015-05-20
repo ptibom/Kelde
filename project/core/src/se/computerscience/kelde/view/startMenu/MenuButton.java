@@ -2,13 +2,13 @@
  * @author: Daniel Olsson
  */
 
-package se.computerscience.kelde.view;
+package se.computerscience.kelde.view.startmenu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
 
 public class MenuButton extends Button {
 
@@ -33,7 +33,7 @@ public class MenuButton extends Button {
         loady = 473;
         loadx = 781;
         loadWidth = 302;
-        loadHeight =113;
+        loadHeight = 113;
         exitx = 1083;
         exity = 586;
         exitWidth = 93;
@@ -42,36 +42,35 @@ public class MenuButton extends Button {
 
     }
 
-    public void update (SpriteBatch batch) {
+    public void update(SpriteBatch batch) {
 
 
         buttonSprite.draw(batch); // draw the button
     }
 
 
-    public int checkIfClicked (float ix, float iy, boolean isTouched) {
+    public int checkIfClicked(float ix, float iy, boolean isTouched) {
         if (isTouched) {
 
-            if((ix > newx && ix < newx + newWidth) && (iy < newy && iy > newy - newHeight)){
-            return 1;
+            if ((ix > newx && ix < newx + newWidth) && (iy < newy && iy > newy - newHeight)) {
+                return 1;
 
             }
 
-            if((ix > loadx && ix < loadx + loadWidth) && (iy < loady && iy > loady - loadHeight)){
-            return 2;
+            if ((ix > loadx && ix < loadx + loadWidth) && (iy < loady && iy > loady - loadHeight)) {
+                return 2;
 
             }
 
-            if((ix > exitx && ix < exitx + exitWidth) && (iy < exity && iy > exity - exitHeight)){
-                return 3 ;
+            if ((ix > exitx && ix < exitx + exitWidth) && (iy < exity && iy > exity - exitHeight)) {
+                return 3;
 
             }
 
 
         }
-      return 0;
+        return 0;
     }
-
 
 
 }

@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Daniel on 5/20/2015.
+ * @author: Daniel Olsson
  */
+
 public class AnimationLoader {
 
-    private  int spriteSize = 136;
-    private final int SPRITE_SHEET_SIZE = 42/3;
+    private int spriteSize = 136;
+    private final int SPRITE_SHEET_SIZE = 42 / 3;
     StartMenu startMenuModel;
     List<Animation> allWalkingAnimations = new ArrayList<Animation>();
     private int spreadsheetOffset = 138;
 
-    public AnimationLoader(StartMenu startMenuModel){
+    public AnimationLoader(StartMenu startMenuModel) {
 
         this.startMenuModel = startMenuModel;
 
     }
 
 
-
-    public List<Animation> loadWalkingCharacters(){
+    public List<Animation> loadWalkingCharacters() {
 
 
         Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
@@ -41,7 +41,7 @@ public class AnimationLoader {
                 y += spreadsheetOffset;
 
             }
-            tempAnimationRegions[0] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);
+            tempAnimationRegions[0] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
 
             x += spreadsheetOffset;
 
@@ -50,7 +50,8 @@ public class AnimationLoader {
                 y += spreadsheetOffset;
 
             }
-            tempAnimationRegions[1] =  new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);;
+            tempAnimationRegions[1] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
+            ;
 
             x += spreadsheetOffset;
 
@@ -59,7 +60,7 @@ public class AnimationLoader {
                 y += spreadsheetOffset;
 
             }
-            tempAnimationRegions[2] =  new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);
+            tempAnimationRegions[2] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
 
             x += spreadsheetOffset;
 
@@ -73,5 +74,5 @@ public class AnimationLoader {
         Collections.shuffle(allWalkingAnimations);
 
         return allWalkingAnimations;
-}
+    }
 }

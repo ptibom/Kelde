@@ -10,33 +10,31 @@ import se.computerscience.kelde.model.startmenu.StartMenu;
  * @author: Daniel Olsson
  */
 public class TextDialogue {
-    private double startTime, endTime;
+
     private Texture dialogueTexture;
     private TextureRegion textRegion;
     private double percentToShow;
 
 
-    public TextDialogue(Texture dialogueTexture){
+    public TextDialogue(Texture dialogueTexture) {
         this.dialogueTexture = dialogueTexture;
         percentToShow = 0;
     }
 
 
-    public TextureRegion updateTextureRegion(Intro introModel){
+    public TextureRegion updateTextureRegion(Intro introModel, float delta) {
 
-        if(percentToShow + 50 == 1920){
+        if (percentToShow + 50 == 1920) {
             percentToShow = 1920;
-        }
-        else
-        percentToShow += introModel.getDeltaTime()*384;
+        } else
+            percentToShow += delta * 384;
 
 
-        textRegion =  new TextureRegion(dialogueTexture,(int)(50+percentToShow),1080);
+        textRegion = new TextureRegion(dialogueTexture, (int) (50 + percentToShow), 1080);
 
         return textRegion;
 
     }
-
 
 
 }
