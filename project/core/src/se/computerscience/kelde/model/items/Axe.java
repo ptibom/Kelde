@@ -20,23 +20,22 @@ public class Axe implements IItem {
     private final Sprite sprite = new Sprite(new Texture("axe_1.png"),32,32);
     public Axe() {
     }
-
-    public boolean isConsumable() {
-        return isConsumable;
-    }
-
-    public boolean isWeapon() {
-        return isWeapon;
-    }
-
     public int getDamage() {
         return damage;
     }
-
+    @Override
+    public boolean isConsumable() {
+        return isConsumable;
+    }
+    @Override
+    public boolean isWeapon() {
+        return isWeapon;
+    }
+    @Override
     public Sprite getSprite() {
         return sprite;
     }
-
+    @Override
     public float getItemPostionX() {
         return itemPostionX;
     }
@@ -44,6 +43,7 @@ public class Axe implements IItem {
     public void setItemPostionX(float itemPostionX) {
         this.itemPostionX = itemPostionX;
     }
+    @Override
     public float getItemPostionY() {
         return itemPostionY;
     }

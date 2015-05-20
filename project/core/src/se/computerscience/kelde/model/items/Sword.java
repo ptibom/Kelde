@@ -20,16 +20,18 @@ public class Sword implements IItem {
     private Sprite sprite = new Sprite(new Texture("sword_1.png"),32,32);
     public Sword() {
     }
-
-    public boolean isConsumable() {
-        return isConsumable;
-    }
-    public boolean isWeapon() {
-        return isWeapon;
-    }
     public int getDamage() {
         return damage;
     }
+    @Override
+    public boolean isConsumable() {
+        return isConsumable;
+    }
+    @Override
+    public boolean isWeapon() {
+        return isWeapon;
+    }
+    @Override
     public Sprite getSprite() {
         return sprite;
     }
@@ -37,9 +39,11 @@ public class Sword implements IItem {
     public void setItemPostionX(float itemPostionX) {
         this.itemPostionX = itemPostionX;
     }
+    @Override
     public float getItemPostionY() {
         return itemPostionY;
     }
+    @Override
     public float getItemPostionX() {
         return itemPostionX;
     }
