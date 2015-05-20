@@ -5,11 +5,9 @@
 
 package se.computerscience.kelde.model.items;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Sword implements IItem {
     private boolean isConsumable = false;
@@ -17,8 +15,12 @@ public class Sword implements IItem {
     private final int damage = 10;
     private float itemPostionX;
     private float itemPostionY;
-    private Sprite sprite = new Sprite(new Texture("sword_1.png"),32,32);
+    private TextureAtlas textureAtlas;
+    private final Sprite sprite;
     public Sword() {
+        textureAtlas = new TextureAtlas(Gdx.files.internal("allitems.atlas"));
+        TextureAtlas.AtlasRegion region = textureAtlas.findRegion("0001");
+        sprite = new Sprite(region);
     }
     public int getDamage() {
         return damage;
