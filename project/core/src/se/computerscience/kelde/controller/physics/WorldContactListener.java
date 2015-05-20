@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
@@ -49,6 +50,15 @@ public class WorldContactListener implements ContactListener {
         }
         else if (objectB instanceof EntityPlayerKelde) {
             if (objectA instanceof IItems || objectA instanceof IWorldObjects) {
+                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));
+            }
+        }
+        if (objectA instanceof IMonster) {
+            if(objectB instanceof IWorldObjects) {
+                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectB));
+            }
+        } else if (objectB instanceof IMonster) {
+            if(objectA instanceof IWorldObjects) {
                 CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));
             }
         }

@@ -2,6 +2,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
@@ -19,6 +20,7 @@ public class EntityArrowController implements ICollisionEventHandler {
     private final EntityArrowView entityArrowView;
     private float x = 0f, y = 0f;
     private Heading heading;
+    private int n = 0;
 
     //Constructor
     public EntityArrowController(EntityArrow entityArrow, EntityArrowView entityArrowView) {
@@ -50,6 +52,11 @@ public class EntityArrowController implements ICollisionEventHandler {
         if (event.getObject() != entityArrow){
             return;
         }
-        System.out.println("hit!");
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
+            System.out.println("hit!" + n++);
+        }
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
+
+        }
     }
 }

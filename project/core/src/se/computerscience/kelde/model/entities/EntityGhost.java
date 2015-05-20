@@ -1,6 +1,7 @@
 package se.computerscience.kelde.model.entities;
 
 
+import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -12,9 +13,8 @@ import java.util.Random;
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
  */
-public class EntityGhost {
+public class EntityGhost implements IMonster{
 
-    //Variables
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
