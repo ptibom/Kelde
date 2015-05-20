@@ -5,15 +5,16 @@
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.Game;
-import se.computerscience.kelde.view.screens.MenuScreen;
+import se.computerscience.kelde.screens.GameScreen;
+import se.computerscience.kelde.screens.MenuScreen;
+
 
 public class KeldeGame extends Game {
-
+	GameScreen gameScreen;
 	/** Called when application is created */
 	@Override
 	public void create () {
-		setScreen(new MenuScreen(this));
+		gameScreen = new GameScreen();
+		setScreen(new MenuScreen (this));
 	}
-
-
 }

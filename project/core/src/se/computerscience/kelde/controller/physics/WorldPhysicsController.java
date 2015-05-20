@@ -1,9 +1,11 @@
-/** Description: WorldCollision handles world object collision from Tiled maps. It loads all objects and uses Box2D physics engine to calculate collisions.
+/** Description: WorldCollision handles world object collision from Tiled maps. It loads all objects and uses box2d physics engine to calculate collisions.
  *  @author: Philip Tibom
  */
 
 package se.computerscience.kelde.controller.physics;
 
+import se.computerscience.kelde.controller.events.CollisionEvent;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 
@@ -18,10 +20,7 @@ public class WorldPhysicsController {
 
     public void update(float delta) {
         worldPhysics.update(delta);
-    }
-
-    public void renderDebug(float delta) {
-        worldPhysicsView.render(delta);
+        CollisionEventBus.INSTANCE.publish(new CollisionEvent(CollisionEvent.Tag.SEND_CACHE, this));
     }
 
     public void resizeCamera(int width, int height) {

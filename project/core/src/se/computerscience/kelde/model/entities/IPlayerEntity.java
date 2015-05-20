@@ -8,5 +8,11 @@ public interface IPlayerEntity {
     public int getHealth();
     public int getMana();
     public int getStrength();
-    public int getIntelligence();
+    public int getMagic();
+    public int getDirection();
+    public void setHealth(int health);
+    public void setMana(int mana);
+    public void setStrength(int strength);
+    public void setMagic(int magic);
+    public void setDirection(int direction);
 }

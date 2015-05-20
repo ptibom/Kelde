@@ -1,23 +1,13 @@
 package se.computerscience.kelde.model.startmenu;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
- * Created by MonoMan on 4/27/2015.
+ * Created by Daniel on 4/27/2015.
  */
 public class StartMenu {
     private int INTRO_DEMON_SPRITE_SIZE = 128, INTRO_WIZARD_SPRITE_SIZE = 300, INTRO_SPELL_SPRITE_SIZE  = 100;
@@ -46,9 +36,13 @@ public class StartMenu {
     private static final int[] INTRO_SPELL_ANIMATION_LENGTH_DATA = new int[]{3, 5, 4};
     private static final int[] INTRO_SPELL_ANIMATION_COORDINATES = new int[26];
     private static final String INTRO_SPELL_PATH_IMAGE = "intro/spell.png";
+    Timer menuTimer;
+
+
 
 
     public StartMenu() throws IOException {
+        menuTimer = new Timer();
 
         for (int i = 0; i < 8; i++) {
             INFO_TEXT_PATH_IMAGES[i] = "intro/introtext" + (i + 1) + ".png";
@@ -248,4 +242,77 @@ public String[] getIntroTextImages(){
 
         return FOREGROUND;
     }
+
+    public void updateTimer(){
+
+        menuTimer.updateTimer();
+    }
+
+    public void resetTimer(){
+
+        menuTimer.resetTimer();
+    }
+
+
+
+    public double getMenuTime(){
+
+            return menuTimer.getMenuTime();
+    }
+
+    public float getDeltaTime(){
+
+        return menuTimer.getDeltaTime();
+    }
+
+    public float getStateTime(){
+        return menuTimer.getStateTime();
+    }
+
+    public void updateStateTime(){
+        menuTimer.updateStateTime();
+    }
+
+    public int[] createRandomArray() {
+
+        Random ran = new Random();
+        int[] tempRandomArray = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+        int index = 0;
+
+        while (index < 14) {
+
+            int tempRandomNr = ran.nextInt(14);
+
+            if (!contains(tempRandomArray, tempRandomNr)) {
+
+                tempRandomArray[index] = tempRandomNr;
+                index++;
+
+            }
+
+        }
+        return tempRandomArray;
+    }
+
+
+    public boolean contains(final int[] array, final int key) {
+        int[] tempCopyArray = new int[14];
+        System.arraycopy(array,0,tempCopyArray,0,array.length);
+        Arrays.sort(tempCopyArray);
+        int i = 0;
+        while(i < tempCopyArray.length){
+            if(tempCopyArray[i] == key){
+                return true;
+            }
+            i++;
+
+        }
+        return false;
+    }
+
+    public void addTimerTime(double t){
+
+        menuTimer.addTimerTIme(t);
+    }
+
 }
