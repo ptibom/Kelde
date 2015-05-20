@@ -9,8 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import se.computerscience.kelde.controller.intro.IntroController;
 import se.computerscience.kelde.controller.startmenu.StartMenuController;
+import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.startmenu.StartMenu;
+import se.computerscience.kelde.view.intro.IntroView;
 import se.computerscience.kelde.view.startmenu.StartMenuView;
 
 import java.io.FileNotFoundException;
@@ -19,13 +22,13 @@ import java.io.IOException;
 /**
  * @author: Daniel Olsson
  */
-public class MenuScreen implements Screen {
+public class IntroScreen implements Screen {
 
-    StartMenuController startmenuViewController;
+    IntroController introController;
     Game keldeGame;
     Stage menuStage;
 
-    public MenuScreen(Game g){
+    public IntroScreen(Game g){
         keldeGame = g;
         menuStage = new Stage();
 
@@ -34,24 +37,23 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-    try {
-        StartMenu startMenuModel = new StartMenu();
-
-        startmenuViewController = new StartMenuController(startMenuModel, new StartMenuView(startMenuModel));
-        startmenuViewController.init();
-    }
-    catch( IOException e){
-        System.out.println(e.toString());
-    }
+        try {
+            Intro introModel = new Intro();
+            introController = new IntroController(introModel, new IntroView(introModel));
+            introController.init();
+        }
+        catch( IOException e){
+            System.out.println(e.toString());
+        }
 
     }
 
     @Override
     public void render(float delta) {
 
-        if(startmenuViewController.render(1) == 1){
+        if(introController.render(1) == 1){
             this.dispose();
-            keldeGame.setScreen(new IntroScreen(keldeGame));
+            keldeGame.setScreen(new GameScreen());
         }
 
     }

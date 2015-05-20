@@ -14,11 +14,9 @@ import java.util.Map;
  * Created by Daniel on 5/20/2015.
  */
 public class AnimationLoader {
-    private  int spriteSize = 136;
-    private int spreadsheetOffset = 138;
-    private final int SPRITE_SHEET_SIZE = 42/3;
-    StartMenu startMenuModel;
-    List<Animation> allWalkingAnimations = new ArrayList<Animation>();
+
+    Intro introModel;
+
 
     Map<String, Animation> mappedWizardTalkAnimation;
     Map<String, Animation> mappedDemonTalkAnimation;
@@ -42,7 +40,7 @@ public class AnimationLoader {
 
 
 
-    public AnimationLoader(StartMenu startMenuModel){
+    public AnimationLoader(Intro introModel){
 
         mappedWizardTalkAnimation = new HashMap<String, Animation>();
         mappedWizard2TalkAnimation = new HashMap<String, Animation>();
@@ -52,7 +50,7 @@ public class AnimationLoader {
         introAnimationDemonAnimations  = new ArrayList<Animation>();
         introAnimationSpellAnimations  = new ArrayList<Animation>();
 
-    this.startMenuModel = startMenuModel;
+    this.introModel = introModel;
 
         animPathInterpolatedX = new int[animPathCordsX.length*4];
         animPathInterpolatedY = new int[animPathCordsY.length*4];
@@ -76,9 +74,9 @@ public class AnimationLoader {
 
         //Loading animations for wizard
 
-        int[] wizardAnimationLengthData = startMenuModel.getWizardAnimationData();
-        int[] wizardSpriteCoordinates = startMenuModel.getWizardTalkCoordinates();
-        Texture wizardSpriteSheet = new Texture(startMenuModel.getIntroWizardTalkImage());
+        int[] wizardAnimationLengthData = introModel.getWizardAnimationData();
+        int[] wizardSpriteCoordinates = introModel.getWizardTalkCoordinates();
+        Texture wizardSpriteSheet = new Texture(introModel.getIntroWizardTalkImage());
         wizardSpriteSheet.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         int width = wizardSpriteCoordinates[0];
@@ -106,9 +104,9 @@ public class AnimationLoader {
 
         //Loading animatinos for demon and wizard 2
 
-        int[] demonAndSecondWizardAnimationLengthData = startMenuModel.getDemonAnimationData();
-        int[] demonSpriteCoordinates = startMenuModel.getIntroDemonCoordinates();
-        Texture demonSpriteSheet = new Texture(startMenuModel.getDemonAnd2ndWizardImage());
+        int[] demonAndSecondWizardAnimationLengthData = introModel.getDemonAnimationData();
+        int[] demonSpriteCoordinates = introModel.getIntroDemonCoordinates();
+        Texture demonSpriteSheet = new Texture(introModel.getDemonAnd2ndWizardImage());
         demonSpriteSheet.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         int width2 = demonSpriteCoordinates[0];
         int height2 = demonSpriteCoordinates[1];
@@ -139,10 +137,10 @@ public class AnimationLoader {
 
 
         // Loading animations for spell
-        int[] spellAnimationLengthData = startMenuModel.getSpellAnimationLength();
-        int[] spellSpriteCoordinaters = startMenuModel.getSpellIntroCoordinaters();
+        int[] spellAnimationLengthData = introModel.getSpellAnimationLength();
+        int[] spellSpriteCoordinaters = introModel.getSpellIntroCoordinaters();
 
-        Texture spellSprite = new Texture(startMenuModel.getSpellSpritePath());
+        Texture spellSprite = new Texture(introModel.getSpellSpritePath());
         spellSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         int width3 = spellSpriteCoordinaters[0];
         int height3 = spellSpriteCoordinaters[1];
@@ -202,50 +200,9 @@ public class AnimationLoader {
         return animPathInterpolatedY;
     }
 
-    public List<Animation> loadWalkingCharacters(){
 
 
-        Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
 
-
-        for (int i = 0, x = 2, y = 2; i < SPRITE_SHEET_SIZE; i++) {
-            TextureRegion[] tempAnimationRegions = new TextureRegion[3];
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
-
-            }
-            tempAnimationRegions[0] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);
-
-            x += spreadsheetOffset;
-
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
-
-            }
-            tempAnimationRegions[1] =  new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);;
-
-            x += spreadsheetOffset;
-
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
-
-            }
-            tempAnimationRegions[2] =  new TextureRegion(walkingCharacterTexture, x, y, spriteSize,spriteSize);
-
-            x += spreadsheetOffset;
-
-            //Now that we have loaded an animation's textureRegions, we create an animation from it.
-            // And then load it into our list of animations.
-            allWalkingAnimations.add(new Animation(0.27f, tempAnimationRegions));
-
-
-        }
-        return allWalkingAnimations;
-
-    }
 
 
 

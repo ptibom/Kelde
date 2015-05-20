@@ -1,12 +1,13 @@
-package se.computerscience.kelde.view.startmenu;
+package se.computerscience.kelde.view.intro;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 
 /**
- * Created by Daniel on 5/20/2015.
+ * @author: Daniel Olsson
  */
 public class TextDialogue {
     private double startTime, endTime;
@@ -21,13 +22,13 @@ public class TextDialogue {
     }
 
 
-    public TextureRegion updateTextureRegion(StartMenu startMenuModel){
+    public TextureRegion updateTextureRegion(Intro introModel){
 
         if(percentToShow + 50 == 1920){
             percentToShow = 1920;
         }
         else
-        percentToShow += startMenuModel.getDeltaTime()*384;
+        percentToShow += introModel.getDeltaTime()*384;
 
 
         textRegion =  new TextureRegion(dialogueTexture,(int)(50+percentToShow),1080);

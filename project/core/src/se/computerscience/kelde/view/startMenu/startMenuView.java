@@ -1,6 +1,5 @@
 package se.computerscience.kelde.view.startmenu;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -12,17 +11,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import se.computerscience.kelde.model.intro.AnimationLoader;
+import se.computerscience.kelde.model.startmenu.AnimationLoader;
 import se.computerscience.kelde.model.startmenu.StartMenu;
-import se.computerscience.kelde.screens.GameScreen;
 import se.computerscience.kelde.view.MenuButton;
+import se.computerscience.kelde.view.intro.IntroView;
 
 
 import java.util.*;
 
 
 /**
- * Created by Daniel on 4/28/2015.
+ * @author: Daniel Olsson
  */
 public class StartMenuView {
 
@@ -45,8 +44,8 @@ public class StartMenuView {
     private SpriteBatch batch = new SpriteBatch();
     private OrthographicCamera cam2d;
     private boolean introStarted = false;
-    String[] dialogues;
-    IntroHandler introHandler;
+
+
     MenuAnimationHandler menuAnimationHandler;
     AnimationLoader animationLoader;
     Texture backgroundTexture, foregroundTexture;
@@ -59,75 +58,38 @@ public class StartMenuView {
         this.startMenuModel = startMenuModel;
         cam2d = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         allWalkingAnimations = new ArrayList<Animation>();
-
         loadGameButton = new MenuButton(new Texture(startMenuModel.getBackground()), 750, 400,418,103);
-
         fadeScreenSprite = new Sprite( new Texture(startMenuModel.getFadeScreen()));
-
-        dialogues = startMenuModel.getDialogues();
         initIntro();
         animationLoader = new AnimationLoader(startMenuModel);
-        introHandler = new IntroHandler(startMenuModel,animationLoader);
+
         menuStage = new Stage();
-        dialogues = startMenuModel.getDialogues();
+
 
     }
 
     public int renderMenu(){
         if(result<=0 && !introStarted) {
-
             renderStartMenu();
-
         }
-        else{
+        else {
             introStarted = true;
             backgroundSound.dispose();
 
-
-            if(!startIntro) {
-                startMenuModel.resetTimer();
-                startTime = System.currentTimeMillis();
+            if (!startIntro) {
                 startIntro = true;
-
             }
-            introPassedTime = System.currentTimeMillis() - startTime -1000;
+
             startMenuModel.updateTimer();
             startMenuModel.updateStateTime();
 
-        if(Gdx.input.isTouched() && startMenuModel.getMenuTime()>1000){
-            introHandler.stopIntroMusic();
+            if (Gdx.input.isTouched()) {
 
-            return 1;
+
+                return 1;
+
+
             }
-
-            if(AnimationTools.timeRange(introPassedTime, -1, 0)) {
-                renderStartMenu();
-                batch.begin();
-                fadeInScreen();
-                batch.end();
-            }
-
-            else if(AnimationTools.timeRange(introPassedTime,0,1)) {
-
-
-                renderIntro();
-                batch.begin();
-                fadeOutScreen();
-                batch.end();
-            }
-            else{
-
-                renderIntro();
-
-                if(AnimationTools.timeRange(startMenuModel.getMenuTime(), 118, 118.5)){
-
-
-
-                    return 1;
-
-                }
-            }
-
         }
         return 0;
     }
@@ -177,12 +139,6 @@ public class StartMenuView {
             GL20 gl = Gdx.graphics.getGL20();
             gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
-
-
-
-
-                introHandler.startIntroMusic();
-                introHandler.drawIntro(batch);
 
 
             batch.end();

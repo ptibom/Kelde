@@ -1,19 +1,21 @@
-package se.computerscience.kelde.view.startmenu;
+package se.computerscience.kelde.view.intro;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.AnimationLoader;
+import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.startmenu.StartMenu;
+import se.computerscience.kelde.view.startmenu.AnimationTools;
 
 import java.util.Map;
 
 /**
- * Created by Daniel on 5/19/2015.
+ * @author: Daniel Olsson
  */
 public class AnimationHandler {
 
-        private StartMenu startMenuModel;
+    private Intro introModel;
         private TextureRegion currentFrame;
         private Map<String, Animation> animations;
         private final int ORIGIN_X, ORIGIN_Y;
@@ -26,10 +28,10 @@ public class AnimationHandler {
 
     // Animeringsklassen håller reda på all animeringsdata för en speciell sprite
 
-    public AnimationHandler(StartMenu startMenuModel, Map<String, Animation> animations, int x, int y, int height, int width){
+    public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width){
         this.width = width;
         this.height = height;
-        this.startMenuModel = startMenuModel;
+        this.introModel = introModel;
         this.animations = animations;
         this.ORIGIN_X = x;
         this.ORIGIN_Y = y;
@@ -38,9 +40,9 @@ public class AnimationHandler {
 
     public void drawAnimation(SpriteBatch batch, AnimationLoader animationloader,double startCount,double startTime, double endTime, String animation){
 
-        if(AnimationTools.timeRange(startMenuModel.getMenuTime(), startTime,endTime)){
+        if(AnimationTools.timeRange(introModel.getMenuTime(), startTime, endTime)){
 
-            double timePassed = startMenuModel.getMenuTime()/1000-startCount;
+            double timePassed = introModel.getMenuTime()/1000-startCount;
 
             animPathInterpolatedX = animationloader.getInterpolDataX();
             animPathInterpolatedY = animationloader.getInterpolDataY();
@@ -49,7 +51,7 @@ public class AnimationHandler {
             float interPolX = (float)(animPathInterpolatedX[(int)(timePassed*24)] );
             float interPolY  = (float)(animPathInterpolatedY[(int)(timePassed * 24)]);
 
-            currentFrame = animations.get(animation).getKeyFrame(startMenuModel.getStateTime(), true);
+            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
             batch.draw(currentFrame, interPolX, interPolY, 100, 100);
 
         }
@@ -61,11 +63,11 @@ public class AnimationHandler {
 
         // Vi får in förändringsdata för X och Y koordinaterna såväl som för storleksförändringen för spritsen
 
-        if(AnimationTools.timeRange(startMenuModel.getMenuTime(), startTime,endTime)){
+        if(AnimationTools.timeRange(introModel.getMenuTime(), startTime,endTime)){
 
             calculateNewDrawValues(xvelocity,yvelocity,widthChange,heightChange);
 
-            currentFrame = animations.get(animation).getKeyFrame(startMenuModel.getStateTime(), true);
+            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
             batch.draw(currentFrame, ORIGIN_X+(int)offsetX, ORIGIN_Y + (int)offsetY, this.width+(int)this.heightChangeX, this.height + (int) heightChangeY);
         }
 
@@ -75,7 +77,7 @@ public class AnimationHandler {
     public void drawAnimation(SpriteBatch batch, double startTime, double endTime, float keyFrame, int widthChange, int heightChange,int xvelocity, int yvelocity, String animation){
 
         // Överladdad funktion, ifall du vill ha en speciell keyframe hela tiden.
-        if(AnimationTools.timeRange(startMenuModel.getMenuTime(), startTime, endTime)){
+        if(AnimationTools.timeRange(introModel.getMenuTime(), startTime, endTime)){
 
             calculateNewDrawValues(xvelocity,yvelocity,widthChange,heightChange);
 
@@ -98,11 +100,11 @@ public class AnimationHandler {
 
 
 
-        if(AnimationTools.timeRange(startMenuModel.getMenuTime(), startTime, endTime)){
+        if(AnimationTools.timeRange(introModel.getMenuTime(), startTime, endTime)){
 
             calculateNewDrawValues(xvelocity,yvelocity,widthChange,heightChange);
 
-            currentFrame = animations.get(animation).getKeyFrame(startMenuModel.getStateTime(), true);
+            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
 
 
             if(drawFlipped){
@@ -133,10 +135,10 @@ public class AnimationHandler {
 
     public void calculateNewDrawValues(int xvelocity, int yvelocity, int widthChange, int heightChange){
 
-        this.heightChangeX += heightChange *startMenuModel.getDeltaTime();
-        this.heightChangeY += widthChange *startMenuModel.getDeltaTime();
-        this.offsetX += xvelocity *startMenuModel.getDeltaTime();
-        this.offsetY += yvelocity*startMenuModel.getDeltaTime();
+        this.heightChangeX += heightChange *introModel.getDeltaTime();
+        this.heightChangeY += widthChange *introModel.getDeltaTime();
+        this.offsetX += xvelocity *introModel.getDeltaTime();
+        this.offsetY += yvelocity*introModel.getDeltaTime();
 
     }
 

@@ -2,10 +2,11 @@ package se.computerscience.kelde.view.startmenu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.view.ui.Dialog;
+import se.computerscience.kelde.view.intro.AnimationHandler;
+import se.computerscience.kelde.view.intro.DialogueHandler;
 
 /**
- * Created by Daniel on 5/20/2015.
+ * @author: Daniel Olsson
  */
 public class FirstIntroSlave {
 
@@ -31,7 +32,7 @@ public FirstIntroSlave(DialogueHandler dialogueHandler, AnimationHandler animati
 
     public void draw(SpriteBatch batch){
 
-
+        batch.begin();
         // First draw the background texture
         batch.draw(background, 0, 0);
 
@@ -65,7 +66,7 @@ public FirstIntroSlave(DialogueHandler dialogueHandler, AnimationHandler animati
         batch.draw(foreground, 0, 0);
         batch.draw(border, 0, 0);
 
-
+        batch.end();
 
 
 

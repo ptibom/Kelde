@@ -3,7 +3,7 @@ package se.computerscience.kelde.model.startmenu;
 import com.badlogic.gdx.Gdx;
 
 /**
- * Created by Daniel on 5/19/2015.
+ * @author: Daniel Olsson
  */
 public class Timer {
 
@@ -14,7 +14,7 @@ public class Timer {
 
 
     public void updateTimer() {
-       menuTime = System.currentTimeMillis() - startTime -1000;
+       menuTime = System.currentTimeMillis() - startTime;
     }
 
 

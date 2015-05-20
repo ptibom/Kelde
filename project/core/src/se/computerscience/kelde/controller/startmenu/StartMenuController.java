@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import se.computerscience.kelde.view.startmenu.StartMenuView;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 /**
- * Created by Daniel on 4/27/2015.
+ * @author: Daniel Olsson
  */
 public class StartMenuController {
 

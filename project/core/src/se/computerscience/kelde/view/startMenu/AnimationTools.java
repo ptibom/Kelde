@@ -1,7 +1,7 @@
 package se.computerscience.kelde.view.startmenu;
 
 /**
- * Created by Daniel on 5/20/2015.
+ * @author: Daniel Olsson
  */
 public class AnimationTools {
 

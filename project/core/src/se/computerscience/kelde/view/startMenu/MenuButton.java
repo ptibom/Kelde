@@ -1,5 +1,5 @@
-/** Description: Button for in-game menu.
- *  @author: Philip Tibom
+/**
+ * @author: Daniel Olsson
  */
 
 package se.computerscience.kelde.view;
