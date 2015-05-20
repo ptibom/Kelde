@@ -5,11 +5,7 @@
  */
 package se.computerscience.kelde.model.constants;
 
-import se.computerscience.kelde.model.items.Axe;
-import se.computerscience.kelde.model.items.Bow;
-import se.computerscience.kelde.model.items.IItem;
-import se.computerscience.kelde.model.items.Sword;
-
+import se.computerscience.kelde.model.items.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +22,7 @@ public class ItemSets {
         List<IItem> items = new ArrayList<>();
         items.add(new Sword());
         items.add(new Axe());
+        items.add(new Key_Lava());
         return items;
     }
 }
