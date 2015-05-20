@@ -12,6 +12,7 @@ import se.computerscience.kelde.view.entities.EntityArrowView;
 
 /**
  * Created by Anders on 2015-05-16.
+ * @author Anders
  */
 public class EntityArrowController implements ICollisionEventHandler {
 
