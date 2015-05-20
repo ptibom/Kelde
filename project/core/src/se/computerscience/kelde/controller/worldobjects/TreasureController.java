@@ -6,7 +6,6 @@
 package se.computerscience.kelde.controller.worldobjects;
 
 import se.computerscience.kelde.controller.events.*;
-import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.view.worldobjects.TreasureView;

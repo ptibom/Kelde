@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.worldobjects.Treasure;
-import se.computerscience.kelde.view.items.AxeView;
 
 /**
  * Description:

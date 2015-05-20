@@ -6,6 +6,7 @@
 package se.computerscience.kelde.model.constants;
 
 import se.computerscience.kelde.model.items.Axe;
+import se.computerscience.kelde.model.items.Bow;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.items.Sword;
 
@@ -17,6 +18,7 @@ public class ItemSets {
         List<IItem> items = new ArrayList<>();
         items.add(new Sword());
         items.add(new Axe());
+        items.add(new Bow());
         return items;
     }
 
