@@ -70,34 +70,16 @@ public class GameWorldController implements IItemEventHandler{
         entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
         ItemEventBus.INSTANCE.register(this);
     }
-    public void update(){
-
-        for (ItemEntity ie: gameWorld.getItemEntities()){
-            if (!ie.isVisible()){
-                // kanske skicka cache ?
-                //gameWorld.getItemEntities().remove(ie);
-                //ystem.out.println("update ie -1");
-            }
-        }
-        for (ItemEntityView iev: gameWorldView.getItemEntityViews()){
-            if (iev.isDelete()){
-                //System.out.println("update iev -1");
-            }
-        }
-        //System.out.println(" #C"+itemEntityControllers.size() + " #M"+gameWorld.getItemEntities().size()+ " #V"+gameWorldView.getItemEntityViews().size());
+    public void updateItemControllers(){
         if (itemEntityControllers.size() == gameWorld.getItemEntities().size()){
             return;
         }
-
-        itemEntityControllers.clear();
-        for (int i = 0; i < gameWorld.getItemEntities().size() ;i++) {
-            System.out.println("the add: #C"+itemEntityControllers.size() + "#M"+gameWorld.getItemEntities().size());
+        for (int i = itemEntityControllers.size(); i < gameWorld.getItemEntities().size() ;i++) {
             itemEntityControllers.add(new ItemEntityController(gameWorld.getItemEntities().get(i) , gameWorldView.getItemEntityViews().get(i)));
         }
-        System.out.println(itemEntityControllers.size() +"=="+ gameWorld.getItemEntities().size() +"=="+gameWorldView.getItemEntityViews().size());
     }
     public void render(float delta) {
-        update();
+        updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (IWorldObjectsController worldObj : worldObjList) {
             worldObj.update(delta);
@@ -141,22 +123,11 @@ public class GameWorldController implements IItemEventHandler{
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             gameWorld.addItems((IItem) event.getObject());
-            System.out.println("am i going 3 times?");
             ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_ENTITY, gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1)));
         }
         // adding a views
         if (event.getTag() == ItemEvent.Tag.ITEM_ENTITY) {
                 gameWorldView.addEntityViews((ItemEntity)event.getObject());
         }
-        // deleteing ctrl
-        if (event.getTag() == ItemEvent.Tag.ITEM_CTRL){
-            System.out.println(gameWorld.getItemEntities().remove(event.getObject()) + " del m");
-
-        }
-        // deleteing view
-        if (event.getTag() == ItemEvent.Tag.ITEM_VIEW){
-            System.out.println(gameWorldView.getItemEntityViews().remove(event.getObject()) + " del v");
-        }
     }
-
 }

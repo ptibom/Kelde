@@ -29,9 +29,7 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
         if (picked){
             itemEntity.setVisible(false);
             itemEntityView.setDelete(true);
-            //itemEntity.playerPickUp();
             picked = false;
-            System.out.println("deleted");
         }
     }
 
@@ -41,8 +39,6 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN){
-            //ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_CTRL,itemEntity));
-            //ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_VIEW,itemEntityView));
             delete();
         }
     }
