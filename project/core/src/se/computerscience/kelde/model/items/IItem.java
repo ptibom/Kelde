@@ -9,8 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public interface IItem {
     public boolean isConsumable();
     public boolean isWeapon();
-    //public float getPositionY();
-    //public float getPositionX();
     public Sprite getSprite();
-
+    public void setItemPostionY(float y);
+    public void setItemPostionX(float x);
+    public float getItemPostionY();
+    public float getItemPostionX();
 }

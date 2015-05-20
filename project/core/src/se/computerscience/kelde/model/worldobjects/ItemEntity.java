@@ -16,7 +16,7 @@ public class ItemEntity implements IWorldObjects {
     private final IItem item;
     private boolean visible = true;
     public ItemEntity(float x, float y, IB2DWorld ib2DWorld, IItem item) {
-        physicalBody = new PhysicalBody(x, y, 16, 16, ib2DWorld, this);
+        physicalBody = new PhysicalBodySensor(x, y, 16, 16, ib2DWorld, this);
         this.item = item;
     }
 

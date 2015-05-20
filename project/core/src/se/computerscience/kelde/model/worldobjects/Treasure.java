@@ -28,9 +28,10 @@ public class Treasure implements IWorldObjects {
         entityBody = new PhysicalBodyStatic(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
 
         for (IItem item : items) {
+            item.setItemPostionY(y+50);
+            item.setItemPostionX(x+=15);
             this.itemslist.add(item);
         }
-        System.out.println("#of items in treasure"+ itemslist.size());
     }
 
     public void setIsOpen(boolean isOpen) {

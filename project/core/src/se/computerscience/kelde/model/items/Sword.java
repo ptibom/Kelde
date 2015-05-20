@@ -15,6 +15,8 @@ public class Sword implements IItem {
     private boolean isConsumable = false;
     private boolean isWeapon = true;
     private final int damage = 10;
+    private float itemPostionX;
+    private float itemPostionY;
     private Sprite sprite = new Sprite(new Texture("sword_1.png"),32,32);
     public Sword() {
     }
@@ -22,16 +24,27 @@ public class Sword implements IItem {
     public boolean isConsumable() {
         return isConsumable;
     }
-
     public boolean isWeapon() {
         return isWeapon;
     }
-
     public int getDamage() {
         return damage;
     }
-
     public Sprite getSprite() {
         return sprite;
+    }
+    @Override
+    public void setItemPostionX(float itemPostionX) {
+        this.itemPostionX = itemPostionX;
+    }
+    public float getItemPostionY() {
+        return itemPostionY;
+    }
+    public float getItemPostionX() {
+        return itemPostionX;
+    }
+    @Override
+    public void setItemPostionY(float itemPostionY) {
+        this.itemPostionY = itemPostionY;
     }
 }

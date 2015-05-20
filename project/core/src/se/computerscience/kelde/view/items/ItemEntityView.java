@@ -6,8 +6,6 @@
 package se.computerscience.kelde.view.items;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.controller.events.ItemEvent;
-import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
@@ -25,7 +23,6 @@ public class ItemEntityView implements IWorldObjectView {
             itemEntity.getItem().getSprite().draw(batch);
         }
         if (delete){
-            System.out.println("we here?");
             itemEntity.playerPickUp();
             delete = false;
         }
