@@ -30,6 +30,7 @@ public class Treasure implements IWorldObjects {
         for (IItem item : items) {
             this.itemslist.add(item);
         }
+        System.out.println("#of items in treasure"+ itemslist.size());
     }
 
     public void setIsOpen(boolean isOpen) {

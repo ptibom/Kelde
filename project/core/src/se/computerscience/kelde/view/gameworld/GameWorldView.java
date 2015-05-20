@@ -93,7 +93,6 @@ public class GameWorldView{
     public void updateProjectionMatrix() {
         batch.setProjectionMatrix(gameWorld.getCamera().getOrthographicCamera().combined);
     }
-
     public void dispose() {
         mapRenderer.dispose();
     }

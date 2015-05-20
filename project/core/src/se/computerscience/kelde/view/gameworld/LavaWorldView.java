@@ -24,7 +24,6 @@ public class LavaWorldView {
     private final DoorView doorView;
     private final LavaRingView lavaRingView;
     private final BombView bombView;
-    private final TreasureView treasureView;
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -38,8 +37,6 @@ public class LavaWorldView {
 
         bombView = new BombView(lavaWorld.getBomb());
 
-        treasureView = new TreasureView(lavaWorld.getTreasure());
-
     }
 
     public void render(float delta) {
@@ -50,7 +47,6 @@ public class LavaWorldView {
         // Draw sprites
         batch.begin();
         doorView.draw(batch);
-        treasureView.draw(batch);
         lavaRingView.draw(batch);
         bombView.draw(batch);
         entityPlayerKeldeView.draw(batch);
@@ -85,8 +81,5 @@ public class LavaWorldView {
     }
     public BombView getBombView() {
         return bombView;
-    }
-    public TreasureView getTreasureView() {
-        return treasureView;
     }
 }

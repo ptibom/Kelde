@@ -4,7 +4,6 @@
 
 package se.computerscience.kelde.controller.gameworld;
 
-
 import se.computerscience.kelde.controller.events.IItemEventHandler;
 import se.computerscience.kelde.controller.events.ItemEvent;
 import se.computerscience.kelde.controller.events.ItemEventBus;
@@ -38,13 +37,13 @@ public class GameWorldController implements IItemEventHandler{
     private final DoorController doorController;
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
+
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
-
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
-    private final BombController bombController;
 
+    private final BombController bombController;
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -56,9 +55,7 @@ public class GameWorldController implements IItemEventHandler{
         treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
         doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
-
         bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
-
 
         worldObjList.add(barrelController);
         worldObjList.add(treasureController);
@@ -70,14 +67,43 @@ public class GameWorldController implements IItemEventHandler{
 
         entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
         entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
-        ItemEventBus.INSTANCE.register(this);
         entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
+        ItemEventBus.INSTANCE.register(this);
     }
+    public void update(){
 
+        for (ItemEntity ie: gameWorld.getItemEntities()){
+            if (!ie.isVisible()){
+                // kanske skicka cache ?
+                //gameWorld.getItemEntities().remove(ie);
+                //ystem.out.println("update ie -1");
+            }
+        }
+        for (ItemEntityView iev: gameWorldView.getItemEntityViews()){
+            if (iev.isDelete()){
+                //System.out.println("update iev -1");
+            }
+        }
+        //System.out.println(" #C"+itemEntityControllers.size() + " #M"+gameWorld.getItemEntities().size()+ " #V"+gameWorldView.getItemEntityViews().size());
+        if (itemEntityControllers.size() == gameWorld.getItemEntities().size()){
+            return;
+        }
+
+        itemEntityControllers.clear();
+        for (int i = 0; i < gameWorld.getItemEntities().size() ;i++) {
+            System.out.println("the add: #C"+itemEntityControllers.size() + "#M"+gameWorld.getItemEntities().size());
+            itemEntityControllers.add(new ItemEntityController(gameWorld.getItemEntities().get(i) , gameWorldView.getItemEntityViews().get(i)));
+        }
+        System.out.println(itemEntityControllers.size() +"=="+ gameWorld.getItemEntities().size() +"=="+gameWorldView.getItemEntityViews().size());
+    }
     public void render(float delta) {
+        update();
         entityPlayerKeldeController.update(delta);
         for (IWorldObjectsController worldObj : worldObjList) {
             worldObj.update(delta);
+        }
+        for (ItemEntityController entityControllerlist : itemEntityControllers ){
+            entityControllerlist.update(delta);
         }
         entityBatController.update(delta);
         entityEyeController.update(delta);
@@ -115,15 +141,22 @@ public class GameWorldController implements IItemEventHandler{
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             gameWorld.addItems((IItem) event.getObject());
-            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_ENTITY,gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1)));
+            System.out.println("am i going 3 times?");
+            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_ENTITY, gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1)));
         }
-        if (event.getTag() == ItemEvent.Tag.ITEM_ENTITY){
-            for (ItemEntity itemEntity : gameWorld.getItemEntities()) {
-                gameWorldView.addEntityViews(itemEntity);
-                ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_CTRL,gameWorldView.getItemEntityViews().get(gameWorldView.getItemEntityViews().size()-1) ));
-            }
+        // adding a views
+        if (event.getTag() == ItemEvent.Tag.ITEM_ENTITY) {
+                gameWorldView.addEntityViews((ItemEntity)event.getObject());
         }
-        //itemEntityControllers.add(new ItemEntityController(itemEntity,gameWorldView.getItemEntityViews().get(gameWorldView.getItemEntityViews().size()-1)));
-        //itemEntityControllers.add(new ItemEntityController(null,null));
+        // deleteing ctrl
+        if (event.getTag() == ItemEvent.Tag.ITEM_CTRL){
+            System.out.println(gameWorld.getItemEntities().remove(event.getObject()) + " del m");
+
+        }
+        // deleteing view
+        if (event.getTag() == ItemEvent.Tag.ITEM_VIEW){
+            System.out.println(gameWorldView.getItemEntityViews().remove(event.getObject()) + " del v");
+        }
     }
+
 }

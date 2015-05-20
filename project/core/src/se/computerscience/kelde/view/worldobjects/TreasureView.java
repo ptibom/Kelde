@@ -30,9 +30,6 @@ public class TreasureView implements IWorldObjectView {
         sprite = new Sprite(texture, WIDTH, HEIGHT);
         SPRITE_CLOSED = new Sprite(new Texture(SPRITE_LOCATION2), 30, 32);
         SPRITE_OPENED = new Sprite(new Texture(SPRITE_LOCATION1), 30, 32);
-
-        //swordView = new SwordView(treasure.getSword());
-        //axeView = new AxeView(treasure.getAxe());
     }
 
     public void update(float delta) {

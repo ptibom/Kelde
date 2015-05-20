@@ -14,7 +14,7 @@ import se.computerscience.kelde.model.items.IItem;
 public class ItemEntity implements IWorldObjects {
     private final IPhysicalBody physicalBody;
     private final IItem item;
-
+    private boolean visible = true;
     public ItemEntity(float x, float y, IB2DWorld ib2DWorld, IItem item) {
         physicalBody = new PhysicalBody(x, y, 16, 16, ib2DWorld, this);
         this.item = item;
@@ -41,5 +41,13 @@ public class ItemEntity implements IWorldObjects {
     @Override
     public float getPositionX() {
         return physicalBody.getPositionX() - 16;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

@@ -28,7 +28,6 @@ public class LavaWorld {
     private final Bomb bomb;
     private IMap map;
     private ICamera camera;
-    private Treasure treasure;
     public LavaWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
@@ -37,7 +36,6 @@ public class LavaWorld {
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
         bomb = new Bomb(worldPhysics.getIb2DWorld(), 370,300);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300,300, new ArrayList<>());
 
     }
 
@@ -78,9 +76,5 @@ public class LavaWorld {
 
     public Bomb getBomb() {
         return bomb;
-    }
-
-    public Treasure getTreasure() {
-        return treasure;
     }
 }

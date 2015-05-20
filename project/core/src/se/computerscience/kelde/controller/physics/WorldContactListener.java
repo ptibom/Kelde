@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
-import se.computerscience.kelde.model.items.IItem;
+
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
 import java.util.ArrayList;
@@ -64,12 +64,12 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
-            if (objectB instanceof IItem || objectB instanceof IWorldObjects) { // IItems or IItem
+            if (/*objectB instanceof IItem || */objectB instanceof IWorldObjects) { // IItems or IItem
                 eventCache.add(new CollisionEvent(state, objectB));
             }
         }
         else if (objectB instanceof EntityPlayerKelde) {
-            if (objectA instanceof IItem || objectA instanceof IWorldObjects) { // IItems or IItem
+            if (/*objectA instanceof IItem || */objectA instanceof IWorldObjects) { // IItems or IItem
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
