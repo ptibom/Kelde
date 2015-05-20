@@ -39,7 +39,8 @@ public class GameWorldController {
     private final SwordController swordController2;
     private final DoorController doorController;
 
-    private List<IWorldObjectsController> worldObjList = new ArrayList();
+
+    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;

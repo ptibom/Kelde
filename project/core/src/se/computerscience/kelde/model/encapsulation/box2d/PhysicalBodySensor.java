@@ -9,7 +9,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 
 public class PhysicalBodySensor extends PhysicalBody {
     public PhysicalBodySensor(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
+
         super(x, y, width, height, ib2DWorld, userdata); // userdata borde heta ID eller nåt sånt.
+
+       // super(x, y, width, height, ib2DWorld, userdata);
+
         getBody().setUserData(userdata);
     }
     @Override

@@ -14,7 +14,10 @@ public enum CollisionEventBus {
 
     INSTANCE;
 
-    private final List<ICollisionEventHandler> handlers = new ArrayList();
+
+
+    private final List<ICollisionEventHandler> handlers = new ArrayList<>();
+
 
     public void register(ICollisionEventHandler handler) {
         handlers.add(handler);
