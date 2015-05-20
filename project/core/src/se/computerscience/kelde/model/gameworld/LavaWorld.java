@@ -11,10 +11,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
-import se.computerscience.kelde.model.worldobjects.Bomb;
-import se.computerscience.kelde.model.worldobjects.Door;
-import se.computerscience.kelde.model.worldobjects.LavaRing;
-import se.computerscience.kelde.model.worldobjects.Treasure;
+import se.computerscience.kelde.model.worldobjects.*;
 
 import java.util.ArrayList;
 
@@ -26,6 +23,8 @@ public class LavaWorld {
     private final Door door;
     private final LavaRing lavaRing;
     private final Bomb bomb;
+    private final CampFire campFire;
+
     private IMap map;
     private ICamera camera;
     public LavaWorld() {
@@ -36,7 +35,7 @@ public class LavaWorld {
         door = new Door(worldPhysics.getIb2DWorld(),350,16);
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
         bomb = new Bomb(worldPhysics.getIb2DWorld(), 370,300);
-
+        campFire = new CampFire(worldPhysics.getIb2DWorld(),140,100);
     }
 
     public void resizeCamera (int width, int height) {
@@ -49,32 +48,28 @@ public class LavaWorld {
     public ICamera getCamera() {
         return camera;
     }
-
     public void dispose() {
         map.dispose();
     }
-
     public WorldPhysics getWorldPhysics() {
         return worldPhysics;
     }
-
     public IMap getMap() {
         return map;
     }
-
     public EntityPlayerKelde getEntityPlayerKelde() {
         return entityPlayerKelde;
     }
-
     public Door getDoor() {
         return door;
     }
-
     public LavaRing getLavaRing() {
         return lavaRing;
     }
-
     public Bomb getBomb() {
         return bomb;
+    }
+    public CampFire getCampFire() {
+        return campFire;
     }
 }

@@ -24,6 +24,8 @@ public class LavaWorldView {
     private final DoorView doorView;
     private final LavaRingView lavaRingView;
     private final BombView bombView;
+    private final CampFireView campFireView;
+
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -34,9 +36,8 @@ public class LavaWorldView {
         entityPlayerKeldeView = new EntityPlayerKeldeView(lavaWorld.getEntityPlayerKelde());
         doorView = new DoorView(lavaWorld.getDoor(),"door2");
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
-
         bombView = new BombView(lavaWorld.getBomb());
-
+        campFireView = new CampFireView(lavaWorld.getCampFire());
     }
 
     public void render(float delta) {
@@ -49,6 +50,7 @@ public class LavaWorldView {
         doorView.draw(batch);
         lavaRingView.draw(batch);
         bombView.draw(batch);
+        campFireView.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -81,5 +83,9 @@ public class LavaWorldView {
     }
     public BombView getBombView() {
         return bombView;
+    }
+
+    public CampFireView getCampFireView() {
+        return campFireView;
     }
 }

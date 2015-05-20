@@ -26,6 +26,7 @@ public class LavaWorldController {
     private final LavaRingController lavaRingController;
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final BombController bombController;
+    private final CampFireController campFireController;
 
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
@@ -36,6 +37,7 @@ public class LavaWorldController {
         doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
+        campFireController = new CampFireController(lavaWorld.getCampFire(),lavaWorldView.getCampFireView());
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
     }
 
@@ -43,7 +45,7 @@ public class LavaWorldController {
         entityPlayerKeldeController.update(delta);
         doorController.update(delta);
         lavaRingController.update(delta);
-
+        campFireController.update(delta);
         bombController.update(delta);
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);

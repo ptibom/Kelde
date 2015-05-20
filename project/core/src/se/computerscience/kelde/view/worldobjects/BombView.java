@@ -15,7 +15,6 @@ public class BombView implements IWorldObjectView {
     private final Bomb bomb;
     private final String SPRITE_LOCATION = "BombExploding.atlas";
     private boolean display = true;
-
     private TextureAtlas textureAtlas;
     private Animation animation;
     private float elapsedTime = 0, delta = 0;
