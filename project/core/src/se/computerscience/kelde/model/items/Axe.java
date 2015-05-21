@@ -14,19 +14,18 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
  *
  * @author: Hossein Hussain
  */
-public class Axe implements IItem {
+public class Axe extends Item {
     private final boolean isConsumable = false;
     private final boolean isWeapon = true;
     private final int damage = 10;
-    private float itemPostionX;
-    private float itemPostionY;
-    private TextureAtlas textureAtlas;
-    private final Sprite sprite;
     public Axe() {
-        textureAtlas = new TextureAtlas(Gdx.files.internal("allitems.atlas"));
-        AtlasRegion region = textureAtlas.findRegion("0002");
-        sprite = new Sprite(region);
     }
+
+    @Override
+    protected void setRegion() {
+        this.region = textureAtlas.findRegion("0003");
+    }
+
     public int getDamage() {
         return damage;
     }
@@ -37,25 +36,5 @@ public class Axe implements IItem {
     @Override
     public boolean isWeapon() {
         return isWeapon;
-    }
-    @Override
-    public Sprite getSprite() {
-        return sprite;
-    }
-    @Override
-    public float getItemPostionX() {
-        return itemPostionX;
-    }
-    @Override
-    public void setItemPostionX(float itemPostionX) {
-        this.itemPostionX = itemPostionX;
-    }
-    @Override
-    public float getItemPostionY() {
-        return itemPostionY;
-    }
-    @Override
-    public void setItemPostionY(float itemPostionY) {
-        this.itemPostionY = itemPostionY;
     }
 }

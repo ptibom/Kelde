@@ -10,8 +10,8 @@ public interface IItem {
     public boolean isConsumable();
     public boolean isWeapon();
     public Sprite getSprite();
-    public void setItemPostionY(float y);
-    public void setItemPostionX(float x);
-    public float getItemPostionY();
-    public float getItemPostionX();
+    public void setItemPositionY(float y);
+    public void setItemPositionX(float x);
+    public float getItemPositionY();
+    public float getItemPositionX();
 }
