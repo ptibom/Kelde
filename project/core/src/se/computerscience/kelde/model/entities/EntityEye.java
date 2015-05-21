@@ -106,4 +106,5 @@ public class EntityEye {
     public float getPositionY() {
         return (int) (entityBody.getPositionY()-BODY_WIDTH-6);
     }
+
 }
