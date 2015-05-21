@@ -93,28 +93,17 @@ public class StartMenuView {
 
     /*
         public void fadeInScreen() {
-
             double timeLapse = (System.currentTimeMillis() - internalTimerFadeIn) /1000;
-
-
             if (timeLapse < 1) {
-
                 fadeScreenSprite.setAlpha((float) timeLapse);
                 fadeScreenSprite.draw(batch);
-
             }
-
         }
-
             public void fadeOutScreen(){
-
                 double timeLapse = (System.currentTimeMillis() - internalTimerFadeOut) /1000;
-
                 if ( timeLapse < 1) {
-
                     fadeScreenSprite.setAlpha(1-(float)timeLapse);
                     fadeScreenSprite.draw(batch);
-
                 }
             }
     */
@@ -124,5 +113,3 @@ public class StartMenuView {
 
 
 }
-
-

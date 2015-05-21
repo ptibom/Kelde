@@ -3,7 +3,6 @@ package se.computerscience.kelde.model.intro;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import se.computerscience.kelde.model.startmenu.StartMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;

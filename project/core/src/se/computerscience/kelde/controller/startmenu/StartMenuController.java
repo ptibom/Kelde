@@ -1,8 +1,9 @@
 package se.computerscience.kelde.controller.startmenu;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import se.computerscience.kelde.view.startmenu.StartMenuView;
 import se.computerscience.kelde.model.startmenu.StartMenu;
+import se.computerscience.kelde.view.startmenu.StartMenuView;
+
 
 import java.io.IOException;
 
