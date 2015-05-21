@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class LavaWorld {
 
-    private static final String MAP_LOCATION = "testmap.tmx";
+    private static final String MAP_LOCATION = "lavamap.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
     private final Door door;
