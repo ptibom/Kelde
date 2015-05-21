@@ -8,6 +8,7 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.LavaWorldController;
 
 public class LavaScreen implements Screen {
@@ -16,7 +17,7 @@ public class LavaScreen implements Screen {
     public void show() {
         // Initialises objects, like a constructor
         lavaWorldController = new LavaWorldController();
-        //Gdx.input.setInputProcessor(new InputController(lavaWorldController));
+        Gdx.input.setInputProcessor(new InputController(lavaWorldController));
     }
 
     @Override

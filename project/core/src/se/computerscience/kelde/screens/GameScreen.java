@@ -15,12 +15,10 @@ import se.computerscience.kelde.controller.gameworld.LavaWorldController;
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
-    private LavaWorldController lavaWorldController;
     @Override
     public void show() {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController();
-        lavaWorldController = new LavaWorldController();
         Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
 
@@ -30,22 +28,12 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
-
         // Render the world based om woth screen is set.
-
-        if (ScreenChanger.INSTANCE.getScreen().equals("Game")){
-            gameWorldController.render(delta);
-            Gdx.input.setInputProcessor(new InputController(gameWorldController));
-        }else if (ScreenChanger.INSTANCE.getScreen().equals("Lava")){
-            lavaWorldController.render(delta);
-            Gdx.input.setInputProcessor(new InputController(lavaWorldController));
-        }
+        gameWorldController.render(delta);
     }
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);
-        lavaWorldController.resizeCamera(width, height);
     }
 
     @Override
@@ -67,6 +55,5 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         gameWorldController.dispose();
-        lavaWorldController.dispose();
     }
 }
