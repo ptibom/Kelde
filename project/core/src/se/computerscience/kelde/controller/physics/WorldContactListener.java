@@ -64,12 +64,12 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
-            if (objectB instanceof IWorldObjects) { // IItems or IItem
+            if (objectB instanceof IWorldObjects) {
                 eventCache.add(new CollisionEvent(state, objectB));
             }
         }
         else if (objectB instanceof EntityPlayerKelde) {
-            if (objectA instanceof IWorldObjects) { // IItems or IItem
+            if (objectA instanceof IWorldObjects) {
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }

@@ -4,6 +4,7 @@
 
 package se.computerscience.kelde.controller.gameworld;
 
+import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.IItemEventHandler;
 import se.computerscience.kelde.controller.events.ItemEvent;
 import se.computerscience.kelde.controller.events.ItemEventBus;
@@ -102,8 +103,15 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         worldPhysicsController.resizeCamera(width, height);
     }
 
+    public void cleanEventBuses() {
+        CollisionEventBus.INSTANCE.unregisterAll();
+        ItemEventBus.INSTANCE.unregisterAll();
+    }
+
     public void dispose() {
         // Release resources.
+        CollisionEventBus.INSTANCE.unregisterAll();
+        ItemEventBus.INSTANCE.unregisterAll();
         gameWorldView.dispose();
         gameWorld.dispose();
         worldPhysicsController.dispose();

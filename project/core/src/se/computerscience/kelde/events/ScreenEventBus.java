@@ -26,4 +26,8 @@ public enum  ScreenEventBus {
             handler.onScreenChange(event);
         }
     }
+
+    public void unregisterAll () {
+        handlers.clear();
+    }
 }

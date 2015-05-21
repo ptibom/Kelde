@@ -15,7 +15,7 @@ public class Item implements IItem {
     private float itemPositionY;
     protected final TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("allitems.atlas"));
     private final Sprite sprite;
-    public TextureAtlas.AtlasRegion region;
+    protected TextureAtlas.AtlasRegion region;
     public Item() {
         setRegion();
         sprite = new Sprite(region);

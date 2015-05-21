@@ -22,4 +22,8 @@ public enum ItemEventBus {
 
         }
     }
+
+    public void unregisterAll () {
+        handlers.clear();
+    }
 }

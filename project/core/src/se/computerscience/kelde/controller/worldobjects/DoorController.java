@@ -6,6 +6,8 @@
 package se.computerscience.kelde.controller.worldobjects;
 
 import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.events.ScreenEvent;
+import se.computerscience.kelde.events.ScreenEventBus;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.screens.LavaScreen;
 import se.computerscience.kelde.view.worldobjects.DoorView;
@@ -31,7 +33,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN,new LavaScreen()));
+            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.LAVA_WORLD));
         }
     }
     public void dispose() {

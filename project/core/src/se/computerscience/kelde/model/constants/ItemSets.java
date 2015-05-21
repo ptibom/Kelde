@@ -22,7 +22,7 @@ public class ItemSets {
         List<IItem> items = new ArrayList<>();
         items.add(new Sword());
         items.add(new Axe());
-        items.add(new Key_Lava());
+        items.add(new KeyLava());
         return items;
     }
 }
