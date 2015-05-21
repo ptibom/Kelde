@@ -92,7 +92,8 @@ public class IntroInstruction {
         return heightChange;
 
     }
-    public boolean isFlipped(){
+
+    public boolean isFlipped() {
         return flipped;
     }
 

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.AnimationLoader;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.intro.IntroInstruction;
-import se.computerscience.kelde.view.startmenu.AnimationTools;
+import se.computerscience.kelde.model.intro.AnimationTools;
 
 import java.util.Map;
 

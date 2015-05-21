@@ -11,10 +11,15 @@ import java.util.List;
 
 public class Intro {
 
+    // The spritesheets
+    private static final String INTRO_SPELL_PATH_IMAGE = "intro/spell.png";
+    private static final String INTRO_DEMON_ANIMATION_PATH_IMAGE = "intro/introsprites.png";
+    private static final String INTRO_WIZARD_ANIMATION_PATH_IMAGE = "intro/introtalk.png";
+
     // Coordinates on spritesheet used to read them in and create TextureRegion
-    private static final int[] INTRO_WIZARD_TALK_COORDINATES = new int[18];
-    private static final int[] INTRO_DEMON_ANIMATION_COORDINATES = new int[84];
-    private static final int[] INTRO_SPELL_ANIMATION_COORDINATES = new int[26];
+    private static  int[] INTRO_WIZARD_TALK_COORDINATES = new int[18];
+    private static  int[] INTRO_DEMON_ANIMATION_COORDINATES = new int[84];
+    private static  int[] INTRO_SPELL_ANIMATION_COORDINATES = new int[26];
 
     //The length of all animations, used to read in right amount of frame into the animation
     private static final int[] INTRO_WIZARD_ANIMATION_LENGTH_DATA = new int[]{3, 3, 2};
@@ -25,12 +30,7 @@ public class Intro {
     private static final String[] INFO_TEXT_PATH_IMAGES = new String[8];
     private static final String[] INTRO_DIALOGUE_IMAGES = new String[30];
 
-    // The spritesheets
-    private static final String INTRO_SPELL_PATH_IMAGE = "intro/spell.png";
-    private static final String INTRO_DEMON_ANIMATION_PATH_IMAGE = "intro/introsprites.png";
-    private static final String INTRO_WIZARD_ANIMATION_PATH_IMAGE = "intro/introtalk.png";
-
-   //Background and foreground images used in the intro
+    //Background and foreground images used in the intro
     private static final String INTRO_BORDER_PATH_IMAGE = "intro/borderintro.png";
     private static final String INTRO_BACKGROUND_PATH_IMAGE = "intro/backgroundintro.png";
     private static final String FOREGROUND_INTRO_PATH_IMAGE = "intro/foregroundintro.png";
@@ -48,7 +48,7 @@ public class Intro {
 
     public Intro(List<List<String>> inputData) throws IOException {
 
-
+        // Read from file .txt
         List<String> introDemonData = inputData.get(0);
         List<String> introWizardData = inputData.get(1);
         List<String> introSpellData = inputData.get(2);
@@ -65,19 +65,16 @@ public class Intro {
         }
 
 
-
         // Reading in the sprite sheet data
         int INTRO_DEMON_SPRITE_SIZE = 128;
         int INTRO_WIZARD_SPRITE_SIZE = 300;
         int INTRO_SPELL_SPRITE_SIZE = 100;
 
-        loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE,INTRO_DEMON_ANIMATION_COORDINATES,introDemonData );
+        INTRO_DEMON_ANIMATION_COORDINATES = AnimationTools.loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE,introDemonData);
+        INTRO_WIZARD_TALK_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE, introWizardData);
+        INTRO_SPELL_ANIMATION_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
 
-        loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE,INTRO_WIZARD_TALK_COORDINATES,introWizardData );
-
-        loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE,INTRO_SPELL_ANIMATION_COORDINATES,introSpellData );
-
-
+        //Read from file .intro
         List<String> introDemonInstructions = inputData.get(3);
         List<String> introWizard1Instructions = inputData.get(4);
         List<String> introWizard2Instructions = inputData.get(5);
@@ -87,90 +84,21 @@ public class Intro {
 
 
         // Loading data for the demon's dialoges.
-        loadAndGatherInstructions( introDemonInstructions);
-        loadAndGatherInstructions(introDemonDialogueInstructions);
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introDemonInstructions));
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introDemonDialogueInstructions));
 
-        loadAndGatherInstructions(introWizardDialogueInstructions);
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introWizardDialogueInstructions));
 
         // Loading data for the sprite animation.
-
-        loadAndGatherInstructions(introWizard1Instructions);
-        loadAndGatherInstructions(introWizard2Instructions);
-        loadAndGatherInstructions(introSpellInstructions);
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introWizard1Instructions));
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introWizard2Instructions));
+        allInstructions.add(InstructionTools.loadAndGatherInstructions(introSpellInstructions));
 
     }
 
 
     public List<List<IntroInstruction>> getInstructions() {
         return allInstructions;
-    }
-
-    // Loading the coordinates for each TextureRegion
-    public void loadTextureRegionData(int spriteSize, int[] TextureRegionCoordinatesOut, List<String> data){
-        for (int i = 7, dataIndex =2; i < data.size(); i += 7) {
-
-            TextureRegionCoordinatesOut[0] = spriteSize;
-            TextureRegionCoordinatesOut[1] = spriteSize;
-
-            String[] tempFormat = data.get(i - 1).split(" ");
-            TextureRegionCoordinatesOut[dataIndex] = Integer.parseInt(tempFormat[3]);
-            TextureRegionCoordinatesOut[dataIndex + 1] = Integer.parseInt(tempFormat[4].replaceAll("\r", ""));
-            dataIndex += 2;
-        }
-
-    }
-
-
-    // Takes a string with instructions and converts it into instruction class to feed the animationhandler
-    public void loadAndGatherInstructions(List<String> instructionString){
-
-        List<IntroInstruction> setOfInstruction = new ArrayList<>();
-        for (String data : instructionString) {
-            String[] splitData = data.split(" ");
-
-            if(splitData.length>6) {
-                double startTime = Double.parseDouble(splitData[0]);
-                double endTime = Double.parseDouble(splitData[1]);
-                int heightChange = Integer.parseInt(splitData[2]);
-                int widthChange = Integer.parseInt(splitData[3]);
-                int xChange = Integer.parseInt(splitData[4]);
-                int yChange = Integer.parseInt(splitData[5]);
-                String animationName = splitData[6];
-
-
-                // Check if it's an still keyframe or regular animaton
-                if (splitData.length == 8) {
-                    float keyFrame = Integer.parseInt(splitData[7]);
-                    setOfInstruction.add(new IntroInstruction(startTime, endTime, keyFrame, heightChange, widthChange, xChange, yChange, animationName));
-                } else {
-                    setOfInstruction.add(new IntroInstruction(startTime, endTime, heightChange, widthChange, xChange, yChange, animationName));
-                }
-
-
-            }
-
-            // Checks if it it's a interpolated X Y coordinates instruction
-            else if (splitData.length == 4){
-
-                    double startCount = Double.parseDouble(splitData[0]);
-                    double startTime = Double.parseDouble(splitData[1]);
-                    double endTime = Double.parseDouble(splitData[2]);
-                    String animationName = splitData[3];
-
-                    setOfInstruction.add(new IntroInstruction(startCount, startTime, endTime, animationName));
-
-            }
-
-            // Checks if it's an dialogue
-            else if (splitData.length == 3){
-
-                    int dialogNumber = Integer.parseInt(splitData[0]);
-                    double startTime = Double.parseDouble(splitData[1]);
-                    double endTime = Double.parseDouble(splitData[2]);
-                    setOfInstruction.add(new IntroInstruction(dialogNumber, startTime, endTime));
-            }
-        }
-        allInstructions.add(setOfInstruction);
     }
 
     public int[] getWizardAnimationData() {
@@ -257,17 +185,18 @@ public class Intro {
 
         introTimer.updateTimer();
     }
+
     public void resetTimer() {
 
         introTimer.resetTimer();
     }
 
-    public int[] getXAnimPathArray(){
+    public int[] getXAnimPathArray() {
         return animPathCordsX;
 
     }
 
-    public int[] getYAnimPathArray(){
+    public int[] getYAnimPathArray() {
         return animPathCordsY;
 
     }
@@ -275,6 +204,7 @@ public class Intro {
     public float getStateTime() {
         return introTimer.getStateTime();
     }
+
     public void updateStateTime(float delta) {
         introTimer.updateStateTime(delta);
     }
@@ -283,6 +213,5 @@ public class Intro {
     public String[] getInfoTextImages() {
         return INFO_TEXT_PATH_IMAGES;
     }
-
 
 }

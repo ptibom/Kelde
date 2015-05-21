@@ -14,24 +14,20 @@ import java.util.List;
 
 public class AnimationLoader {
 
-    private int spriteSize = 136;
+    private final int spriteSize = 136;
     private final int SPRITE_SHEET_SIZE = 42 / 3;
-    StartMenu startMenuModel;
-    List<Animation> allWalkingAnimations = new ArrayList<Animation>();
+    private final StartMenu startMenuModel;
+    private final List<Animation> allWalkingAnimations = new ArrayList<Animation>();
     private int spreadsheetOffset = 138;
 
     public AnimationLoader(StartMenu startMenuModel) {
-
         this.startMenuModel = startMenuModel;
-
     }
 
 
     public List<Animation> loadWalkingCharacters() {
 
-
         Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
-
 
         for (int i = 0, x = 2, y = 2; i < SPRITE_SHEET_SIZE; i++) {
             TextureRegion[] tempAnimationRegions = new TextureRegion[3];

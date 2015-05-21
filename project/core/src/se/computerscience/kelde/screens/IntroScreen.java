@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class IntroScreen implements Screen {
 
-    private  IntroController introController;
+    private IntroController introController;
 
     public IntroScreen() {
 

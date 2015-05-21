@@ -15,12 +15,9 @@ import java.io.IOException;
 public class MenuScreen implements Screen {
 
     private StartMenuController startmenuViewController;
-    private Game keldeGame;
-    private Stage menuStage;
 
-    public MenuScreen( ) {
+    public MenuScreen() {
 
-        menuStage = new Stage();
 
     }
 

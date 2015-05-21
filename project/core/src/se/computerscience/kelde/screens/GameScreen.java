@@ -1,5 +1,7 @@
-/** Description: Renders a tile-map with camera.
- *  @author: Philip Tibom
+/**
+ * Description: Renders a tile-map with camera.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.screens;
@@ -20,6 +22,7 @@ public class GameScreen implements Screen {
         gameWorldController = new GameWorldController();
         Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
+
     @Override
     public void render(float delta) {
         // Renders the scene, first clear it with black.

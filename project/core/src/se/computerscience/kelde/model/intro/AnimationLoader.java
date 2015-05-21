@@ -17,20 +17,16 @@ public class AnimationLoader {
 
     Intro introModel;
 
-
+    // The finished collection of animations
     Map<String, Animation> mappedWizardTalkAnimation;
     Map<String, Animation> mappedDemonTalkAnimation;
     Map<String, Animation> mappedWizard2TalkAnimation;
     Map<String, Animation> mappedSpellAnimation;
 
-    List<Animation> introAnimationDemonAnimations;
-    List<Animation> introAnimationSpellAnimations;
-    List<Animation> introWizardTalkAnimations;
 
     // Animations for spell path
 
     int[] animPathInterpolatedX;
-
     int[] animPathInterpolatedY;
 
 
@@ -40,9 +36,7 @@ public class AnimationLoader {
         mappedWizard2TalkAnimation = new HashMap<>();
         mappedDemonTalkAnimation = new HashMap<>();
         mappedSpellAnimation = new HashMap<>();
-        introWizardTalkAnimations = new ArrayList<>();
-        introAnimationDemonAnimations = new ArrayList<>();
-        introAnimationSpellAnimations = new ArrayList<>();
+
 
         this.introModel = introModel;
 
@@ -67,21 +61,23 @@ public class AnimationLoader {
             animPathInterpolatedY[i + 3] = (int) (animPathCordsY[j] + deltaY * 0.75);
         }
 
-
-        //Loading animations for wizard
+        ///////////////////////////////////
+        //Loading animations for wizard////
+        ///////////////////////////////////
         String[] keyForAnimations = new String[]{"backwalk", "walkforward", "wandlight"};
         int[] wizardAnimationLengthData = introModel.getWizardAnimationData();
         int[] wizardSpriteCoordinates = introModel.getWizardTalkCoordinates();
         Texture wizardSpriteSheet = new Texture(introModel.getIntroWizardTalkImage());
 
-        Object [] animationDataCollectionWiz = new Object[]{wizardAnimationLengthData,wizardSpriteCoordinates,
-                wizardSpriteSheet,keyForAnimations};
-        Object [] animationMapsWiz = new Object[]{mappedWizardTalkAnimation};
+        Object[] animationDataCollectionWiz = new Object[]{wizardAnimationLengthData, wizardSpriteCoordinates,
+                wizardSpriteSheet, keyForAnimations};
+        Object[] animationMapsWiz = new Object[]{mappedWizardTalkAnimation};
 
-        readAndLoadAnimation(animationDataCollectionWiz, animationMapsWiz );
+        readAndLoadAnimation(animationDataCollectionWiz, animationMapsWiz);
 
-
-        //Loading animatinos for demon and wizard2
+        ////////////////////////////////////////////
+        //Loading animatinos for demon and wizard2//
+        ////////////////////////////////////////////
         int[] demonAndSecondWizardAnimationLengthData = introModel.getDemonAnimationData();
         int[] demonSpriteCoordinates = introModel.getIntroDemonCoordinates();
         Texture demonSpriteSheet = new Texture(introModel.getDemonAnd2ndWizardImage());
@@ -89,33 +85,35 @@ public class AnimationLoader {
                 "demonlaughright", "demontalkright", "demonbreathe", "demonwalk", "demonpoint", "wizardshoot",
                 "wizardbehind", "wizardstandright", "wizardstandleft", "wizardtalkleft", "wizardtalkright", "wizardwalk"};
 
-        Object [] animationDataCollectionDem = new Object[]{demonAndSecondWizardAnimationLengthData,demonSpriteCoordinates,
-                demonSpriteSheet,keyForAnimations2};
-        Object [] animationMapsDem = new Object[]{mappedDemonTalkAnimation,mappedWizard2TalkAnimation};
+        Object[] animationDataCollectionDem = new Object[]{demonAndSecondWizardAnimationLengthData, demonSpriteCoordinates,
+                demonSpriteSheet, keyForAnimations2};
+        Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
 
-        readAndLoadAnimation(animationDataCollectionDem, animationMapsDem );
+        readAndLoadAnimation(animationDataCollectionDem, animationMapsDem);
 
-
-
-        // Loading animations for spell
+        /////////////////////////////////
+        // Loading animations for spell//
+        /////////////////////////////////
         int[] spellAnimationLengthData = introModel.getSpellAnimationLength();
         int[] spellSpriteCoordinaters = introModel.getSpellIntroCoordinaters();
         Texture spellSprite = new Texture(introModel.getSpellSpritePath());
         String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
-        Object [] animationDataCollectionSpell = new Object[]{spellAnimationLengthData,spellSpriteCoordinaters,
-                spellSprite,keyForAnimations3};
-        Object [] animationMapsSpell = new Object[]{mappedSpellAnimation};
+        Object[] animationDataCollectionSpell = new Object[]{spellAnimationLengthData, spellSpriteCoordinaters,
+                spellSprite, keyForAnimations3};
+        Object[] animationMapsSpell = new Object[]{mappedSpellAnimation};
 
-        readAndLoadAnimation(animationDataCollectionSpell, animationMapsSpell );
+        readAndLoadAnimation(animationDataCollectionSpell, animationMapsSpell);
 
 
     }
 
-  // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
-  // into an animation, then collect these animations into a map for ease of finding them.
-    public void readAndLoadAnimation(Object [] animationDataCollection,
-                                     Object[] outAnimationMapArray   ){
+    // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
+    // into an animation, then collect these animations into a map for ease of finding them.
+    public void readAndLoadAnimation(Object[] animationDataCollection,
+                                     Object[] outAnimationMapArray) {
 
+
+        //Converting Object to it's specific type.
         int[] animationLengthData = (int[]) animationDataCollection[0];
         int[] spriteCoordinatesData = (int[]) animationDataCollection[1];
         Texture spriteSheet = (Texture) animationDataCollection[2];
@@ -142,10 +140,12 @@ public class AnimationLoader {
         }
 
         //If we have animationdata with two different animations, this is special case.
-        if(outAnimationMapArray.length > 1){
+        if (outAnimationMapArray.length > 1) {
             int lengthOfFirstPart = 8;
-            Map<String,Animation> outAnimationMap = (Map<String,Animation>)outAnimationMapArray[0];
-            Map<String,Animation> outAnimationMap2 = (Map<String,Animation>)outAnimationMapArray[1];
+            @SuppressWarnings("unchecked")
+            Map<String, Animation> outAnimationMap = (Map<String, Animation>) outAnimationMapArray[0];
+            @SuppressWarnings("unchecked")
+            Map<String, Animation> outAnimationMap2 = (Map<String, Animation>) outAnimationMapArray[1];
 
             for (int i = 0; i < animationLengthData.length; i++) {
                 if (i > lengthOfFirstPart) {
@@ -159,8 +159,8 @@ public class AnimationLoader {
 
         //Else we just load the animation in as usual
         else {
-
-            Map<String,Animation> outAnimationMap = (Map<String,Animation>)outAnimationMapArray[0];
+            @SuppressWarnings("unchecked")
+            Map<String, Animation> outAnimationMap = (Map<String, Animation>) outAnimationMapArray[0];
 
             for (int i = 0; i < tempAnimationList.size(); i++) {
 

@@ -1,7 +1,7 @@
 package se.computerscience.kelde.controller.startmenu;
 
 import se.computerscience.kelde.model.startmenu.StartMenu;
-import se.computerscience.kelde.view.startMenu.StartMenuView;
+import se.computerscience.kelde.view.startmenu.StartMenuView;
 
 import java.io.IOException;
 

@@ -8,14 +8,14 @@ import java.io.IOException;
 
 public class StartMenu {
 
-    private static final String BACKGROUND = "StartMenuBackground.png";
-    private static final String FOREGROUND = "StartMenuForeground.png";
-    private static final String WALKING_CHARACTER_PATH_PICTURE = "walkingcharacters.png";
-    private static final String BACKGROUND_SOUND = "dethrone.mp3";
+    private static final String BACKGROUND = "menu/startmenubackground.png";
+    private static final String FOREGROUND = "menu/startmenuforeground.png";
+    private static final String WALKING_CHARACTER_PATH_PICTURE = "menu/walkingcharacters.png";
+    private static final String BACKGROUND_SOUND = "menu/dethrone.mp3";
 
     Timer menuTimer = new Timer();
 
-
+    // Do want to fade out and in between intro..
     private static final String FADE_SCREEN_PATH_IMAGE = "intro/blackfadescreen.png";
 
 
@@ -27,7 +27,6 @@ public class StartMenu {
 
         return FADE_SCREEN_PATH_IMAGE;
     }
-
 
 
     public String getWalkingCharacterPathPicture() {

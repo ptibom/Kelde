@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.view.startmenu.AnimationTools;
+import se.computerscience.kelde.model.intro.AnimationTools;
 
 import java.util.ArrayList;
 import java.util.List;
