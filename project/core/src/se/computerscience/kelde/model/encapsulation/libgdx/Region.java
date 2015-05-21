@@ -1,5 +1,5 @@
 /**
- * Description:
+ * Description: Encapsulates AtlasRegion from Model
  *
  * @author: Hossein Hussain
  */

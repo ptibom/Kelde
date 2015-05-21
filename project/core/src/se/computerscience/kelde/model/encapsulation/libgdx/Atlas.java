@@ -1,5 +1,5 @@
 /**
- * Description:
+ * Description: Encapsulates TextureAtlas from Model
  *
  * @author: Hossein Hussain
  */

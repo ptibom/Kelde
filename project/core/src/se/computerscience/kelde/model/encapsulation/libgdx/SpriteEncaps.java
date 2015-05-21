@@ -1,5 +1,5 @@
 /**
- * Description:
+ * Description: Encapsulates Sprite from Model
  *
  * @author: Hossein Hussain
  */
