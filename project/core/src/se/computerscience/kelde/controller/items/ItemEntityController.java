@@ -24,6 +24,7 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
 
     @Override
     public void update(float delta) {
+        System.out.println(itemEntity.getPositionX());
     }
     public void delete(){
         if (picked){

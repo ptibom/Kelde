@@ -25,6 +25,7 @@ public class BombController implements  IWorldObjectsController, ICollisionEvent
 
     @Override
     public void update(float delta) {
+        bombAreaController.update(delta);
         if (bomb.isDetonate()){
             bombView.update(delta);
         }

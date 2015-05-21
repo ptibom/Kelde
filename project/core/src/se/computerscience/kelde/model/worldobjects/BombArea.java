@@ -18,6 +18,7 @@ public class BombArea implements IWorldObjects {
     @Override
     public float getPositionY() {
         return entityBody.getPositionY()-BODY_HEIGHT;
+
     }
     @Override
     public float getPositionX() {
