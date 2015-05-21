@@ -5,6 +5,8 @@ package se.computerscience.kelde.view.intro;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import se.computerscience.kelde.events.ScreenEvent;
+import se.computerscience.kelde.events.ScreenEventBus;
 import se.computerscience.kelde.model.intro.AnimationLoader;
 import se.computerscience.kelde.model.intro.Intro;
 
@@ -12,36 +14,49 @@ import se.computerscience.kelde.model.intro.Intro;
 public class IntroView {
 
 
+    // Intro model that returns the data, and introhandler that handles animations
     private Intro introModel;
     private IntroHandler introHandler;
 
 
     public IntroView(Intro introModel) {
+
+        introModel.resetTimer();
         this.introModel = introModel;
         SpriteBatch batch = new SpriteBatch();
         introHandler = new IntroHandler(introModel, new AnimationLoader(introModel));
-        introHandler.stopIntroMusic();
+
         introHandler.startIntroMusic();
     }
 
-    public int renderIntro(float delta) {
+
+    public void renderIntro(float delta) {
+
+
         SpriteBatch batch = new SpriteBatch();
+
+        //We need to update the state time to get different animation frames.
         introModel.updateStateTime(delta);
+
+        //We need to update the timer, because all the instructions are dependent on them.
         introModel.updateTimer();
-        System.out.println(introModel.getMenuTime());
+
+
+        //Here we tell the handler to draw the intro, instructions are included in model
         introHandler.drawIntro(batch, delta);
-        if (Gdx.input.isTouched()) {
+
+        //Check for touch, if so we change screen
+        if(Gdx.input.isTouched()){
             introHandler.stopIntroMusic();
-            return 1;
+            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
         }
-        return 0;
+
 
     }
 
-    public void init() {
 
-        introModel.resetTimer();
 
-    }
+
+
 
 }

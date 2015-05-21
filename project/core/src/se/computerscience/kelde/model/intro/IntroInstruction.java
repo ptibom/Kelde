@@ -6,6 +6,7 @@ package se.computerscience.kelde.model.intro;
 
 public class IntroInstruction {
 
+    private boolean flipped;
     private double startCount = 0;
     private float keyFrame = -1;
     private int dialogNumber = -1;
@@ -90,6 +91,9 @@ public class IntroInstruction {
     public double getHeightChange() {
         return heightChange;
 
+    }
+    public boolean isFlipped(){
+        return flipped;
     }
 
     public String getAnimationName() {

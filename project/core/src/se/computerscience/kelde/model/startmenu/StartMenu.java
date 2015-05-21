@@ -1,7 +1,5 @@
 package se.computerscience.kelde.model.startmenu;
 
-import se.computerscience.kelde.model.startmenu.Timer;
-
 import java.io.IOException;
 
 /**

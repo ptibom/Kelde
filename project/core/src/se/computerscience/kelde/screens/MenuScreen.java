@@ -1,6 +1,7 @@
 package se.computerscience.kelde.screens;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,8 +18,8 @@ public class MenuScreen implements Screen {
     private Game keldeGame;
     private Stage menuStage;
 
-    public MenuScreen(Game g) {
-        keldeGame = g;
+    public MenuScreen( ) {
+
         menuStage = new Stage();
 
     }
@@ -28,7 +29,7 @@ public class MenuScreen implements Screen {
         try {
 
             startmenuViewController = new StartMenuController();
-            startmenuViewController.init();
+
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -40,15 +41,13 @@ public class MenuScreen implements Screen {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (startmenuViewController.render(delta) == 1) {
-            this.dispose();
-            keldeGame.setScreen(new IntroScreen(keldeGame));
-        }
-
+        startmenuViewController.render(delta);
     }
 
     @Override
     public void resize(int width, int height) {
+
+        startmenuViewController.resize(width, height);
 
     }
 

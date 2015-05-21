@@ -12,6 +12,9 @@ import java.util.List;
 /**
  * @author: Daniel Olsson
  */
+
+// Handles all the kind of dialogues in the intro, from the text at the start and
+// the speech bubbles later.
 public class DialogueHandler {
     private final double introDelay;
     private final Intro IntroModel;
@@ -20,16 +23,23 @@ public class DialogueHandler {
     private final String[] dialogues;
 
     public DialogueHandler(Intro IntroModel, double introDelay) {
+
         this.IntroModel = IntroModel;
         introTextTextDialogues = new ArrayList<>();
+
+        // Here we load in the dialogues and the text file paths from the model.
+        dialogues = IntroModel.getDialogues();
         String[] introTexts = IntroModel.getIntroTextImages();
+
+
+        // This is the delay for the intro, part2 starts later and everything is
+        // then counted from 0.
         this.introDelay = introDelay;
 
+        // Here we add the dialogues and texts to an array, to ease of use.
         for (int i = 0; i < introTexts.length; i++) {
             introTextTextDialogues.add(new TextDialogue(new Texture(introTexts[i])));
         }
-
-        dialogues = IntroModel.getDialogues();
 
         for (int i = 0; i < dialogues.length; i++) {
             dialogueImages[i] = new Texture(dialogues[i]);
@@ -39,7 +49,7 @@ public class DialogueHandler {
     public void drawDialogue(int dialoguenumber, SpriteBatch batch, double startTime, double endTime, float delta) {
 
         // Here we send take the dialogue number and render it according to start and end time
-        // A text-dialogue is always rendereder as large as the screen is
+        // A text-dialogue is always render as large as the screen is
 
         if (AnimationTools.timeRange(IntroModel.getMenuTime(), startTime, endTime)) {
 
@@ -48,6 +58,7 @@ public class DialogueHandler {
             batch.draw(regionToRender, 0, 0);
         }
     }
+
 
     public void drawChatDialogue(SpriteBatch batch, int dialogueNumber, double startTime, double endTime) {
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.AnimationLoader;
 import se.computerscience.kelde.model.intro.Intro;
+import se.computerscience.kelde.model.intro.IntroInstruction;
 import se.computerscience.kelde.view.startmenu.AnimationTools;
 
 import java.util.Map;
@@ -25,7 +26,7 @@ public class AnimationHandler {
     private int[] animPathInterpolatedY;
 
 
-    // Yeahhh
+    // An animationhandler suited for each specificn sprite with their own coordinates and height
 
     public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width, double introDelay) {
         this.width = width;
@@ -38,7 +39,16 @@ public class AnimationHandler {
 
     }
 
-    public void drawAnimation(SpriteBatch batch, AnimationLoader animationloader, double startCount, double startTime, double endTime, String animation) {
+    public void drawAnimation(SpriteBatch batch, AnimationLoader animationloader, IntroInstruction instruct) {
+
+        boolean isFlipped = instruct.isFlipped();
+        double startCount = instruct.getStartCount();
+        double startTime = instruct.getStartTime();
+        double endTime = instruct.getEndTime();
+        String animation = instruct.getAnimationName();
+
+
+        //Drawing an interpolated animation using X and Y coordinates from arrays,
 
         if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
@@ -52,6 +62,9 @@ public class AnimationHandler {
             float interPolY = (float) (animPathInterpolatedY[(int) (timePassed * 24)]);
 
             currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
+
+            spriteFlip(currentFrame, isFlipped);
+
             batch.draw(currentFrame, interPolX, interPolY, 100, 100);
 
         }
@@ -59,29 +72,55 @@ public class AnimationHandler {
 
     }
 
-    public void drawAnimation(SpriteBatch batch, double startTime, double endTime, int widthChange, int heightChange, int xvelocity, int yvelocity, String animation, float delta) {
+    //Drawing a moving character
+    public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta) {
 
-        // We get in the speed in x and y way, as well as height change and width change.
+
+        boolean isFlipped = instruct.isFlipped();
+        double startTime = instruct.getStartTime();
+        double endTime = instruct.getEndTime();
+        int widthChange = (int) instruct.getWidthChange();
+        int heightChange = (int) instruct.getHeightChange();
+        int xvelocity = (int) instruct.getXVelocity();
+        int yvelocity = (int) instruct.getYVelocity();
+        String animation = instruct.getAnimationName();
+
 
         if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
             calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
 
             currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
+
+            spriteFlip(currentFrame, isFlipped);
+
+
             batch.draw(currentFrame, ORIGIN_X + (int) offsetX, ORIGIN_Y + (int) offsetY, this.width + (int) this.heightChangeX, this.height + (int) heightChangeY);
+
         }
 
 
     }
 
-    public void drawAnimation(SpriteBatch batch, double startTime, double endTime, float keyFrame, int widthChange, int heightChange, int xvelocity, int yvelocity, String animation, float delta) {
+
+    // Drawing a still image
+    public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta, float specialKeyframe) {
+
+        double startTime = instruct.getStartTime();
+        double endTime = instruct.getEndTime();
+        int widthChange = (int) instruct.getWidthChange();
+        int heightChange = (int) instruct.getHeightChange();
+        int xvelocity = (int) instruct.getXVelocity();
+        int yvelocity = (int) instruct.getYVelocity();
+        String animation = instruct.getAnimationName();
+
 
         // This function will be used if you want to lock the animation in to a certain keyframe
         if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
             calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
 
-            currentFrame = animations.get(animation).getKeyFrame(keyFrame, true);
+            currentFrame = animations.get(animation).getKeyFrame(specialKeyframe, true);
             batch.draw(currentFrame, ORIGIN_X + (int) offsetX, ORIGIN_Y + (int) offsetY, this.width + (int) this.heightChangeX, this.height + (int) heightChangeY);
 
         }
@@ -89,39 +128,6 @@ public class AnimationHandler {
 
     }
 
-
-    public void drawAnimation(SpriteBatch batch, double startTime, double endTime, int widthChange, int heightChange,
-                              int xvelocity, int yvelocity, String animation, boolean drawFlipped, float delta) {
-
-        // This function will be drawn if you want to flip the image
-
-
-        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
-
-            calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
-
-            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
-
-
-            if (drawFlipped) {
-                if (!currentFrame.isFlipX()) {
-                    currentFrame.flip(true, false);
-                }
-
-            } else {
-
-                if (currentFrame.isFlipX()) {
-                    currentFrame.flip(true, false);
-                }
-            }
-
-
-            batch.draw(currentFrame, ORIGIN_X + (int) offsetX, ORIGIN_Y + (int) offsetY, this.width + (int) this.heightChangeX, this.height + (int) heightChangeY);
-
-        }
-
-
-    }
 
     //calculating new x and y values as well as height and weight
     public void calculateNewDrawValues(int xvelocity, int yvelocity, int widthChange, int heightChange, float delta) {
@@ -130,6 +136,23 @@ public class AnimationHandler {
         this.heightChangeY += widthChange * delta;
         this.offsetX += xvelocity * delta;
         this.offsetY += yvelocity * delta;
+
+    }
+
+    // To flip or not to flip the sprite
+    public void spriteFlip(TextureRegion currentFrame, boolean drawFlipped) {
+
+        if (drawFlipped) {
+            if (!currentFrame.isFlipX()) {
+                currentFrame.flip(true, false);
+            }
+
+        } else {
+
+            if (currentFrame.isFlipX()) {
+                currentFrame.flip(true, false);
+            }
+        }
 
     }
 

@@ -4,7 +4,6 @@ package se.computerscience.kelde.controller.intro;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.view.intro.IntroView;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,13 +36,10 @@ public class IntroController {
         this.introView = new IntroView(introModel);
     }
 
-    public int render(float delta) {
-        return introView.renderIntro(delta);
+    public void render(float delta) {
+         introView.renderIntro(delta);
     }
 
-    public void init() {
 
-        introView.init();
-    }
 
 }

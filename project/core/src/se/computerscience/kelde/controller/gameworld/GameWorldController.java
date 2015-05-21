@@ -5,13 +5,13 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import se.computerscience.kelde.controller.entities.EntityGhostController;
-import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
+import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
+import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.BarrelController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
@@ -23,7 +23,7 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameWorldController {
+public class GameWorldController implements IGameWorldController {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
 

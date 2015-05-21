@@ -1,9 +1,8 @@
 package se.computerscience.kelde.screens;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import se.computerscience.kelde.controller.intro.IntroController;
 
 import java.io.IOException;
@@ -13,13 +12,10 @@ import java.io.IOException;
  */
 public class IntroScreen implements Screen {
 
-    private IntroController introController;
-    private Game keldeGame;
-    private Stage menuStage;
+    private  IntroController introController;
 
-    public IntroScreen(Game g) {
-        keldeGame = g;
-        menuStage = new Stage();
+    public IntroScreen() {
+
 
     }
 
@@ -28,7 +24,6 @@ public class IntroScreen implements Screen {
     public void show() {
         try {
             introController = new IntroController();
-            introController.init();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -40,10 +35,7 @@ public class IntroScreen implements Screen {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (introController.render(delta) == 1) {
-            this.dispose();
-            keldeGame.setScreen(new GameScreen());
-        }
+        introController.render(delta);
 
     }
 

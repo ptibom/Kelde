@@ -1,7 +1,5 @@
 package se.computerscience.kelde.model.intro;
 
-import com.badlogic.gdx.Gdx;
-
 /**
  * @author: Daniel Olsson
  */
