@@ -28,8 +28,8 @@ public class Treasure implements IWorldObjects {
         entityBody = new PhysicalBodyStatic(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
 
         for (IItem item : items) {
-            item.setItemPostionY(y+50);
-            item.setItemPostionX(x+=15);
+            item.setItemPositionY(y+50);
+            item.setItemPositionX(x+=15);
             this.itemslist.add(item);
         }
     }

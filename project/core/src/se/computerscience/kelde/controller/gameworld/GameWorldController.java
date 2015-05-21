@@ -23,8 +23,12 @@ import se.computerscience.kelde.view.items.ItemEntityView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+<<<<<<< HEAD
 public class GameWorldController implements IItemEventHandler{
+=======*/
+public class GameWorldController implements IGameWorldController,IItemEventHandler {
+//>>>>>>> master
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
 

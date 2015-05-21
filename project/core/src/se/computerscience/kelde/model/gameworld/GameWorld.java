@@ -67,7 +67,7 @@ public class GameWorld{
         camera.update();
     }
     public void addItems(IItem item){
-        itemEntities.add(new ItemEntity(item.getItemPostionX(), item.getItemPostionY(), worldPhysics.getIb2DWorld(), item));
+        itemEntities.add(new ItemEntity(item.getItemPositionX(), item.getItemPositionY(), worldPhysics.getIb2DWorld(), item));
     }
 
     public ICamera getCamera() {
