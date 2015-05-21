@@ -36,8 +36,10 @@ public class GameScreen implements Screen {
 
         if (ScreenChanger.INSTANCE.getScreen().equals("Game")){
             gameWorldController.render(delta);
+            Gdx.input.setInputProcessor(new InputController(gameWorldController));
         }else if (ScreenChanger.INSTANCE.getScreen().equals("Lava")){
             lavaWorldController.render(delta);
+            Gdx.input.setInputProcessor(new InputController(lavaWorldController));
         }
     }
     @Override

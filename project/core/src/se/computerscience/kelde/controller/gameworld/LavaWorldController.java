@@ -14,7 +14,7 @@ import se.computerscience.kelde.view.gameworld.LavaWorldView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LavaWorldController {
+public class LavaWorldController implements IGameWorldController{
 
     private final LavaWorld lavaWorld;
     private final LavaWorldView lavaWorldView;
@@ -63,5 +63,15 @@ public class LavaWorldController {
         lavaWorldView.dispose();
         lavaWorld.dispose();
         worldPhysicsController.dispose();
+    }
+
+    @Override
+    public void setKeyDown(int keycode) {
+        entityPlayerKeldeController.setKeyDown(keycode);
+    }
+
+    @Override
+    public void setKeyUp(int keycode) {
+        entityPlayerKeldeController.setKeyUp(keycode);
     }
 }
