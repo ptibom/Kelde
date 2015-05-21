@@ -23,7 +23,7 @@ public class Axe extends Item {
 
     @Override
     protected void setRegion() {
-        this.region = textureAtlas.findRegion("0003");
+        region.setRegion(textureAtlas.findRegion("0003"));
     }
 
     public int getDamage() {

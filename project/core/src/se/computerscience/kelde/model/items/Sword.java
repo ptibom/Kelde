@@ -17,7 +17,7 @@ public class Sword extends Item {
 
     @Override
     protected void setRegion() {
-        this.region = textureAtlas.findRegion("0001");
+        region.setRegion(textureAtlas.getTextureAtlas().findRegion("0001"));
     }
 
     @Override

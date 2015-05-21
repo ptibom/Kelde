@@ -5,24 +5,27 @@
  */
 package se.computerscience.kelde.model.items;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import se.computerscience.kelde.model.encapsulation.libgdx.Atlas;
+import se.computerscience.kelde.model.encapsulation.libgdx.Region;
+import se.computerscience.kelde.model.encapsulation.libgdx.SpriteEncaps;
 
 public class Item implements IItem {
 
     private float itemPositionX;
     private float itemPositionY;
-    protected final TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("allitems.atlas"));
-    private final Sprite sprite;
-    protected TextureAtlas.AtlasRegion region;
+    Atlas textureAtlas = new Atlas("allitems.atlas");
+    private final SpriteEncaps spriteEncaps;
+    protected Region region = new Region(textureAtlas);
     public Item() {
         setRegion();
-        sprite = new Sprite(region);
+        spriteEncaps = new SpriteEncaps(region);
     }
 
-    protected void setRegion(){
-        this.region = textureAtlas.findRegion("");
+   protected void setRegion(){
+        region.setRegion(textureAtlas.findRegion(""));
+    }
+    protected void getRegion(){
+        region.setRegion(textureAtlas.findRegion("0001"));
     }
 
     @Override
@@ -34,10 +37,8 @@ public class Item implements IItem {
     public boolean isWeapon() {
         return false;
     }
-
-    @Override
-    public Sprite getSprite() {
-        return sprite;
+    public SpriteEncaps getSpriteEncaps(){
+        return spriteEncaps;
     }
 
     @Override

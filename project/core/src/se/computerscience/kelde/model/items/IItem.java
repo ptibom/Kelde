@@ -4,12 +4,12 @@
 
 package se.computerscience.kelde.model.items;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import se.computerscience.kelde.model.encapsulation.libgdx.SpriteEncaps;
 
 public interface IItem {
     public boolean isConsumable();
     public boolean isWeapon();
-    public Sprite getSprite();
+    public SpriteEncaps getSpriteEncaps();
     public void setItemPositionY(float y);
     public void setItemPositionX(float x);
     public float getItemPositionY();

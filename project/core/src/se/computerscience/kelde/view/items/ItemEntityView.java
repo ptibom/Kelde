@@ -19,8 +19,8 @@ public class ItemEntityView implements IWorldObjectView {
     @Override
     public void draw(SpriteBatch batch) {
         if (itemEntity.isVisible()) {
-            itemEntity.getItem().getSprite().setPosition(itemEntity.getPositionX(), itemEntity.getPositionY());
-            itemEntity.getItem().getSprite().draw(batch);
+            itemEntity.getItem().getSpriteEncaps().getSprite().setPosition(itemEntity.getPositionX(), itemEntity.getPositionY());
+            itemEntity.getItem().getSpriteEncaps().getSprite().draw(batch);
         }
         if (delete){
             itemEntity.playerPickUp();

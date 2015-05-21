@@ -14,6 +14,6 @@ public class KeyLava extends Item {
 
     @Override
     protected void setRegion() {
-        region = textureAtlas.findRegion("0004");
+        region.setRegion(textureAtlas.findRegion("0004"));
     }
 }
