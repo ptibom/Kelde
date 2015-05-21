@@ -25,7 +25,7 @@ public class AnimationHandler {
     private int[] animPathInterpolatedY;
 
 
-    // Animeringsklassen håller reda på all animeringsdata för en speciell sprite
+    // Yeahhh
 
     public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width, double introDelay) {
         this.width = width;
