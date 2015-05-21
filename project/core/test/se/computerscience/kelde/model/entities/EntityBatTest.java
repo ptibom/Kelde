@@ -2,12 +2,9 @@ package se.computerscience.kelde.model.entities;
 
 import org.junit.Assert;
 import org.junit.Test;
-import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.physics.WorldPhysics;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Anders on 2015-05-20.
