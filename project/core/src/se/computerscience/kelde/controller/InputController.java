@@ -7,12 +7,12 @@
 package se.computerscience.kelde.controller;
 
 import com.badlogic.gdx.InputProcessor;
-import se.computerscience.kelde.controller.gameworld.GameWorldController;
+import se.computerscience.kelde.controller.gameworld.IGameWorldController;
 
 public class InputController implements InputProcessor {
-    GameWorldController gameWorldController;
+   IGameWorldController gameWorldController;
 
-    public InputController(GameWorldController gameWorldController) {
+    public InputController(IGameWorldController gameWorldController) {
         this.gameWorldController = gameWorldController;
     }
 
