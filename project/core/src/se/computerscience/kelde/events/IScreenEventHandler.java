@@ -1,4 +1,4 @@
-package se.computerscience.kelde.controller.events;
+package se.computerscience.kelde.events;
 
 /**
  * Description: Needed for event handlers

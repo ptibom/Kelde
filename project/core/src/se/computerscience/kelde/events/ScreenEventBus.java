@@ -1,4 +1,4 @@
-package se.computerscience.kelde.controller.events;
+package se.computerscience.kelde.events;
 
 import java.util.ArrayList;
 import java.util.List;
