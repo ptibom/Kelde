@@ -25,7 +25,7 @@ public enum CollisionEventBus {
     }
 
     public void publish(CollisionEvent event) {
-        for (ICollisionEventHandler handler : handlers) {
+        for (final ICollisionEventHandler handler : handlers) {
             handler.onCollisionEvent(event);
         }
     }

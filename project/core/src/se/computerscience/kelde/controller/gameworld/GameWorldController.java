@@ -30,16 +30,7 @@ public class GameWorldController implements IGameWorldController {
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
-    private final BarrelController barrelController;
-    private final TreasureController treasureController;
-    private final TreasureController treasureController2;
-    private final AxeController axeController;
-    private final AxeController axeController2;
-    private final SwordController swordController;
-    private final SwordController swordController2;
-    private final DoorController doorController;
-
-    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
+    private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
@@ -51,16 +42,16 @@ public class GameWorldController implements IGameWorldController {
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
 
-        barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
-        treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
-        treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
+        final BarrelController barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
+        final TreasureController treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
+        final TreasureController treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
 
-        axeController = new AxeController(gameWorld.getTreasure().getAxe(), gameWorldView.getAxeView());
-        axeController2 = new AxeController(gameWorld.getTreasure2().getAxe(), gameWorldView.getAxeView2());
-        swordController = new SwordController(gameWorld.getTreasure().getSword(), gameWorldView.getSwordView());
-        swordController2 = new SwordController(gameWorld.getTreasure2().getSword(), gameWorldView.getSwordView2());
+        final AxeController axeController = new AxeController(gameWorld.getTreasure().getAxe(), gameWorldView.getAxeView());
+        final AxeController axeController2 = new AxeController(gameWorld.getTreasure2().getAxe(), gameWorldView.getAxeView2());
+        final SwordController swordController = new SwordController(gameWorld.getTreasure().getSword(), gameWorldView.getSwordView());
+        final SwordController swordController2 = new SwordController(gameWorld.getTreasure2().getSword(), gameWorldView.getSwordView2());
 
-        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
+        final DoorController doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
 
         worldObjList.add(barrelController);
         worldObjList.add(treasureController);
@@ -81,7 +72,7 @@ public class GameWorldController implements IGameWorldController {
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
-        for (IWorldObjectsController worldObj : worldObjList) {
+        for (final IWorldObjectsController worldObj : worldObjList) {
             worldObj.update(delta);
         }
         entityBatController.update(delta);

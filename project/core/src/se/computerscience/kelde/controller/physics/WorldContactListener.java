@@ -42,14 +42,16 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
+        // Not needed
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
+        // Not needed
     }
 
     public void executeCache() {
-        Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
+        final Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
         while (eventCacheIt.hasNext()) {
             CollisionEvent event = eventCacheIt.next();
             CollisionEventBus.INSTANCE.publish(event);

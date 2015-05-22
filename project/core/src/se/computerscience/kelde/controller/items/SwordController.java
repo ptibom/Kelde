@@ -14,9 +14,9 @@ import se.computerscience.kelde.view.items.SwordView;
 
 
 public class SwordController implements IWorldObjectsController, IItemController, ICollisionEventHandler {
-    Sword sword;
-    SwordView swordView;
-    private boolean picked = false;
+    private final Sword sword;
+    private final SwordView swordView;
+    private boolean picked;
 
     public SwordController(Sword sword, SwordView swordView) {
         this.sword = sword;
@@ -46,10 +46,8 @@ public class SwordController implements IWorldObjectsController, IItemController
 
     @Override
     public void update(float delta) {
-        if (sword.isVisible()) {
-            if (!this.isPicked()) {
-                this.setVisble(true);
-            }
+        if (sword.isVisible() && !this.isPicked()) {
+            this.setVisble(true);
         }
         if (sword.isPicked()) {
             this.setPicked(true);

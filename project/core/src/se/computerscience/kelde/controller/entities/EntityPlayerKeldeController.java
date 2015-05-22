@@ -15,20 +15,20 @@ import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 public class EntityPlayerKeldeController implements IWorldObjectsController {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
-    private Boolean KNIFE_SLASH, ARROW;
+    private boolean isSlashing, isShooting;
 
     public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde) {
         this.entityPlayerKelde = entityPlayerKelde;
         velocityControl = new Vector2(0, 0);
-        KNIFE_SLASH = false;
-        ARROW = false;
+        isSlashing = false;
+        isShooting = false;
     }
 
     public void update(float delta) {
         getKeyInput();
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
-        entityPlayerKelde.setIsSlashing(KNIFE_SLASH);
-        entityPlayerKelde.setIsShooting(ARROW);
+        entityPlayerKelde.setIsSlashing(isSlashing);
+        entityPlayerKelde.setIsShooting(isShooting);
 
     }
 
@@ -63,19 +63,19 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
         }
 
         if(keycode == Input.Keys.SPACE) {
-            KNIFE_SLASH = true;
+            isSlashing = true;
         }
         if(keycode == Input.Keys.ALT_LEFT) {
-            ARROW = true;
+            isShooting = true;
         }
     }
 
     public void setKeyUp(int keycode) {
         if(keycode == Input.Keys.SPACE) {
-            KNIFE_SLASH = false;
+            isSlashing = false;
         }
         if(keycode == Input.Keys.ALT_LEFT) {
-            ARROW = false;
+            isShooting = false;
         }
     }
 }

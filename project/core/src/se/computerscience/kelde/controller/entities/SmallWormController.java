@@ -13,17 +13,15 @@ import java.util.Random;
 public class SmallWormController {
 
     //Variables
-    private SmallWormView wormview;
-    private Vector2[] WAYPOINT = new Vector2[10];
-    private Vector2 RENDER_POINT;
-    private int INDEX = 0;
-    private int LAST_POINT = 9;
-    private int WORM_DAMAGE = 15;
+    private final SmallWormView wormview;
+    private Vector2[] waypoint = new Vector2[10];
+    private Vector2 position;
+    private int index;
 
     public SmallWormController(Vector2 startVector) {
         wormview = new SmallWormView(startVector);
         setWaypoints();
-        RENDER_POINT = startVector;
+        position = startVector;
     }
 
 
@@ -37,36 +35,36 @@ public class SmallWormController {
 
     private void setWaypoints() {
         for (int i = 0; i < 10; i++) {
-            WAYPOINT[i] = setNewPosition();
+            waypoint[i] = setNewPosition();
         }
     }
 
     private Vector2 setNewPosition() {
-        Random random = new Random();
-        int x = random.nextInt(500) + 1;
-        int y = random.nextInt(500) + 1;
+        final Random random = new Random();
+        final int x = random.nextInt(500) + 1;
+        final int y = random.nextInt(500) + 1;
         return new Vector2(x,y);
     }
 
     private Vector2 newSpritePosition() {
-        if(RENDER_POINT.x == WAYPOINT[INDEX].x && RENDER_POINT.y == WAYPOINT[INDEX].y) {
-            RENDER_POINT = WAYPOINT[INDEX];
-            INDEX++;
-            if(INDEX == LAST_POINT) {
-                INDEX = 0;
+        if(position.x == waypoint[index].x && position.y == waypoint[index].y) {
+            position = waypoint[index];
+            index++;
+            if(index == 9) {
+                index = 0;
             }
         }
-        if(RENDER_POINT.x > WAYPOINT[INDEX].x) {
-            RENDER_POINT.x -= 1;
-        } else if (RENDER_POINT.x <  WAYPOINT[INDEX].x) {
-            RENDER_POINT.x += 1;
+        if(position.x > waypoint[index].x) {
+            position.x -= 1;
+        } else if (position.x <  waypoint[index].x) {
+            position.x += 1;
         }
-        if(RENDER_POINT.y >  WAYPOINT[INDEX].y) {
-            RENDER_POINT.y -= 1;
-        } else if(RENDER_POINT.y <  WAYPOINT[INDEX].y) {
-            RENDER_POINT.y += 1;
+        if(position.y >  waypoint[index].y) {
+            position.y -= 1;
+        } else if(position.y <  waypoint[index].y) {
+            position.y += 1;
         }
-        return RENDER_POINT;
+        return position;
     }
 
 }
