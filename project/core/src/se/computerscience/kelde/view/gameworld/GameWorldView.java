@@ -130,4 +130,7 @@ public class GameWorldView{
         return itemEntityViews;
     }
     public EntityGhostView getEntityGhostView() { return entityGhostView; }
+    public void removeItemView(ItemEntityView itemEntityView){
+        itemEntityViews.remove(itemEntityView);
+    }
 }

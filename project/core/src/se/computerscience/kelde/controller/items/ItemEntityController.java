@@ -31,7 +31,7 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN){
-            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.DEL_VIEW, this));
+            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.DEL_ITEM, this));
             itemEntity.playerPickUp();
         }
     }

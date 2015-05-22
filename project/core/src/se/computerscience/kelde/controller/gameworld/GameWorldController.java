@@ -15,10 +15,7 @@ import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.items.IItem;
-import se.computerscience.kelde.model.items.Item;
-import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
-import se.computerscience.kelde.view.items.ItemEntityView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +67,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         ItemEventBus.INSTANCE.register(this);
     }
     public void updateItemControllers(){
-        System.out.println("C "+itemEntityControllers.size() + " V "+ gameWorldView.getItemEntityViews().size() + " M " + gameWorld.getItemEntities().size());
         if (itemEntityControllers.size() == gameWorld.getItemEntities().size()){
             return;
         }
@@ -123,17 +119,17 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     }
 
     @Override
-    public void onEvent(ItemEvent event) {
-        if (!(event.getObject() instanceof IItem ||event.getObject() instanceof ItemEntity || event.getObject() instanceof ItemEntityView || event.getObject() instanceof ItemEntityController)){
+    public void onItemEvent(ItemEvent event) {
+        if (!(event.getObject() instanceof IItem|| event.getObject() instanceof ItemEntityController)){
             return;
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             gameWorld.addItems((IItem) event.getObject());
             gameWorldView.addEntityViews(gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1));
         }
-        if (event.getTag() == ItemEvent.Tag.DEL_VIEW){
-            gameWorld.getItemEntities().remove(((ItemEntityController)event.getObject()).getItemEntity());
-            gameWorldView.getItemEntityViews().remove(((ItemEntityController) event.getObject()).getItemEntityView());
+        if (event.getTag() == ItemEvent.Tag.DEL_ITEM){
+            gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
+            gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
         }
     }

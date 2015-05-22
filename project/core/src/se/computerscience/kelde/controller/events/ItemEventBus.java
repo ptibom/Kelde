@@ -18,7 +18,7 @@ public enum ItemEventBus {
 
     public void publish(ItemEvent event) {
         for (IItemEventHandler handler : handlers) {
-            handler.onEvent(event);
+            handler.onItemEvent(event);
         }
     }
     public void unregisterAll () {

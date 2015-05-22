@@ -121,4 +121,7 @@ public class GameWorld{
     }
 
     public EntityGhost getEntityGhost() { return entityGhost; }
+    public void removeItem(ItemEntity item){
+        itemEntities.remove(item);
+    }
 }

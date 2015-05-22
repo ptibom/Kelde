@@ -9,7 +9,7 @@ public class ItemEvent {
     public enum Tag {
         ITEM,
         ITEM_ENTITY,
-        DEL_VIEW;
+        DEL_ITEM;
     }
     private final Tag tag;
     private final Object object;

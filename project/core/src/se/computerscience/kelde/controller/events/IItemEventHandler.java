@@ -6,5 +6,5 @@
 package se.computerscience.kelde.controller.events;
 
 public interface IItemEventHandler {
-    public void onEvent(ItemEvent event);
+    void onItemEvent(ItemEvent event);
 }
