@@ -64,6 +64,8 @@ public class StartMenuView {
         newGameButton.setPosition(LOAD_BUTTON_POS_X,LOAD_BUTTON_POS_Y);
         loadGameButton.setPosition(START_BUTTON_POS_X,START_BUTTON_POS_Y);
         exitbutton.setPosition(EXIT_BUTTON_POS_X,EXIT_BUTTON_POS_Y);
+
+        // Adding the buttons as actor in stage
         menuStage.addActor(newGameButton);
         menuStage.addActor(loadGameButton);
         menuStage.addActor(exitbutton);

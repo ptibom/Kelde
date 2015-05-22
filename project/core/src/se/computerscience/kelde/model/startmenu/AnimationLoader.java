@@ -46,7 +46,7 @@ public class AnimationLoader {
 
             }
             tempAnimationRegions[1] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
-            ;
+
 
             x += spreadsheetOffset;
 
