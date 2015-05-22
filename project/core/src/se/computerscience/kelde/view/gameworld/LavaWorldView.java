@@ -8,6 +8,7 @@ package se.computerscience.kelde.view.gameworld;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
+import se.computerscience.kelde.view.entities.EntityGhostView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.*;
@@ -25,6 +26,7 @@ public class LavaWorldView {
     private final LavaRingView lavaRingView;
     private final BombView bombView;
     private final CampFireView campFireView;
+    private final EntityGhostView entityGhostView;
 
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
@@ -38,6 +40,7 @@ public class LavaWorldView {
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
         bombView = new BombView(lavaWorld.getBomb());
         campFireView = new CampFireView(lavaWorld.getCampFire());
+        entityGhostView = new EntityGhostView(lavaWorld.getEntityGhost());
     }
 
     public void render(float delta) {
@@ -51,6 +54,7 @@ public class LavaWorldView {
         lavaRingView.draw(batch);
         bombView.draw(batch);
         campFireView.draw(batch);
+        entityGhostView.draw(batch);
         entityPlayerKeldeView.draw(batch);
         batch.end();
 
@@ -83,6 +87,10 @@ public class LavaWorldView {
     }
     public BombView getBombView() {
         return bombView;
+    }
+
+    public EntityGhostView getEntityGhostView() {
+        return entityGhostView;
     }
 
     public CampFireView getCampFireView() {

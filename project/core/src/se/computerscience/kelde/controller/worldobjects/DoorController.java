@@ -32,9 +32,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            //ScreenChanger.setNextScreen(ScreenEvent.ScreenTag.LAVA_WORLD);
             ScreenChanger.setNextScreen(screenTag);
-            System.out.println(screenTag);
         }
     }
     public void dispose() {

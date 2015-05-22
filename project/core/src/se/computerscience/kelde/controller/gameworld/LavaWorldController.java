@@ -5,6 +5,7 @@
  */
 package se.computerscience.kelde.controller.gameworld;
 
+import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
@@ -28,6 +29,7 @@ public class LavaWorldController implements IGameWorldController{
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final BombController bombController;
     private final CampFireController campFireController;
+    private final EntityGhostController entityGhostController;
 
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
@@ -39,6 +41,7 @@ public class LavaWorldController implements IGameWorldController{
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
         campFireController = new CampFireController(lavaWorld.getCampFire(),lavaWorldView.getCampFireView());
+        entityGhostController = new EntityGhostController(lavaWorld.getEntityGhost(),lavaWorldView.getEntityGhostView());
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
         worldObjList.add(doorController);
@@ -53,6 +56,7 @@ public class LavaWorldController implements IGameWorldController{
         for (IWorldObjectsController worldObjectsController: worldObjList){
             worldObjectsController.update(delta);
         }
+        entityGhostController.update(delta);
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);
     }
