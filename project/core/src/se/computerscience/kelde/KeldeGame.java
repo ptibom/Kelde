@@ -25,6 +25,8 @@ public class KeldeGame extends Game implements IScreenEventHandler {
                 case START_WORLD:
                     setScreen(new GameScreen());
                     break;
+                default:
+                    break;
             }
         }
 	}

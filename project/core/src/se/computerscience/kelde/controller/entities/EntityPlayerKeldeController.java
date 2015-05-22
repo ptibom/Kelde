@@ -11,17 +11,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 
 public class EntityPlayerKeldeController implements IWorldObjectsController {
-    EntityPlayerKelde entityPlayerKelde;
-    EntityPlayerKeldeView entityPlayerKeldeView;
-    Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
+    private final EntityPlayerKelde entityPlayerKelde;
+    private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
     private Boolean KNIFE_SLASH, ARROW;
 
-    public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde, EntityPlayerKeldeView entityPlayerKeldeView) {
+    public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde) {
         this.entityPlayerKelde = entityPlayerKelde;
-        this.entityPlayerKeldeView = entityPlayerKeldeView;
         velocityControl = new Vector2(0, 0);
         KNIFE_SLASH = false;
         ARROW = false;

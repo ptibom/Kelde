@@ -5,13 +5,13 @@
 package se.computerscience.kelde.controller.gameworld;
 
 
-import se.computerscience.kelde.controller.entities.EntityGhostController;
-import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
+import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
+import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.BarrelController;
 import se.computerscience.kelde.controller.worldobjects.DoorController;
@@ -49,7 +49,7 @@ public class GameWorldController implements IGameWorldController {
         gameWorldView = new GameWorldView(gameWorld);
 
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
-        entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde(), gameWorldView.getEntityPlayerKeldeView());
+        entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
 
         barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
         treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
