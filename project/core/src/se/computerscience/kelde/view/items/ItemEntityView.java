@@ -11,23 +11,13 @@ import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 public class ItemEntityView implements IWorldObjectView {
     private final ItemEntity itemEntity;
-    private boolean delete = false;
     public ItemEntityView(ItemEntity itemEntity) {
         this.itemEntity = itemEntity;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        if (itemEntity.isVisible()) {
-            itemEntity.getItem().getSpriteEncaps().getSprite().setPosition(itemEntity.getPositionX(), itemEntity.getPositionY());
-            itemEntity.getItem().getSpriteEncaps().getSprite().draw(batch);
-        }
-        if (delete){
-            itemEntity.playerPickUp();
-            delete = false;
-        }
-    }
-    public void setDelete(boolean delete) {
-        this.delete = delete;
+        itemEntity.getItem().getItemSprite().getSprite().setPosition(itemEntity.getPositionX(), itemEntity.getPositionY());
+        itemEntity.getItem().getItemSprite().getSprite().draw(batch);
     }
 }

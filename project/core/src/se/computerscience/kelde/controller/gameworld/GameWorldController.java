@@ -15,6 +15,7 @@ import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.items.IItem;
+import se.computerscience.kelde.model.items.Item;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.items.ItemEntityView;
@@ -69,6 +70,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         ItemEventBus.INSTANCE.register(this);
     }
     public void updateItemControllers(){
+        System.out.println("C "+itemEntityControllers.size() + " V "+ gameWorldView.getItemEntityViews().size() + " M " + gameWorld.getItemEntities().size());
         if (itemEntityControllers.size() == gameWorld.getItemEntities().size()){
             return;
         }
@@ -82,15 +84,18 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         for (IWorldObjectsController worldObj : worldObjList) {
             worldObj.update(delta);
         }
+
         for (ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
+
         entityBatController.update(delta);
         entityEyeController.update(delta);
         bombController.update(delta);
         entityGhostController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
+
     }
 
     public void resizeCamera(int width, int height) {
@@ -119,16 +124,17 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
     @Override
     public void onEvent(ItemEvent event) {
-        if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntity || event.getObject() instanceof ItemEntityView)){
+        if (!(event.getObject() instanceof IItem ||event.getObject() instanceof ItemEntity || event.getObject() instanceof ItemEntityView || event.getObject() instanceof ItemEntityController)){
             return;
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             gameWorld.addItems((IItem) event.getObject());
-            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM_ENTITY, gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1)));
+            gameWorldView.addEntityViews(gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1));
         }
-        // adding a views
-        if (event.getTag() == ItemEvent.Tag.ITEM_ENTITY) {
-                gameWorldView.addEntityViews((ItemEntity)event.getObject());
+        if (event.getTag() == ItemEvent.Tag.DEL_VIEW){
+            gameWorld.getItemEntities().remove(((ItemEntityController)event.getObject()).getItemEntity());
+            gameWorldView.getItemEntityViews().remove(((ItemEntityController) event.getObject()).getItemEntityView());
+            itemEntityControllers.remove(event.getObject());
         }
     }
 }

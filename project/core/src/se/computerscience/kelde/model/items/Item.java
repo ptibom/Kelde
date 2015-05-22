@@ -12,13 +12,13 @@ public class Item implements IItem {
     private float itemPositionX;
     private float itemPositionY;
     protected IAtlas textureAtlas;
-    private final ISprite spriteEncaps;
+    private final ISprite sprite;
     protected IRegion region;
     public Item() {
         setTextureAtlas();
         region = new Region(textureAtlas);
         setRegion();
-        spriteEncaps = new SpriteEncaps(region);
+        sprite = new ItemSprite(region);
     }
     protected void setTextureAtlas(){
         textureAtlas = new Atlas("allitems.atlas");
@@ -36,8 +36,8 @@ public class Item implements IItem {
         return false;
     }
     @Override
-    public ISprite getSpriteEncaps(){
-        return spriteEncaps;
+    public ISprite getItemSprite(){
+        return sprite;
     }
 
     @Override

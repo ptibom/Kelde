@@ -13,7 +13,6 @@ import se.computerscience.kelde.view.items.ItemEntityView;
 public class ItemEntityController implements IWorldObjectsController , ICollisionEventHandler{
     private final ItemEntity itemEntity;
     private final ItemEntityView itemEntityView;
-    private boolean picked = true;
 
     public ItemEntityController(ItemEntity itemEntity, ItemEntityView itemEntityView) {
         this.itemEntity = itemEntity;
@@ -25,13 +24,6 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
     @Override
     public void update(float delta) {
     }
-    public void delete(){
-        if (picked){
-            itemEntity.setVisible(false);
-            itemEntityView.setDelete(true);
-            picked = false;
-        }
-    }
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
@@ -39,7 +31,16 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN){
-            delete();
+            ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.DEL_VIEW, this));
+            itemEntity.playerPickUp();
         }
+    }
+
+    public ItemEntity getItemEntity() {
+        return itemEntity;
+    }
+
+    public ItemEntityView getItemEntityView() {
+        return itemEntityView;
     }
 }
