@@ -13,8 +13,8 @@ import se.computerscience.kelde.screens.LavaScreen;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
-    Door door;
-    DoorView doorView;
+    private Door door;
+    private DoorView doorView;
 
     public DoorController(Door door, DoorView doorView) {
         this.door = door;

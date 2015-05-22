@@ -12,8 +12,8 @@ import se.computerscience.kelde.view.worldobjects.BarrelView;
 
 
 public class BarrelController implements IWorldObjectsController, ICollisionEventHandler {
-    Barrel barrel;
-    BarrelView barrelView;
+    private Barrel barrel;
+    private BarrelView barrelView;
     public BarrelController(Barrel barrel, BarrelView barrelView) {
         this.barrel = barrel;
         this.barrelView = barrelView;
