@@ -10,10 +10,12 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.controller.entities.EntityArrowController;
 import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+import se.computerscience.kelde.model.entities.EntityArrow;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.items.IItems;
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
@@ -73,13 +75,15 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
-        if (objectA instanceof IMonster) {
-            if(objectB instanceof IWorldObjects) {
-                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectB));
+        if (objectA instanceof EntityArrowController) {
+            if(objectB instanceof EntityArrowController) {
+                eventCache.add(new CollisionEvent(state, objectB));
+                System.out.println("objectB was hit");
             }
         } else if (objectB instanceof IMonster) {
-            if(objectA instanceof IWorldObjects) {
+            if(objectA instanceof EntityArrow) {
                 CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));
+                System.out.println("objectA was hit!");
             }
         }
     }

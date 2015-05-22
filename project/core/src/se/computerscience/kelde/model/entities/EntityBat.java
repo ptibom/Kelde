@@ -1,11 +1,13 @@
 package se.computerscience.kelde.model.entities;
 
+import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyMonster;
 
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
 import java.util.Random;
 
 /**

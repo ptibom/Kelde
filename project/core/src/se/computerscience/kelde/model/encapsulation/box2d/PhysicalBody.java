@@ -20,6 +20,7 @@ public class PhysicalBody implements IPhysicalBody {
     public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();
+
         def.position.set(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE);
         setBodyType(); // May call method in subclass
         body = worldPhysics.createBody(def);

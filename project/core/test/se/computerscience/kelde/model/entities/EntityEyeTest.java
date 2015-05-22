@@ -56,4 +56,5 @@ public class EntityEyeTest {
     public void testHeading() {
         Assert.assertEquals(entityEye.getHeading(), Heading.NORTH);
     }
+
 }
