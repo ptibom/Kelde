@@ -12,9 +12,9 @@ import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.view.worldobjects.BombView;
 
 public class BombController implements  IWorldObjectsController, ICollisionEventHandler{
-    private Bomb bomb;
-    private BombView bombView;
-    private BombAreaController bombAreaController;
+    private final Bomb bomb;
+    private final BombView bombView;
+    private final BombAreaController bombAreaController;
 
     public BombController(Bomb bomb, BombView bombView) {
         this.bomb = bomb;
@@ -37,8 +37,10 @@ public class BombController implements  IWorldObjectsController, ICollisionEvent
         if (event.getObject() != bomb){
             return;
         }
-        bomb.setDetonate(true);
-        bombAreaController.setBlow(true);
+        if (event.getTag() == CollisionEvent.Tag.BEGIN){
+            bomb.setDetonate(true);
+            bombAreaController.setBlow(true);
+        }
     }
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);

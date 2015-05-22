@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.worldobjects.LavaSplash;
 
 public class LavaSplashView implements IWorldObjectView {
-    private LavaSplash lavaSplash;
+    private final LavaSplash lavaSplash;
     private Sprite sprite;
     private final Texture texture;
     private final int WIDTH = 24, HEIGHT = 27;

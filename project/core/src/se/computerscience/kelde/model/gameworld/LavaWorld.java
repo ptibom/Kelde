@@ -13,7 +13,6 @@ import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.*;
 
-import java.util.ArrayList;
 
 public class LavaWorld {
 

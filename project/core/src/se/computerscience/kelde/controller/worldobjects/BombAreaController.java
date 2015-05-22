@@ -11,7 +11,7 @@ import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.worldobjects.BombArea;
 
 public class BombAreaController implements IWorldObjectsController, ICollisionEventHandler {
-    private BombArea bombArea;
+    private final BombArea bombArea;
     private boolean blow = false;
 
     public BombAreaController(BombArea bombArea) {
@@ -35,7 +35,7 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
         CollisionEventBus.INSTANCE.unregister(this);
     }
     public void updatePos(float x, float y){
-        bombArea.updatePos(x , y);
+        bombArea.updatePos(x+15 , y+15);
     }
 
     public void setBlow(boolean blow) {

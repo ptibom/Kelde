@@ -10,24 +10,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.LavaWorldController;
+import se.computerscience.kelde.controller.services.ScreenChanger;
 
 public class LavaScreen implements Screen {
     private LavaWorldController lavaWorldController;
     @Override
     public void show() {
-        // Initialises objects, like a constructor
         lavaWorldController = new LavaWorldController();
         Gdx.input.setInputProcessor(new InputController(lavaWorldController));
     }
 
     @Override
     public void render(float delta) {
-        // Renders the scene, first clear it with black.
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Render the world based om woth screen is set.
         lavaWorldController.render(delta);
+
+        ScreenChanger.performingChange();
 
     }
     @Override

@@ -9,7 +9,6 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 
-import java.util.LinkedList;
 
 public class LavaRing implements IWorldObjects {
     private final float BODY_WIDTH = 41;

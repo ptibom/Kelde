@@ -11,8 +11,8 @@ import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.items.ItemEntityView;
 
 public class ItemEntityController implements IWorldObjectsController , ICollisionEventHandler{
-    private ItemEntity itemEntity;
-    private ItemEntityView itemEntityView;
+    private final ItemEntity itemEntity;
+    private final ItemEntityView itemEntityView;
     private boolean picked = true;
 
     public ItemEntityController(ItemEntity itemEntity, ItemEntityView itemEntityView) {

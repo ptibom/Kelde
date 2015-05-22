@@ -12,18 +12,18 @@ import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
-    private Door door;
-    private DoorView doorView;
-
-    public DoorController(Door door, DoorView doorView) {
+    private final Door door;
+    private final DoorView doorView;
+    private final ScreenEvent.ScreenTag screenTag;
+    public DoorController(Door door, DoorView doorView, ScreenEvent.ScreenTag screenTag) {
         this.door = door;
         this.doorView = doorView;
+        this.screenTag = screenTag;
         CollisionEventBus.INSTANCE.register(this);
     }
 
     @Override
     public void update(float delta) {
-
     }
 
     @Override
@@ -32,7 +32,9 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            ScreenChanger.setNextScreen(ScreenEvent.ScreenTag.LAVA_WORLD);
+            //ScreenChanger.setNextScreen(ScreenEvent.ScreenTag.LAVA_WORLD);
+            ScreenChanger.setNextScreen(screenTag);
+            System.out.println(screenTag);
         }
     }
     public void dispose() {

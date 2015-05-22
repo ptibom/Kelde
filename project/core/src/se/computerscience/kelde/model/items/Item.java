@@ -11,9 +11,9 @@ public class Item implements IItem {
 
     private float itemPositionX;
     private float itemPositionY;
-    protected IAtlas textureAtlas;// = new Atlas("allitems.atlas");
+    protected IAtlas textureAtlas;
     private final ISprite spriteEncaps;
-    protected IRegion region; //= new Region(textureAtlas);
+    protected IRegion region;
     public Item() {
         setTextureAtlas();
         region = new Region(textureAtlas);

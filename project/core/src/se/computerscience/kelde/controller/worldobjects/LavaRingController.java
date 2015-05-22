@@ -8,8 +8,8 @@ package se.computerscience.kelde.controller.worldobjects;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
 import se.computerscience.kelde.view.worldobjects.LavaRingView;
 public class LavaRingController implements IWorldObjectsController{
-    private LavaRing lavaRing;
-    private LavaRingView lavaRingView;
+    private final LavaRing lavaRing;
+    private final LavaRingView lavaRingView;
     private final LavaSplashController[] lavaSplashController;
     public LavaRingController(LavaRing lavaRing, LavaRingView lavaRingView) {
         this.lavaRing = lavaRing;

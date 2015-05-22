@@ -1,5 +1,5 @@
 /**
- * Description:
+ * Description: when consumed increases players health
  *
  * @author: Hossein Hussain
  */

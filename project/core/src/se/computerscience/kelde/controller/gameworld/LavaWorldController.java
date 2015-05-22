@@ -6,6 +6,7 @@
 package se.computerscience.kelde.controller.gameworld;
 
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
+import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
@@ -34,19 +35,24 @@ public class LavaWorldController implements IGameWorldController{
 
         worldPhysicsController = new WorldPhysicsController(lavaWorld.getWorldPhysics(), lavaWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde(), lavaWorldView.getEntityPlayerKeldeView());
-        doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
+        doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView(), ScreenEvent.ScreenTag.START_WORLD);
         lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
         campFireController = new CampFireController(lavaWorld.getCampFire(),lavaWorldView.getCampFireView());
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
+
+        worldObjList.add(doorController);
+        worldObjList.add(lavaRingController);
+        worldObjList.add(bombController);
+        worldObjList.add(campFireController);
+
     }
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
-        doorController.update(delta);
-        lavaRingController.update(delta);
-        campFireController.update(delta);
-        bombController.update(delta);
+        for (IWorldObjectsController worldObjectsController: worldObjList){
+            worldObjectsController.update(delta);
+        }
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);
     }

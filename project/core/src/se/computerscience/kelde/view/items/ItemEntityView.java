@@ -10,7 +10,7 @@ import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 public class ItemEntityView implements IWorldObjectView {
-    private ItemEntity itemEntity;
+    private final ItemEntity itemEntity;
     private boolean delete = false;
     public ItemEntityView(ItemEntity itemEntity) {
         this.itemEntity = itemEntity;

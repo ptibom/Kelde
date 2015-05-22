@@ -4,10 +4,7 @@
 
 package se.computerscience.kelde.controller.gameworld;
 
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.IItemEventHandler;
-import se.computerscience.kelde.controller.events.ItemEvent;
-import se.computerscience.kelde.controller.events.ItemEventBus;
+import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
@@ -55,7 +52,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
         treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
-        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
+        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView(), ScreenEvent.ScreenTag.LAVA_WORLD);
         bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
 
         worldObjList.add(barrelController);

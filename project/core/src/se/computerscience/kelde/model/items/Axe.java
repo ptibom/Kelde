@@ -1,13 +1,5 @@
 package se.computerscience.kelde.model.items;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
-import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 /**
  * Description: An axe-item, makes damage.
