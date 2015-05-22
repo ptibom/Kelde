@@ -5,6 +5,7 @@
  */
 package se.computerscience.kelde.controller.worldobjects;
 
+import se.computerscience.kelde.controller.ChangeScreen;
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.events.ScreenEvent;
 import se.computerscience.kelde.events.ScreenEventBus;
@@ -33,7 +34,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
             return;
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.LAVA_WORLD));
+            ChangeScreen.setNextScreen(ScreenEvent.ScreenTag.LAVA_WORLD);
         }
     }
     public void dispose() {

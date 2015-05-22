@@ -103,10 +103,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         worldPhysicsController.resizeCamera(width, height);
     }
 
-    public void cleanEventBuses() {
-        CollisionEventBus.INSTANCE.unregisterAll();
-        ItemEventBus.INSTANCE.unregisterAll();
-    }
 
     public void dispose() {
         // Release resources.

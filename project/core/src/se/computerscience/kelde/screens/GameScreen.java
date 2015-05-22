@@ -7,11 +7,12 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import se.computerscience.kelde.controller.ChangeScreen;
 import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 
 
-public class GameScreen extends BasicScreen implements Screen {
+public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
     @Override
     public void show() {
@@ -28,6 +29,9 @@ public class GameScreen extends BasicScreen implements Screen {
 
         // Render the world based om woth screen is set.
         gameWorldController.render(delta);
+
+        // Checks if we should change screen, and does it.
+        ChangeScreen.performingChange();
     }
     @Override
     public void resize(int width, int height) {
@@ -48,10 +52,6 @@ public class GameScreen extends BasicScreen implements Screen {
     public void hide() {
         // When screen is no longer used, dispose the objects.
         dispose();
-    }
-
-    public void cleanEventBuses() {
-        gameWorldController.cleanEventBuses();
     }
 
     @Override
