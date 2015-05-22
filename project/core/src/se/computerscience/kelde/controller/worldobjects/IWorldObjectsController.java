@@ -5,5 +5,5 @@
  */
 package se.computerscience.kelde.controller.worldobjects;
 public interface IWorldObjectsController {
-    public void update(float delta);
+    void update(float delta);
 }

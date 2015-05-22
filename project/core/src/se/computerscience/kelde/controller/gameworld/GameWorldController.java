@@ -42,7 +42,7 @@ public class GameWorldController implements IGameWorldController {
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
 
-        final BarrelController barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
+        final BarrelController barrelController = new BarrelController(gameWorld.getBarrel());
         final TreasureController treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
         final TreasureController treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
 
@@ -51,7 +51,7 @@ public class GameWorldController implements IGameWorldController {
         final SwordController swordController = new SwordController(gameWorld.getTreasure().getSword(), gameWorldView.getSwordView());
         final SwordController swordController2 = new SwordController(gameWorld.getTreasure2().getSword(), gameWorldView.getSwordView2());
 
-        final DoorController doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView());
+        final DoorController doorController = new DoorController(gameWorld.getDoor());
 
         worldObjList.add(barrelController);
         worldObjList.add(treasureController);

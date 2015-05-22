@@ -53,15 +53,17 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
     public void executeCache() {
         final Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
         while (eventCacheIt.hasNext()) {
-            CollisionEvent event = eventCacheIt.next();
+            final CollisionEvent event = eventCacheIt.next();
             CollisionEventBus.INSTANCE.publish(event);
             eventCacheIt.remove();
         }
     }
 
+    // Suppress PMD warning because the IF-statement would get really long if combined.
+    @SuppressWarnings("PMD.CollapsibleIfStatements")
     public void computeCollision(Contact contact, CollisionEvent.Tag state) {
-        Object objectA = contact.getFixtureA().getUserData();
-        Object objectB = contact.getFixtureB().getUserData();
+        final Object objectA = contact.getFixtureA().getUserData();
+        final Object objectB = contact.getFixtureB().getUserData();
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {

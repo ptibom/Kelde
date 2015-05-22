@@ -22,7 +22,7 @@ public enum  ScreenEventBus {
     }
 
     public void publish(ScreenEvent event) {
-        for (IScreenEventHandler handler : handlers) {
+        for (final IScreenEventHandler handler : handlers) {
             handler.onScreenChange(event);
         }
     }
