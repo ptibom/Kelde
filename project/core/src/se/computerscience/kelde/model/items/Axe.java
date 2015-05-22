@@ -20,12 +20,10 @@ public class Axe extends Item {
     private final int damage = 10;
     public Axe() {
     }
-
     @Override
     protected void setRegion() {
         region.setRegion(textureAtlas.findRegion("0003"));
     }
-
     public int getDamage() {
         return damage;
     }

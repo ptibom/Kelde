@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Region implements IRegion {
     TextureAtlas.AtlasRegion region;
-    public Region(Atlas atlas){
+    public Region(IAtlas atlas){
         region = atlas.findRegion("");
     }
     @Override

@@ -5,29 +5,23 @@
  */
 package se.computerscience.kelde.model.items;
 
-import se.computerscience.kelde.model.encapsulation.libgdx.Atlas;
-import se.computerscience.kelde.model.encapsulation.libgdx.Region;
-import se.computerscience.kelde.model.encapsulation.libgdx.SpriteEncaps;
+import se.computerscience.kelde.model.encapsulation.libgdx.*;
 
 public class Item implements IItem {
 
     private float itemPositionX;
     private float itemPositionY;
-    Atlas textureAtlas = new Atlas("allitems.atlas");
-    private final SpriteEncaps spriteEncaps;
-    protected Region region = new Region(textureAtlas);
+    protected final IAtlas textureAtlas = new Atlas("allitems.atlas");
+    private final ISprite spriteEncaps;
+    protected IRegion region = new Region(textureAtlas);
     public Item() {
         setRegion();
         spriteEncaps = new SpriteEncaps(region);
     }
 
-   protected void setRegion(){
+    protected void setRegion(){
         region.setRegion(textureAtlas.findRegion(""));
     }
-    protected void getRegion(){
-        region.setRegion(textureAtlas.findRegion("0001"));
-    }
-
     @Override
     public boolean isConsumable() {
         return false;
@@ -37,7 +31,8 @@ public class Item implements IItem {
     public boolean isWeapon() {
         return false;
     }
-    public SpriteEncaps getSpriteEncaps(){
+    @Override
+    public ISprite getSpriteEncaps(){
         return spriteEncaps;
     }
 
