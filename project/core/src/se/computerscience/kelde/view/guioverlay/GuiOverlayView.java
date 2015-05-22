@@ -1,4 +1,5 @@
 package se.computerscience.kelde.view.guioverlay;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
@@ -10,97 +11,87 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 
 
-
 /**
- * Created by MonoMan on 5/22/2015.
+ * @author: Daniel Olsson
  */
+
+// This class takes care of the rendering of the Graphical User Interface
 public class GuiOverlayView {
     SpriteBatch batch;
-
+    final private int BUTTON_X = 685, BUTTON_QUEST_Y = 200, BUTTON_MAIN_MENU_Y = 115, BUTTON_INVENTORY_Y = 285, BUTTON_TEXT = 540;
+    final private int BUTTON_INVENTORY_TRUE_Y = 115, BUTTON_MAIN_MENU_TRUE_Y = 285;
     GuiOverlay guiOverlayModel;
     Texture menuRectangle;
-    GuiButton  questButton, inventoryButton, mainMenuButton;
+    GuiButton questButton, inventoryButton, mainMenuButton;
     TextButton textButtonName;
     // Gui health bars, possible to initialize with value
     Bar healthBar;
     Bar manaBar;
 
-    GuiButton testButton;
+    public GuiOverlayView(GuiOverlay gameGuiModel) {
 
-    float testTime;
-
-
-    public GuiOverlayView(GuiOverlay gameGuiModel){
-
-        // The real coordinates do not coorialate with the buttons, because, you add viewport heigth.
-        testButton = new GuiButton("myName", createSkin(gameGuiModel.getTextBoxImagePath()),500,500);
+        // The real coordinates do not coorialate with the buttons, because, you add viewport height
+        // The buttons Questlog and MainMenu are switched, but this has no ope
         menuRectangle = new Texture(gameGuiModel.getMenuRectangleImagePath());
         textButtonName = new TextButton("myName", createSkin(gameGuiModel.getTextBoxImagePath()));
-        questButton = new GuiButton("Quest Log",createSkin(gameGuiModel.getGuiButtonImagePath()),685,200);
-        mainMenuButton = new GuiButton("Main Menu",createSkin(gameGuiModel.getGuiButtonImagePath()),685,115);
-        inventoryButton = new GuiButton("Inventory",createSkin(gameGuiModel.getGuiButtonImagePath()),685,285);
+
+        questButton = new GuiButton("Quest Log",
+                createSkin(gameGuiModel.getGuiButtonImagePath()),BUTTON_X, BUTTON_QUEST_Y);
+
+        // Set out position Y does not correlate to input Y, had to switch check.
+        inventoryButton = new GuiButton("Inventory",
+                createSkin(gameGuiModel.getGuiButtonImagePath()),BUTTON_X, BUTTON_INVENTORY_TRUE_Y);
+
+        mainMenuButton = new GuiButton("Main Menu",
+                createSkin(gameGuiModel.getGuiButtonImagePath()),
+                BUTTON_X, BUTTON_MAIN_MENU_TRUE_Y);
+
         this.guiOverlayModel = gameGuiModel;
 
-
-        healthBar = new HealthBar(gameGuiModel,100);
-        manaBar = new ManaBar(gameGuiModel,100);
-
+        //Refresh the hp and mana of player
+        healthBar = new HealthBar(gameGuiModel, gameGuiModel.getCurrentHealth());
+        manaBar = new ManaBar(gameGuiModel, gameGuiModel.getCurrentMana());
 
         batch = new SpriteBatch();
 
+        //Setting the position of the buttons,
+        textButtonName.setPosition(BUTTON_X, BUTTON_TEXT);
+        questButton.setPosition(BUTTON_X, BUTTON_QUEST_Y);
+        inventoryButton.setPosition(BUTTON_X, BUTTON_INVENTORY_Y);
+        mainMenuButton.setPosition(BUTTON_X, BUTTON_MAIN_MENU_Y);
 
-
-        // Trying to fix viewport
-
-        testButton.setPosition(500,500);
-        textButtonName.setPosition(685, 540);
-        questButton.setPosition(685, 200);
-        inventoryButton.setPosition(685, 285);
-        mainMenuButton.setPosition(685, 115);
-
-
-    }
-
-    public void resize(int width, int height) {
-
-        // stageGui.getViewport().update((int)stageGui.getWidth(), (int)stageGui.getHeight(),true);
     }
 
     public void draw(SpriteBatch batch) {
-
 
         batch.draw(menuRectangle, 640, 0);
         healthBar.render(batch, guiOverlayModel.getCurrentHealth());
         manaBar.render(batch, guiOverlayModel.getCurrentMana());
 
-
-
-        System.out.println(Gdx.input.getX());
-        System.out.println(Gdx.input.getY());
-
-
-        if(questButton.isTouched()){
-            System.out.println("questing!");
+        // Things that will happen when you press
+        if (questButton.isTouched()) {
+            System.out.println("quest");
         }
 
-        if(mainMenuButton.isTouched()){
-            System.out.println("maining");
+        if (inventoryButton.isTouched()) {
+            System.out.println("inventory");
         }
 
-        if(inventoryButton.isTouched()){
-            System.out.println("inveinting");
+        if (mainMenuButton.isTouched()) {
+            System.out.println("main menu");
         }
 
-
-        questButton.draw(batch,1);
+        // Draw the button with full opacity
+        questButton.draw(batch, 1);
+        inventoryButton.draw(batch, 1);
         mainMenuButton.draw(batch, 1);
-        inventoryButton.draw(batch,1);
         textButtonName.draw(batch, 1);
 
 
     }
 
-    public Skin createSkin( String imageFilePath) {
+    // Creating a new skin for the buttons
+    public Skin createSkin(String imageFilePath) {
         Skin skin = new Skin();
         BitmapFont font = new BitmapFont();
         skin.add("default", font);
@@ -111,21 +102,11 @@ public class GuiOverlayView {
         textButtonStyle.up = skin.newDrawable("background");
 
         textButtonStyle.font = skin.getFont("default");
-        textButtonStyle.fontColor=Color.ORANGE;
+        textButtonStyle.fontColor = Color.ORANGE;
         skin.add("default", textButtonStyle);
 
         return skin;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -1,9 +1,7 @@
 package se.computerscience.kelde.model.guioverlay;
 
-import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
-
 /**
- * Created by MonoMan on 5/22/2015.
+ * @author: Daniel Olsson
  */
 public class GuiOverlay {
 

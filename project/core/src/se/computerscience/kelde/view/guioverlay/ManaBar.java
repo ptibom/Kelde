@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 
 /**
- * Created by MonoMan on 5/22/2015.
+ * @author: Daniel Olsson
  */
+
+// Defines the position and texture of the bar
 public class ManaBar extends Bar {
 
     private final int STATUS_BAR =0, BACKGROUND_BAR =2, FOREGROUND_BAR = 3;

@@ -2,10 +2,11 @@ package se.computerscience.kelde.view.guioverlay;
 
 import com.badlogic.gdx.graphics.Texture;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
-
 /**
- * Created by MonoMan on 5/22/2015.
+ * @author: Daniel Olsson
  */
+
+// Defines position and texture of the bar
 public class HealthBar extends Bar {
     private final int STATUS_BAR =1, BACKGROUND_BAR =2, FOREGROUND_BAR = 4;
 
