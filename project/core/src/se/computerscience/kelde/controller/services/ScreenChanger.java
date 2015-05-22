@@ -4,17 +4,17 @@
  * @author: Philip Tibom
  */
 
-package se.computerscience.kelde.controller;
+package se.computerscience.kelde.controller.services;
 
-import se.computerscience.kelde.events.ScreenEvent;
-import se.computerscience.kelde.events.ScreenEventBus;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 
-public class ChangeScreen {
+public class ScreenChanger {
     private static boolean doChange = false;
     private static ScreenEvent.ScreenTag nextScreen;
 
     public static void setNextScreen(ScreenEvent.ScreenTag nextScreen) {
-        ChangeScreen.nextScreen = nextScreen;
+        ScreenChanger.nextScreen = nextScreen;
         doChange = true;
     }
 

@@ -5,10 +5,9 @@
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
-import se.computerscience.kelde.events.IScreenEventHandler;
-import se.computerscience.kelde.events.ScreenEvent;
-import se.computerscience.kelde.events.ScreenEventBus;
+import se.computerscience.kelde.controller.events.IScreenEventHandler;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.screens.GameScreen;
 import se.computerscience.kelde.screens.LavaScreen;
 
