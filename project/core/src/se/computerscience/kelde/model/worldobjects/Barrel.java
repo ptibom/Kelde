@@ -17,6 +17,7 @@ public class Barrel implements IWorldObjects {
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         entityBody.setDampening(15f);
     }
+
     @Override
     public float getPositionY() {
         return entityBody.getPositionY()-BODY_HEIGHT;

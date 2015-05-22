@@ -1,4 +1,4 @@
-package se.computerscience.kelde.events;
+package se.computerscience.kelde.controller.events;
 
 /**
  * Description: Screen event

@@ -17,6 +17,7 @@ public class DoorView implements IWorldObjectView {
     private final int WIDTH = 32, HEIGHT = 48;
     private final String SPRITE_LOCATION1 = "door1.png";
     private final String SPRITE_LOCATION2 = "door2.png";
+
     // you can choose with door to display when init.
     public DoorView(Door door, String spriteName) {
         this.door = door;

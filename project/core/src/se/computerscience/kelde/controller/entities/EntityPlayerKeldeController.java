@@ -78,4 +78,8 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
             isShooting = false;
         }
     }
+
+    public Vector2 getVelocityControl() {
+        return velocityControl;
+    }
 }

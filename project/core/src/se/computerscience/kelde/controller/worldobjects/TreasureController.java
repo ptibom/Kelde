@@ -5,16 +5,14 @@
  */
 package se.computerscience.kelde.controller.worldobjects;
 
-import se.computerscience.kelde.controller.events.CollisionEvent;
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.Treasure;
 import se.computerscience.kelde.view.worldobjects.TreasureView;
 
 public class TreasureController implements IWorldObjectsController, ICollisionEventHandler {
     private final Treasure treasure;
     private final TreasureView treasureView;
-
     public TreasureController(Treasure treasure, TreasureView treasureView) {
         this.treasure = treasure;
         this.treasureView = treasureView;
@@ -32,8 +30,12 @@ public class TreasureController implements IWorldObjectsController, ICollisionEv
         }
         // Contact start
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
+            for (IItem item : treasure.getItemslist()){
+                if (item instanceof IItem){
+                    ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM, item));
+                }
+            }
             treasure.setIsOpen(true);
-            treasure.setVisble();
         }
         // Contact end
         else if (event.getTag() == CollisionEvent.Tag.END) {

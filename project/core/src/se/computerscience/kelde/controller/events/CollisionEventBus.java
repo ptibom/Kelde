@@ -29,4 +29,8 @@ public enum CollisionEventBus {
             handler.onCollisionEvent(event);
         }
     }
+
+    public void unregisterAll () {
+        handlers.clear();
+    }
 }
