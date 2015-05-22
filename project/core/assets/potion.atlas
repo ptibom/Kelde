@@ -1,0 +1,19 @@
+potion.png
+size: 96,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0001
+  rotate: false
+  xy: 180, 255
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+0002
+  rotate: false
+  xy: 110, 255
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

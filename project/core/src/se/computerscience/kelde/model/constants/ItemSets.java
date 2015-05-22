@@ -25,4 +25,10 @@ public class ItemSets {
         items.add(new KeyLava());
         return items;
     }
+    public static List<IItem> getSet3(){
+        List<IItem> items = new ArrayList<>();
+        items.add(new HealthPotion());
+        items.add(new ManaPotion());
+        return items;
+    }
 }
