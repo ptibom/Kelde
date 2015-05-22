@@ -18,7 +18,7 @@ public class KeldeGame extends Game implements IScreenEventHandler {
 	@Override
 	public void create () {
         ScreenEventBus.INSTANCE.register(this);
-		setScreen(new MenuScreen());
+		setScreen(new GameScreen());
 
 	}
 

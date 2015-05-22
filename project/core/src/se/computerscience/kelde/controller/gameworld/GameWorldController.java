@@ -9,6 +9,7 @@ import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
 import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
+import se.computerscience.kelde.controller.gamegui.GameGuiController;
 import se.computerscience.kelde.controller.items.AxeController;
 import se.computerscience.kelde.controller.items.SwordController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
@@ -45,6 +46,9 @@ public class GameWorldController implements IGameWorldController {
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
 
+
+    private final GameGuiController gameGuiController;
+
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -78,6 +82,8 @@ public class GameWorldController implements IGameWorldController {
         entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
         entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
         entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
+
+        gameGuiController = new GameGuiController(gameWorld.getGameGui(), gameWorldView.getGameGuiView());
     }
 
     public void render(float delta) {
@@ -91,6 +97,8 @@ public class GameWorldController implements IGameWorldController {
 
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
+
+        gameGuiController.update(delta);
     }
 
     public void resizeCamera(int width, int height) {
@@ -98,6 +106,7 @@ public class GameWorldController implements IGameWorldController {
         gameWorld.resizeCamera(width, height);
         gameWorldView.updateProjectionMatrix();
         worldPhysicsController.resizeCamera(width, height);
+        //gameGuiController.resizeCamera(width,height);
     }
 
     public void dispose() {

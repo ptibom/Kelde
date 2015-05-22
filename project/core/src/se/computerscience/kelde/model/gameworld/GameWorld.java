@@ -12,6 +12,7 @@ import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.gamegui.GameGui;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
 import se.computerscience.kelde.model.worldobjects.Door;
@@ -31,6 +32,8 @@ public class GameWorld {
     private final Treasure treasure2;
     private final Door door;
 
+    private final GameGui gameGui;
+
     private IMap map;
     private ICamera camera;
 
@@ -48,6 +51,8 @@ public class GameWorld {
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
         entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
+
+        gameGui = new GameGui();
     }
 
     public void resizeCamera (int width, int height) {
@@ -100,4 +105,6 @@ public class GameWorld {
     public EntityEye getEntityEye() { return entityEye; }
 
     public EntityGhost getEntityGhost() { return entityGhost; }
+
+    public GameGui getGameGui(){return gameGui;}
 }
