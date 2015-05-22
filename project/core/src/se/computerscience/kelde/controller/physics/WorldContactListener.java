@@ -17,14 +17,13 @@ import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class WorldContactListener implements ContactListener, ICollisionEventHandler {
     // Use cache to wait for concurrency locks
-    private final List<CollisionEvent> eventCache = new ArrayList<>();
+    private final ConcurrentLinkedQueue<CollisionEvent> eventCache = new ConcurrentLinkedQueue<>();
 
     public WorldContactListener() {
         CollisionEventBus.INSTANCE.register(this);
@@ -50,11 +49,8 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
     }
 
     public void executeCache() {
-        Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
-        while (eventCacheIt.hasNext()) {
-            CollisionEvent event = eventCacheIt.next();
-            CollisionEventBus.INSTANCE.publish(event);
-            eventCacheIt.remove();
+        while (!eventCache.isEmpty()) {
+            CollisionEventBus.INSTANCE.publish(eventCache.poll());
         }
     }
 
