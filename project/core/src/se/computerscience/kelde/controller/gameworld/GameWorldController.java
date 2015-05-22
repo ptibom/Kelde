@@ -6,6 +6,7 @@ package se.computerscience.kelde.controller.gameworld;
 
 
 import se.computerscience.kelde.controller.entities.EntityGhostController;
+import se.computerscience.kelde.controller.guioverlay.GuiOverlayController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
@@ -18,6 +19,7 @@ import se.computerscience.kelde.controller.worldobjects.DoorController;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.controller.worldobjects.TreasureController;
 import se.computerscience.kelde.model.gameworld.GameWorld;
+import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 
 import java.util.ArrayList;
@@ -43,6 +45,8 @@ public class GameWorldController implements IGameWorldController {
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
+
+    private final GuiOverlayController guiOverlayController;
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -77,6 +81,8 @@ public class GameWorldController implements IGameWorldController {
         entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
         entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
         entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
+
+        guiOverlayController = new GuiOverlayController(gameWorld.getGuiOverlay(), gameWorldView.getGuiOverlayView());
     }
 
     public void render(float delta) {
@@ -89,6 +95,7 @@ public class GameWorldController implements IGameWorldController {
         entityGhostController.update(delta);
 
         worldPhysicsController.update(delta);
+        guiOverlayController.update(delta);
         gameWorldView.render(delta);
     }
 

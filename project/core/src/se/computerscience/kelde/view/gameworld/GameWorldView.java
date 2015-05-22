@@ -12,6 +12,7 @@ import se.computerscience.kelde.view.entities.EntityBatView;
 import se.computerscience.kelde.view.entities.EntityEyeView;
 import se.computerscience.kelde.view.entities.EntityGhostView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
+import se.computerscience.kelde.view.guioverlay.GuiOverlayView;
 import se.computerscience.kelde.view.items.AxeView;
 import se.computerscience.kelde.view.items.SwordView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
@@ -38,6 +39,7 @@ public class GameWorldView {
     private final SwordView swordView;
     private final SwordView swordView2;
     private final DoorView doorView;
+    private final GuiOverlayView guiOverlayView;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -60,6 +62,7 @@ public class GameWorldView {
         entityBatView = new EntityBatView(gameWorld.getEntityBat());
         entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
         entityGhostView = new EntityGhostView(gameWorld.getEntityGhost());
+        guiOverlayView = new GuiOverlayView(gameWorld.getGuiOverlay());
     }
 
     public void render(float delta) {
@@ -90,6 +93,7 @@ public class GameWorldView {
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         entityGhostView.draw(batch);
+        guiOverlayView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -147,4 +151,6 @@ public class GameWorldView {
     }
 
     public EntityGhostView getEntityGhostView() { return entityGhostView; }
+
+    public GuiOverlayView getGuiOverlayView(){  return guiOverlayView;    }
 }
