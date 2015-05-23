@@ -46,7 +46,7 @@ public class DialogueHandler {
         }
     }
 
-    public void drawDialogue(int dialoguenumber, SpriteBatch batch, double startTime, double endTime, float delta) {
+    public void drawTextDialogue(int dialoguenumber, SpriteBatch batch, double startTime, double endTime, float delta) {
 
         // Here we send take the dialogue number and render it according to start and end time
         // A text-dialogue is always render as large as the screen is

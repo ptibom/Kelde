@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 ;
 import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.controller.events.ScreenEventBus;
-import se.computerscience.kelde.model.intro.AnimationLoader;
+import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 
 
@@ -25,7 +25,7 @@ public class IntroView {
         introModel.resetTimer();
         this.introModel = introModel;
         SpriteBatch batch = new SpriteBatch();
-        introHandler = new IntroHandler(introModel, new AnimationLoader(introModel));
+        introHandler = new IntroHandler(introModel, new AnimationService(introModel));
 
         introHandler.startIntroMusic();
     }

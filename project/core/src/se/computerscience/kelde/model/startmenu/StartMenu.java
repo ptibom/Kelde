@@ -8,8 +8,9 @@ import java.io.IOException;
 
 public class StartMenu {
 
-    private static final String BACKGROUND = "menu/startmenubackground.png";
-    private static final String FOREGROUND = "menu/startmenuforeground.png";
+    private static final String BACKGROUND = "menu/background.png";
+    private static final String MIDDLEGROUND = "menu/backgroundmid.png";
+    private static final String FOREGROUND = "menu/foreground.png";
     private static final String WALKING_CHARACTER_PATH_PICTURE = "menu/walkingcharacters.png";
     private static final String BACKGROUND_SOUND = "menu/dethrone.mp3";
 
@@ -39,6 +40,10 @@ public class StartMenu {
     public String getForeground() {
 
         return FOREGROUND;
+    }
+
+    public String getMidGround(){
+        return MIDDLEGROUND;
     }
 
     public float getStateTime() {

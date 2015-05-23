@@ -31,7 +31,7 @@ public class StartMenuView {
     private Skin skin, skin2, skin3;
     private TextButton newGameButton, loadGameButton, exitbutton;
     private final MenuAnimationHandler menuAnimationHandler;
-    private final Texture backgroundTexture, foregroundTexture;
+    private final Texture backgroundTexture, foregroundTexture, middlegroundTexture;
 
     private Viewport viewport;
 
@@ -50,6 +50,7 @@ public class StartMenuView {
         // Loads other assets as textures and music
         backgroundTexture = new Texture(startMenuModel.getBackground());
         foregroundTexture = new Texture(startMenuModel.getForeground());
+        middlegroundTexture = new Texture(startMenuModel.getMidGround());
         backgroundMusic = Gdx.audio.newMusic(new FileHandle(startMenuModel.getBackgroundSoundPath()));
 
         //Creates an animationloader that loads all animations, using data from the model;
@@ -59,18 +60,23 @@ public class StartMenuView {
     }
 
 
-    public int renderMenu(float delta) {
+    public int renderMenu(SpriteBatch batch, float delta) {
 
-        //Updates delta-value so that we get
+        //Updates delta-value so that we get new value for new frames
         startMenuModel.updateStateTime(delta);
 
 
         // This is the draw part, draws background, characters, then foreground.
-        batch.begin();
+
         batch.draw(backgroundTexture, 0, 0);
+        batch.draw(middlegroundTexture,0,0);
+        menuStage.act();
+        menuStage.draw();
         menuAnimationHandler.drawMenuAnimations(batch);
+
         batch.draw(foregroundTexture, 0, 0);
-        batch.end();
+
+        //Makes sure the stage records all input and draws all buttons on stage
 
 
         //Checking for button presses
@@ -83,11 +89,6 @@ public class StartMenuView {
 
 
         }
-
-
-        //Makes sure the stage records all input
-        menuStage.act();
-        menuStage.draw();
 
         return 0;
     }
@@ -133,8 +134,7 @@ public class StartMenuView {
         skin.add("default", font);
 
         Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth() / 4, (int) Gdx.graphics.getHeight() / 10, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
+
         skin.add("background", new Texture(imageFilePath));
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();

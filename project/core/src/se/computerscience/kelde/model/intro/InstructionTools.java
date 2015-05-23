@@ -1,20 +1,27 @@
 package se.computerscience.kelde.model.intro;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by MonoMan on 5/21/2015.
+ * @author: Daniel Olsson
  */
+
 public class InstructionTools {
 
 
     // Takes a string with instructions and converts it into instruction class to feed the animationhandler
-    public static List<IntroInstruction> loadAndGatherInstructions(List<String> instructionString) {
+    public static List<IntroInstruction> loadAndGatherInstructions(List<String> instructionString) throws FileNotFoundException {
 
         List<IntroInstruction> setOfInstruction = new ArrayList<>();
         for (String data : instructionString) {
             String[] splitData = data.split(" ");
+
+            // We need all 5 intro files for this intro to function
+            if(instructionString.isEmpty())
+                throw new FileNotFoundException("Files are missing");
+
 
             if (splitData.length > 6) {
                 double startTime = Double.parseDouble(splitData[0]);

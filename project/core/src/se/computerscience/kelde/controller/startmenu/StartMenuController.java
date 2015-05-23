@@ -1,5 +1,6 @@
 package se.computerscience.kelde.controller.startmenu;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 import se.computerscience.kelde.view.startmenu.StartMenuView;
 
@@ -19,9 +20,9 @@ public class StartMenuController {
     }
 
 
-    public void render(float delta) {
+    public void render(SpriteBatch batch, float delta) {
 
-         startMenuView.renderMenu(delta);
+         startMenuView.renderMenu(batch, delta);
 
     }
 

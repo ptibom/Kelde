@@ -15,7 +15,7 @@ public class AnimationTools {
 
     }
 
-    // Loading the coordinates for each TextureRegion
+    // Loading the coordinates for each TextureRegion from raw input
     public static int [] loadTextureRegionData(int spriteSize, List<String> data) {
 
         int[] TextureRegionCoordinates = new int[(data.size()-7/7)];

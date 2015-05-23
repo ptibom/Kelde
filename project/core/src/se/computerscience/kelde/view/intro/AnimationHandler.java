@@ -3,7 +3,7 @@ package se.computerscience.kelde.view.intro;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import se.computerscience.kelde.model.intro.AnimationLoader;
+import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.intro.IntroInstruction;
 import se.computerscience.kelde.model.intro.AnimationTools;
@@ -39,7 +39,7 @@ public class AnimationHandler {
 
     }
 
-    public void drawAnimation(SpriteBatch batch, AnimationLoader animationloader, IntroInstruction instruct) {
+    public void drawAnimation(SpriteBatch batch, AnimationService animationloader, IntroInstruction instruct) {
 
         boolean isFlipped = instruct.isFlipped();
         double startCount = instruct.getStartCount();

@@ -12,7 +12,10 @@ public class TextDialogue {
     private Texture dialogueTexture;
     private TextureRegion textRegion;
     private double percentToShow;
-
+    private final int OFFSET_FROM_SCREEN = 50;
+    private final int SCREEN_HEIGHT = 1080;
+    private final int SCREEN_WIDTH = 1920;
+    private final int TEXT_MOVEMENT_SPEED = 384;
 
     public TextDialogue(Texture dialogueTexture) {
         this.dialogueTexture = dialogueTexture;
@@ -22,13 +25,13 @@ public class TextDialogue {
 
     public TextureRegion updateTextureRegion(Intro introModel, float delta) {
 
-        if (percentToShow + 50 == 1920) {
-            percentToShow = 1920;
+        if (percentToShow + OFFSET_FROM_SCREEN == SCREEN_WIDTH) {
+            percentToShow = SCREEN_WIDTH;
         } else
-            percentToShow += delta * 384;
+            percentToShow += SCREEN_WIDTH * TEXT_MOVEMENT_SPEED;
 
 
-        textRegion = new TextureRegion(dialogueTexture, (int) (50 + percentToShow), 1080);
+        textRegion = new TextureRegion(dialogueTexture, (int) (OFFSET_FROM_SCREEN + percentToShow), SCREEN_HEIGHT);
 
         return textRegion;
 

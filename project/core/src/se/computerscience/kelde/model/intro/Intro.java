@@ -11,33 +11,19 @@ import java.util.List;
 
 public class Intro {
 
-    // The spritesheets
-    private static final String INTRO_SPELL_PATH_IMAGE = "intro/spell.png";
-    private static final String INTRO_DEMON_ANIMATION_PATH_IMAGE = "intro/introsprites.png";
-    private static final String INTRO_WIZARD_ANIMATION_PATH_IMAGE = "intro/introtalk.png";
+
 
     // Coordinates on spritesheet used to read them in and create TextureRegion
-    private static  int[] INTRO_WIZARD_TALK_COORDINATES = new int[18];
-    private static  int[] INTRO_DEMON_ANIMATION_COORDINATES = new int[84];
-    private static  int[] INTRO_SPELL_ANIMATION_COORDINATES = new int[26];
-
-    //The length of all animations, used to read in right amount of frame into the animation
-    private static final int[] INTRO_WIZARD_ANIMATION_LENGTH_DATA = new int[]{3, 3, 2};
-    private static final int[] INTRO_SPELL_ANIMATION_LENGTH_DATA = new int[]{3, 5, 4};
-    private static final int[] INTRO_DEMON_ANIMATION_LENGTH_DATA = new int[]{4, 3, 2, 1, 3, 2, 4, 3, 3, 3, 1, 1, 1, 3, 3, 4};
+    private static  int[] INTRO_WIZARD_SPRITE_COORDINATES = new int[18];
+    private static  int[] INTRO_DEMON_SPRITE_COORDINATES = new int[84];
+    private static  int[] INTRO_SPELL_SPRITE_COORDINATES = new int[26];
 
     // Dialogue and Text images
     private static final String[] INFO_TEXT_PATH_IMAGES = new String[8];
     private static final String[] INTRO_DIALOGUE_IMAGES = new String[30];
 
-    //Background and foreground images used in the intro
-    private static final String INTRO_BORDER_PATH_IMAGE = "intro/borderintro.png";
-    private static final String INTRO_BACKGROUND_PATH_IMAGE = "intro/backgroundintro.png";
-    private static final String FOREGROUND_INTRO_PATH_IMAGE = "intro/foregroundintro.png";
-    private static final String INTRO_CAVE_BACKGROUND = "intro/cavebackground.png";
-
-    int[] animPathCordsX = new int[]{740, 792, 816, 871, 921, 985, 1075, 1161, 1239, 1276, 1201, 1114, 1036, 966, 960, 1100, 1300, 1400, 1400, 1400};
-    int[] animPathCordsY = new int[]{400, 666, 699, 747, 783, 814, 831, 810, 852, 801, 745, 700, 658, 582, 490, 418, 440, 500, 500, 500};
+    //
+    private static final float ANIMATION_SPEED = 0.27f;
 
     private static final String INTRO_SOUND_PATH = "intro/dfear2.mp3";
 
@@ -70,9 +56,10 @@ public class Intro {
         int INTRO_WIZARD_SPRITE_SIZE = 300;
         int INTRO_SPELL_SPRITE_SIZE = 100;
 
-        INTRO_DEMON_ANIMATION_COORDINATES = AnimationTools.loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE,introDemonData);
-        INTRO_WIZARD_TALK_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE, introWizardData);
-        INTRO_SPELL_ANIMATION_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
+        // Reads the input strings to an array of values for each image
+        INTRO_DEMON_SPRITE_COORDINATES = AnimationTools.loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE,introDemonData);
+        INTRO_WIZARD_SPRITE_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE, introWizardData);
+        INTRO_SPELL_SPRITE_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
 
         //Read from file .intro
         List<String> introDemonInstructions = inputData.get(3);
@@ -86,7 +73,6 @@ public class Intro {
         // Loading data for the demon's dialoges.
         allInstructions.add(InstructionTools.loadAndGatherInstructions(introDemonInstructions));
         allInstructions.add(InstructionTools.loadAndGatherInstructions(introDemonDialogueInstructions));
-
         allInstructions.add(InstructionTools.loadAndGatherInstructions(introWizardDialogueInstructions));
 
         // Loading data for the sprite animation.
@@ -102,22 +88,22 @@ public class Intro {
     }
 
     public int[] getWizardAnimationData() {
-        return INTRO_WIZARD_ANIMATION_LENGTH_DATA;
+        return ConstantsAnimation.INTRO_WIZARD_ANIMATION_LENGTH_DATA;
     }
 
     public int[] getWizardTalkCoordinates() {
 
-        return INTRO_WIZARD_TALK_COORDINATES;
+        return INTRO_WIZARD_SPRITE_COORDINATES;
     }
 
     public int[] getSpellIntroCoordinaters() {
 
-        return INTRO_SPELL_ANIMATION_COORDINATES;
+        return INTRO_SPELL_SPRITE_COORDINATES;
     }
 
     public int[] getSpellAnimationLength() {
 
-        return INTRO_SPELL_ANIMATION_LENGTH_DATA;
+        return ConstantsAnimation.INTRO_SPELL_ANIMATION_LENGTH_DATA;
     }
 
     public String[] getDialogues() {
@@ -130,36 +116,36 @@ public class Intro {
 
     public int[] getIntroDemonCoordinates() {
 
-        return INTRO_DEMON_ANIMATION_COORDINATES;
+        return INTRO_DEMON_SPRITE_COORDINATES;
     }
 
     public String getSpellSpritePath() {
 
-        return INTRO_SPELL_PATH_IMAGE;
+        return ConstantsAnimation.INTRO_SPELL_PATH_IMAGE;
     }
 
     public String getDemonAnd2ndWizardImage() {
 
-        return INTRO_DEMON_ANIMATION_PATH_IMAGE;
+        return ConstantsAnimation.INTRO_DEMON_ANIMATION_PATH_IMAGE;
     }
 
     public int[] getDemonAnimationData() {
 
-        return INTRO_DEMON_ANIMATION_LENGTH_DATA;
+        return ConstantsAnimation.INTRO_DEMON_ANIMATION_LENGTH_DATA;
     }
 
     public String getIntroWizardTalkImage() {
-        return INTRO_WIZARD_ANIMATION_PATH_IMAGE;
+        return ConstantsAnimation.INTRO_WIZARD_ANIMATION_PATH_IMAGE;
     }
 
     public String getIntroBorderImage() {
 
-        return INTRO_BORDER_PATH_IMAGE;
+        return ConstantsAnimation.INTRO_BORDER_PATH_IMAGE;
     }
 
     public String getIntroBackgroundImage() {
 
-        return INTRO_BACKGROUND_PATH_IMAGE;
+        return ConstantsAnimation.INTRO_BACKGROUND_PATH_IMAGE;
 
     }
 
@@ -169,11 +155,11 @@ public class Intro {
     }
 
     public String getForegroundIntroImage() {
-        return FOREGROUND_INTRO_PATH_IMAGE;
+        return ConstantsAnimation.FOREGROUND_INTRO_PATH_IMAGE;
     }
 
     public String getCaveBackground() {
-        return INTRO_CAVE_BACKGROUND;
+        return ConstantsAnimation.INTRO_CAVE_BACKGROUND;
     }
 
     public double getMenuTime() {
@@ -192,12 +178,12 @@ public class Intro {
     }
 
     public int[] getXAnimPathArray() {
-        return animPathCordsX;
+        return ConstantsAnimation.animPathCordsX;
 
     }
 
     public int[] getYAnimPathArray() {
-        return animPathCordsY;
+        return ConstantsAnimation.animPathCordsY;
 
     }
 
@@ -209,9 +195,8 @@ public class Intro {
         introTimer.updateStateTime(delta);
     }
 
-
-    public String[] getInfoTextImages() {
-        return INFO_TEXT_PATH_IMAGES;
+    public float getAnimationSpeed(){
+            return ANIMATION_SPEED;
     }
 
 }

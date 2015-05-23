@@ -1,5 +1,8 @@
 package se.computerscience.kelde.model.intro;
 
+/**
+ * @author: Daniel Olsson
+ */
 
 public class ConstantsDialogue {
 

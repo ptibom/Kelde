@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.model.intro.AnimationLoader;
+import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
+import se.computerscience.kelde.model.intro.IntroAnimation;
 import se.computerscience.kelde.model.intro.IntroInstruction;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Daniel Olsson
@@ -23,6 +26,7 @@ public class IntroHandler {
     private final int LENGTH_OF_TEXT_STAYING = 47;
     private final int ORIGIN_OF_TEXT = 8;
     private final int TEXT_MOVEMENT_SPEED = 4;
+
     private final Music introMusic;
     private final List<List<IntroInstruction>> allInstructions;
     private final AnimationHandler animationHandlerWizard1;
@@ -36,13 +40,13 @@ public class IntroHandler {
     private Texture introForegroundTexture, introBorderTexture;
 
     //The animation loader loads the actual animations from the sprite sheet
-    private AnimationLoader animationLoader;
+    private AnimationService animationService;
 
     //Intro model is needed to keep time, and dialoguehandler to draw the dialogue/texts
     private final Intro introModel;
     private final DialogueHandler dialogueHandler;
 
-    public IntroHandler(Intro IntroModel, AnimationLoader animationLoader) {
+    public IntroHandler(Intro IntroModel, AnimationService animationService) {
 
         //The textures and music is loaded
         introMusic = Gdx.audio.newMusic(new FileHandle(IntroModel.getIntroSound()));
@@ -54,12 +58,26 @@ public class IntroHandler {
         // Here we create the handlers that takes care of the animation of
         // each specific sprite, be it demon, wizard etc.
         this.introModel = IntroModel;
-        this.animationLoader = animationLoader;
+        this.animationService = animationService;
         dialogueHandler = new DialogueHandler(IntroModel, 47);
-        this.animationHandlerWizard1 = new AnimationHandler(IntroModel, animationLoader.getWizardAnimations(), 1350, 200, IntroModel.getWizardTalkCoordinates()[0], IntroModel.getWizardTalkCoordinates()[1], 0);
-        this.animationHandlerDemon = new AnimationHandler(IntroModel, animationLoader.getDemonAnimations(), 1285, 580, 128, 128, 47);
-        this.animationHandlerWizard2 = new AnimationHandler(IntroModel, animationLoader.getWizard2Animations(), -200, 90, 420, 420, 47);
-        this.animationHandlerSpell = new AnimationHandler(IntroModel, animationLoader.getSpellAnimations(), 740, 400, 128, 128, 47);
+
+
+        //Converting animations
+        Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
+                introModel.getAnimationSpeed(), new Texture(introModel.getIntroWizardTalkImage()));
+        Map<String, Animation> demonAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getDemonAnimations(),
+                introModel.getAnimationSpeed(), new Texture(introModel.getDemonAnd2ndWizardImage()));
+        Map<String, Animation> wizard2 = AnimationConverter.convertToLibgdxAnimation(animationService.getWizard2Animations(),
+                introModel.getAnimationSpeed(), new Texture(introModel.getDemonAnd2ndWizardImage()));
+        Map<String, Animation> spellAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getSpellAnimations(),
+                introModel.getAnimationSpeed(), new Texture(introModel.getSpellSpritePath()));
+
+        this.animationHandlerWizard1 = new AnimationHandler(IntroModel,wizardAnimations, 1350, 200, IntroModel.getWizardTalkCoordinates()[0],
+                IntroModel.getWizardTalkCoordinates()[1], 0);
+
+        this.animationHandlerDemon = new AnimationHandler(IntroModel, demonAnimations, 1285, 580, 128, 128, 47);
+        this.animationHandlerWizard2 = new AnimationHandler(IntroModel, wizard2, -200, 90, 420, 420, 47);
+        this.animationHandlerSpell = new AnimationHandler(IntroModel, spellAnimations, 740, 400, 128, 128, 47);
 
         //Retrieving the instructions.
         allInstructions = introModel.getInstructions();
@@ -88,7 +106,7 @@ public class IntroHandler {
         //Drawing the intro text
         for (int i = 0; i < 8; i++) {
 
-            dialogueHandler.drawDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta);
+            dialogueHandler.drawTextDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta);
         }
 
         //Drawing the demon in intro
@@ -114,7 +132,7 @@ public class IntroHandler {
 
         //Drawing the spell animation
         for (IntroInstruction instruct : allInstructions.get(5)) {
-            drawHelper(batch, animationLoader, animationHandlerSpell, instruct);
+            drawHelper(batch, animationService, animationHandlerSpell, instruct);
 
         }
 
@@ -145,7 +163,7 @@ public class IntroHandler {
     }
 
     // This function takes care of interpolated X and Y animation render.
-    public void drawHelper(SpriteBatch batch, AnimationLoader animationloader, AnimationHandler animationHandler,
+    public void drawHelper(SpriteBatch batch, AnimationService animationloader, AnimationHandler animationHandler,
                            IntroInstruction instruct) {
         animationHandler.drawAnimation(batch, animationloader, instruct);
     }

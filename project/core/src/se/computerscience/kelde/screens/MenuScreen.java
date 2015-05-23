@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import se.computerscience.kelde.controller.startmenu.StartMenuController;
 
@@ -37,8 +38,10 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        startmenuViewController.render(delta);
+        SpriteBatch batch = new SpriteBatch();
+        batch.begin();
+        startmenuViewController.render(batch,delta);
+        batch.end();
     }
 
     @Override
