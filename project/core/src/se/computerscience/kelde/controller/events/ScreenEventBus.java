@@ -1,4 +1,4 @@
-package se.computerscience.kelde.events;
+package se.computerscience.kelde.controller.events;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,12 @@ public enum  ScreenEventBus {
     }
 
     public void publish(ScreenEvent event) {
-        for (IScreenEventHandler handler : handlers) {
+        for (final IScreenEventHandler handler : handlers) {
             handler.onScreenChange(event);
         }
+    }
+
+    public void unregisterAll () {
+        handlers.clear();
     }
 }

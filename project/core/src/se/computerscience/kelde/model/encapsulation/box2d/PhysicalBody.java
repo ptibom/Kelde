@@ -23,6 +23,7 @@ public class PhysicalBody implements IPhysicalBody {
         def.position.set(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE);
         setBodyType(); // May call method in subclass
         body = worldPhysics.createBody(def);
+
         fdef = new FixtureDef();
         setIsSensor(); // call method in subclass
         PolygonShape shape = new PolygonShape();
@@ -30,19 +31,22 @@ public class PhysicalBody implements IPhysicalBody {
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(userdata);
     }
-
     // Sub class may override this method
     protected void setBodyType() {
         def.type = BodyType.DynamicBody;
     }
     protected void setIsSensor() {fdef.isSensor = false;}
 
+
+
     @Override
     public void setVelocity(float x, float y) {
         // x & y is meters per second. Not pixels.
         body.setLinearVelocity(x, y);
     }
-
+    public void setPosition(float x , float y){
+        body.setTransform(new Vector2(x * WorldPhysics.BOX2D_SCALE, y *WorldPhysics.BOX2D_SCALE), 0);
+    }
     @Override
     public void setDampening(float dampening) {
         body.setLinearDamping(dampening);

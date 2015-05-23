@@ -15,19 +15,10 @@ public class StartMenu {
 
     Timer menuTimer = new Timer();
 
-    // Do want to fade out and in between intro..
-    private static final String FADE_SCREEN_PATH_IMAGE = "intro/blackfadescreen.png";
-
 
     public StartMenu() throws IOException {
 
     }
-
-    public String getFadeScreen() {
-
-        return FADE_SCREEN_PATH_IMAGE;
-    }
-
 
     public String getWalkingCharacterPathPicture() {
 
@@ -45,7 +36,7 @@ public class StartMenu {
         return BACKGROUND;
     }
 
-    public String getForegorund() {
+    public String getForeground() {
 
         return FOREGROUND;
     }

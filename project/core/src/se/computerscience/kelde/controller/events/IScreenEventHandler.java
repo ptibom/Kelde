@@ -1,4 +1,4 @@
-package se.computerscience.kelde.events;
+package se.computerscience.kelde.controller.events;
 
 /**
  * Description: Needed for event handlers
@@ -6,5 +6,5 @@ package se.computerscience.kelde.events;
  * @author: Philip Tibom
  */
 public interface IScreenEventHandler {
-    public void onScreenChange(ScreenEvent event);
+    void onScreenChange(ScreenEvent event);
 }

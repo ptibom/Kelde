@@ -14,54 +14,44 @@ import java.util.List;
 
 public class AnimationLoader {
 
-    private final int spriteSize = 136;
-    private final int SPRITE_SHEET_SIZE = 42 / 3;
-    private final StartMenu startMenuModel;
-    private final List<Animation> allWalkingAnimations = new ArrayList<Animation>();
-    private int spreadsheetOffset = 138;
+    private final static int spriteSize = 136;
+    private final static int SPRITE_SHEET_SIZE = 42 / 3;
+    private final static List<Animation> allWalkingAnimations = new ArrayList<Animation>();
+    private static int spreadsheetOffset = 138;
+    private final static int SPRITE_SHEET_WIDTH = 830;
+    private final static int SPRITE_SHEET_X_START = 2, SPRITE_SHEET_Y_START = 2;
+    private final static int AMOUNT_PER_ROW = 3;
+    private final static float ANIMATION_LENGTH = 0.27f;
 
-    public AnimationLoader(StartMenu startMenuModel) {
-        this.startMenuModel = startMenuModel;
+    public AnimationLoader() {
+
     }
 
-
-    public List<Animation> loadWalkingCharacters() {
+    public static List<Animation> loadWalkingCharacters(StartMenu startMenuModel) {
 
         Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
 
-        for (int i = 0, x = 2, y = 2; i < SPRITE_SHEET_SIZE; i++) {
+        for (int i = 0, x = SPRITE_SHEET_X_START, y = SPRITE_SHEET_Y_START; i < SPRITE_SHEET_SIZE; i++) {
+
             TextureRegion[] tempAnimationRegions = new TextureRegion[3];
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
 
+
+            // Alogrithm for getting the coordinates for each sprite on the spritesheet
+            for(int k = 0; k<AMOUNT_PER_ROW;k++) {
+
+                if (x > SPRITE_SHEET_WIDTH) {
+                    x = SPRITE_SHEET_X_START;
+                    y += spreadsheetOffset;
+
+                }
+                tempAnimationRegions[k] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
+                x += spreadsheetOffset;
             }
-            tempAnimationRegions[0] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
 
-            x += spreadsheetOffset;
-
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
-
-            }
-            tempAnimationRegions[1] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
-
-
-            x += spreadsheetOffset;
-
-            if (x > 830) {
-                x = 2;
-                y += spreadsheetOffset;
-
-            }
-            tempAnimationRegions[2] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
-
-            x += spreadsheetOffset;
 
             //Now that we have loaded an animation's textureRegions, we create an animation from it.
             // And then load it into our list of animations.
-            allWalkingAnimations.add(new Animation(0.27f, tempAnimationRegions));
+            allWalkingAnimations.add(new Animation(ANIMATION_LENGTH, tempAnimationRegions));
 
 
         }
@@ -70,4 +60,6 @@ public class AnimationLoader {
 
         return allWalkingAnimations;
     }
+
+
 }

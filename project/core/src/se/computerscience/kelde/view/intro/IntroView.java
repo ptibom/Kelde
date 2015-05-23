@@ -5,8 +5,9 @@ package se.computerscience.kelde.view.intro;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.events.ScreenEvent;
-import se.computerscience.kelde.events.ScreenEventBus;
+;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.intro.AnimationLoader;
 import se.computerscience.kelde.model.intro.Intro;
 

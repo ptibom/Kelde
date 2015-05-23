@@ -14,17 +14,15 @@ import java.util.List;
 public class MenuAnimationHandler {
 
     private final int MOVEMENT_SPEED = 18, ORIGIN_X = -2400, ORIGIN_Y =130;
+    private final int CHARACTER_OFFSET = 300 ;
     private final StartMenu startMenuModel;
-    private SpriteBatch batch;
-    private final AnimationLoader animationloader;
     private final List<Animation> allWalkingAnimations;
 
 
-    public MenuAnimationHandler(StartMenu startMenuModel, AnimationLoader animationLoader) {
+    public MenuAnimationHandler(StartMenu startMenuModel) {
 
         this.startMenuModel = startMenuModel;
-        this.animationloader = animationLoader;
-        allWalkingAnimations = animationloader.loadWalkingCharacters();
+        allWalkingAnimations = AnimationLoader.loadWalkingCharacters(startMenuModel);
 
     }
 
@@ -32,12 +30,11 @@ public class MenuAnimationHandler {
     // Draws out all the characters walking in the intro scene
     public void drawMenuAnimations(SpriteBatch batch) {
 
-        this.batch = batch;
 
         for (int i = 0; i < allWalkingAnimations.size(); i++) {
 
-            TextureRegion currentFrame = allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true);
-            this.batch.draw(currentFrame, ORIGIN_X + 300 * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, ORIGIN_Y);
+            batch.draw(allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true),
+                    ORIGIN_X + CHARACTER_OFFSET * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, ORIGIN_Y);
         }
 
     }
