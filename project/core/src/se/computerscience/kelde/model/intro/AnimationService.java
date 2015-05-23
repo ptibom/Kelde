@@ -13,7 +13,7 @@ import java.util.Map;
  * @author: Daniel Olsson
  */
 
-public class AnimationLoader {
+public class AnimationService {
 
     Intro introModel;
 
@@ -30,7 +30,7 @@ public class AnimationLoader {
     int[] animPathInterpolatedY;
 
 
-    public AnimationLoader(Intro introModel) {
+    public AnimationService(Intro introModel) {
 
         mappedWizardTalkAnimation = new HashMap<>();
         mappedWizard2TalkAnimation = new HashMap<>();
