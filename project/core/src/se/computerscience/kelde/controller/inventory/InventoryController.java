@@ -17,15 +17,10 @@ public class InventoryController {
 
         this.inventoryModel = new Inventory();
         this.inventoryView = new InventoryView(inventoryModel);
-
-
     }
 
     public void update(IItem newItem){
-
-
             inventoryModel.update(newItem);
-
     }
 
 
