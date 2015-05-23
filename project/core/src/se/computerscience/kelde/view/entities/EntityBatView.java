@@ -2,10 +2,7 @@ package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityBat;
 
@@ -24,6 +21,12 @@ public class EntityBatView {
     private SpriteBatch batch;
     private Animation animation;
     private float elapsedTime = 0, delta = 0;
+
+    SpriteBatch spriteBatch;
+    BitmapFont font;
+    CharSequence str = "Hello World!";
+
+
     /**
      * Public constructor
      */
@@ -32,6 +35,10 @@ public class EntityBatView {
 
         createTextures();
         animation = animationN;
+
+        spriteBatch = new SpriteBatch();
+        font = new BitmapFont(Gdx.files.internal("data/nameOfFont.fnt"),
+                Gdx.files.internal("data/nameOfFont.png"), false);
     }
 
     private void createTextures() {
@@ -72,4 +79,8 @@ public class EntityBatView {
         batch.setProjectionMatrix(camera.combined);
     }
 
+    public void showHit() {
+
+
+    }
 }

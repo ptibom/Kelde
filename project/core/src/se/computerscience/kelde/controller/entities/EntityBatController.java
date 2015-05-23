@@ -7,11 +7,13 @@ package se.computerscience.kelde.controller.entities;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import se.computerscience.kelde.controller.events.CollisionEvent;
+import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.view.entities.EntityBatView;
 
 
-public class EntityBatController {
+public class EntityBatController implements ICollisionEventHandler {
 
     //Variables
     private final EntityBat entityBat;
@@ -29,5 +31,15 @@ public class EntityBatController {
 
     public void draw(SpriteBatch batch) {
         entityBatView.draw(batch);
+    }
+
+    @Override
+    public void onCollisionEvent(CollisionEvent event) {
+        if (event.getObject() != entityBat){
+            return;
+        }
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
+            entityBatView.showHit();
+        }
     }
 }

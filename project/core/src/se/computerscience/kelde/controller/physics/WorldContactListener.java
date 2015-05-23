@@ -75,11 +75,8 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
-        if (objectA instanceof EntityArrowController) {
-            if(objectB instanceof EntityArrowController) {
-                eventCache.add(new CollisionEvent(state, objectB));
-                System.out.println("objectB was hit");
-            }
+        if (objectA instanceof EntityArrow) {
+            System.out.println("objectA is instanceof EntityArrow");
         } else if (objectB instanceof IMonster) {
             if(objectA instanceof EntityArrow) {
                 CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));

@@ -69,6 +69,17 @@ public class EntityArrow implements IWorldObjects{
     }
 
     public void setPosition(float x, float y) {
-        entityBody.setPosition(x,y);
+        float offsetX = x, offsetY = y;
+        if(getHeading() == Heading.NORTH) {
+            offsetY -= 16;
+            offsetX += 16;
+        } else if (getHeading() == Heading.WEST) {
+            offsetX -= 16;
+        } else if (getHeading() == Heading.SOUTH) {
+            offsetY += 16;
+        } else if(getHeading() == Heading.EAST) {
+            offsetX += 16;
+        }
+        entityBody.setPosition(offsetX,offsetY);
     }
 }
