@@ -12,8 +12,8 @@ import se.computerscience.kelde.view.worldobjects.BarrelView;
 
 
 public class BarrelController implements IWorldObjectsController, ICollisionEventHandler {
-    Barrel barrel;
-    BarrelView barrelView;
+    private final Barrel barrel;
+    private final BarrelView barrelView;
     public BarrelController(Barrel barrel, BarrelView barrelView) {
         this.barrel = barrel;
         this.barrelView = barrelView;
@@ -21,6 +21,7 @@ public class BarrelController implements IWorldObjectsController, ICollisionEven
 
     @Override
     public void update(float delta){
+        // Not used
     }
 
     @Override

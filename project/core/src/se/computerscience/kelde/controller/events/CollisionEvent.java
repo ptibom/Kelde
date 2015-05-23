@@ -10,6 +10,7 @@ public class CollisionEvent {
     public enum Tag {
         BEGIN, END, SEND_CACHE
     }
+
     private final Tag tag;
     private final Object object;
 

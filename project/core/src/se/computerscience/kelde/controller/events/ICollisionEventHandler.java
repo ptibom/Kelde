@@ -8,5 +8,5 @@ package se.computerscience.kelde.controller.events;
 
 
 public interface ICollisionEventHandler {
-    public void onCollisionEvent(CollisionEvent event);
+    void onCollisionEvent(CollisionEvent event);
 }

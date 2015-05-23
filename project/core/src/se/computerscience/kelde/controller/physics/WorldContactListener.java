@@ -6,6 +6,7 @@
 
 package se.computerscience.kelde.controller.physics;
 
+import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -15,19 +16,20 @@ import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+
 import se.computerscience.kelde.model.entities.EntityArrow;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.items.IItems;
+
+
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class WorldContactListener implements ContactListener, ICollisionEventHandler {
     // Use cache to wait for concurrency locks
-    private final List<CollisionEvent> eventCache = new ArrayList<>();
+    private final ConcurrentLinkedQueue<CollisionEvent> eventCache = new ConcurrentLinkedQueue<>();
 
     public WorldContactListener() {
         CollisionEventBus.INSTANCE.register(this);
@@ -43,35 +45,37 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
         computeCollision(contact, CollisionEvent.Tag.END);
     }
 
+
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
+        // Not needed
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
+        // Not needed
     }
 
     public void executeCache() {
-        Iterator<CollisionEvent> eventCacheIt = eventCache.iterator();
-        while (eventCacheIt.hasNext()) {
-            CollisionEvent event = eventCacheIt.next();
-            CollisionEventBus.INSTANCE.publish(event);
-            eventCacheIt.remove();
+        while (!eventCache.isEmpty()) {
+            CollisionEventBus.INSTANCE.publish(eventCache.poll());
         }
     }
 
+    // Suppress PMD warning because the IF-statement would get really long if combined.
+    @SuppressWarnings("PMD.CollapsibleIfStatements")
     public void computeCollision(Contact contact, CollisionEvent.Tag state) {
-        Object objectA = contact.getFixtureA().getUserData();
-        Object objectB = contact.getFixtureB().getUserData();
+        final Object objectA = contact.getFixtureA().getUserData();
+        final Object objectB = contact.getFixtureB().getUserData();
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
-            if (objectB instanceof IItems || objectB instanceof IWorldObjects) {
+            if (objectB instanceof IWorldObjects) {
                 eventCache.add(new CollisionEvent(state, objectB));
             }
         }
         else if (objectB instanceof EntityPlayerKelde) {
-            if (objectA instanceof IItems || objectA instanceof IWorldObjects) {
+            if (objectA instanceof IWorldObjects) {
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
@@ -95,4 +99,5 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);
     }
+
 }

@@ -7,19 +7,20 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
 
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
-
     @Override
     public void show() {
         // Initialises objects, like a constructor
         gameWorldController = new GameWorldController();
         Gdx.input.setInputProcessor(new InputController(gameWorldController));
     }
+
     @Override
     public void render(float delta) {
         // Renders the scene, first clear it with black.
@@ -28,8 +29,10 @@ public class GameScreen implements Screen {
 
         // Render the world based om woth screen is set.
         gameWorldController.render(delta);
-    }
 
+        // Checks if we should change screen, and does it.
+        ScreenChanger.performingChange();
+    }
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);
@@ -55,5 +58,4 @@ public class GameScreen implements Screen {
     public void dispose() {
         gameWorldController.dispose();
     }
-
 }
