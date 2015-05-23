@@ -9,16 +9,13 @@ import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
-<<<<<<< HEAD
 import se.computerscience.kelde.model.entities.*;
-=======
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
->>>>>>> master
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import se.computerscience.kelde.model.worldobjects.Barrel;
 import se.computerscience.kelde.model.worldobjects.Bomb;
@@ -129,7 +126,7 @@ public class GameWorld{
     }
 
     public EntityGhost getEntityGhost() { return entityGhost; }
-<<<<<<< HEAD
+
 
     public EntityArrow getEntityArrow1() {
         return entityArrow1;
@@ -142,9 +139,10 @@ public class GameWorld{
 
     public EntityArrow getEntityArrow3() {
         return entityArrow3;
-=======
+    }
+
     public void removeItem(ItemEntity item){
         itemEntities.remove(item);
->>>>>>> master
+
     }
 }

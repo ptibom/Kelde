@@ -7,18 +7,13 @@ package se.computerscience.kelde.view.gameworld;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-<<<<<<< HEAD
 import se.computerscience.kelde.view.entities.*;
-import se.computerscience.kelde.view.items.AxeView;
-import se.computerscience.kelde.view.items.SwordView;
-=======
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.entities.EntityBatView;
 import se.computerscience.kelde.view.entities.EntityEyeView;
 import se.computerscience.kelde.view.entities.EntityGhostView;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.items.ItemEntityView;
->>>>>>> master
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.BarrelView;
 import se.computerscience.kelde.view.worldobjects.BombView;
@@ -43,12 +38,9 @@ public class GameWorldView{
     private final TreasureView treasureView;
     private final TreasureView treasureView2;
     private final DoorView doorView;
-<<<<<<< HEAD
     private final EntityArrowView entityArrowView1,entityArrowView2, entityArrowView3;
-=======
     private final BombView bombView;
     private List<ItemEntityView> itemEntityViews = new ArrayList<>();
->>>>>>> master
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -149,7 +141,7 @@ public class GameWorldView{
         return itemEntityViews;
     }
     public EntityGhostView getEntityGhostView() { return entityGhostView; }
-<<<<<<< HEAD
+
 
     public EntityArrowView getEntityArrowView1() {
         return entityArrowView1;
@@ -161,9 +153,9 @@ public class GameWorldView{
 
     public EntityArrowView getEntityArrowView3() {
         return entityArrowView3;
-=======
+    }
     public void removeItemView(ItemEntityView itemEntityView){
         itemEntityViews.remove(itemEntityView);
->>>>>>> master
+
     }
 }

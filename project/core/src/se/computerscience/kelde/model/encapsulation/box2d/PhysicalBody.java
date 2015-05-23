@@ -39,25 +39,21 @@ public class PhysicalBody implements IPhysicalBody {
     }
     protected void setIsSensor() {fdef.isSensor = false;}
 
-<<<<<<< HEAD
+
     protected void setFilter(){
         fdef.filter.groupIndex = 1;
         fdef.filter.categoryBits = 0x0001;
         short MASK = 0x0002 | 0x0001;
         fdef.filter.maskBits = MASK;
     }
-=======
 
->>>>>>> master
 
     @Override
     public void setVelocity(float x, float y) {
         // x & y is meters per second. Not pixels.
         body.setLinearVelocity(x, y);
     }
-    public void setPosition(float x , float y){
-        body.setTransform(new Vector2(x * WorldPhysics.BOX2D_SCALE, y *WorldPhysics.BOX2D_SCALE), 0);
-    }
+
     @Override
     public void setDampening(float dampening) {
         body.setLinearDamping(dampening);

@@ -7,12 +7,8 @@ package se.computerscience.kelde.controller.gameworld;
 import java.util.ArrayList;
 
 
-<<<<<<< HEAD
 import se.computerscience.kelde.controller.entities.*;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
-import se.computerscience.kelde.controller.items.AxeController;
-import se.computerscience.kelde.controller.items.SwordController;
-=======
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.entities.EntityGhostController;
@@ -20,7 +16,6 @@ import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
->>>>>>> master
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.GameWorld;
@@ -29,11 +24,8 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 
 import java.util.List;
 
-<<<<<<< HEAD
-public class GameWorldController implements IGameWorldController {
-=======
 public class GameWorldController implements IGameWorldController,IItemEventHandler {
->>>>>>> master
+
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
 
@@ -51,15 +43,15 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private final EntityGhostController entityGhostController;
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
 
-<<<<<<< HEAD
+
     private List<EntityArrowController> keldeArrowList = new ArrayList<>();
     private final EntityArrowController entityArrowController1;
     private final EntityArrowController entityArrowController2;
     private final EntityArrowController entityArrowController3;
 
-=======
+
     private final BombController bombController;
->>>>>>> master
+
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -112,25 +104,22 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             worldObj.update(delta);
         }
 
-<<<<<<< HEAD
+
        /* for(EntityArrowController arrow : keldeArrowList) {
             arrow.update(delta, gameWorldView.getEntityPlayerKeldeView().getPositionX(), gameWorldView.getEntityPlayerKeldeView().getPositionY());
         } */
-=======
+
         for (ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
->>>>>>> master
+
 
         entityBatController.update(delta);
         entityEyeController.update(delta);
         bombController.update(delta);
         entityGhostController.update(delta);
-<<<<<<< HEAD
         entityArrowController1.update(delta, gameWorld.getEntityPlayerKelde().getPositionX(), gameWorld.getEntityPlayerKelde().getPositionY(), gameWorld.getEntityPlayerKelde().getHeading());
 
-=======
->>>>>>> master
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
 
@@ -174,7 +163,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         }
         if (event.getTag() == ItemEvent.Tag.DEL_ITEM){
             gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
-            gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
         }
     }
