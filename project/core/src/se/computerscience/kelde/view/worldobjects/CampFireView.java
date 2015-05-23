@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.worldobjects.CampFire;
 
 public class CampFireView implements IWorldObjectView {
-    private final String SPRITE_LOCATION = "CampFire.atlas";
+    private final static String SPRITE_LOCATION = "CampFire.atlas";
     private final CampFire campFire;
     private TextureAtlas textureAtlas;
     private Animation animation;
