@@ -12,14 +12,13 @@ import se.computerscience.kelde.model.worldobjects.LavaSplash;
 
 public class LavaSplashView implements IWorldObjectView {
     private final LavaSplash lavaSplash;
-    private Sprite sprite;
-    private final Texture texture;
-    private final int WIDTH = 24, HEIGHT = 27;
-    private final String SPRITE_LOCATION = "lava-splash.png";
+    private final Sprite sprite;
+    private static final int WIDTH = 24, HEIGHT = 27;
+    private static final String SPRITE_LOCATION = "lava-splash.png";
 
     public LavaSplashView(LavaSplash lavaSplash) {
+        Texture texture;
         this.lavaSplash = lavaSplash;
-
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }

@@ -12,15 +12,15 @@ import se.computerscience.kelde.model.worldobjects.Treasure;
  */
 public class TreasureView implements IWorldObjectView {
     private final Treasure treasure;
-    private final Texture texture;
-    private final int WIDTH = 30, HEIGHT = 32;
-    private final String SPRITE_LOCATION1 = "chest1.png";
-    private final String SPRITE_LOCATION2 = "chest2.png";
+    private static final int WIDTH = 30, HEIGHT = 32;
+    private static final String SPRITE_LOCATION1 = "chest1.png";
+    private static final String SPRITE_LOCATION2 = "chest2.png";
     private Sprite sprite;
     private final Sprite SPRITE_OPENED;
     private final Sprite SPRITE_CLOSED;
 
     public TreasureView(Treasure treasure) {
+        Texture texture;
         this.treasure = treasure;
         texture = new Texture(SPRITE_LOCATION1);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
