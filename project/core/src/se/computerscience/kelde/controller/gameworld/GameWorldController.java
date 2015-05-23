@@ -6,6 +6,7 @@ package se.computerscience.kelde.controller.gameworld;
 
 
 import se.computerscience.kelde.controller.entities.EntityGhostController;
+import se.computerscience.kelde.controller.inventory.InventoryController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.entities.EntityBatController;
 import se.computerscience.kelde.controller.entities.EntityEyeController;
@@ -43,6 +44,7 @@ public class GameWorldController implements IGameWorldController {
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
+    private final InventoryController inventoryController;
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -77,6 +79,8 @@ public class GameWorldController implements IGameWorldController {
         entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
         entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
         entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
+
+        inventoryController = new InventoryController(gameWorld.getInventoryModel(), gameWorldView.getInventoryView());
     }
 
     public void render(float delta) {
@@ -87,9 +91,10 @@ public class GameWorldController implements IGameWorldController {
         entityBatController.update(delta);
         entityEyeController.update(delta);
         entityGhostController.update(delta);
-
+        inventoryController.update("");
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
+
     }
 
     public void resizeCamera(int width, int height) {
