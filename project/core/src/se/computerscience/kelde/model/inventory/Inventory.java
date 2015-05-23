@@ -2,6 +2,8 @@ package se.computerscience.kelde.model.inventory;
 
 
 
+import se.computerscience.kelde.model.items.IItems;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +17,21 @@ import java.util.List;
 public class Inventory {
 
     private final String INVENTORY_GUI_IMAGE = "inventory/inventorygui.png";
-    List<String> inventoryObjectsPathsImage;
+    List<IItems> inventoryObjectsPathsImage;
 
     public Inventory(){
 
-        inventoryObjectsPathsImage = new ArrayList<String>();
+        inventoryObjectsPathsImage = new ArrayList<IItems>();
 
         
     }
 
-    public void update(String newItem){
+    public void update(IItems newItem){
 
         inventoryObjectsPathsImage.add(newItem);
     }
 
-    public  List<String> getInventoryItems(){
+    public  List<IItems> getInventoryItems(){
 
         return inventoryObjectsPathsImage;
     }
