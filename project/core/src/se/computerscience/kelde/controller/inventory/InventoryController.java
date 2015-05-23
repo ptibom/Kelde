@@ -1,6 +1,7 @@
 package se.computerscience.kelde.controller.inventory;
 
 import se.computerscience.kelde.model.inventory.Inventory;
+import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.view.inventory.InventoryView;
 
 /**
@@ -20,11 +21,11 @@ public class InventoryController {
 
     }
 
-    public void update(String newItem){
+    public void update(IItem newItem){
 
-        if(newItem.length()>0) {
+
             inventoryModel.update(newItem);
-        }
+
     }
 
 
