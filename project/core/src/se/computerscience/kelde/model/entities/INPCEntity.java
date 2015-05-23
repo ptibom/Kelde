@@ -5,5 +5,5 @@
 package se.computerscience.kelde.model.entities;
 
 public interface INPCEntity {
-    public boolean isFriendly();
+    boolean isFriendly();
 }

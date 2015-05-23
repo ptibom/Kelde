@@ -22,10 +22,6 @@ public class EntityBatView {
     private Animation animation;
     private float elapsedTime = 0, delta = 0;
 
-    SpriteBatch spriteBatch;
-    BitmapFont font;
-    CharSequence str = "Hello World!";
-
 
     /**
      * Public constructor
@@ -35,10 +31,6 @@ public class EntityBatView {
 
         createTextures();
         animation = animationN;
-
-        spriteBatch = new SpriteBatch();
-        font = new BitmapFont(Gdx.files.internal("data/nameOfFont.fnt"),
-                Gdx.files.internal("data/nameOfFont.png"), false);
     }
 
     private void createTextures() {
@@ -80,7 +72,7 @@ public class EntityBatView {
     }
 
     public void showHit() {
-
+        System.out.println("showing a hit!");
 
     }
 }

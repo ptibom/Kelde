@@ -8,6 +8,7 @@ package se.computerscience.kelde.controller.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.controller.events.CollisionEvent;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.view.entities.EntityBatView;
@@ -22,6 +23,7 @@ public class EntityBatController implements ICollisionEventHandler {
     public EntityBatController(EntityBat entityBat, EntityBatView entityBatView) {
         this.entityBat = entityBat;
         this.entityBatView = entityBatView;
+        CollisionEventBus.INSTANCE.register(this);
     }
 
     public void update(float delta) {

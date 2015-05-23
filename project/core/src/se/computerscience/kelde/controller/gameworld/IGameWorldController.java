@@ -5,8 +5,8 @@ package se.computerscience.kelde.controller.gameworld;
  */
 public interface IGameWorldController {
 
-    public void setKeyDown(int keycode);
+    void setKeyDown(int keycode);
 
-    public void setKeyUp(int keycode);
+    void setKeyUp(int keycode);
 
 }
