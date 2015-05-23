@@ -73,6 +73,12 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
         if (Input.Keys.RIGHT == keycode && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             velocityControl.x = -walkSpeed;
         }
+        if (Input.Keys.UP == keycode && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            velocityControl.y = -walkSpeed;
+        }
+        if (Input.Keys.DOWN == keycode && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            velocityControl.y = walkSpeed;
+        }
         if(keycode == Input.Keys.SPACE) {
             isSlashing = false;
         }
