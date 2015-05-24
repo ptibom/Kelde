@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityGhost;
 
+import javax.xml.soap.Text;
+
 /**
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
@@ -16,7 +18,6 @@ public class EntityGhostView {
 
     //Variables
     private final EntityGhost entityGhost;
-    private TextureAtlas textureAtlasW, textureAtlasSouth, textureAtlasNorth, textureAtlasE;
     private Animation animation, animationW, animationS, animationN, animationE;
     private float elapsedTime, delta;
     private Batch batch;
@@ -29,13 +30,13 @@ public class EntityGhostView {
     }
 
     private void createTextures() {
-        textureAtlasW = new TextureAtlas(Gdx.files.internal("ghostWest.atlas"));
+        final TextureAtlas textureAtlasW = new TextureAtlas(Gdx.files.internal("ghostWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
-        textureAtlasSouth = new TextureAtlas(Gdx.files.internal("ghostSouth.atlas"));
+        final TextureAtlas textureAtlasSouth = new TextureAtlas(Gdx.files.internal("ghostSouth.atlas"));
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
-        textureAtlasNorth = new TextureAtlas(Gdx.files.internal("ghostNorth.atlas"));
+        final TextureAtlas textureAtlasNorth = new TextureAtlas(Gdx.files.internal("ghostNorth.atlas"));
         animationN = new Animation(0.15f, textureAtlasNorth.getRegions());
-        textureAtlasE = new TextureAtlas(Gdx.files.internal("ghostEast.atlas"));
+        final TextureAtlas textureAtlasE = new TextureAtlas(Gdx.files.internal("ghostEast.atlas"));
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
     }
 

@@ -39,12 +39,16 @@ public class EntityPlayerKeldeView {
     public void draw(SpriteBatch batch) {
         direction = entityPlayerKelde.getDirection();
         elapsedTime += Gdx.graphics.getDeltaTime();
-        Animation currentAnimation = standAnimation[direction];
+        if(!entityPlayerKelde.isWalking()) {
+            batch.draw(standAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        }
         if (entityPlayerKelde.isWalking()) {
             batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        }else if (entityPlayerKelde.getIsSlashing()) {
+        }
+        if (entityPlayerKelde.getIsSlashing()) {
             batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        } else if (entityPlayerKelde.getIsShooting()) {
+        }
+        if (entityPlayerKelde.getIsShooting()) {
             batch.draw(bowAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
 
@@ -56,7 +60,7 @@ public class EntityPlayerKeldeView {
             elapsedTime = 0;
         }
 
-        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        //batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.setPosition(entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         //sprite.draw(batch);
 
