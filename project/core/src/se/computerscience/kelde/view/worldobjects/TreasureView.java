@@ -29,7 +29,7 @@ public class TreasureView implements IWorldObjectView {
     }
 
     public void update(float delta) {
-        if (treasure.isOpen()) {
+        if (treasure.isCheastOpen()) {
             sprite = SPRITE_OPENED;
         }
         else {

@@ -38,21 +38,18 @@ public class EntityPlayerKeldeView {
 
     public void draw(SpriteBatch batch) {
         direction = entityPlayerKelde.getDirection();
+        elapsedTime += Gdx.graphics.getDeltaTime();
         Animation currentAnimation = standAnimation[direction];
         if (entityPlayerKelde.isWalking()) {
-            currentAnimation = walkAnimation[direction];
+            batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        }else if (entityPlayerKelde.getIsSlashing()) {
+            batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        } else if (entityPlayerKelde.getIsShooting()) {
+            batch.draw(bowAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
 
-        if (entityPlayerKelde.getIsSlashing()) {
-            currentAnimation = daggerAnimation[direction];
-        }
 
-        if (entityPlayerKelde.getIsShooting()) {
-            currentAnimation = bowAnimation[direction];
-        }
 
-        elapsedTime += Gdx.graphics.getDeltaTime();
-        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
 
 
         if (elapsedTime > 100.0f) {
