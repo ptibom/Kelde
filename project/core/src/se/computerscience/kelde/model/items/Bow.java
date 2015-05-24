@@ -14,7 +14,7 @@ public class Bow extends Item {
 
     @Override
     protected void setRegion() {
-        region.setRegion(textureAtlas.findRegion("0002"));
+        region.setRegion(textureAtlas.findRegion("0003"));
     }
 
     public int getDamage() {
