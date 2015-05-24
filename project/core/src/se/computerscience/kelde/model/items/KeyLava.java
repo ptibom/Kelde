@@ -7,10 +7,9 @@
 package se.computerscience.kelde.model.items;
 
 public class KeyLava extends Item {
-    private boolean isConsumable = true;
-    private boolean isWeapon = false;
-    public KeyLava() {
-    }
+    private final static boolean CONSUMABLE = true;
+    private final static boolean WEAPON = false;
+
 
     @Override
     protected void setRegion() {
@@ -19,11 +18,11 @@ public class KeyLava extends Item {
 
     @Override
     public boolean isConsumable() {
-        return isConsumable;
+        return CONSUMABLE;
     }
 
     @Override
     public boolean isWeapon() {
-        return isWeapon;
+        return WEAPON;
     }
 }

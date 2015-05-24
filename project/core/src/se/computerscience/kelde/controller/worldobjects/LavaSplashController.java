@@ -30,14 +30,14 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
         CollisionEventBus.INSTANCE.register(this);
         // makes the lava-splashes go in random direction with a velocity in the interval.
         if (random.nextBoolean()){
-            velocityX = random.nextFloat() * (max_velocity - (min_velocity)) + (min_velocity);
+            velocityX = random.nextFloat() * (max_velocity - min_velocity) + min_velocity;
         }else {
-            velocityX = random.nextFloat() * (min_velocity*-1 - (max_velocity*-1)) + (max_velocity*-1);
+            velocityX = random.nextFloat() * (min_velocity*-1 - max_velocity*-1) + max_velocity*-1;
         }
         if (random.nextBoolean()){
-            velocityY = random.nextFloat() * (max_velocity - (min_velocity)) + (min_velocity);
+            velocityY = random.nextFloat() * (max_velocity - min_velocity) + min_velocity;
         }else {
-            velocityY = random.nextFloat() * (min_velocity*-1 - (max_velocity*-1)) + (max_velocity*-1);
+            velocityY = random.nextFloat() * (min_velocity*-1 - max_velocity*-1) + max_velocity*-1;
         }
         // saves the start position of the lavasplash
         startPosX = lavaSplash.getPositionX();

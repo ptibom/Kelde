@@ -16,12 +16,11 @@ public class BombView implements IWorldObjectView {
     private static final String SPRITE_LOCATION = "BombExploding.atlas";
     private boolean display = true;
     private final Animation animation;
-    private final TextureAtlas textureAtlas;
     private float elapsedTime, delta;
 
     public BombView(Bomb bomb) {
         this.bomb = bomb;
-        textureAtlas = new TextureAtlas(Gdx.files.internal(SPRITE_LOCATION));
+        final TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal(SPRITE_LOCATION));
         animation = new Animation(0.15f, textureAtlas.getRegions());
     }
     @Override

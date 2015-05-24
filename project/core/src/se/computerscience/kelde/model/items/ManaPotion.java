@@ -8,11 +8,10 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.libgdx.Atlas;
 
 public class ManaPotion extends Item {
-    private final boolean isConsumable = true;
-    private final boolean isWeapon = false;
-    private final int mana = 20;
-    public ManaPotion() {
-    }
+    private final static boolean CONSUMABLE = true;
+    private final static boolean WEAPON = false;
+    private final static int MANA = 20;
+
     @Override
     protected void setRegion() {
         region.setRegion(textureAtlas.findRegion("0002"));
@@ -24,15 +23,15 @@ public class ManaPotion extends Item {
     }
 
     public int getMana() {
-        return mana;
+        return MANA;
     }
 
     @Override
     public boolean isConsumable() {
-        return isConsumable;
+        return CONSUMABLE;
     }
     @Override
     public boolean isWeapon() {
-        return isWeapon;
+        return WEAPON;
     }
 }

@@ -11,9 +11,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 import se.computerscience.kelde.model.items.IItem;
 
 public class ItemEntity implements IWorldObjects {
-    private final IPhysicalBody physicalBody;
     private final IItem item;
-    private final float BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private final static float  BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private final IPhysicalBody physicalBody;
     private boolean visible = true;
     public ItemEntity(float x, float y, IB2DWorld ib2DWorld, IItem item) {
         physicalBody = new PhysicalBodySensor(x, y, BODY_WIDTH,BODY_HEIGHT , ib2DWorld, this);

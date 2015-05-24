@@ -10,9 +10,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 public class BombArea implements IWorldObjects {
-    private final float BODY_WIDTH = 40;
-    private final float BODY_HEIGHT = 40;
-    private IPhysicalBody entityBody;
+    private final static float BODY_WIDTH = 40;
+    private final static float BODY_HEIGHT = 40;
+    private final IPhysicalBody entityBody;
     public BombArea(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
     }

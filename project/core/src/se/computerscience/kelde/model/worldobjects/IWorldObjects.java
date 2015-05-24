@@ -5,6 +5,6 @@ package se.computerscience.kelde.model.worldobjects;
  * @author: Hossein Hussain
  */
 public interface IWorldObjects {
-    public float getPositionY();
-    public float getPositionX();
+    float getPositionY();
+    float getPositionX();
 }

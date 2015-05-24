@@ -7,11 +7,11 @@ package se.computerscience.kelde.model.items;
 import se.computerscience.kelde.model.encapsulation.libgdx.ISprite;
 
 public interface IItem {
-    public boolean isConsumable();
-    public boolean isWeapon();
-    public ISprite getItemSprite();
-    public void setItemPositionY(float y);
-    public void setItemPositionX(float x);
-    public float getItemPositionY();
-    public float getItemPositionX();
+    boolean isConsumable();
+    boolean isWeapon();
+    ISprite getItemSprite();
+    void setItemPositionY(float y);
+    void setItemPositionX(float x);
+    float getItemPositionY();
+    float getItemPositionX();
 }
