@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityGhost;
 
-import javax.xml.soap.Text;
-
 /**
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin

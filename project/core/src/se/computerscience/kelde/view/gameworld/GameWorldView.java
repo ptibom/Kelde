@@ -77,7 +77,7 @@ public class GameWorldView{
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         bombView.draw(batch);
-        for (ItemEntityView itemView : itemEntityViews){
+        for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
         entityGhostView.draw(batch);
