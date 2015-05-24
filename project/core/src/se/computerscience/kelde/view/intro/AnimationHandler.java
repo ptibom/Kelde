@@ -20,7 +20,7 @@ public class AnimationHandler {
     private TextureRegion currentFrame;
     private Map<String, Animation> animations;
     private final int ORIGIN_X, ORIGIN_Y;
-    private int xvelocity, yvelocity, width, height;
+    private int  width, height;
     private double offsetX, offsetY, heightChangeX, heightChangeY;
     private int[] animPathInterpolatedX;
     private int[] animPathInterpolatedY;

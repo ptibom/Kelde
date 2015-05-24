@@ -1,5 +1,6 @@
 package se.computerscience.kelde.view.startmenu;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,8 +14,8 @@ import java.util.List;
  */
 public class MenuAnimationHandler {
 
-    private final int MOVEMENT_SPEED = 18, ORIGIN_X = -2400, ORIGIN_Y =130;
-    private final int CHARACTER_OFFSET = 300 ;
+    private static final int MOVEMENT_SPEED = 18, ORIGIN_X = -2400, ORIGIN_Y =130;
+    private static final int CHARACTER_OFFSET = 300 ;
     private final StartMenu startMenuModel;
     private final List<Animation> allWalkingAnimations;
 
@@ -22,8 +23,9 @@ public class MenuAnimationHandler {
     public MenuAnimationHandler(StartMenu startMenuModel) {
 
         this.startMenuModel = startMenuModel;
-        allWalkingAnimations = AnimationLoader.loadWalkingCharacters(startMenuModel);
 
+        allWalkingAnimations = MenuAnimationConverter.menuAnimToLibAnim(AnimationLoader.loadWalkingCharacters(startMenuModel),
+                new Texture(startMenuModel.getWalkingCharacterPathPicture()));
     }
 
 

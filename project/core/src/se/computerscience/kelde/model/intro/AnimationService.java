@@ -4,10 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: Daniel Olsson
@@ -18,13 +15,13 @@ public class AnimationService {
     Intro introModel;
 
     // The finished collection of animations
-    HashMap<String, IntroAnimation> mappedWizardTalkAnimation;
-    HashMap<String, IntroAnimation> mappedDemonTalkAnimation;
-    HashMap<String, IntroAnimation> mappedWizard2TalkAnimation;
-    HashMap<String, IntroAnimation> mappedSpellAnimation;
+   private HashMap<String, IntroAnimation> mappedWizardTalkAnimation;
+   private HashMap<String, IntroAnimation> mappedDemonTalkAnimation;
+   private HashMap<String, IntroAnimation> mappedWizard2TalkAnimation;
+   private  HashMap<String, IntroAnimation> mappedSpellAnimation;
 
 
-    // Animations for spell path
+    // Path for spell animations
 
     int[] animPathInterpolatedX;
     int[] animPathInterpolatedY;
@@ -67,10 +64,10 @@ public class AnimationService {
         String[] keyForAnimations = new String[]{"backwalk", "walkforward", "wandlight"};
         int[] wizardAnimationLengthData = introModel.getWizardAnimationData();
         int[] wizardSpriteCoordinates = introModel.getWizardTalkCoordinates();
-        Texture wizardSpriteSheet = new Texture(introModel.getIntroWizardTalkImage());
+
 
         Object[] animationDataCollectionWiz = new Object[]{wizardAnimationLengthData, wizardSpriteCoordinates,
-                wizardSpriteSheet, keyForAnimations};
+                keyForAnimations};
         Object[] animationMapsWiz = new Object[]{mappedWizardTalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionWiz, animationMapsWiz);
@@ -82,13 +79,12 @@ public class AnimationService {
         int[] demonSpriteCoordinates = introModel.getIntroDemonCoordinates();
 
 
-        Texture demonSpriteSheet = new Texture(introModel.getDemonAnd2ndWizardImage());
         String[] keyForAnimations2 = new String[]{"demonspellhit", "demonlaughleft", "demontalkleft", "demonsideleft",
                 "demonlaughright", "demontalkright", "demonbreathe", "demonwalk", "demonpoint", "wizardshoot",
                 "wizardbehind", "wizardstandright", "wizardstandleft", "wizardtalkleft", "wizardtalkright", "wizardwalk"};
 
         Object[] animationDataCollectionDem = new Object[]{demonAndSecondWizardAnimationLengthData, demonSpriteCoordinates,
-                demonSpriteSheet, keyForAnimations2};
+                 keyForAnimations2};
         Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionDem, animationMapsDem);
@@ -99,10 +95,10 @@ public class AnimationService {
         int[] spellAnimationLengthData = introModel.getSpellAnimationLength();
         int[] spellSpriteCoordinates = introModel.getSpellIntroCoordinaters();
 
-        Texture spellSprite = new Texture(introModel.getSpellSpritePath());
+
         String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
         Object[] animationDataCollectionSpell = new Object[]{spellAnimationLengthData, spellSpriteCoordinates,
-                spellSprite, keyForAnimations3};
+                 keyForAnimations3};
         Object[] animationMapsSpell = new Object[]{mappedSpellAnimation};
 
         readAndLoadAnimation(animationDataCollectionSpell, animationMapsSpell);
@@ -112,15 +108,14 @@ public class AnimationService {
 
     // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
     // into an animation, then collect these animations into a map for ease of finding them.
-    public void readAndLoadAnimation(Object[] animationDataCollection,
+    private void readAndLoadAnimation(Object[] animationDataCollection,
                                      Object[] outAnimationMapArray) {
 
 
         //Converting Object to it's specific type. We need to know the length of each animation
         int[] animationLengthData = (int[]) animationDataCollection[0];
         int[] spriteCoordinatesData = (int[]) animationDataCollection[1];
-        String[] keyForAnimations = (String[]) animationDataCollection[3];
-
+        String[] keyForAnimations = (String[]) animationDataCollection[2];
 
         // The width and height of the sprite is stored in the beginning
         List<IntroAnimation> tempAnimationList = new ArrayList<>();
@@ -196,13 +191,13 @@ public class AnimationService {
 
     public int[] getInterpolDataX() {
 
-        return animPathInterpolatedX;
+        return Arrays.copyOf(animPathInterpolatedX, animPathInterpolatedX.length);
+
 
     }
 
     public int[] getInterpolDataY() {
-
-        return animPathInterpolatedY;
+             return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
     }
 
 

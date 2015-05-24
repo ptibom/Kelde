@@ -25,7 +25,6 @@ public class AnimationTools {
         for (int i = 7, dataIndex = 2; i < data.size(); i += 7) {
 
 
-
             String[] tempFormat = data.get(i - 1).split(" ");
             TextureRegionCoordinates[dataIndex] = Integer.parseInt(tempFormat[3]);
             TextureRegionCoordinates[dataIndex + 1] = Integer.parseInt(tempFormat[4].replaceAll("\r", ""));
@@ -34,6 +33,8 @@ public class AnimationTools {
         return TextureRegionCoordinates;
 
     }
+
+
 
 
 

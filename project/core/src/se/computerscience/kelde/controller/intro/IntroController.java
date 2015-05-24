@@ -1,6 +1,10 @@
 package se.computerscience.kelde.controller.intro;
 
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.view.intro.IntroView;
 
@@ -34,12 +38,23 @@ public class IntroController {
         allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"),charset));
         allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"),charset));
 
+
+
         this.introModel = new Intro(allData);
         this.introView = new IntroView(introModel);
+
+        introView.getButton().addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                introView.getHandler().stopIntroMusic();
+                ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
+            }
+        });
+
+
     }
 
     public void render(float delta) {
-         introView.renderIntro(delta);
+         introView.render(delta);
     }
 
 

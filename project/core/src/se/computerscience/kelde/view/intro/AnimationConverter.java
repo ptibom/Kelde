@@ -33,7 +33,7 @@ public class AnimationConverter
             Array<TextureRegion> loadingTextureRegion = new Array<>();
             for(IntroSpriteFrame aSprite : introAnimation.getIntroSpriteFrames()){
 
-                loadingTextureRegion.add(new TextureRegion(spriteTexture, aSprite.spriteStartXPosition(),
+                loadingTextureRegion.add(new TextureRegion(spriteTexture, aSprite.getSpriteStartXPosition(),
                         aSprite.getSpriteStartYPosition(), aSprite.getSpriteWidth(), aSprite.getSpriteWidth()));
             }
 

@@ -23,9 +23,9 @@ import java.util.Map;
 public class IntroHandler {
 
 
-    private final int LENGTH_OF_TEXT_STAYING = 47;
-    private final int ORIGIN_OF_TEXT = 8;
-    private final int TEXT_MOVEMENT_SPEED = 4;
+    private static final int LENGTH_OF_TEXT_STAYING = 47;
+    private static final int ORIGIN_OF_TEXT = 8;
+    private static final int TEXT_MOVEMENT_SPEED = 4;
 
     private final Music introMusic;
     private final List<List<IntroInstruction>> allInstructions;

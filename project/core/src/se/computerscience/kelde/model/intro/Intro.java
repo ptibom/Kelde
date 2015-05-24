@@ -3,6 +3,7 @@ package se.computerscience.kelde.model.intro;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,18 +15,18 @@ public class Intro {
 
 
     // Coordinates on spritesheet used to read them in and create TextureRegion
-    private static  int[] INTRO_WIZARD_SPRITE_COORDINATES = new int[18];
-    private static  int[] INTRO_DEMON_SPRITE_COORDINATES = new int[84];
-    private static  int[] INTRO_SPELL_SPRITE_COORDINATES = new int[26];
+    private  int[] INTRO_WIZARD_SPRITE_COORDINATES = new int[18];
+    private  int[] INTRO_DEMON_SPRITE_COORDINATES = new int[84];
+    private  int[] INTRO_SPELL_SPRITE_COORDINATES = new int[26];
 
     // Dialogue and Text images
-    private static final String[] INFO_TEXT_PATH_IMAGES = new String[8];
-    private static final String[] INTRO_DIALOGUE_IMAGES = new String[30];
+    private  final String[] INFO_TEXT_PATH_IMAGES = new String[8];
+    private  final String[] INTRO_DIALOGUE_IMAGES = new String[30];
 
     //
-    private static final float ANIMATION_SPEED = 0.27f;
+    private  final float ANIMATION_SPEED = 0.27f;
 
-    private static final String INTRO_SOUND_PATH = "intro/dfear2.mp3";
+    private  final String INTRO_SOUND_PATH = "intro/dfear.mp3";
 
     List<List<IntroInstruction>> allInstructions = new ArrayList<List<IntroInstruction>>();
 
@@ -84,6 +85,7 @@ public class Intro {
 
 
     public List<List<IntroInstruction>> getInstructions() {
+
         return allInstructions;
     }
 
@@ -91,14 +93,17 @@ public class Intro {
         return ConstantsAnimation.INTRO_WIZARD_ANIMATION_LENGTH_DATA;
     }
 
+
     public int[] getWizardTalkCoordinates() {
 
-        return INTRO_WIZARD_SPRITE_COORDINATES;
+
+        return Arrays.copyOf(INTRO_WIZARD_SPRITE_COORDINATES,INTRO_WIZARD_SPRITE_COORDINATES.length);
+
     }
 
     public int[] getSpellIntroCoordinaters() {
 
-        return INTRO_SPELL_SPRITE_COORDINATES;
+        return Arrays.copyOf(INTRO_SPELL_SPRITE_COORDINATES,INTRO_SPELL_SPRITE_COORDINATES.length);
     }
 
     public int[] getSpellAnimationLength() {
@@ -106,17 +111,19 @@ public class Intro {
         return ConstantsAnimation.INTRO_SPELL_ANIMATION_LENGTH_DATA;
     }
 
-    public String[] getDialogues() {
-        return INTRO_DIALOGUE_IMAGES;
+    public String[] getDialogues() { return Arrays.copyOf(INTRO_DIALOGUE_IMAGES,INTRO_DIALOGUE_IMAGES.length);
+
     }
 
     public String[] getIntroTextImages() {
-        return INFO_TEXT_PATH_IMAGES;
+        return Arrays.copyOf(INFO_TEXT_PATH_IMAGES, INFO_TEXT_PATH_IMAGES.length);
+
     }
 
     public int[] getIntroDemonCoordinates() {
 
-        return INTRO_DEMON_SPRITE_COORDINATES;
+        return Arrays.copyOf(INTRO_DEMON_SPRITE_COORDINATES,INTRO_DEMON_SPRITE_COORDINATES.length);
+
     }
 
     public String getSpellSpritePath() {

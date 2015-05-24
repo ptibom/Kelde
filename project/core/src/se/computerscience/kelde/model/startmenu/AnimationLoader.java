@@ -16,7 +16,7 @@ public class AnimationLoader {
 
     private final static int spriteSize = 136;
     private final static int SPRITE_SHEET_SIZE = 42 / 3;
-    private final static List<Animation> allWalkingAnimations = new ArrayList<Animation>();
+    private final static List<MenuAnimation> allWalkingAnimations = new ArrayList<>();
     private static int spreadsheetOffset = 138;
     private final static int SPRITE_SHEET_WIDTH = 830;
     private final static int SPRITE_SHEET_X_START = 2, SPRITE_SHEET_Y_START = 2;
@@ -27,13 +27,13 @@ public class AnimationLoader {
 
     }
 
-    public static List<Animation> loadWalkingCharacters(StartMenu startMenuModel) {
+    public static List<MenuAnimation> loadWalkingCharacters(StartMenu startMenuModel) {
 
         Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
 
         for (int i = 0, x = SPRITE_SHEET_X_START, y = SPRITE_SHEET_Y_START; i < SPRITE_SHEET_SIZE; i++) {
 
-            TextureRegion[] tempAnimationRegions = new TextureRegion[3];
+           List<MenuSprite> tempAnimationRegions = new ArrayList<>();
 
 
             // Alogrithm for getting the coordinates for each sprite on the spritesheet
@@ -44,14 +44,14 @@ public class AnimationLoader {
                     y += spreadsheetOffset;
 
                 }
-                tempAnimationRegions[k] = new TextureRegion(walkingCharacterTexture, x, y, spriteSize, spriteSize);
+                tempAnimationRegions.add(new MenuSprite(x, y, spriteSize, spriteSize));
                 x += spreadsheetOffset;
             }
 
 
             //Now that we have loaded an animation's textureRegions, we create an animation from it.
             // And then load it into our list of animations.
-            allWalkingAnimations.add(new Animation(ANIMATION_LENGTH, tempAnimationRegions));
+            allWalkingAnimations.add( new MenuAnimation(tempAnimationRegions));
 
 
         }

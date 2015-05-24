@@ -12,10 +12,10 @@ public class TextDialogue {
     private Texture dialogueTexture;
     private TextureRegion textRegion;
     private double percentToShow;
-    private final int OFFSET_FROM_SCREEN = 50;
-    private final int SCREEN_HEIGHT = 1080;
-    private final int SCREEN_WIDTH = 1920;
-    private final int TEXT_MOVEMENT_SPEED = 384;
+    private static final int OFFSET_FROM_SCREEN = 50;
+    private static final int SCREEN_HEIGHT = 1080;
+    private static final int SCREEN_WIDTH = 1920;
+    private static final int TEXT_MOVEMENT_SPEED = 384;
 
     public TextDialogue(Texture dialogueTexture) {
         this.dialogueTexture = dialogueTexture;

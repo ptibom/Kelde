@@ -36,16 +36,7 @@ public class Timer {
 
     }
 
-    public void setStartTime(float startTime) {
 
-
-    }
-
-
-    public void addTimerTIme(double t) {
-
-        menuTime += t;
-    }
 
 
 }

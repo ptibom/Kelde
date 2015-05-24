@@ -25,7 +25,7 @@ public class IntroScreen implements Screen {
         try {
             introController = new IntroController();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println("Files are missing");
         }
     }
 

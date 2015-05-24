@@ -1,7 +1,7 @@
-package se.computerscience.kelde.model.intro;
+package se.computerscience.kelde.model.startmenu;
 
 // Definition of a single frame
-public class IntroSpriteFrame {
+public class MenuSprite {
 
     private final int spriteStartXPosition;
     private final int spriteStartYPosition;
@@ -10,7 +10,7 @@ public class IntroSpriteFrame {
     private final int spriteHeight;
 
 
-    public IntroSpriteFrame(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight){
+    public MenuSprite(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight){
 
         this.spriteStartXPosition = spriteStartXPosition;
         this.spriteStartYPosition = spriteStartYPosition;

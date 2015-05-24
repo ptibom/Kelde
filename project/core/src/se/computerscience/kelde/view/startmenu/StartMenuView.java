@@ -8,9 +8,11 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import se.computerscience.kelde.controller.events.ScreenEvent;
@@ -31,7 +33,7 @@ public class StartMenuView {
     private Skin skin, skin2, skin3;
     private TextButton newGameButton, loadGameButton, exitbutton;
     private final MenuAnimationHandler menuAnimationHandler;
-    private final Texture backgroundTexture, foregroundTexture, middlegroundTexture;
+    private final Texture backgroundTexture, foregroundTexture, middleGroundTexture;
 
     private Viewport viewport;
 
@@ -42,54 +44,49 @@ public class StartMenuView {
 
         // Creating a stage to put actors in and a view port
         menuStage = new Stage();
-        viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, menuStage.getCamera());
         Gdx.input.setInputProcessor(menuStage);
+        viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, menuStage.getCamera());
 
+        middleGroundTexture = new Texture(startMenuModel.getMidGround());
         initButtons();
 
         // Loads other assets as textures and music
         backgroundTexture = new Texture(startMenuModel.getBackground());
         foregroundTexture = new Texture(startMenuModel.getForeground());
-        middlegroundTexture = new Texture(startMenuModel.getMidGround());
         backgroundMusic = Gdx.audio.newMusic(new FileHandle(startMenuModel.getBackgroundSoundPath()));
 
         //Creates an animationloader that loads all animations, using data from the model;
         this.startMenuModel = startMenuModel;
         menuAnimationHandler = new MenuAnimationHandler(startMenuModel);
         backgroundMusic.play();
+
     }
 
 
-    public int renderMenu(SpriteBatch batch, float delta) {
+    public int renderMenu(float delta) {
 
-        //Updates delta-value so that we get new value for new frames
+        //Updates delta-value so that we get
         startMenuModel.updateStateTime(delta);
 
 
         // This is the draw part, draws background, characters, then foreground.
-
+        batch.begin();
         batch.draw(backgroundTexture, 0, 0);
-        batch.draw(middlegroundTexture,0,0);
+
+
+        batch.end();
+
+
+        //Makes sure the stage records all input
         menuStage.act();
         menuStage.draw();
+
+
+        batch.begin();
+        batch.draw(middleGroundTexture, 0, 0);
         menuAnimationHandler.drawMenuAnimations(batch);
-
         batch.draw(foregroundTexture, 0, 0);
-
-        //Makes sure the stage records all input and draws all buttons on stage
-
-
-        //Checking for button presses
-        if(newGameButton.isPressed()){
-            backgroundMusic.stop();
-            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_MENU));
-        }
-
-        if (loadGameButton.isPressed()) {
-
-
-        }
-
+        batch.end();
         return 0;
     }
 
@@ -111,18 +108,17 @@ public class StartMenuView {
         newGameButton = new TextButton("", skin);
         exitbutton = new TextButton("", skin3);
 
-        //Initializes their positions and adds them to the stage
-        int LOAD_BUTTON_POS_X = 780, LOAD_BUTTON_POS_Y = 473, START_BUTTON_POS_X = 780,
-                START_BUTTON_POS_Y = 350 ,EXIT_BUTTON_POS_X = 1085,EXIT_BUTTON_POS_Y = 343;
 
-        newGameButton.setPosition(LOAD_BUTTON_POS_X,LOAD_BUTTON_POS_Y);
-        loadGameButton.setPosition(START_BUTTON_POS_X,START_BUTTON_POS_Y);
+
+        //Initializes their positions and adds them to the stage
+        int LOAD_BUTTON_POS_X = 730, LOAD_BUTTON_POS_Y = 373, START_BUTTON_POS_X = 730,
+                START_BUTTON_POS_Y = 550, EXIT_BUTTON_POS_X = 1140, EXIT_BUTTON_POS_Y = 370;
+
+        newGameButton.setPosition(START_BUTTON_POS_X,START_BUTTON_POS_Y);
+        loadGameButton.setPosition(LOAD_BUTTON_POS_X, LOAD_BUTTON_POS_Y);
         exitbutton.setPosition(EXIT_BUTTON_POS_X, EXIT_BUTTON_POS_Y);
 
-        // Adding the buttons as actor in stage
-        menuStage.addActor(newGameButton);
-        menuStage.addActor(loadGameButton);
-        menuStage.addActor(exitbutton);
+
 
     }
 
@@ -134,7 +130,8 @@ public class StartMenuView {
         skin.add("default", font);
 
         Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth() / 4, (int) Gdx.graphics.getHeight() / 10, Pixmap.Format.RGB888);
-
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
         skin.add("background", new Texture(imageFilePath));
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -147,6 +144,21 @@ public class StartMenuView {
 
         return skin;
     }
+
+    public TextButton getButton(){
+        return newGameButton;
+    }
+
+    public TextButton getLoadButton(){return loadGameButton;}
+
+    public void addActors(){
+
+        // Adding the buttons as actor in stage
+        menuStage.addActor(newGameButton);
+        menuStage.addActor(loadGameButton);
+        menuStage.addActor(exitbutton);
+    }
+
 
 
 
