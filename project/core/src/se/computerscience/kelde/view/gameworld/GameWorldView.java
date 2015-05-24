@@ -38,7 +38,7 @@ public class GameWorldView{
     private final TreasureView treasureView2;
     private final DoorView doorView;
     private final BombView bombView;
-    private List<ItemEntityView> itemEntityViews = new ArrayList<>();
+    private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;

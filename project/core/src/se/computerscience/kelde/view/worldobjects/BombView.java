@@ -13,11 +13,11 @@ import se.computerscience.kelde.model.worldobjects.Bomb;
 
 public class BombView implements IWorldObjectView {
     private final Bomb bomb;
-    private final String SPRITE_LOCATION = "BombExploding.atlas";
+    private static final String SPRITE_LOCATION = "BombExploding.atlas";
     private boolean display = true;
-    private TextureAtlas textureAtlas;
-    private Animation animation;
-    private float elapsedTime = 0, delta = 0;
+    private final Animation animation;
+    private final TextureAtlas textureAtlas;
+    private float elapsedTime, delta;
 
     public BombView(Bomb bomb) {
         this.bomb = bomb;

@@ -23,7 +23,7 @@ public class EntityBatView {
 
     private SpriteBatch batch;
     private Animation animation;
-    private float elapsedTime = 0, delta = 0;
+    private float elapsedTime, delta;
     /**
      * Public constructor
      */
@@ -46,8 +46,8 @@ public class EntityBatView {
     }
 
     public void draw(Batch batch) {
-        Heading direction = entityBat.getHeading();
-        if(direction == Heading.EAST) { // TODO: Change as in KeldeView
+        final Heading direction = entityBat.getHeading();
+        if(direction == Heading.EAST) {
             animation = animationE;
         } else if(direction == Heading.NORTH) {
             animation = animationN;

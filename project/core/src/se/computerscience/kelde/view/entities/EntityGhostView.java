@@ -18,7 +18,7 @@ public class EntityGhostView {
     private final EntityGhost entityGhost;
     private TextureAtlas textureAtlasW, textureAtlasSouth, textureAtlasNorth, textureAtlasE;
     private Animation animation, animationW, animationS, animationN, animationE;
-    private float elapsedTime = 0, delta = 0;
+    private float elapsedTime, delta;
     private Batch batch;
 
     //Constructor
@@ -40,7 +40,7 @@ public class EntityGhostView {
     }
 
     public void draw(Batch batch) {
-        Heading direction = entityGhost.getHeading();
+        final Heading direction = entityGhost.getHeading();
         if(direction == Heading.EAST) {
             animation = animationW;
         } else if(direction == Heading.NORTH) {

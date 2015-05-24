@@ -14,8 +14,8 @@ public class BarrelView implements IWorldObjectView{
     private final Barrel barrel;
     private final Sprite sprite;
     private final Texture texture;
-    private final int WIDTH = 32, HEIGHT = 48;
-    private final String SPRITE_LOCATION = "barrel.png";
+    private static final int WIDTH = 32, HEIGHT = 48;
+    private static final String SPRITE_LOCATION = "barrel.png";
 
     public BarrelView(Barrel barrel) {
         this.barrel = barrel;

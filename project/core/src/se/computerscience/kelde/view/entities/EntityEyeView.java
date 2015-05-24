@@ -23,8 +23,7 @@ public class EntityEyeView {
     private Batch batch;
     private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animation,animationN,animationE,animationS,animationW;
-    private float elapsedTime = 0, delta = 0;
-    private Vector2 direction;
+    private float elapsedTime, delta;
 
     public EntityEyeView(EntityEye entityEye) {
         this.entityEye = entityEye;
@@ -44,7 +43,7 @@ public class EntityEyeView {
     }
 
     public void draw(Batch batch) {
-        Heading direction = entityEye.getHeading();
+        final Heading direction = entityEye.getHeading();
         if(direction == Heading.EAST) {
             animation = animationE;
         } else if(direction == Heading.NORTH) {
