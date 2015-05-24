@@ -21,7 +21,8 @@ public class TimerTest {
 
         test.resetTimer();
         test.updateTimer();
-        assert (0<test.getMenuTime());
+        double test2 = test.getMenuTime();
+        assertTrue (0==test2);
 
 
     }

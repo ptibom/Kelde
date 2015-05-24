@@ -1,5 +1,6 @@
 package se.computerscience.kelde.model.intro;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,32 +26,30 @@ public class AnimationServiceTest {
 
 
 
-
-
     public ArrayList<List<String>> allData = new ArrayList<List<String>>();
 
 
     Intro introModel;
 
-    public AnimationServiceTest(){
+    @Before
+    public void initTest(){
         try{
-            //URL url = this.getClass().getResource("intro/introsprites.txt");
-            //File testWsdl = new File(url.getFile());
-           // / allData.add(Files.readAllLines(Paths.get(testWsdl.getAbsolutePath()), charset));
+
+
             allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/spell.txt"), charset));
+          allData.add(Files.readAllLines(Paths.get("intro/spell.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("intro/animationdemon.intro"), charset));
             allData.add(Files.readAllLines(Paths.get("intro/animationwizardinstr.intro"), charset));
             allData.add(Files.readAllLines(Paths.get("intro/animationwizard2instr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro"), charset));
+           allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro"), charset));
             allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"), charset));
+           allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"), charset));
 
 
 
 
-        Intro introModel = new Intro(allData);}
+        introModel = new Intro(allData);}
         catch(IOException e){
             System.out.println("A file not found");
         }
