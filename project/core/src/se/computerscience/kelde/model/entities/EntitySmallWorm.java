@@ -16,11 +16,11 @@ public class EntitySmallWorm {
     //Variables
     private int DAMAGE = 10;
     private int health = 100;
-    private final int BODY_WIDTH = 8, BODY_HEIGHT = 8;
+    private static final int BODY_WIDTH = 8, BODY_HEIGHT = 8;
     private final int ATTACK_DISTANCE = 10;
     private boolean alive = true;
     private static final int LOOT = 20;
-    private float elapsedTime = 0;
+    private float elapsedTime;
     private final IPhysicalBody entityBody;
     private final Random random;
     private Heading direction;
@@ -55,10 +55,9 @@ public class EntitySmallWorm {
     }
 
     private void setRandomSpeed() {
-        int vx = random.nextInt(3) - 1;
-        int vy = random.nextInt(3) - 1;
+        final int vx = random.nextInt(3) - 1;
+        final int vy = random.nextInt(3) - 1;
         entityBody.setVelocity(vx, vy);
-
     }
 
     public int getPositionX() {
@@ -70,9 +69,9 @@ public class EntitySmallWorm {
     }
 
     public Heading getHeading() {
-        float x = entityBody.getVelocityX();
-        float y = entityBody.getVelocityY();
-        float degree = (float)Math.toDegrees(Math.atan2(x, y));
+        final float x = entityBody.getVelocityX();
+        final float y = entityBody.getVelocityY();
+        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
         } else if(degree <= -135.0f || degree >= 135.0f) {

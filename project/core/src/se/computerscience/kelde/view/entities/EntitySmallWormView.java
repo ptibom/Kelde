@@ -23,7 +23,6 @@ public class EntitySmallWormView {
     //Variables
     private final EntitySmallWorm entitySmallWorm;
     private final SpriteBatch batch;
-    private TextureAtlas textureAtlasUp;
     private Animation animation,animationUp;
     private float elapsedTime, delta;
 
@@ -35,7 +34,7 @@ public class EntitySmallWormView {
     }
 
     private void createUpTexture() {
-        textureAtlasUp = new TextureAtlas(Gdx.files.internal("smallwormUp.atlas"));
+        final TextureAtlas textureAtlasUp = new TextureAtlas(Gdx.files.internal("smallwormUp.atlas"));
         animationUp = new Animation(0.3f, textureAtlasUp.getRegions());
     }
 
