@@ -15,16 +15,14 @@ public class EntityArrowView {
     private final EntityArrow entityArrow;
 
     private Texture texture;
-    private final int WIDTH = 32, HEIGHT = 32;
     private Texture arrowNorth, arrowEast, arrowSouth, arrowWest;
-    private float elapsed_time = 0;
+    private float elapsed_time;
 
     /**
      * Constructor
      */
     public EntityArrowView(EntityArrow entityArrow) {
         this.entityArrow = entityArrow;
-        elapsed_time = 0;
         setTextures();
     }
 

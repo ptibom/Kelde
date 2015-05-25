@@ -14,7 +14,7 @@ import se.computerscience.kelde.view.entities.EntityArrowView;
  * Created by Anders on 2015-05-16.
  * @author Anders
  */
-public class EntityArrowController implements ICollisionEventHandler {
+public class EntityArrowController implements ICollisionEventHandler{
 
     //Variables
     private final EntityArrow entityArrow;
@@ -50,14 +50,9 @@ public class EntityArrowController implements ICollisionEventHandler {
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != entityArrow){
+        if(event.getObject() instanceof EntityArrow) {
             return;
         }
-        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            System.out.println("hit!" + n++);
-        }
-        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-
-        }
+        System.out.println("arrow hit something!\n");
     }
 }
