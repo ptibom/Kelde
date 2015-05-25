@@ -51,9 +51,10 @@ public class GameWorld {
         worldPhysics = new WorldPhysics(map);
 
         // test
-        creatObjects();
+        createStaticObjects();
+        createObjects();
+        creatMonster();
         // test
-
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
     }
@@ -97,19 +98,18 @@ public class GameWorld {
     public void removeItem(ItemEntity item) {
         itemEntities.remove(item);
     }
-
-    public void creatObjects() {
-        MapLayer layer = map.getTiledMap().getLayers().get("WorldObjects");
+    public void createStaticObjects(){
+        MapLayer layer = map.getTiledMap().getLayers().get("ObjectsStatic");
         for (MapObject mapObject : layer.getObjects()) {
             float x = (float) mapObject.getProperties().get("x");
             float y = (float) mapObject.getProperties().get("y");
             mapObject.getName();
             switch (mapObject.getName()) {
-                case "Barrel":
-                    barrels.add(new Barrel(worldPhysics.getIb2DWorld(), x, y));
+                case "DoorLava":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Lava"));
                     break;
-                case "Bomb":
-                    bombs.add(new Bomb(worldPhysics.getIb2DWorld(), x, y));
+                case "DoorStartGame":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Start"));
                     break;
                 case "Treasure1":
                     treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet1()));
@@ -123,20 +123,40 @@ public class GameWorld {
                 case "Campfire":
                     campFires.add(new CampFire(worldPhysics.getIb2DWorld(), x, y));
                     break;
-                case "DoorLava":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, ScreenEvent.ScreenTag.LAVA_WORLD));
+            }
+        }
+
+    }
+    public void createObjects() {
+        final MapLayer layer = map.getTiledMap().getLayers().get("Objects");
+        for (MapObject mapObject : layer.getObjects()) {
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
+            mapObject.getName();
+            switch (mapObject.getName()) {
+                case "Barrel":
+                    barrels.add(new Barrel(worldPhysics.getIb2DWorld(), x, y));
                     break;
-                case "DoorStartGame":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, ScreenEvent.ScreenTag.START_WORLD));
+                case "Bomb":
+                    bombs.add(new Bomb(worldPhysics.getIb2DWorld(), x, y));
                     break;
+            }
+        }
+    }
+    public void creatMonster(){
+        final MapLayer layer = map.getTiledMap().getLayers().get("Monsters");
+        for (MapObject mapObject : layer.getObjects()) {
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
+            switch (mapObject.getName()) {
                 case "Bat":
-                    entityBats.add(new EntityBat(x,y,worldPhysics.getIb2DWorld()));
+                    entityBats.add(new EntityBat(x, y, worldPhysics.getIb2DWorld()));
                     break;
                 case "Eye":
-                    entityEyes.add(new EntityEye(x,y,worldPhysics.getIb2DWorld()));
+                    entityEyes.add(new EntityEye(x, y, worldPhysics.getIb2DWorld()));
                     break;
                 case "Ghost":
-                    entityGhosts.add(new EntityGhost(x,y,worldPhysics.getIb2DWorld()));
+                    entityGhosts.add(new EntityGhost(x, y, worldPhysics.getIb2DWorld()));
                     break;
             }
         }

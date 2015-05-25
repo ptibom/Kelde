@@ -14,11 +14,11 @@ public class Door implements IWorldObjects {
     private final static float BODY_WIDTH = 16;
     private final static float BODY_HEIGHT = 24;
     private final IPhysicalBody entityBody;
-    private final ScreenEvent.ScreenTag screenTag;
+    private final String world;
 
-    public Door(IB2DWorld ib2DWorld, float x, float y, ScreenEvent.ScreenTag screenTag) {
+    public Door(IB2DWorld ib2DWorld, float x, float y, String world) {
         entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
-        this.screenTag = screenTag;
+        this.world = world;
     }
     @Override
     public float getPositionY() {
@@ -29,7 +29,7 @@ public class Door implements IWorldObjects {
         return entityBody.getPositionX() - BODY_WIDTH;
     }
 
-    public ScreenEvent.ScreenTag getScreenTag() {
-        return screenTag;
+    public String getWorld() {
+        return world;
     }
 }

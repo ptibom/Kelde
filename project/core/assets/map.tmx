@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="62">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="116">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="96" height="192"/>
   <terraintypes>
@@ -81,19 +81,19 @@
    <polyline points="0,0 1,640 639,639 640,1 0,-2"/>
   </object>
  </objectgroup>
- <objectgroup name="WorldObjects">
-  <object id="39" name="Barrel" type="Barrel" x="520" y="136" width="32" height="32"/>
-  <object id="40" name="DoorLava" type="DoorLava" x="16" y="448" width="32" height="32"/>
-  <object id="47" name="Bomb" type="Bomb" x="128" y="144" width="32" height="32"/>
-  <object id="50" name="Treasure1" type="Treasure1" x="72" y="80" width="32" height="32"/>
-  <object id="52" name="Treasure2" type="Treasure2" x="32" y="192" width="32" height="32"/>
-  <object id="53" name="Treasure3" type="Treasure3" x="520" y="432" width="32" height="32"/>
-  <object id="55" name="Campfire" type="Campfire" x="576" y="536" width="32" height="32"/>
-  <object id="56" name="Campfire" type="Campfire" x="528" y="536" width="32" height="32"/>
-  <object id="57" name="Campfire" type="Campfire" x="520" y="192" width="32" height="32"/>
-  <object id="58" name="DoorStartGame" type="DoorStartGame" x="24" y="344" width="32" height="32"/>
-  <object id="59" name="Bat" type="Bat" x="136" y="448" width="24" height="16"/>
-  <object id="60" name="Eye" type="Eye" x="200" y="464" width="24" height="16"/>
-  <object id="61" name="Ghost" type="Ghost" x="272" y="472" width="32" height="16"/>
+ <objectgroup name="Monsters">
+  <object id="63" name="Eye" type="Eye" x="496" y="376" width="24" height="16"/>
+  <object id="64" name="Ghost" type="Ghost" x="408" y="480" width="32" height="16"/>
+  <object id="89" name="Bat" type="Bat" x="248" y="568" width="24" height="16"/>
+ </objectgroup>
+ <objectgroup name="ObjectsStatic">
+  <object id="72" name="DoorLava" type="DoorLava" x="16" y="552" width="32" height="32"/>
+  <object id="73" name="Treasure2" type="Treasure2" x="48" y="288" width="32" height="32"/>
+  <object id="75" name="Treasure1" type="Treasure1" x="88" y="72" width="32" height="32"/>
+  <object id="76" name="Treasure3" type="Treasure3" x="496" y="440" width="32" height="32"/>
+  <object id="78" name="Campfire" type="Campfire" x="560" y="552" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Objects">
+  <object id="47" name="Bomb" type="Bomb" x="64" y="432" width="32" height="32"/>
  </objectgroup>
 </map>

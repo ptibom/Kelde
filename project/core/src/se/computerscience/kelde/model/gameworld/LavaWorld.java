@@ -34,7 +34,7 @@ public class LavaWorld {
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,140);
-        door = new Door(worldPhysics.getIb2DWorld(),350,16, ScreenEvent.ScreenTag.START_WORLD);
+        door = new Door(worldPhysics.getIb2DWorld(),350,16,"Start");
         lavaRing = new LavaRing(worldPhysics.getIb2DWorld(),250,400);
         bomb = new Bomb(worldPhysics.getIb2DWorld(), 370,300);
         campFire = new CampFire(worldPhysics.getIb2DWorld(),140,100);

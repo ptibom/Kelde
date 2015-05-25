@@ -13,7 +13,7 @@ public class DoorTest {
     int BODY_WIDTH = 16, BODY_HEIGHT = 24;
     @Before
     public void setDoor(){
-        door = new Door(new B2DWorld(), 100, 100, ScreenEvent.ScreenTag.LAVA_WORLD);
+        door = new Door(new B2DWorld(), 100, 100, "Start");
     }
 
     @Test
