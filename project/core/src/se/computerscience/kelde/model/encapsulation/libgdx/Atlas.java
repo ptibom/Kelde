@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Atlas implements IAtlas{
-    TextureAtlas textureAtlas;
+    private final TextureAtlas textureAtlas;
     public Atlas(String fileName){
         textureAtlas = new TextureAtlas(Gdx.files.internal(fileName));
     }

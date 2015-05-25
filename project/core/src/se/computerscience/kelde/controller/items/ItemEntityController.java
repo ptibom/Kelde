@@ -23,6 +23,7 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
 
     @Override
     public void update(float delta) {
+        // not used
     }
 
     @Override
