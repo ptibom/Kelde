@@ -1,9 +1,14 @@
-/** Description: World includes most of the game. Such as monsters, players, terrain, objects, camera etc.
- *  @author: Philip Tibom
+/**
+ * Description: World includes most of the game. Such as monsters, players, terrain, objects, camera etc.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.gameworld;
 
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
@@ -14,17 +19,13 @@ import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.items.IItem;
-import se.computerscience.kelde.model.worldobjects.ItemEntity;
+import se.computerscience.kelde.model.worldobjects.*;
 import se.computerscience.kelde.model.physics.WorldPhysics;
-import se.computerscience.kelde.model.worldobjects.Barrel;
-import se.computerscience.kelde.model.worldobjects.Bomb;
-import se.computerscience.kelde.model.worldobjects.Door;
-import se.computerscience.kelde.model.worldobjects.Treasure;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameWorld{
+public class GameWorld {
 
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
@@ -33,40 +34,44 @@ public class GameWorld{
     private final EntityEye entityEye;
     private final EntityGhost entityGhost;
 
-    private final Barrel barrel;
-    private final Treasure treasure;
-    private final Treasure treasure2;
-    private final Door door;
-    private final Bomb bomb;
-
     private IMap map;
     private ICamera camera;
     private List<ItemEntity> itemEntities = new ArrayList<>();
+
+    private final List<Barrel> barrels = new ArrayList<>();
+    private final List<Bomb> bombs = new ArrayList<>();
+    private final List<Treasure> treasures = new ArrayList<>();
+    private final List<CampFire> campFires = new ArrayList<>();
+    private final List<Door> doors = new ArrayList<>();
+    private final List<EntityBat> entityBats = new ArrayList<>();
+    private final List<EntityEye> entityEyes = new ArrayList<>();
+    private final List<EntityGhost> entityGhosts = new ArrayList<>();
+
 
     public GameWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        // objects in the gameworld, init each obj with position
-        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),100,100);
-        barrel = new Barrel(worldPhysics.getIb2DWorld(),100,150);
-        treasure = new Treasure(worldPhysics.getIb2DWorld(),300f,70f, ItemSets.getSet1());
-        treasure2 = new Treasure(worldPhysics.getIb2DWorld(),120f,70f, ItemSets.getSet2());
 
-        door = new Door(worldPhysics.getIb2DWorld(),20,20);
+        // test
+        creatObjects();
+        // test
+
+        // objects in the gameworld, init each obj with position
+        entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
-        bomb = new Bomb(worldPhysics.getIb2DWorld(),100,50);
-        entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
+        entityGhost = new EntityGhost(300f, 400f, worldPhysics.getIb2DWorld());
     }
 
-    public void resizeCamera (int width, int height) {
+    public void resizeCamera(int width, int height) {
         camera.setViewPortWidth(width);
         camera.setViewPortHeight(height);
         camera.setPosition(width / (float) 2, height / (float) 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
     }
-    public void addItems(IItem item){
+
+    public void addItems(IItem item) {
         itemEntities.add(new ItemEntity(item.getItemPositionX(), item.getItemPositionY(), worldPhysics.getIb2DWorld(), item));
     }
 
@@ -90,38 +95,99 @@ public class GameWorld{
         return entityPlayerKelde;
     }
 
-    public Barrel getBarrel() {
-        return barrel;
-    }
-
-    public Treasure getTreasure() {
-        return treasure;
-    }
-
-    public Treasure getTreasure2() {
-        return treasure2;
-    }
-
-    public Door getDoor() {
-        return door;
-    }
-
     public EntityBat getEntityBat() {
         return entityBat;
     }
 
-    public EntityEye getEntityEye() { return entityEye; }
-
-    public Bomb getBomb() {
-        return bomb;
+    public EntityEye getEntityEye() {
+        return entityEye;
     }
 
     public List<ItemEntity> getItemEntities() {
         return itemEntities;
     }
 
-    public EntityGhost getEntityGhost() { return entityGhost; }
-    public void removeItem(ItemEntity item){
+    public EntityGhost getEntityGhost() {
+        return entityGhost;
+    }
+
+    public void removeItem(ItemEntity item) {
         itemEntities.remove(item);
+    }
+
+    public void creatObjects() {
+        MapLayer layer = map.getTiledMap().getLayers().get("WorldObjects");
+        for (MapObject mapObject : layer.getObjects()) {
+            float x = (float) mapObject.getProperties().get("x");
+            float y = (float) mapObject.getProperties().get("y");
+            mapObject.getName();
+            switch (mapObject.getName()) {
+                case "Barrel":
+                    barrels.add(new Barrel(worldPhysics.getIb2DWorld(), x, y));
+                    break;
+                case "Bomb":
+                    bombs.add(new Bomb(worldPhysics.getIb2DWorld(), x, y));
+                    break;
+                case "Treasure1":
+                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet1()));
+                    break;
+                case "Treasure2":
+                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet2()));
+                    break;
+                case "Treasure3":
+                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet3()));
+                    break;
+                case "Campfire":
+                    campFires.add(new CampFire(worldPhysics.getIb2DWorld(), x, y));
+                    break;
+                case "DoorLava":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, ScreenEvent.ScreenTag.LAVA_WORLD));
+                    break;
+                case "DoorStartGame":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, ScreenEvent.ScreenTag.START_WORLD));
+                    break;
+                case "Bat":
+                    entityBats.add(new EntityBat(x,y,worldPhysics.getIb2DWorld()));
+                    break;
+                case "Eye":
+                    entityEyes.add(new EntityEye(x,y,worldPhysics.getIb2DWorld()));
+                    break;
+                case "Ghost":
+                    entityGhosts.add(new EntityGhost(x,y,worldPhysics.getIb2DWorld()));
+                    break;
+            }
+        }
+    }
+
+    public List<CampFire> getCampFires() {
+        return campFires;
+    }
+
+    public List<Barrel> getBarrels() {
+        return barrels;
+    }
+
+    public List<Bomb> getBombs() {
+        return bombs;
+    }
+
+    public List<Treasure> getTreasures() {
+        return treasures;
+    }
+
+    public List<Door> getDoors() {
+        return doors;
+    }
+
+    public List<EntityBat> getEntityBats() {
+        return entityBats;
+    }
+
+    public List<EntityEye> getEntityEyes() {
+        return entityEyes;
+    }
+
+    public List<EntityGhost> getEntityGhosts() {
+        return entityGhosts;
     }
 }

@@ -8,7 +8,7 @@ import se.computerscience.kelde.view.entities.EntityEyeView;
  * Created by Anders on 2015-04-08.
  * @author Anders
  */
-public class EntityEyeController {
+public class EntityEyeController implements IMonsterController{
 
     //Variables
     private final EntityEye entityEye;
@@ -21,7 +21,7 @@ public class EntityEyeController {
         this.entityEyeView = entityEyeView;
     }
 
-
+    @Override
     public void update(float delta) {
         entityEyeView.update(delta);
         entityEye.update(delta);

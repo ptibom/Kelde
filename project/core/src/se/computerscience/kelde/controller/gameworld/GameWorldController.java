@@ -7,13 +7,10 @@ package se.computerscience.kelde.controller.gameworld;
 import java.util.ArrayList;
 
 
+import se.computerscience.kelde.controller.entities.*;
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.controller.items.ItemEntityController;
-import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
-import se.computerscience.kelde.controller.entities.EntityBatController;
-import se.computerscience.kelde.controller.entities.EntityEyeController;
-import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.gameworld.GameWorld;
@@ -28,19 +25,14 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
-    private final BarrelController barrelController;
-    private final TreasureController treasureController;
-    private final TreasureController treasureController2;
-    private final DoorController doorController;
 
     private List<IWorldObjectsController> worldObjList = new ArrayList<>();
-
+    private List<IMonsterController> monsterList = new ArrayList<>();
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
     private final EntityGhostController entityGhostController;
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
 
-    private final BombController bombController;
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -48,19 +40,30 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
 
+        for (int i = 0; i < gameWorld.getBombs().size() ; i++) {
+            worldObjList.add(new BombController(gameWorld.getBombs().get(i),gameWorldView.getBombViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getTreasures().size() ; i++) {
+            worldObjList.add(new TreasureController(gameWorld.getTreasures().get(i),gameWorldView.getTreasureViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getCampFires().size() ; i++) {
+            worldObjList.add(new CampFireController(gameWorld.getCampFires().get(i),gameWorldView.getCampFireViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getDoors().size() ; i++) {
+            worldObjList.add(new DoorController(gameWorld.getDoors().get(i),gameWorldView.getDoorViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getEntityBats().size() ; i++) {
+            monsterList.add(new EntityBatController(gameWorld.getEntityBats().get(i),gameWorldView.getEntityBatViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getEntityGhosts().size() ; i++) {
+            monsterList.add(new EntityGhostController(gameWorld.getEntityGhosts().get(i),gameWorldView.getEntityGhostViews().get(i)));
+        }
+        for (int i = 0; i < gameWorld.getEntityEyes().size() ; i++) {
+            monsterList.add(new EntityEyeController(gameWorld.getEntityEyes().get(i),gameWorldView.getEntityEyeViews().get(i)));
+        }
 
-        barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
-        treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
-        treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
-        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView(), ScreenEvent.ScreenTag.LAVA_WORLD);
-        bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
 
-
-        worldObjList.add(barrelController);
-        worldObjList.add(treasureController);
         worldObjList.add(entityPlayerKeldeController);
-        worldObjList.add(treasureController2);
-        worldObjList.add(doorController);
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
@@ -87,10 +90,12 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         for (ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
+        for (IMonsterController monster: monsterList){
+            monster.update(delta);
+        }
 
         entityBatController.update(delta);
         entityEyeController.update(delta);
-        bombController.update(delta);
         entityGhostController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);

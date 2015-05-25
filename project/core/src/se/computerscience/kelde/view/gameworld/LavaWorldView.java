@@ -36,7 +36,7 @@ public class LavaWorldView {
 
         worldPhysicsView = new WorldPhysicsView(lavaWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(lavaWorld.getEntityPlayerKelde());
-        doorView = new DoorView(lavaWorld.getDoor(),"door2");
+        doorView = new DoorView(lavaWorld.getDoor());
         lavaRingView = new LavaRingView(lavaWorld.getLavaRing());
         bombView = new BombView(lavaWorld.getBomb());
         campFireView = new CampFireView(lavaWorld.getCampFire());
