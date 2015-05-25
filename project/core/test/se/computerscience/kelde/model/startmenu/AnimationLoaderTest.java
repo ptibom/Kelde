@@ -20,13 +20,7 @@ public class AnimationLoaderTest {
 
     @Before
     public void setUp(){
-        try {
-            menu = new StartMenu();
-
-        }
-        catch (IOException e){
-            System.out.println("Files not found");
-        }
+        menu = new StartMenu();
         animLoader = new AnimationLoader();
     }
 

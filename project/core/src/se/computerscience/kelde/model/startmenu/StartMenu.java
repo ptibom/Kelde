@@ -16,11 +16,6 @@ public class StartMenu {
 
     Timer menuTimer = new Timer();
 
-
-    public StartMenu() throws IOException {
-
-    }
-
     public String getWalkingCharacterPathPicture() {
 
         return WALKING_CHARACTER_PATH_PICTURE;

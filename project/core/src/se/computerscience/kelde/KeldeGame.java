@@ -9,6 +9,7 @@ import se.computerscience.kelde.controller.events.IScreenEventHandler;
 import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.screens.GameScreen;
+import se.computerscience.kelde.screens.IntroScreen;
 import se.computerscience.kelde.screens.LavaScreen;
 import se.computerscience.kelde.screens.MenuScreen;
 

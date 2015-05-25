@@ -17,7 +17,7 @@ public class StartMenuController {
     private final StartMenu startMenuModel;
     private final StartMenuView startMenuView;
 
-    public StartMenuController() throws IOException {
+    public StartMenuController() {
         startMenuModel = new StartMenu();
         this.startMenuView = new StartMenuView(startMenuModel);
         startMenuView.getButton().addListener(new ClickListener() {
@@ -30,11 +30,6 @@ public class StartMenuController {
                 System.out.println("will never work");
             }
         });
-
-
-
-
-
         startMenuView.addActors();
 
     }

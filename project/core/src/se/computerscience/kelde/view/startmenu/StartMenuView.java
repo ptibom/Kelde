@@ -44,9 +44,9 @@ public class StartMenuView {
 
         // Creating a stage to put actors in and a view port
         menuStage = new Stage();
-        Gdx.input.setInputProcessor(menuStage);
-        viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, menuStage.getCamera());
 
+        viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, menuStage.getCamera());
+        Gdx.input.setInputProcessor(menuStage);
         middleGroundTexture = new Texture(startMenuModel.getMidGround());
         initButtons();
 
@@ -93,14 +93,15 @@ public class StartMenuView {
 
     // Need to resize, incase user resizes screen
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        menuStage.getCamera().position.x = width;
+        viewport.update(width, height, true);
         menuStage.setViewport(viewport);
     }
 
-    public void initButtons(){
+    public void initButtons() {
         // Creates skins for buttons and creates textButtons with them
-        skin = createSkin( "menu/startbutton.png");
-        skin2 =   createSkin( "menu/loadbutton.png");
+        skin = createSkin("menu/startbutton.png");
+        skin2 = createSkin("menu/loadbutton.png");
         skin3 = createSkin("menu/exitbutton.png");
 
 
@@ -109,22 +110,20 @@ public class StartMenuView {
         exitbutton = new TextButton("", skin3);
 
 
-
         //Initializes their positions and adds them to the stage
         int LOAD_BUTTON_POS_X = 730, LOAD_BUTTON_POS_Y = 373, START_BUTTON_POS_X = 730,
                 START_BUTTON_POS_Y = 550, EXIT_BUTTON_POS_X = 1140, EXIT_BUTTON_POS_Y = 370;
 
-        newGameButton.setPosition(START_BUTTON_POS_X,START_BUTTON_POS_Y);
+        newGameButton.setPosition(START_BUTTON_POS_X, START_BUTTON_POS_Y);
         loadGameButton.setPosition(LOAD_BUTTON_POS_X, LOAD_BUTTON_POS_Y);
         exitbutton.setPosition(EXIT_BUTTON_POS_X, EXIT_BUTTON_POS_Y);
-
 
 
     }
 
 
     // Creates and returns a Skin using image from file path
-    public Skin createSkin( String imageFilePath) {
+    public Skin createSkin(String imageFilePath) {
         Skin skin = new Skin();
         BitmapFont font = new BitmapFont();
         skin.add("default", font);
@@ -145,21 +144,21 @@ public class StartMenuView {
         return skin;
     }
 
-    public TextButton getButton(){
+    public TextButton getButton() {
         return newGameButton;
     }
 
-    public TextButton getLoadButton(){return loadGameButton;}
+    public TextButton getLoadButton() {
+        return loadGameButton;
+    }
 
-    public void addActors(){
+    public void addActors() {
 
         // Adding the buttons as actor in stage
         menuStage.addActor(newGameButton);
         menuStage.addActor(loadGameButton);
         menuStage.addActor(exitbutton);
     }
-
-
 
 
 }

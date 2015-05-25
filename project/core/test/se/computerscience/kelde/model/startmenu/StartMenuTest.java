@@ -16,12 +16,7 @@ public class StartMenuTest {
     StartMenu startMenu;
     @Before
     public void setup(){
-        try {
-            startMenu = new StartMenu();
-        }
-        catch(IOException e){
-            System.out.println("no file");
-        }
+        startMenu = new StartMenu();
     }
 
     @Test
