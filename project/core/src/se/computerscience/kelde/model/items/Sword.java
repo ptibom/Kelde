@@ -6,13 +6,11 @@
 package se.computerscience.kelde.model.items;
 
 public class Sword extends Item {
-    private boolean isConsumable = false;
-    private boolean isWeapon = true;
-    private final int damage = 10;
-    public Sword() {
-    }
+    private final static boolean CONSUMABLE = false;
+    private final static boolean WEAPON = true;
+    private final static int DAMAGE = 10;
     public int getDamage() {
-        return damage;
+        return DAMAGE;
     }
 
     @Override
@@ -22,11 +20,11 @@ public class Sword extends Item {
 
     @Override
     public boolean isConsumable() {
-        return isConsumable;
+        return CONSUMABLE;
     }
 
     @Override
     public boolean isWeapon() {
-        return isWeapon;
+        return WEAPON;
     }
 }

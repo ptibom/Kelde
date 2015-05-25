@@ -6,26 +6,24 @@
 package se.computerscience.kelde.model.items;
 
 public class Bow extends Item {
-    private final boolean isConsumable = false;
-    private final boolean isWeapon = true;
-    private final int damage = 10;
-    public Bow() {
-    }
+    private final static boolean  CONSUMABLE = false;
+    private final static boolean WEAPON = true;
+    private final static int DAMAGE = 10;
 
     @Override
     protected void setRegion() {
-        region.setRegion(textureAtlas.findRegion("0002"));
+        region.setRegion(textureAtlas.findRegion("0003"));
     }
 
     public int getDamage() {
-        return damage;
+        return DAMAGE;
     }
     @Override
     public boolean isConsumable() {
-        return isConsumable;
+        return CONSUMABLE;
     }
     @Override
     public boolean isWeapon() {
-        return isWeapon;
+        return WEAPON;
     }
 }

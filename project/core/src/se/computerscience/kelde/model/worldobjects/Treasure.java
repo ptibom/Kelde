@@ -1,7 +1,5 @@
 package se.computerscience.kelde.model.worldobjects;
 
-import se.computerscience.kelde.controller.events.ItemEvent;
-import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
@@ -18,19 +16,20 @@ import java.util.List;
 
 public class Treasure implements IWorldObjects {
 
-    private final float BODY_WIDTH = 16;
-    private final float BODY_HEIGHT = 16;
-    private boolean isOpen = false;
+    private static final float BODY_WIDTH = 16;
+    private static final float BODY_HEIGHT = 16;
+    private boolean isOpen;
     private final List<IItem> itemslist = new ArrayList<>();
-    private IPhysicalBody entityBody;
+    private final IPhysicalBody entityBody;
 
-    public Treasure(IB2DWorld ib2DWorld, float x, float y, List<IItem> items) {
-        entityBody = new PhysicalBodyStatic(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
-
-        for (IItem item : items) {
-            item.setItemPositionY(y+50);
-            item.setItemPositionX(x+=15);
+    public Treasure(IB2DWorld ib2DWorld, float positionX, float positionY, List<IItem> items) {
+        entityBody = new PhysicalBodyStatic(positionX, positionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        int margin = 0;
+        for (final IItem item : items) {
+            item.setItemPositionY(positionY + 50);
+            item.setItemPositionX(positionX + margin);
             this.itemslist.add(item);
+            margin+=15;
         }
     }
 
@@ -39,7 +38,7 @@ public class Treasure implements IWorldObjects {
         itemslist.clear();
     }
 
-    public boolean isOpen() {
+    public boolean isCheastOpen() {
         return isOpen;
     }
 

@@ -40,7 +40,7 @@ public class GameWorldView{
     private final DoorView doorView;
     private final EntityArrowView entityArrowView1,entityArrowView2, entityArrowView3;
     private final BombView bombView;
-    private List<ItemEntityView> itemEntityViews = new ArrayList<>();
+    private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -84,7 +84,7 @@ public class GameWorldView{
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         bombView.draw(batch);
-        for (ItemEntityView itemView : itemEntityViews){
+        for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
         entityGhostView.draw(batch);

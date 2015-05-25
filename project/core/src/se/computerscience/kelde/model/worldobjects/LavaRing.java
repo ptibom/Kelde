@@ -11,12 +11,12 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
 
 
 public class LavaRing implements IWorldObjects {
-    private final float BODY_WIDTH = 41;
-    private final float BODY_HEIGHT = 39;
-    private IPhysicalBody entityBody;
-    private final int NUMBER_OF_SPLASHES  = 100;
+    private final static float BODY_WIDTH = 41;
+    private final static float BODY_HEIGHT = 39;
+    private final IPhysicalBody entityBody;
+    private final static int NUMBER_OF_SPLASHES  = 100;
 
-    private LavaSplash[] lavaSplash = new LavaSplash[NUMBER_OF_SPLASHES];
+    private final LavaSplash[] lavaSplash = new LavaSplash[NUMBER_OF_SPLASHES];
     public LavaRing(IB2DWorld ib2DWorld, float x, float y){
         entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
         for (int i = 0; i <lavaSplash.length ; i++) {

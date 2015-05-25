@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntitySmallWorm;
 
@@ -23,12 +22,9 @@ public class EntitySmallWormView {
 
     //Variables
     private final EntitySmallWorm entitySmallWorm;
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
-    private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasEast, textureAtlasWest, textureAtlasUp;
-    private Animation animation,animationN,animationE,animationS,animationW,animationUp;
-    private float elapsedTime = 0;
-    private float delta = 0;
+    private final SpriteBatch batch;
+    private Animation animation,animationUp;
+    private float elapsedTime, delta;
 
 
     public EntitySmallWormView(EntitySmallWorm entitySmallWorm) {
@@ -38,20 +34,20 @@ public class EntitySmallWormView {
     }
 
     private void createUpTexture() {
-        textureAtlasUp = new TextureAtlas(Gdx.files.internal("smallwormUp.atlas"));
+        final TextureAtlas textureAtlasUp = new TextureAtlas(Gdx.files.internal("smallwormUp.atlas"));
         animationUp = new Animation(0.3f, textureAtlasUp.getRegions());
     }
 
     public void draw(Batch batch) {
-        Heading direction = entitySmallWorm.getHeading();
+        final Heading direction = entitySmallWorm.getHeading();
         if(direction == Heading.EAST) {
-            animation = animationE;
+            animation = animationUp;
         } else if(direction == Heading.NORTH) {
-            animation = animationN;
+            animation = animationUp;
         } else if(direction == Heading.WEST) {
-            animation = animationW;
+            animation = animationUp;
         } else if(direction == Heading.SOUTH) {
-            animation = animationS;
+            animation = animationUp;
         }
         elapsedTime += delta;
         if(elapsedTime > 100.0f) { elapsedTime = 0f; }

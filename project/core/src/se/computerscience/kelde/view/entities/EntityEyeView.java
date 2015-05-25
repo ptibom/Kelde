@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityEye;
 
@@ -21,10 +20,8 @@ public class EntityEyeView {
     private final EntityEye entityEye;
 
     private Batch batch;
-    private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animation,animationN,animationE,animationS,animationW;
-    private float elapsedTime = 0, delta = 0;
-    private Vector2 direction;
+    private float elapsedTime, delta;
 
     public EntityEyeView(EntityEye entityEye) {
         this.entityEye = entityEye;
@@ -33,18 +30,18 @@ public class EntityEyeView {
     }
 
     private void createTextures() {
-        textureAtlasW = new TextureAtlas(Gdx.files.internal("eyeballWest.atlas"));
+        final TextureAtlas textureAtlasW = new TextureAtlas(Gdx.files.internal("eyeballWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
-        textureAtlasSouth = new TextureAtlas(Gdx.files.internal("eyeballSouth.atlas"));
+        final TextureAtlas textureAtlasSouth = new TextureAtlas(Gdx.files.internal("eyeballSouth.atlas"));
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
-        textureAtlasNorth = new TextureAtlas(Gdx.files.internal("eyeballNorth.atlas"));
+        final TextureAtlas textureAtlasNorth = new TextureAtlas(Gdx.files.internal("eyeballNorth.atlas"));
         animationN = new Animation(0.15f, textureAtlasNorth.getRegions());
-        textureAtlasE = new TextureAtlas(Gdx.files.internal("eyeballEast.atlas"));
+        final TextureAtlas textureAtlasE = new TextureAtlas(Gdx.files.internal("eyeballEast.atlas"));
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
     }
 
     public void draw(Batch batch) {
-        Heading direction = entityEye.getHeading();
+        final Heading direction = entityEye.getHeading();
         if(direction == Heading.EAST) {
             animation = animationE;
         } else if(direction == Heading.NORTH) {

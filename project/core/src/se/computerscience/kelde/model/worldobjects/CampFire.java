@@ -10,9 +10,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
 
 public class CampFire implements IWorldObjects {
-    private final float BODY_WIDTH = 32;
-    private final float BODY_HEIGHT = 8;
-    IPhysicalBody entityBody;
+    private final static float BODY_WIDTH = 32;
+    private final static float BODY_HEIGHT = 8;
+    private final IPhysicalBody entityBody;
 
     public CampFire(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);

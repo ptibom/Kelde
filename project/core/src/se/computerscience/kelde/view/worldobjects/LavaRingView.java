@@ -11,12 +11,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
 
 public class LavaRingView implements IWorldObjectView {
+
+    //Variables
     private final LavaRing lavaRing;
     private final Sprite sprite;
-
     private final static int WIDTH = 81, HEIGHT = 79;
     private final static String SPRITE_LOCATION = "lava-obj.png";
     private final LavaSplashView[] lavaSplashView;
+
+    //Constructor
     public LavaRingView(LavaRing lavaRing) {
         Texture texture;
         this.lavaRing = lavaRing;
