@@ -1,6 +1,7 @@
 package se.computerscience.kelde.model.entities;
 
 
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -16,7 +17,6 @@ public class EntityArrow implements IWorldObjects{
 
 
     //Variables
-    private int DAMAGE = 50;
     private final int BODY_WIDTH = 4, BODY_HEIGHT = 4;
     private float elapsedTime = 0;
     private final IPhysicalBody entityBody;
@@ -25,7 +25,7 @@ public class EntityArrow implements IWorldObjects{
 
     //Constructor
     public EntityArrow(float x, float y, IB2DWorld ib2DWorld) {
-        entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
     }
 
     public void update(float delta, float x, float y, Heading heading) {
