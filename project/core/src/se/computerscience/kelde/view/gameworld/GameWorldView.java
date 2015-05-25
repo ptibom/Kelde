@@ -29,9 +29,6 @@ public class GameWorldView{
 
     private final WorldPhysicsView worldPhysicsView;
     private final EntityPlayerKeldeView entityPlayerKeldeView;
-    private final EntityBatView entityBatView;
-    private final EntityEyeView entityEyeView;
-    private final EntityGhostView entityGhostView;
 
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
@@ -51,11 +48,6 @@ public class GameWorldView{
 
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
-
-        entityBatView = new EntityBatView(gameWorld.getEntityBat());
-        entityEyeView = new EntityEyeView(gameWorld.getEntityEye());
-
-        entityGhostView = new EntityGhostView(gameWorld.getEntityGhost());
 
         for (Barrel barrel: gameWorld.getBarrels()){
             barrelViews.add(new BarrelView(barrel));
@@ -91,8 +83,6 @@ public class GameWorldView{
         // Draw sprites
         batch.begin();
         entityPlayerKeldeView.draw(batch);
-        entityBatView.draw(batch);
-        entityEyeView.draw(batch);
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
@@ -121,7 +111,6 @@ public class GameWorldView{
         for (EntityGhostView entityGhostView: entityGhostViews){
             entityGhostView.draw(batch);
         }
-        entityGhostView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
@@ -146,17 +135,10 @@ public class GameWorldView{
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
     }
-    public EntityBatView getEntityBatView() {
-        return entityBatView;
-    }
-    public EntityEyeView getEntityEyeView() {
-        return entityEyeView;
-    }
 
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
-    public EntityGhostView getEntityGhostView() { return entityGhostView; }
     public void removeItemView(ItemEntityView itemEntityView){
         itemEntityViews.remove(itemEntityView);
     }

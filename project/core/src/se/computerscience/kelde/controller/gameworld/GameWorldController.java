@@ -26,11 +26,8 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
 
-    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
-    private List<IMonsterController> monsterList = new ArrayList<>();
-    private final EntityBatController entityBatController;
-    private final EntityEyeController entityEyeController;
-    private final EntityGhostController entityGhostController;
+    private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
+    private final List<IMonsterController> monsterList = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
 
     public GameWorldController() {
@@ -62,14 +59,9 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             monsterList.add(new EntityEyeController(gameWorld.getEntityEyes().get(i),gameWorldView.getEntityEyeViews().get(i)));
         }
 
-
         worldObjList.add(entityPlayerKeldeController);
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
-
-        entityBatController = new EntityBatController(gameWorld.getEntityBat(), gameWorldView.getEntityBatView());
-        entityEyeController = new EntityEyeController(gameWorld.getEntityEye(), gameWorldView.getEntityEyeView());
-        entityGhostController = new EntityGhostController(gameWorld.getEntityGhost(), gameWorldView.getEntityGhostView());
         ItemEventBus.INSTANCE.register(this);
     }
     public void updateItemControllers(){
@@ -94,9 +86,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             monster.update(delta);
         }
 
-        entityBatController.update(delta);
-        entityEyeController.update(delta);
-        entityGhostController.update(delta);
         worldPhysicsController.update(delta);
         gameWorldView.render(delta);
 

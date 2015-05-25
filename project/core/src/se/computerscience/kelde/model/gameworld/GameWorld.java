@@ -30,9 +30,6 @@ public class GameWorld {
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
-    private final EntityBat entityBat;
-    private final EntityEye entityEye;
-    private final EntityGhost entityGhost;
 
     private IMap map;
     private ICamera camera;
@@ -59,9 +56,6 @@ public class GameWorld {
 
         // objects in the gameworld, init each obj with position
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
-        entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
-        entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
-        entityGhost = new EntityGhost(300f, 400f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera(int width, int height) {
@@ -95,20 +89,9 @@ public class GameWorld {
         return entityPlayerKelde;
     }
 
-    public EntityBat getEntityBat() {
-        return entityBat;
-    }
-
-    public EntityEye getEntityEye() {
-        return entityEye;
-    }
 
     public List<ItemEntity> getItemEntities() {
         return itemEntities;
-    }
-
-    public EntityGhost getEntityGhost() {
-        return entityGhost;
     }
 
     public void removeItem(ItemEntity item) {
