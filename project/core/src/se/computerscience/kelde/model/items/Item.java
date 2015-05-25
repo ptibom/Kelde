@@ -26,6 +26,7 @@ public class Item implements IItem {
     protected void setRegion(){
         region.setRegion(textureAtlas.findRegion(""));
     }
+
     @Override
     public boolean isConsumable() {
         return false;
@@ -35,6 +36,7 @@ public class Item implements IItem {
     public boolean isWeapon() {
         return false;
     }
+
     @Override
     public ISprite getItemSprite(){
         return sprite;

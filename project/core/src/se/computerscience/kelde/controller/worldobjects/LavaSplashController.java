@@ -15,14 +15,15 @@ import se.computerscience.kelde.view.worldobjects.LavaSplashView;
 import java.util.Random;
 
 public class LavaSplashController implements IWorldObjectsController, ICollisionEventHandler {
-    private LavaSplash lavaSplash;
-    private LavaSplashView lavaSplashView;
+    private final LavaSplash lavaSplash;
+    private final LavaSplashView lavaSplashView;
     private Vector2 velocityControl;
-    private float velocityX, velocityY,startPosX,startPosY;
+    private final float velocityX, velocityY;
+    private final float startPosX,startPosY;
 
-    private boolean lavaOn = false;
+    private boolean lavaOn;
     private static Random random = new Random();
-    private static final float max_velocity = 0.2f , min_velocity = 0f; // the velocity range for the splash
+    private static final float MAX_VELOCITY = 0.2f , MIN_VELOCITY = 0f; // the velocity range for the splash
     public LavaSplashController(LavaSplash lavaSplash, LavaSplashView lavaSplashView) {
         this.lavaSplash = lavaSplash;
         this.lavaSplashView = lavaSplashView;
@@ -30,14 +31,14 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
         CollisionEventBus.INSTANCE.register(this);
         // makes the lava-splashes go in random direction with a velocity in the interval.
         if (random.nextBoolean()){
-            velocityX = random.nextFloat() * (max_velocity - min_velocity) + min_velocity;
+            velocityX = random.nextFloat() * (MAX_VELOCITY - MIN_VELOCITY) + MIN_VELOCITY;
         }else {
-            velocityX = random.nextFloat() * (min_velocity*-1 - max_velocity*-1) + max_velocity*-1;
+            velocityX = random.nextFloat() * (MIN_VELOCITY*-1 - MAX_VELOCITY*-1) + MAX_VELOCITY*-1;
         }
         if (random.nextBoolean()){
-            velocityY = random.nextFloat() * (max_velocity - min_velocity) + min_velocity;
+            velocityY = random.nextFloat() * (MAX_VELOCITY - MIN_VELOCITY) + MIN_VELOCITY;
         }else {
-            velocityY = random.nextFloat() * (min_velocity*-1 - max_velocity*-1) + max_velocity*-1;
+            velocityY = random.nextFloat() * (MIN_VELOCITY*-1 - MAX_VELOCITY*-1) + MAX_VELOCITY*-1;
         }
         // saves the start position of the lavasplash
         startPosX = lavaSplash.getPositionX();
@@ -50,9 +51,9 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
         * max and min, is the interval of the random,
         * the higher the max is the less the chance it will execute.
         * */
-        int max = 1000;
-        int min = 0;
-        if (((max + random.nextInt(max - min + 1)) == (max + random.nextInt(max - min + 1)) || lavaOn )) {
+        final int max = 1000;
+        final int min = 0;
+        if((max + random.nextInt(max - min + 1)) == (max + random.nextInt(max - min + 1)) || lavaOn ) {
             lavaOn = true;
             velocityControl.x += velocityX;
             velocityControl.y += velocityY;
@@ -70,7 +71,6 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
             return;
         }
         // player should take damage.
-        System.out.println("hit");
     }
 
     public void dispose() {

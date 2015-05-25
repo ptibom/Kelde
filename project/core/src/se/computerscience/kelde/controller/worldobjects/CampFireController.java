@@ -31,6 +31,6 @@ public class CampFireController implements IWorldObjectsController , ICollisionE
         if (event.getObject() != campFire){
             return;
         }
-        System.out.println("burned");
+        // make damage
     }
 }

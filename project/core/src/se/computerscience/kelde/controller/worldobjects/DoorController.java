@@ -7,7 +7,6 @@ package se.computerscience.kelde.controller.worldobjects;
 
 import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.controller.events.*;
-import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 

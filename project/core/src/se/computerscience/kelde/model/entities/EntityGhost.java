@@ -18,13 +18,13 @@ public class EntityGhost {
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private int DAMAGE = 15;
-    private int HEALTH = 100;
-    private static final int ATTACK_DISTANCE = 150;
-    private final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
-    private float elapsedTime = 0;
-    private static final int LOOT = 25;
-    private boolean ALIVE = true;
+    private final int damage = 15;
+    private final int healt = 100;
+    private static final int attack_distance = 150;
+    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private float elapsedTime;
+    private static final int loot = 25;
+    private boolean alive = true;
     private Heading direction;
 
     public EntityGhost(float x, float y, IB2DWorld ib2DWorld) {
@@ -35,8 +35,8 @@ public class EntityGhost {
 
 
     private void setRandomSpeed() {
-        int vx = random.nextInt(3) - 1;
-        int vy = random.nextInt(3) - 1;
+        final int vx = random.nextInt(3) - 1;
+        final int vy = random.nextInt(3) - 1;
         entityBody.setVelocity(vx, vy);
 
     }
@@ -51,9 +51,9 @@ public class EntityGhost {
 
 
     public Heading getHeading() {
-        float x = entityBody.getVelocityX();
-        float y = entityBody.getVelocityY();
-        float degree = (float)Math.toDegrees(Math.atan2(x, y));
+        final float x = entityBody.getVelocityX();
+        final float y = entityBody.getVelocityY();
+        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
         } else if(degree <= -135.0f || degree >= 135.0f) {
@@ -74,11 +74,11 @@ public class EntityGhost {
         return (int) (entityBody.getPositionY()-BODY_WIDTH);
     }
 
-    public int getDAMAGE() {
-        return DAMAGE;
+    public int getDamage() {
+        return damage;
     }
 
-    public int getHEALTH() {
-        return HEALTH;
+    public int getHealt() {
+        return healt;
     }
 }
