@@ -22,13 +22,14 @@ public class Treasure implements IWorldObjects {
     private final List<IItem> itemslist = new ArrayList<>();
     private final IPhysicalBody entityBody;
 
-    public Treasure(IB2DWorld ib2DWorld, float postionX, float postionY, List<IItem> items) {
-        entityBody = new PhysicalBodyStatic(postionX, postionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
-
+    public Treasure(IB2DWorld ib2DWorld, float positionX, float positionY, List<IItem> items) {
+        entityBody = new PhysicalBodyStatic(positionX, positionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        int margin = 0;
         for (final IItem item : items) {
-            item.setItemPositionY(postionY + 50);
-            item.setItemPositionX(postionX += 15);
+            item.setItemPositionY(positionY + 50);
+            item.setItemPositionX(positionX + margin);
             this.itemslist.add(item);
+            margin+=15;
         }
     }
 
