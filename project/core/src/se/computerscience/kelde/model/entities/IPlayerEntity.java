@@ -5,14 +5,14 @@
 package se.computerscience.kelde.model.entities;
 
 public interface IPlayerEntity {
-    public int getHealth();
-    public int getMana();
-    public int getStrength();
-    public int getMagic();
-    public int getDirection();
-    public void setHealth(int health);
-    public void setMana(int mana);
-    public void setStrength(int strength);
-    public void setMagic(int magic);
-    public void setDirection(int direction);
+    int getHealth();
+    int getMana();
+    int getStrength();
+    int getMagic();
+    int getDirection();
+    void setHealth(int health);
+    void setMana(int mana);
+    void setStrength(int strength);
+    void setMagic(int magic);
+    void setDirection(int direction);
 }
