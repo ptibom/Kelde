@@ -14,10 +14,10 @@ import java.util.Random;
 public class EntitySmallWorm {
 
     //Variables
-    private int DAMAGE = 10;
+    private static final int DAMAGE = 10;
     private int health = 100;
     private static final int BODY_WIDTH = 8, BODY_HEIGHT = 8;
-    private final int ATTACK_DISTANCE = 10;
+    private static final int ATTACK_DISTANCE = 10;
     private boolean alive = true;
     private static final int LOOT = 20;
     private float elapsedTime;
@@ -35,6 +35,14 @@ public class EntitySmallWorm {
         return health;
     }
 
+    public int getDamage() {
+        return DAMAGE;
+    }
+
+    public int getAttackDistance() {
+        return ATTACK_DISTANCE;
+    }
+
     public int getLoot() {
         return LOOT;
     }
@@ -44,6 +52,10 @@ public class EntitySmallWorm {
         if(health <= 0) {
             alive = false;
         }
+    }
+
+    public boolean isAlive() {
+        return alive;
     }
 
     public void update(float delta) {
