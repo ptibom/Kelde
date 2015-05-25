@@ -18,7 +18,6 @@ public class EntityBatView {
     private final EntityBat entityBat;
 
     //Variables
-    private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animationN, animationS, animationE, animationW;
 
     private SpriteBatch batch;
@@ -35,13 +34,13 @@ public class EntityBatView {
     }
 
     private void createTextures() {
-        textureAtlasW = new TextureAtlas(Gdx.files.internal("batWest.atlas"));
+        final TextureAtlas textureAtlasW = new TextureAtlas(Gdx.files.internal("batWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
-        textureAtlasE = new TextureAtlas(Gdx.files.internal("batEast.atlas"));
+        final TextureAtlas textureAtlasE = new TextureAtlas(Gdx.files.internal("batEast.atlas"));
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
-        textureAtlasNorth = new TextureAtlas(Gdx.files.internal("bat.atlas"));
+        final TextureAtlas textureAtlasNorth = new TextureAtlas(Gdx.files.internal("bat.atlas"));
         animationN = new Animation(0.15f, textureAtlasNorth.getRegions());
-        textureAtlasSouth = new TextureAtlas(Gdx.files.internal("batSouth.atlas"));
+        final TextureAtlas textureAtlasSouth = new TextureAtlas(Gdx.files.internal("batSouth.atlas"));
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
     }
 
