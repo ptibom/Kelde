@@ -50,9 +50,6 @@ public class EntityArrowController implements ICollisionEventHandler{
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if(event.getObject() instanceof EntityArrow) {
-            return;
-        }
-        System.out.println("arrow hit something!\n");
+      
     }
 }

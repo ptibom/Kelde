@@ -2,6 +2,7 @@ package se.computerscience.kelde.model.entities;
 
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.constants.Heading;
+import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyMonster;
@@ -14,7 +15,7 @@ import java.util.Random;
  * Created by Anders on 2015-04-06.
  * @author: Anders Bolin
  */
-public class EntityBat {
+public class EntityBat implements IMonster {
 
     //Variables
     private int DAMAGE = 10;

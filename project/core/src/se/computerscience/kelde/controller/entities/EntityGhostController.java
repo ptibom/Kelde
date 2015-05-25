@@ -35,10 +35,10 @@ public class EntityGhostController implements ICollisionEventHandler{
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if((event.getObject() instanceof EntityArrow)) {
-            System.out.println("omg! arrow hit me!\n");
+        if(event.getObject() != entityGhost) {
+            return;
         }
-
+        System.out.println("omg! arrow hit me!\n");
 
     }
 }

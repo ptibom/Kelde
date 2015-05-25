@@ -79,13 +79,10 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
-        if (objectA instanceof EntityArrow) {
-            System.out.println("objectA is instanceof EntityArrow");
-        } else if (objectB instanceof IMonster) {
-            if(objectA instanceof EntityArrow) {
-                CollisionEventBus.INSTANCE.publish(new CollisionEvent(state, objectA));
-                System.out.println("objectA was hit!");
-            }
+        if (objectA instanceof EntityArrow && objectB instanceof IMonster) {
+            System.out.println("objectA is instanceof EntityArrowasdasdasdasd");
+        } else if (objectB instanceof EntityArrow && objectA instanceof IMonster) {
+            System.out.println("hit zzxfgasdasd");
         }
     }
 
