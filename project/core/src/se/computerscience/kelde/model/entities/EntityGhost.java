@@ -15,15 +15,14 @@ import java.util.Random;
 public class EntityGhost implements IEntitie {
 
     //Variables
-    //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private final int damage = 15;
-    private final int healt = 100;
-    private static final int attack_distance = 150;
+    private static final int DAMAGE = 15;
+    private int healt = 100;
+    private static final int ATTACK_DISTANCE = 150;
     private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
     private float elapsedTime;
-    private static final int loot = 25;
+    private static final int LOOT = 25;
     private boolean alive = true;
     private Heading direction;
 
@@ -32,7 +31,9 @@ public class EntityGhost implements IEntitie {
         random = new Random();
     }
 
-
+    public int getAttackDistance() {
+        return ATTACK_DISTANCE;
+    }
 
     private void setRandomSpeed() {
         final int vx = random.nextInt(3) - 1;
@@ -74,11 +75,22 @@ public class EntityGhost implements IEntitie {
         return (int) (entityBody.getPositionY()-BODY_WIDTH);
     }
 
+    public void setDamage(int damage) {
+        healt -= damage;
+        if(healt <= 0) {
+            alive = false;
+        }
+    }
+
     public int getDamage() {
-        return damage;
+        return DAMAGE;
     }
 
     public int getHealt() {
         return healt;
     }
+
+    public boolean isAlive() { return alive; }
+
+    public int getLoot() { return LOOT;}
 }
