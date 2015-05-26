@@ -75,10 +75,10 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
                 final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
                 final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
-                if (prop != null){
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
-                }else {
+                if (prop == null){
                     modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class).newInstance(b2DWorld, x, y);
+                }else {
+                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
                 }
                 viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
                 controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);

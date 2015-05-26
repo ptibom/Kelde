@@ -5,22 +5,14 @@
  */
 
 package se.computerscience.kelde.model.gameworld;
-
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
-import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
-import se.computerscience.kelde.model.entities.EntityBat;
-import se.computerscience.kelde.model.entities.EntityEye;
-import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.*;
 import se.computerscience.kelde.model.physics.WorldPhysics;
-
 import java.util.ArrayList;
 import java.util.List;
 

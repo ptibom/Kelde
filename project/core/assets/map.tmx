@@ -73,7 +73,7 @@
    eJxjYBgFtADaQKyDA+uSYZYWEJsAsT4Qm0FpGNuARPP0oHrVgNgICatTYJ4JFn24xIkxD5s7cIlTYp4pmeaB/KXJgBqXlJhnBtULMhOWTrTINM+QARGX+gyoaYWc8IOZaYQDG5Nh3igYHgAAXGsOZw==
   </data>
  </layer>
- <objectgroup name="Collision">
+ <objectgroup name="Collision" visible="0">
   <object id="31" name="test" type="object" x="217" y="137">
    <polygon points="0,0 211,2 219,20 217,294 2,295 -44,248 -45,50"/>
   </object>
@@ -107,7 +107,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Npc">
+ <objectgroup name="Npc" visible="0">
   <object id="149" name="EntityBat" type="EntityBat" x="256" y="24" width="64"/>
   <object id="150" name="EntityEye" type="EntityEye" x="368" y="72" width="56"/>
   <object id="151" name="EntityGhost" type="EntityGhost" x="208" y="80" width="64"/>

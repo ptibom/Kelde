@@ -6,9 +6,6 @@ package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import se.computerscience.kelde.model.entities.EntityBat;
-import se.computerscience.kelde.model.entities.EntityEye;
-import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.worldobjects.*;
 import se.computerscience.kelde.view.entities.*;

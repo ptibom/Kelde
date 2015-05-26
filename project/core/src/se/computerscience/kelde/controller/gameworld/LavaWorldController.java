@@ -7,10 +7,8 @@ package se.computerscience.kelde.controller.gameworld;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import se.computerscience.kelde.controller.entities.EntityGhostController;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.entities.IMonsterController;
-import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
@@ -39,7 +37,8 @@ public class LavaWorldController implements IGameWorldController{
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
         lavaWorldView = new LavaWorldView(lavaWorld);
-
+        createWorldObjects();
+        createNPCEntities();
         worldPhysicsController = new WorldPhysicsController(lavaWorld.getWorldPhysics(), lavaWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde());
 
