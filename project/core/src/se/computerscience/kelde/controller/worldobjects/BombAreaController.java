@@ -28,8 +28,9 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
         if (event.getObject() != bombArea){
             return;
         }
-        if (blow) {
-            // make damage
+        if (blow){
+            //make damage on kelde
+            return;
         }
     }
     public void dispose() {

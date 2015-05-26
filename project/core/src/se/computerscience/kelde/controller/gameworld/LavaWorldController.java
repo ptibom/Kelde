@@ -37,8 +37,9 @@ public class LavaWorldController implements IGameWorldController{
 
         worldPhysicsController = new WorldPhysicsController(lavaWorld.getWorldPhysics(), lavaWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde());
-        doorController = new DoorController(lavaWorld.getDoor(), lavaWorldView.getDoorView());
-        lavaRingController = new LavaRingController(lavaWorld.getLavaRing(), lavaWorldView.getLavaRingView());
+
+        doorController = new DoorController(lavaWorld.getDoor());
+        lavaRingController = new LavaRingController(lavaWorldView.getLavaRingView());
         bombController = new BombController(lavaWorld.getBomb(),lavaWorldView.getBombView());
         campFireController = new CampFireController(lavaWorld.getCampFire(),lavaWorldView.getCampFireView());
         entityGhostController = new EntityGhostController(lavaWorld.getEntityGhost(),lavaWorldView.getEntityGhostView());

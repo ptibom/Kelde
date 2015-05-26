@@ -31,7 +31,7 @@ public class LavaRingView implements IWorldObjectView {
         sprite = new Sprite(texture, WIDTH, HEIGHT);
 
         for (final LavaSplash lavaSplash : lavaRing.getLavaSplashs()){
-            lavaSplashViews.add(new LavaSplashView(lavaSplash));
+            lavaSplashViews.add(setLavaSplashViews(lavaSplash));
         }
     }
 
@@ -44,7 +44,9 @@ public class LavaRingView implements IWorldObjectView {
             lavaSplashView.draw(batch);
         }
     }
-
+    public LavaSplashView setLavaSplashViews(LavaSplash lavaSplash){
+        return new LavaSplashView(lavaSplash);
+    }
     public List<LavaSplashView> getLavaSplashViews() {
         return lavaSplashViews;
     }

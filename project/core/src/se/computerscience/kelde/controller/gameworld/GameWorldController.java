@@ -47,7 +47,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             worldObjList.add(new CampFireController(gameWorld.getCampFires().get(i),gameWorldView.getCampFireViews().get(i)));
         }
         for (int i = 0; i < gameWorld.getDoors().size() ; i++) {
-            worldObjList.add(new DoorController(gameWorld.getDoors().get(i),gameWorldView.getDoorViews().get(i)));
+            worldObjList.add(new DoorController(gameWorld.getDoors().get(i)));
         }
         for (int i = 0; i < gameWorld.getEntityBats().size() ; i++) {
             monsterList.add(new EntityBatController(gameWorld.getEntityBats().get(i),gameWorldView.getEntityBatViews().get(i)));

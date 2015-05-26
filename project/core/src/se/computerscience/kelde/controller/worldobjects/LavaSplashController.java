@@ -10,13 +10,11 @@ import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.worldobjects.LavaSplash;
-import se.computerscience.kelde.view.worldobjects.LavaSplashView;
 
 import java.util.Random;
 
 public class LavaSplashController implements IWorldObjectsController, ICollisionEventHandler {
     private final LavaSplash lavaSplash;
-    private final LavaSplashView lavaSplashView;
     private Vector2 velocityControl;
     private final float velocityX, velocityY;
     private final float startPosX,startPosY;
@@ -24,9 +22,8 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
     private boolean lavaOn;
     private static Random random = new Random();
     private static final float MAX_VELOCITY = 0.2f , MIN_VELOCITY = 0f; // the velocity range for the splash
-    public LavaSplashController(LavaSplash lavaSplash, LavaSplashView lavaSplashView) {
+    public LavaSplashController(LavaSplash lavaSplash) {
         this.lavaSplash = lavaSplash;
-        this.lavaSplashView = lavaSplashView;
         velocityControl = new Vector2(0, 0);
         CollisionEventBus.INSTANCE.register(this);
         // makes the lava-splashes go in random direction with a velocity in the interval.
