@@ -11,7 +11,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
-public class EntityPlayerKelde extends EntityPlayer {
+public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
     private static final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
 
     private boolean isSlashing;

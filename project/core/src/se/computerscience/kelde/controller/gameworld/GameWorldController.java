@@ -5,37 +5,45 @@
 package se.computerscience.kelde.controller.gameworld;
 
 import java.util.ArrayList;
+
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import se.computerscience.kelde.controller.entities.*;
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
+import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
+import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
+import se.computerscience.kelde.model.entities.IEntitie;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.items.IItem;
+import se.computerscience.kelde.model.worldobjects.IWorldObjects;
+import se.computerscience.kelde.view.entities.IEntitieView;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
+import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
+
 import java.util.List;
 
 public class GameWorldController implements IGameWorldController,IItemEventHandler {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
-
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
-    private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
-    private final List<IMonsterController> monsterList = new ArrayList<>();
+    private final List<IWorldObjectsController> worldObjectsControllers = new ArrayList<>();
+    private final List<IMonsterController> npcControllers = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
+
 
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
-
+        createWorldObjects();
+        createNPCEntities();
         worldPhysicsController = new WorldPhysicsController(gameWorld.getWorldPhysics(), gameWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
-
-        initGameWorldControllers();
-
-        worldObjList.add(entityPlayerKeldeController);
+        worldObjectsControllers.add(entityPlayerKeldeController);
 
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
         ItemEventBus.INSTANCE.register(this);
@@ -52,17 +60,71 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     public ItemEntityController itemEntityController(int i){
         return new ItemEntityController(gameWorld.getItemEntities().get(i) , gameWorldView.getItemEntityViews().get(i));
     }
+    private void createWorldObjects() {
+        final IMap map = gameWorld.getMap();
+        final MapLayer layer = map.getTiledMap().getLayers().get("GameWorld");
+        final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
+        for (final MapObject mapObject : layer.getObjects()) {
+            final IWorldObjects modelObject;
+            final IWorldObjectView viewObject;
+            final IWorldObjectsController controllerObject;
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
+            final String prop = (String) mapObject.getProperties().get("Extra");
+            try {
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
+                final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
+                if (prop != null){
+                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
+                }else {
+                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class).newInstance(b2DWorld, x, y);
+                }
+                viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
+                controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                gameWorldView.addWorldObject(viewObject);
+                worldObjectsControllers.add(controllerObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void createNPCEntities() {
+        final IMap map = gameWorld.getMap();
+        IEntitie modelObject;
+        IEntitieView viewObject;
+        IMonsterController controllerObject;
+        final MapLayer layer = map.getTiledMap().getLayers().get("Npc");
+        final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
+        for (final MapObject mapObject : layer.getObjects()) {
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
+            try {
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.entities."+mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.entities."+mapObject.getName()+"View");
+                final Class controllerCls = Class.forName("se.computerscience.kelde.controller.entities." + mapObject.getName() + "Controller");
+                modelObject = (IEntitie)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
+                viewObject = (IEntitieView)viewCls.getConstructor(modelCls).newInstance(modelObject);
+                controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                gameWorldView.addNPCEntity(viewObject);
+                npcControllers.add(controllerObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void render(float delta) {
         updateItemControllers();
         entityPlayerKeldeController.update(delta);
-        for (final IWorldObjectsController worldObj : worldObjList) {
+        for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
 
         for (final ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
-        for (final IMonsterController monster: monsterList){
+        for (final IMonsterController monster: npcControllers){
             monster.update(delta);
         }
 
@@ -111,48 +173,4 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         }
     }
 
-    private final void initGameWorldControllers(){
-        for (int i = 0; i < gameWorld.getBombs().size() ; i++) {
-            worldObjList.add(bombController(i));
-        }
-        for (int i = 0; i < gameWorld.getTreasures().size() ; i++) {
-            worldObjList.add(treasureController(i));
-        }
-        for (int i = 0; i < gameWorld.getCampFires().size() ; i++) {
-            worldObjList.add(campFireController(i));
-        }
-        for (int i = 0; i < gameWorld.getDoors().size() ; i++) {
-            worldObjList.add(doorController(i));
-        }
-        for (int i = 0; i < gameWorld.getEntityBats().size() ; i++) {
-            monsterList.add(entityBatController(i));
-        }
-        for (int i = 0; i < gameWorld.getEntityGhosts().size() ; i++) {
-            monsterList.add(entityGhostController(i));
-        }
-        for (int i = 0; i < gameWorld.getEntityEyes().size() ; i++) {
-            monsterList.add(entityEyeController(i));
-        }
-    }
-    public BombController bombController(int i){
-        return new BombController(gameWorld.getBombs().get(i),gameWorldView.getBombViews().get(i));
-    }
-    public TreasureController treasureController(int i){
-        return new TreasureController(gameWorld.getTreasures().get(i),gameWorldView.getTreasureViews().get(i));
-    }
-    public CampFireController campFireController(int i){
-        return new CampFireController(gameWorld.getCampFires().get(i),gameWorldView.getCampFireViews().get(i));
-    }
-    public DoorController doorController(int i){
-        return new DoorController(gameWorld.getDoors().get(i));
-    }
-    public EntityBatController entityBatController(int i){
-        return new EntityBatController(gameWorld.getEntityBats().get(i),gameWorldView.getEntityBatViews().get(i));
-    }
-    public EntityGhostController entityGhostController(int i){
-        return new EntityGhostController(gameWorld.getEntityGhosts().get(i),gameWorldView.getEntityGhostViews().get(i));
-    }
-    public EntityEyeController entityEyeController(int i){
-        return new EntityEyeController(gameWorld.getEntityEyes().get(i),gameWorldView.getEntityEyeViews().get(i));
-    }
 }

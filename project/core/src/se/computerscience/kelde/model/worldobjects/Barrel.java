@@ -12,7 +12,6 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 public class Barrel implements IWorldObjects {
     private final static float BODY_WIDTH = 16, BODY_HEIGHT = 16;
     private final IPhysicalBody entityBody;
-
     public Barrel(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         entityBody.setDampening(15f);

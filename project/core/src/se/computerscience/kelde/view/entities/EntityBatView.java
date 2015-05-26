@@ -13,7 +13,7 @@ import se.computerscience.kelde.model.entities.EntityBat;
  * Created by Anders on 2015-04-06.
  * @author Anders Bolin
  */
-public class EntityBatView {
+public class EntityBatView implements IEntitieView {
 
     private final EntityBat entityBat;
 

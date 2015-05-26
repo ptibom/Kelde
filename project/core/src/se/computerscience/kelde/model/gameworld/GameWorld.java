@@ -30,16 +30,6 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
 
-
-    private final List<Barrel> barrels = new ArrayList<>();
-    private final List<Bomb> bombs = new ArrayList<>();
-    private final List<Treasure> treasures = new ArrayList<>();
-    private final List<CampFire> campFires = new ArrayList<>();
-    private final List<Door> doors = new ArrayList<>();
-    private final List<EntityBat> entityBats = new ArrayList<>();
-    private final List<EntityEye> entityEyes = new ArrayList<>();
-    private final List<EntityGhost> entityGhosts = new ArrayList<>();
-
     private final IMap map;
     private final ICamera camera;
     private final List<ItemEntity> itemEntities = new ArrayList<>();
@@ -49,162 +39,37 @@ public class GameWorld {
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
         // init  the world objects and monsters from tiled map editor
-        createStaticObjects();
-        createObjects();
-        createMonster();
-        createSensorObject();
         //creating the player
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
     }
-
     public void resizeCamera(int width, int height) {
         camera.setViewPortWidth(width);
         camera.setViewPortHeight(height);
         camera.setPosition(width / (float) 2, height / (float) 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
         camera.update();
     }
-
     public void addItems(IItem item) {
         itemEntities.add(new ItemEntity(item.getItemPositionX(), item.getItemPositionY(), worldPhysics.getIb2DWorld(), item));
     }
-
     public ICamera getCamera() {
         return camera;
     }
-
     public void dispose() {
         map.dispose();
     }
-
     public WorldPhysics getWorldPhysics() {
         return worldPhysics;
     }
-
     public IMap getMap() {
         return map;
     }
-
     public EntityPlayerKelde getEntityPlayerKelde() {
         return entityPlayerKelde;
     }
-
-
     public List<ItemEntity> getItemEntities() {
         return itemEntities;
     }
-
     public void removeItem(ItemEntity item) {
         itemEntities.remove(item);
-    }
-    private void createStaticObjects(){
-        final MapLayer layer;
-        layer = map.getTiledMap().getLayers().get("ObjectsStatic");
-        for (final MapObject mapObject : layer.getObjects()) {
-            final float x = (float) mapObject.getProperties().get("x");
-            final float y = (float) mapObject.getProperties().get("y");
-            switch (mapObject.getName()) {
-                case "Treasure1":
-                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet1()));
-                    break;
-                case "Treasure2":
-                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet2()));
-                    break;
-                case "Treasure3":
-                    treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet3()));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    private void createSensorObject(){
-        final MapLayer layer = map.getTiledMap().getLayers().get("SensorObject");
-        for (final MapObject mapObject : layer.getObjects()) {
-            final float x = (float) mapObject.getProperties().get("x");
-            final float y = (float) mapObject.getProperties().get("y");
-            switch (mapObject.getName()) {
-                case "DoorLava":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Lava"));
-                    break;
-                case "DoorStartGame":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Start"));
-                    break;
-                case "Campfire":
-                    campFires.add(new CampFire(worldPhysics.getIb2DWorld(), x, y));
-                    break;
-                default:
-                     break;
-            }
-        }
-    }
-    private void createObjects() {
-        final MapLayer layer = map.getTiledMap().getLayers().get("Objects");
-        for (final MapObject mapObject : layer.getObjects()) {
-            final float x = (float) mapObject.getProperties().get("x");
-            final float y = (float) mapObject.getProperties().get("y");
-            mapObject.getName();
-            switch (mapObject.getName()) {
-                case "Barrel":
-                    barrels.add(new Barrel(worldPhysics.getIb2DWorld(), x, y));
-                    break;
-                case "Bomb":
-                    bombs.add(new Bomb(worldPhysics.getIb2DWorld(), x, y));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    private void createMonster(){
-        final MapLayer layer = map.getTiledMap().getLayers().get("Monsters");
-        for (final MapObject mapObject : layer.getObjects()) {
-            final float x = (float) mapObject.getProperties().get("x");
-            final float y = (float) mapObject.getProperties().get("y");
-            switch (mapObject.getName()) {
-                case "Bat":
-                    entityBats.add(new EntityBat(x, y, worldPhysics.getIb2DWorld()));
-                    break;
-                case "Eye":
-                    entityEyes.add(new EntityEye(x, y, worldPhysics.getIb2DWorld()));
-                    break;
-                case "Ghost":
-                    entityGhosts.add(new EntityGhost(x, y, worldPhysics.getIb2DWorld()));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    public List<CampFire> getCampFires() {
-        return campFires;
-    }
-
-    public List<Barrel> getBarrels() {
-        return barrels;
-    }
-
-    public List<Bomb> getBombs() {
-        return bombs;
-    }
-
-    public List<Treasure> getTreasures() {
-        return treasures;
-    }
-
-    public List<Door> getDoors() {
-        return doors;
-    }
-
-    public List<EntityBat> getEntityBats() {
-        return entityBats;
-    }
-
-    public List<EntityEye> getEntityEyes() {
-        return entityEyes;
-    }
-
-    public List<EntityGhost> getEntityGhosts() {
-        return entityGhosts;
     }
 }

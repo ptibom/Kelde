@@ -11,10 +11,7 @@ import se.computerscience.kelde.model.entities.EntityEye;
 import se.computerscience.kelde.model.entities.EntityGhost;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.model.worldobjects.*;
-import se.computerscience.kelde.view.entities.EntityBatView;
-import se.computerscience.kelde.view.entities.EntityEyeView;
-import se.computerscience.kelde.view.entities.EntityGhostView;
-import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
+import se.computerscience.kelde.view.entities.*;
 import se.computerscience.kelde.view.items.ItemEntityView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.*;
@@ -29,27 +26,17 @@ public class GameWorldView{
 
     private final WorldPhysicsView worldPhysicsView;
     private final EntityPlayerKeldeView entityPlayerKeldeView;
-
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
-    private final List<BombView> bombViews = new ArrayList<>();
-    private final List<BarrelView> barrelViews = new ArrayList<>();
-    private final List<TreasureView> treasureViews = new ArrayList<>();
-    private final List<CampFireView> campFireViews = new ArrayList<>();
-    private final List<DoorView> doorViews = new ArrayList<>();
-    private final List<EntityBatView> entityBatViews = new ArrayList<>();
-    private final List<EntityGhostView> entityGhostViews = new ArrayList<>();
-    private final List<EntityEyeView> entityEyeViews = new ArrayList<>();
+    private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
+    private final List<IEntitieView> entitieViews = new ArrayList<>();
+
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
-
         batch = new SpriteBatch();
-
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
-
-        initGameWorldView();
     }
 
     public void render(float delta) {
@@ -63,30 +50,11 @@ public class GameWorldView{
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
-
-        for (final BarrelView barrelView: barrelViews){
-            barrelView.draw(batch);
+        for (IWorldObjectView worldObjectView: worldObjectViews){
+            worldObjectView.draw(batch);
         }
-        for (final TreasureView treasureView: treasureViews){
-            treasureView.draw(batch);
-        }
-        for (final BombView bombView: bombViews){
-            bombView.draw(batch);
-        }
-        for (final CampFireView campFireView: campFireViews){
-            campFireView.draw(batch);
-        }
-        for (final DoorView doorView: doorViews){
-            doorView.draw(batch);
-        }
-        for (final EntityBatView entityBatView: entityBatViews){
-            entityBatView.draw(batch);
-        }
-        for (final EntityEyeView entityBatViews: entityEyeViews){
-            entityBatViews.draw(batch);
-        }
-        for (final EntityGhostView entityGhostView: entityGhostViews){
-            entityGhostView.draw(batch);
+        for (IEntitieView entitieView: entitieViews){
+            entitieView.draw(batch);
         }
         batch.end();
 
@@ -96,34 +64,6 @@ public class GameWorldView{
     public void addEntityViews(ItemEntity itemEntity){
         itemEntityViews.add(new ItemEntityView(itemEntity));
     }
-
-    private void initGameWorldView(){
-        for (final Barrel barrel: gameWorld.getBarrels()){
-            barrelViews.add(new BarrelView(barrel));
-        }
-        for (final Bomb bomb: gameWorld.getBombs()){
-            bombViews.add(new BombView(bomb));
-        }
-        for (final Treasure treasure: gameWorld.getTreasures()){
-            treasureViews.add(new TreasureView(treasure));
-        }
-        for (final CampFire campFire: gameWorld.getCampFires()){
-            campFireViews.add(new CampFireView(campFire));
-        }
-        for (final Door door: gameWorld.getDoors()){
-            doorViews.add(new DoorView(door));
-        }
-        for (final EntityBat entityBat: gameWorld.getEntityBats()){
-            entityBatViews.add(new EntityBatView(entityBat));
-        }
-        for (final EntityEye entityEye: gameWorld.getEntityEyes()){
-            entityEyeViews.add(new EntityEyeView(entityEye));
-        }
-        for (final EntityGhost entityGhost: gameWorld.getEntityGhosts()){
-            entityGhostViews.add(new EntityGhostView(entityGhost));
-        }
-    }
-
     public void updateProjectionMatrix() {
         batch.setProjectionMatrix(gameWorld.getCamera().getOrthographicCamera().combined);
     }
@@ -139,39 +79,16 @@ public class GameWorldView{
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
     }
-
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
     public void removeItemView(ItemEntityView itemEntityView){
         itemEntityViews.remove(itemEntityView);
     }
-
-    public List<BombView> getBombViews() {
-        return bombViews;
+    public void addNPCEntity(IEntitieView entitieView){
+        entitieViews.add(entitieView);
     }
-
-    public List<TreasureView> getTreasureViews() {
-        return treasureViews;
-    }
-
-    public List<CampFireView> getCampFireViews() {
-        return campFireViews;
-    }
-
-    public List<DoorView> getDoorViews() {
-        return doorViews;
-    }
-
-    public List<EntityBatView> getEntityBatViews() {
-        return entityBatViews;
-    }
-
-    public List<EntityGhostView> getEntityGhostViews() {
-        return entityGhostViews;
-    }
-
-    public List<EntityEyeView> getEntityEyeViews() {
-        return entityEyeViews;
+    public void addWorldObject(IWorldObjectView worldObjectView){
+        worldObjectViews.add(worldObjectView);
     }
 }

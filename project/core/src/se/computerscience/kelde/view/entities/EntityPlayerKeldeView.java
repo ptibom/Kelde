@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeView {
+public class EntityPlayerKeldeView{
 
 
     private final EntityPlayerKelde entityPlayerKelde;

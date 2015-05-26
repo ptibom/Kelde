@@ -8,11 +8,12 @@ package se.computerscience.kelde.controller.worldobjects;
 import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.model.worldobjects.Door;
+import se.computerscience.kelde.view.worldobjects.DoorView;
 
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
     private final Door door;
     private ScreenEvent.ScreenTag screenTag;
-    public DoorController(Door door) {
+    public DoorController(Door door,DoorView doorView) {
         this.door = door;
         CollisionEventBus.INSTANCE.register(this);
         if (door.getWorld().equals("Lava")){
