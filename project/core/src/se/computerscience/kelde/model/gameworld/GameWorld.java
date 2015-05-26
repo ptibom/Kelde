@@ -49,13 +49,11 @@ public class GameWorld {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-
-        // test
+        // init  the world objects and monsters from tiled map editor
         createStaticObjects();
         createObjects();
-        creatMonster();
-        // test
-        // objects in the gameworld, init each obj with position
+        createMonster();
+        //creating the player
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
     }
 
@@ -101,9 +99,8 @@ public class GameWorld {
     public void createStaticObjects(){
         MapLayer layer = map.getTiledMap().getLayers().get("ObjectsStatic");
         for (MapObject mapObject : layer.getObjects()) {
-            float x = (float) mapObject.getProperties().get("x");
-            float y = (float) mapObject.getProperties().get("y");
-            mapObject.getName();
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
             switch (mapObject.getName()) {
                 case "DoorLava":
                     doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Lava"));
@@ -125,7 +122,6 @@ public class GameWorld {
                     break;
             }
         }
-
     }
     public void createObjects() {
         final MapLayer layer = map.getTiledMap().getLayers().get("Objects");
@@ -143,7 +139,7 @@ public class GameWorld {
             }
         }
     }
-    public void creatMonster(){
+    public void createMonster(){
         final MapLayer layer = map.getTiledMap().getLayers().get("Monsters");
         for (MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
