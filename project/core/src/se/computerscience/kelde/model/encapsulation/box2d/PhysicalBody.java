@@ -26,7 +26,7 @@ public class PhysicalBody implements IPhysicalBody {
 
         fdef = new FixtureDef();
         setIsSensor(); // call method in subclass
-        PolygonShape shape = new PolygonShape();
+        final PolygonShape shape = new PolygonShape();
         shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(userdata);

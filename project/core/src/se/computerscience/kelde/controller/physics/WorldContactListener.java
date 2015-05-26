@@ -16,8 +16,6 @@ import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
-
-import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 

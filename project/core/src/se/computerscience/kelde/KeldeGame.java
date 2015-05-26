@@ -30,6 +30,8 @@ public class KeldeGame extends Game implements IScreenEventHandler {
                 case LAVA_WORLD:
                     setScreen(new LavaScreen());
                     break;
+                default:
+                    break;
             }
         }
 	}

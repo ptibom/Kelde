@@ -39,9 +39,9 @@ public class GameWorld{
     private final Door door;
     private final Bomb bomb;
 
-    private IMap map;
-    private ICamera camera;
-    private List<ItemEntity> itemEntities = new ArrayList<>();
+    private final IMap map;
+    private final ICamera camera;
+    private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
         map = new Map(MAP_LOCATION);

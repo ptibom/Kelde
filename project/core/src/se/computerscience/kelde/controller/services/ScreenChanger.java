@@ -10,7 +10,7 @@ import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.controller.events.ScreenEventBus;
 
 public class ScreenChanger {
-    private static boolean doChange = false;
+    private static boolean doChange;
     private static ScreenEvent.ScreenTag nextScreen;
 
     public static void setNextScreen(ScreenEvent.ScreenTag nextScreen) {
