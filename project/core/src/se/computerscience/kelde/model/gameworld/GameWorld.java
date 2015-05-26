@@ -8,7 +8,6 @@ package se.computerscience.kelde.model.gameworld;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
@@ -31,9 +30,9 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
 
-    private IMap map;
-    private ICamera camera;
-    private List<ItemEntity> itemEntities = new ArrayList<>();
+    private final IMap map;
+    private final ICamera camera;
+    private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     private final List<Barrel> barrels = new ArrayList<>();
     private final List<Bomb> bombs = new ArrayList<>();
@@ -97,9 +96,10 @@ public class GameWorld {
     public void removeItem(ItemEntity item) {
         itemEntities.remove(item);
     }
-    public void createStaticObjects(){
-        MapLayer layer = map.getTiledMap().getLayers().get("ObjectsStatic");
-        for (MapObject mapObject : layer.getObjects()) {
+    private void createStaticObjects(){
+        final MapLayer layer;
+        layer = map.getTiledMap().getLayers().get("ObjectsStatic");
+        for (final MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             switch (mapObject.getName()) {
@@ -112,12 +112,14 @@ public class GameWorld {
                 case "Treasure3":
                     treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet3()));
                     break;
+                default:
+                    break;
             }
         }
     }
-    public void createSensorObject(){
-        MapLayer layer = map.getTiledMap().getLayers().get("SensorObject");
-        for (MapObject mapObject : layer.getObjects()) {
+    private void createSensorObject(){
+        final MapLayer layer = map.getTiledMap().getLayers().get("SensorObject");
+        for (final MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             switch (mapObject.getName()) {
@@ -130,12 +132,14 @@ public class GameWorld {
                 case "Campfire":
                     campFires.add(new CampFire(worldPhysics.getIb2DWorld(), x, y));
                     break;
+                default:
+                     break;
             }
         }
     }
-    public void createObjects() {
+    private void createObjects() {
         final MapLayer layer = map.getTiledMap().getLayers().get("Objects");
-        for (MapObject mapObject : layer.getObjects()) {
+        for (final MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             mapObject.getName();
@@ -146,12 +150,14 @@ public class GameWorld {
                 case "Bomb":
                     bombs.add(new Bomb(worldPhysics.getIb2DWorld(), x, y));
                     break;
+                default:
+                    break;
             }
         }
     }
-    public void createMonster(){
+    private void createMonster(){
         final MapLayer layer = map.getTiledMap().getLayers().get("Monsters");
-        for (MapObject mapObject : layer.getObjects()) {
+        for (final MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             switch (mapObject.getName()) {
@@ -163,6 +169,8 @@ public class GameWorld {
                     break;
                 case "Ghost":
                     entityGhosts.add(new EntityGhost(x, y, worldPhysics.getIb2DWorld()));
+                    break;
+                default:
                     break;
             }
         }

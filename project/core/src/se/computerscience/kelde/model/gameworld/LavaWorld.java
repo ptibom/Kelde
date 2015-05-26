@@ -5,7 +5,6 @@
  */
 package se.computerscience.kelde.model.gameworld;
 
-import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
 import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
@@ -27,8 +26,8 @@ public class LavaWorld {
     private final CampFire campFire;
     private final EntityGhost entityGhost;
 
-    private IMap map;
-    private ICamera camera;
+    private final IMap map;
+    private final ICamera camera;
     public LavaWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();

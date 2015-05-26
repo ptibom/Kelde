@@ -49,30 +49,7 @@ public class GameWorldView{
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
 
-        for (Barrel barrel: gameWorld.getBarrels()){
-            barrelViews.add(new BarrelView(barrel));
-        }
-        for (Bomb bomb: gameWorld.getBombs()){
-            bombViews.add(new BombView(bomb));
-        }
-        for (Treasure treasure: gameWorld.getTreasures()){
-            treasureViews.add(new TreasureView(treasure));
-        }
-        for (CampFire campFire: gameWorld.getCampFires()){
-            campFireViews.add(new CampFireView(campFire));
-        }
-        for (Door door: gameWorld.getDoors()){
-            doorViews.add(new DoorView(door));
-        }
-        for (EntityBat entityBat: gameWorld.getEntityBats()){
-            entityBatViews.add(new EntityBatView(entityBat));
-        }
-        for (EntityEye entityEye: gameWorld.getEntityEyes()){
-            entityEyeViews.add(new EntityEyeView(entityEye));
-        }
-        for (EntityGhost entityGhost: gameWorld.getEntityGhosts()){
-            entityGhostViews.add(new EntityGhostView(entityGhost));
-        }
+        initGameWorldView();
     }
 
     public void render(float delta) {
@@ -87,28 +64,28 @@ public class GameWorldView{
             itemView.draw(batch);
         }
 
-        for (BarrelView barrelView: barrelViews){
+        for (final BarrelView barrelView: barrelViews){
             barrelView.draw(batch);
         }
-        for (TreasureView treasureView: treasureViews){
+        for (final TreasureView treasureView: treasureViews){
             treasureView.draw(batch);
         }
-        for (BombView bombView: bombViews){
+        for (final BombView bombView: bombViews){
             bombView.draw(batch);
         }
-        for (CampFireView campFireView: campFireViews){
+        for (final CampFireView campFireView: campFireViews){
             campFireView.draw(batch);
         }
-        for (DoorView doorView: doorViews){
+        for (final DoorView doorView: doorViews){
             doorView.draw(batch);
         }
-        for (EntityBatView entityBatView: entityBatViews){
+        for (final EntityBatView entityBatView: entityBatViews){
             entityBatView.draw(batch);
         }
-        for (EntityEyeView entityBatViews: entityEyeViews){
+        for (final EntityEyeView entityBatViews: entityEyeViews){
             entityBatViews.draw(batch);
         }
-        for (EntityGhostView entityGhostView: entityGhostViews){
+        for (final EntityGhostView entityGhostView: entityGhostViews){
             entityGhostView.draw(batch);
         }
         batch.end();
@@ -118,6 +95,33 @@ public class GameWorldView{
     }
     public void addEntityViews(ItemEntity itemEntity){
         itemEntityViews.add(new ItemEntityView(itemEntity));
+    }
+
+    private void initGameWorldView(){
+        for (final Barrel barrel: gameWorld.getBarrels()){
+            barrelViews.add(new BarrelView(barrel));
+        }
+        for (final Bomb bomb: gameWorld.getBombs()){
+            bombViews.add(new BombView(bomb));
+        }
+        for (final Treasure treasure: gameWorld.getTreasures()){
+            treasureViews.add(new TreasureView(treasure));
+        }
+        for (final CampFire campFire: gameWorld.getCampFires()){
+            campFireViews.add(new CampFireView(campFire));
+        }
+        for (final Door door: gameWorld.getDoors()){
+            doorViews.add(new DoorView(door));
+        }
+        for (final EntityBat entityBat: gameWorld.getEntityBats()){
+            entityBatViews.add(new EntityBatView(entityBat));
+        }
+        for (final EntityEye entityEye: gameWorld.getEntityEyes()){
+            entityEyeViews.add(new EntityEyeView(entityEye));
+        }
+        for (final EntityGhost entityGhost: gameWorld.getEntityGhosts()){
+            entityGhostViews.add(new EntityGhostView(entityGhost));
+        }
     }
 
     public void updateProjectionMatrix() {
