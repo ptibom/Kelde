@@ -8,7 +8,6 @@ import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
 import static org.junit.Assert.*;
 
 public class BarrelTest {
-
     Barrel barrel;
     int BODY_WIDTH = 16, BODY_HEIGHT = 16;
     @Before
