@@ -49,10 +49,10 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         entityPlayerKeldeController = new EntityPlayerKeldeController(gameWorld.getEntityPlayerKelde());
 
 
-        barrelController = new BarrelController(gameWorld.getBarrel(), gameWorldView.getBarrelView());
+        barrelController = new BarrelController(gameWorld.getBarrel());
         treasureController = new TreasureController(gameWorld.getTreasure(), gameWorldView.getTreasureView());
         treasureController2 = new TreasureController(gameWorld.getTreasure2(), gameWorldView.getTreasureView2());
-        doorController = new DoorController(gameWorld.getDoor(), gameWorldView.getDoorView(), ScreenEvent.ScreenTag.LAVA_WORLD);
+        doorController = new DoorController(gameWorld.getDoor(), ScreenEvent.ScreenTag.LAVA_WORLD);
         bombController = new BombController(gameWorld.getBomb(),gameWorldView.getBombView());
 
 
