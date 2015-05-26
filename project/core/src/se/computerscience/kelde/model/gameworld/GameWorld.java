@@ -53,6 +53,7 @@ public class GameWorld {
         createStaticObjects();
         createObjects();
         createMonster();
+        createSensorObject();
         //creating the player
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
     }
@@ -102,12 +103,6 @@ public class GameWorld {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             switch (mapObject.getName()) {
-                case "DoorLava":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Lava"));
-                    break;
-                case "DoorStartGame":
-                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Start"));
-                    break;
                 case "Treasure1":
                     treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet1()));
                     break;
@@ -116,6 +111,21 @@ public class GameWorld {
                     break;
                 case "Treasure3":
                     treasures.add(new Treasure(worldPhysics.getIb2DWorld(), x, y, ItemSets.getSet3()));
+                    break;
+            }
+        }
+    }
+    public void createSensorObject(){
+        MapLayer layer = map.getTiledMap().getLayers().get("SensorObject");
+        for (MapObject mapObject : layer.getObjects()) {
+            final float x = (float) mapObject.getProperties().get("x");
+            final float y = (float) mapObject.getProperties().get("y");
+            switch (mapObject.getName()) {
+                case "DoorLava":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Lava"));
+                    break;
+                case "DoorStartGame":
+                    doors.add(new Door(worldPhysics.getIb2DWorld(), x, y, "Start"));
                     break;
                 case "Campfire":
                     campFires.add(new CampFire(worldPhysics.getIb2DWorld(), x, y));
