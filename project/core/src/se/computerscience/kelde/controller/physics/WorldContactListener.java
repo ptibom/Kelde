@@ -6,6 +6,10 @@
 
 package se.computerscience.kelde.controller.physics;
 
+import se.computerscience.kelde.controller.entities.EntityBatController;
+import se.computerscience.kelde.controller.entities.EntityEyeController;
+import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -13,9 +17,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.entities.EntityArrowController;
 import se.computerscience.kelde.model.encapsulation.IMonster;
-import se.computerscience.kelde.controller.events.CollisionEvent;
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 
 import se.computerscience.kelde.model.entities.EntityArrow;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
@@ -79,10 +80,17 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
                 eventCache.add(new CollisionEvent(state, objectA));
             }
         }
-        if (objectA instanceof EntityArrow && objectB instanceof IMonster) {
+        /*if (objectA instanceof EntityArrow && objectB instanceof IMonster) {
             System.out.println("objectA is instanceof EntityArrowasdasdasdasd");
-        } else if (objectB instanceof EntityArrow && objectA instanceof IMonster) {
-            System.out.println("hit zzxfgasdasd");
+        } else if (objectB instanceof EntityArrow && objectA instanceof EntityBatController) {
+            MonsterEventBus.INSTANCE.publish(new MonsterEvent(objectA));
+        } else if (objectB instanceof EntityArrow && objectA instanceof EntityEyeController) {
+            MonsterEventBus.INSTANCE.publish(new MonsterEvent(objectA));
+        }*/
+        if (objectA instanceof EntityArrow && objectB instanceof IMonster){
+            MonsterEventBus.INSTANCE.publish(new MonsterEvent(objectA));
+        }else if (objectB instanceof EntityArrow && objectA instanceof IMonster){
+            MonsterEventBus.INSTANCE.publish(new MonsterEvent(objectA));
         }
     }
 

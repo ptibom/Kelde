@@ -58,11 +58,11 @@ public class GameWorld{
         door = new Door(worldPhysics.getIb2DWorld(),20,20);
         entityBat = new EntityBat(300f, 300f, worldPhysics.getIb2DWorld());
         entityEye = new EntityEye(200f, 200f, worldPhysics.getIb2DWorld());
-        bomb = new Bomb(worldPhysics.getIb2DWorld(),100,50);
         entityGhost = new EntityGhost(300f,400f, worldPhysics.getIb2DWorld());
-        entityArrow1 = new EntityArrow(300f,100f, worldPhysics.getIb2DWorld());
-        entityArrow2 = new EntityArrow(300f,200f, worldPhysics.getIb2DWorld());
-        entityArrow3 = new EntityArrow(300f,150f, worldPhysics.getIb2DWorld());
+        bomb = new Bomb(worldPhysics.getIb2DWorld(),100,50);
+        entityArrow1 = new EntityArrow(-100f,-100f, worldPhysics.getIb2DWorld());
+        entityArrow2 = new EntityArrow(-100f,-100f, worldPhysics.getIb2DWorld());
+        entityArrow3 = new EntityArrow(-100f,-100f, worldPhysics.getIb2DWorld());
     }
 
     public void resizeCamera (int width, int height) {

@@ -1,6 +1,8 @@
 package se.computerscience.kelde.model.entities;
 
 
+import se.computerscience.kelde.controller.events.IMonsterEventHandler;
+import se.computerscience.kelde.controller.events.MonsterEvent;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -11,7 +13,7 @@ import se.computerscience.kelde.model.worldobjects.IWorldObjects;
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
  */
-public class EntityArrow implements IWorldObjects{
+public class EntityArrow implements IMonsterEventHandler{
 
 
     //Variables
@@ -79,5 +81,10 @@ public class EntityArrow implements IWorldObjects{
             offsetX += 16;
         }
         entityBody.setPosition(offsetX,offsetY);
+    }
+
+    @Override
+    public void onMonsterEvent(MonsterEvent event) {
+
     }
 }

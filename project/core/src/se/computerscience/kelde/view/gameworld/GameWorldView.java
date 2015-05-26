@@ -6,6 +6,7 @@ package se.computerscience.kelde.view.gameworld;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import se.computerscience.kelde.model.encapsulation.IMonster;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 import se.computerscience.kelde.view.entities.*;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
@@ -42,6 +43,7 @@ public class GameWorldView{
     private final BombView bombView;
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
+
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
@@ -61,6 +63,7 @@ public class GameWorldView{
         bombView = new BombView(gameWorld.getBomb());
 
         entityGhostView = new EntityGhostView(gameWorld.getEntityGhost());
+
         
         entityArrowView1 = new EntityArrowView(gameWorld.getEntityArrow1());
         entityArrowView2 = new EntityArrowView(gameWorld.getEntityArrow2());
@@ -84,6 +87,9 @@ public class GameWorldView{
         entityBatView.draw(batch);
         entityEyeView.draw(batch);
         bombView.draw(batch);
+
+
+
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
@@ -154,6 +160,7 @@ public class GameWorldView{
     public EntityArrowView getEntityArrowView3() {
         return entityArrowView3;
     }
+
     public void removeItemView(ItemEntityView itemEntityView){
         itemEntityViews.remove(itemEntityView);
 

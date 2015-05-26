@@ -43,6 +43,10 @@ public class EntityBat implements IMonster {
         return LOOT;
     }
 
+    public boolean getAlive() {
+        return ALIVE;
+    }
+
     public void setTakenDamage(int takenDamage) {
         health -= takenDamage;
         if(health <= 0) {
@@ -87,5 +91,9 @@ public class EntityBat implements IMonster {
             direction = Heading.EAST;
         }
         return direction;
+    }
+
+    public void destroyBody() {
+        entityBody.destroy();
     }
 }

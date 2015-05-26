@@ -68,9 +68,4 @@ public class EntityBatView {
     public void resize(OrthographicCamera camera) {
         batch.setProjectionMatrix(camera.combined);
     }
-
-    public void showHit() {
-        System.out.println("showing a hit!");
-
-    }
 }

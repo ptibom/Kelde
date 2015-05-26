@@ -3,18 +3,17 @@ package se.computerscience.kelde.controller.entities;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-import se.computerscience.kelde.controller.events.CollisionEvent;
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.ICollisionEventHandler;
+import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.entities.EntityArrow;
+import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.view.entities.EntityArrowView;
 
 /**
  * Created by Anders on 2015-05-16.
  * @author Anders
  */
-public class EntityArrowController implements ICollisionEventHandler{
+public class EntityArrowController implements IMonsterEventHandler{
 
     //Variables
     private final EntityArrow entityArrow;
@@ -28,7 +27,7 @@ public class EntityArrowController implements ICollisionEventHandler{
         this.entityArrow = entityArrow;
         this.entityArrowView = entityArrowView;
         heading = Heading.NORTH;
-        CollisionEventBus.INSTANCE.register(this);
+        MonsterEventBus.INSTANCE.register(this);
     }
 
     public void update(float delta, float x, float y, Heading heading) {
@@ -49,7 +48,9 @@ public class EntityArrowController implements ICollisionEventHandler{
     }
 
     @Override
-    public void onCollisionEvent(CollisionEvent event) {
-      
+    public void onMonsterEvent(MonsterEvent event) {
+        if(event.getObject() instanceof EntityBat) {
+            System.out.println("arrow hits bat: entityarrowcontroller");
+        }
     }
 }

@@ -7,18 +7,15 @@ package se.computerscience.kelde.controller.events;
  */
 public class MonsterEvent {
 
-    public enum MonsterTag {
-        START_WORLD, LAVA_WORLD, START_MENU
+
+    private final Object object;
+
+    public MonsterEvent(Object object) {
+        this.object = object;
     }
 
-    private final MonsterTag tag;
-
-    public MonsterEvent(MonsterTag tag) {
-        this.tag = tag;
-    }
-
-    public MonsterTag getTag() {
-        return tag;
+    public Object getObject() {
+        return object;
     }
 
 }
