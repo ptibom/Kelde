@@ -22,7 +22,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
     private final WorldPhysicsController worldPhysicsController;
     private final EntityPlayerKeldeController entityPlayerKeldeController;
-
     private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final List<IMonsterController> monsterList = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();

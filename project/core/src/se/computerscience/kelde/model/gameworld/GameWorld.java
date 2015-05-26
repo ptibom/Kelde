@@ -30,9 +30,6 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
 
-    private final IMap map;
-    private final ICamera camera;
-    private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     private final List<Barrel> barrels = new ArrayList<>();
     private final List<Bomb> bombs = new ArrayList<>();
@@ -43,6 +40,9 @@ public class GameWorld {
     private final List<EntityEye> entityEyes = new ArrayList<>();
     private final List<EntityGhost> entityGhosts = new ArrayList<>();
 
+    private final IMap map;
+    private final ICamera camera;
+    private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
         map = new Map(MAP_LOCATION);

@@ -16,7 +16,7 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
     private boolean isSlashing, isShooting;
-    private static final float WALKSPEED = 1.4f;
+    private final static float WALKSPEED = 1.4f;
 
 
     public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde) {
