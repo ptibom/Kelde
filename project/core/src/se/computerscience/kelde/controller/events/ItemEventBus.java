@@ -17,7 +17,7 @@ public enum ItemEventBus {
     }
 
     public void publish(ItemEvent event) {
-        for (IItemEventHandler handler : handlers) {
+        for (final IItemEventHandler handler : handlers) {
             handler.onItemEvent(event);
         }
     }

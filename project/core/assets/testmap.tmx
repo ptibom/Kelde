@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="30">
+ <tileset firstgid="1" name="lava" tilewidth="32" tileheight="32">
+  <image source="lava.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="19" name="dirt" tilewidth="32" tileheight="32">
+  <image source="dirt.png" width="96" height="192"/>
+  <terraintypes>
+   <terrain name="dirt" tile="-1"/>
+  </terraintypes>
+  <tile id="1" terrain="0,0,0,"/>
+  <tile id="2" terrain="0,0,,0"/>
+  <tile id="4" terrain="0,,0,0"/>
+  <tile id="5" terrain=",0,0,0"/>
+  <tile id="6" terrain=",0,0,0"/>
+  <tile id="7" terrain="0,0,0,0"/>
+  <tile id="8" terrain="0,,0,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,0,0,0"/>
+  <tile id="12" terrain="0,0,,0"/>
+  <tile id="13" terrain="0,0,0,0"/>
+  <tile id="14" terrain="0,0,0,"/>
+ </tileset>
+ <tileset firstgid="37" name="water" tilewidth="32" tileheight="32">
+  <image source="water.png" width="96" height="192"/>
+ </tileset>
+ <layer name="dirt" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyTZWBgkB3Fo3gUj+JRPIpJxAADMi1R
+  </data>
+ </layer>
+ <layer name="lava" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2Bg4KAS5gRiLiDmphLmGTVv1LxR80bNGzWPaubxAjEflTA/EAMAd3wRMQ==
+  </data>
+ </layer>
+ <layer name="walk area" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztk+EKgCAMhH2IQitb+f4v2fwxkHWo0581OBDZfRziOffd2Vi7UUeFE1inUR5wI2thrQM88ZHi+Yl8QfEu1j2RL3sTeMc4wCPA+Xnv/6DPozwq7gnsIF6tHy2etR8tnrUfPfks/ejJl72oH8ItlRRP7yBOa4TR430A2VYcjg==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1" visible="0">
+  <object id="16" type="object" x="304" y="624">
+   <polyline points="0,0 64,0 72,-24 72,-208 80,-216 88,-208 96,-32 112,-24 216,-24 240,-56 288,-64 296,-72 296,-152 280,-160 240,-168 232,-176 232,-368 240,-376 288,-384 296,-424 296,-472 280,-480 264,-488 240,-488 224,-512 192,-520 -176,-520 -192,-512 -200,-496 -208,-488 -248,-488 -256,-472 -264,-472 -264,-408 -256,-384 -232,-376 -200,-376 -200,-360 -200,-176 -216,-160 -248,-160 -256,-152 -256,-72 -248,-64 -208,-64 -200,-56 -192,-40 -176,-32 -48,-32 -32,-48 -32,-208 -16,-216 -8,-208 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="WorldObjects">
+  <object id="29" name="Barrel" type="Barrel" x="152.328" y="439.58" width="32" height="40" rotation="0.48814"/>
+ </objectgroup>
+</map>

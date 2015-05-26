@@ -12,7 +12,7 @@ import se.computerscience.kelde.model.worldobjects.BombArea;
 
 public class BombAreaController implements IWorldObjectsController, ICollisionEventHandler {
     private final BombArea bombArea;
-    private boolean blow = false;
+    private boolean blow;;
 
     public BombAreaController(BombArea bombArea) {
         this.bombArea = bombArea;
@@ -21,6 +21,7 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
 
     @Override
     public void update(float delta) {
+        // not used
     }
     @Override
     public void onCollisionEvent(CollisionEvent event) {
@@ -28,7 +29,7 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
             return;
         }
         if (blow) {
-            System.out.println("hit");
+            // make damage
         }
     }
     public void dispose() {

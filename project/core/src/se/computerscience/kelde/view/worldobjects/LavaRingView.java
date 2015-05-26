@@ -9,6 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.worldobjects.LavaRing;
+import se.computerscience.kelde.model.worldobjects.LavaSplash;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LavaRingView implements IWorldObjectView {
 
@@ -17,7 +21,7 @@ public class LavaRingView implements IWorldObjectView {
     private final Sprite sprite;
     private final static int WIDTH = 81, HEIGHT = 79;
     private final static String SPRITE_LOCATION = "lava-obj.png";
-    private final LavaSplashView[] lavaSplashView;
+    private final List<LavaSplashView> lavaSplashViews = new ArrayList<>();
 
     //Constructor
     public LavaRingView(LavaRing lavaRing) {
@@ -25,10 +29,9 @@ public class LavaRingView implements IWorldObjectView {
         this.lavaRing = lavaRing;
         texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
-        lavaSplashView = new LavaSplashView[lavaRing.getLavaSplash().length];
 
-        for (int i = 0; i < lavaRing.getLavaSplash().length ; i++) {
-            lavaSplashView[i] = new LavaSplashView(lavaRing.getLavaSplash()[i]);
+        for (final LavaSplash lavaSplash : lavaRing.getLavaSplashs()){
+            lavaSplashViews.add(new LavaSplashView(lavaSplash));
         }
     }
 
@@ -37,11 +40,12 @@ public class LavaRingView implements IWorldObjectView {
         sprite.setPosition(lavaRing.getPositionX(), lavaRing.getPositionY());
         sprite.draw(batch);
 
-        for (int i = 0; i < lavaRing.getLavaSplash().length; i++) {
-            lavaSplashView[i].draw(batch);
+        for (final LavaSplashView lavaSplashView: lavaSplashViews){
+            lavaSplashView.draw(batch);
         }
     }
-    public LavaSplashView[] getLavaSplashView() {
-        return lavaSplashView;
+
+    public List<LavaSplashView> getLavaSplashViews() {
+        return lavaSplashViews;
     }
 }

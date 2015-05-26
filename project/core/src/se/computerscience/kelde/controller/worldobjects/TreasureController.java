@@ -30,11 +30,9 @@ public class TreasureController implements IWorldObjectsController, ICollisionEv
         }
         // Contact start
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
-            for (IItem item : treasure.getItemslist()){
-                if (item instanceof IItem){
-                    ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM, item));
-                }
-            }
+            treasure.getItemslist().stream().filter(item -> item instanceof IItem).forEach(item -> {
+                ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.ITEM, item));
+            });
             treasure.setIsOpen(true);
         }
         // Contact end

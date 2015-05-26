@@ -8,16 +8,16 @@ package se.computerscience.kelde.model.encapsulation.libgdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Region implements IRegion {
-    TextureAtlas.AtlasRegion region;
+    private TextureAtlas.AtlasRegion atlasRegion;
     public Region(IAtlas atlas){
-        region = atlas.findRegion("");
+        atlasRegion = atlas.findRegion("");
     }
     @Override
-    public void setRegion(TextureAtlas.AtlasRegion region){
-        this.region = region;
+    public void setRegion(TextureAtlas.AtlasRegion atlasRegion){
+        this.atlasRegion = atlasRegion;
     }
     @Override
     public TextureAtlas.AtlasRegion getRegion() {
-        return region;
+        return atlasRegion;
     }
 }
