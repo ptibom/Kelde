@@ -1,37 +1,58 @@
 package se.computerscience.kelde.controller.startmenu;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import se.computerscience.kelde.view.startMenu.StartMenuView;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.startmenu.StartMenu;
+import se.computerscience.kelde.view.startmenu.StartMenuView;
+
+
+import java.io.IOException;
+
 /**
- * Created by Daniel on 4/27/2015.
+ * @author: Daniel Olsson
  */
 public class StartMenuController {
 
-   private StartMenu startMenuModel;
-   private StartMenuView startMenuView;
+    private final StartMenu startMenuModel;
+    private final StartMenuView startMenuView;
 
-    public StartMenuController(StartMenu startMenuModel, StartMenuView startMenuView ){
-        this.startMenuModel = startMenuModel;
-        this.startMenuView = startMenuView;
+    public StartMenuController() throws IOException {
+        startMenuModel = new StartMenu();
+        this.startMenuView = new StartMenuView(startMenuModel);
+        startMenuView.getButton().addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.INTRO));
+            }
+        });
+        startMenuView.getLoadButton().addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("will never work");
+            }
+        });
+
+
+
+
+
+        startMenuView.addActors();
+
     }
 
 
-    public void render(float delta) {
-        startMenuView.renderMenu();
+    public void render(SpriteBatch batch, float delta) {
+
+         startMenuView.renderMenu( delta);
+
 
     }
 
-    public void init() {
-
-        startMenuView.init();
-
+    public void resize(int width, int height){
+        startMenuView.resize(width, height);
     }
 
-    public Button[] getButton(){
-        return startMenuView.getButton();
-
-    }
 
 
 }
