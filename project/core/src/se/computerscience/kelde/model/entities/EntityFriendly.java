@@ -5,10 +5,10 @@
 package se.computerscience.kelde.model.entities;
 
 public class EntityFriendly implements INPCEntity {
-    private boolean isFriendly = true;
+    private static final boolean FRIENDLY = true;
 
     @Override
     public boolean isFriendly() {
-        return isFriendly;
+        return FRIENDLY;
     }
 }

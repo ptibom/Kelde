@@ -3,6 +3,7 @@ package se.computerscience.kelde.model.worldobjects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import se.computerscience.kelde.controller.events.ScreenEvent;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
 
 import static org.junit.Assert.*;
@@ -12,7 +13,7 @@ public class DoorTest {
     int BODY_WIDTH = 16, BODY_HEIGHT = 24;
     @Before
     public void setDoor(){
-        door = new Door(new B2DWorld(), 100, 100);
+        door = new Door(new B2DWorld(), 100, 100, "Start");
     }
 
     @Test

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="152">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="96" height="192"/>
   <terraintypes>
@@ -73,12 +73,43 @@
    eJxjYBgFtADaQKyDA+uSYZYWEJsAsT4Qm0FpGNuARPP0oHrVgNgICatTYJ4JFn24xIkxD5s7cIlTYp4pmeaB/KXJgBqXlJhnBtULMhOWTrTINM+QARGX+gyoaYWc8IOZaYQDG5Nh3igYHgAAXGsOZw==
   </data>
  </layer>
- <objectgroup name="Collision">
+ <objectgroup name="Collision" visible="0">
   <object id="31" name="test" type="object" x="217" y="137">
    <polygon points="0,0 211,2 219,20 217,294 2,295 -44,248 -45,50"/>
   </object>
   <object id="33" type="object" x="0" y="0">
    <polyline points="0,0 1,640 639,639 640,1 0,-2"/>
   </object>
+ </objectgroup>
+ <objectgroup name="GameWorld">
+  <object id="131" name="Barrel" type="Barrel" x="128" y="464" width="48" height="8" rotation="0.645099"/>
+  <object id="133" name="Bomb" type="Bomb" x="240" y="472" width="48" height="8" rotation="0.645099"/>
+  <object id="134" name="CampFire" type="CampFire" x="368" y="472" width="48" height="8" rotation="0.645099"/>
+  <object id="135" name="LavaRing" type="LavaRing" x="520" y="296" width="40" height="24"/>
+  <object id="138" name="Door" type="Door" x="32" y="496" width="40" height="32">
+   <properties>
+    <property name="Extra" value="Lava"/>
+   </properties>
+  </object>
+  <object id="146" name="Treasure" type="Treasure" x="32" y="272" width="56" height="16">
+   <properties>
+    <property name="Extra" value="set1"/>
+   </properties>
+  </object>
+  <object id="147" name="Treasure" type="Treasure" x="88" y="128" width="64" height="8">
+   <properties>
+    <property name="Extra" value="set2"/>
+   </properties>
+  </object>
+  <object id="148" name="Treasure" type="Treasure" x="40" y="400" width="64" height="8">
+   <properties>
+    <property name="Extra" value="set3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Npc" visible="0">
+  <object id="149" name="EntityBat" type="EntityBat" x="256" y="24" width="64"/>
+  <object id="150" name="EntityEye" type="EntityEye" x="368" y="72" width="56"/>
+  <object id="151" name="EntityGhost" type="EntityGhost" x="208" y="80" width="64"/>
  </objectgroup>
 </map>

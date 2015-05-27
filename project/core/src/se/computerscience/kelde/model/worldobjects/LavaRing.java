@@ -20,14 +20,16 @@ public class LavaRing implements IWorldObjects {
     private final List<LavaSplash> lavaSplashs = new ArrayList<>();
     public LavaRing(IB2DWorld ib2DWorld, float x, float y){
         entityBody = new PhysicalBodyStatic(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
-        lavaSplashs.add(new LavaSplash(ib2DWorld,x,y));
+        for (int i=0; i < 5; i++){
+            lavaSplashs.add(lavaSplash(ib2DWorld, x, y));
+        }
     }
-
+    public void update(float delta){
+        // not used
+    }
+    public LavaSplash lavaSplash(IB2DWorld ib2DWorld, float x, float y){
+        return new LavaSplash(ib2DWorld,x,y);
+    }
     @Override
     public float getPositionY() {
         return entityBody.getPositionY() - BODY_HEIGHT;

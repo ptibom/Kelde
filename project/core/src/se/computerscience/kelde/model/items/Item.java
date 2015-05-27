@@ -20,6 +20,7 @@ public class Item implements IItem {
         setRegion();
         sprite = new ItemSprite(region);
     }
+
     protected void setTextureAtlas(){
         textureAtlas = new Atlas("allitems.atlas");
     }

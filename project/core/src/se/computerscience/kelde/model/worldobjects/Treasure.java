@@ -1,5 +1,6 @@
 package se.computerscience.kelde.model.worldobjects;
 
+import se.computerscience.kelde.model.constants.ItemSets;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodyStatic;
@@ -22,9 +23,19 @@ public class Treasure implements IWorldObjects {
     private final List<IItem> itemslist = new ArrayList<>();
     private final IPhysicalBody entityBody;
 
-    public Treasure(IB2DWorld ib2DWorld, float positionX, float positionY, List<IItem> items) {
+    public Treasure(IB2DWorld ib2DWorld, float positionX, float positionY, String itemSset) {
         entityBody = new PhysicalBodyStatic(positionX, positionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         int margin = 0;
+        List<IItem> items;
+        if ("set1".equals(itemSset)){
+            items = ItemSets.getSet1();
+        }else if ("set2".equals(itemSset)){
+            items = ItemSets.getSet2();
+        }else if ("set3".equals(itemSset)){
+            items = ItemSets.getSet3();
+        }else {
+            items = ItemSets.getSet1();
+        }
         for (final IItem item : items) {
             item.setItemPositionY(positionY + 50);
             item.setItemPositionX(positionX + margin);
