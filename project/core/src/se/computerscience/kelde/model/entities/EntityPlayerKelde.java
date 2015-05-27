@@ -17,9 +17,11 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
     private boolean slashing;
     private boolean isShooting;
     private final IPhysicalBody entityBody;
+    IB2DWorld ib2DWorld;
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        this.ib2DWorld = ib2DWorld;
     }
 
     public void setVelocity(float x, float y) {
@@ -65,5 +67,9 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
 
     public boolean isSlashing() {
         return slashing;
+    }
+
+    public void setPosition(float x ,float y){
+            entityBody.setPosition(x,y);
     }
 }

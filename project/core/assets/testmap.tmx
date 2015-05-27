@@ -40,7 +40,7 @@
    eJzlmOtuwyAMhfMQrdZuLM3e/yUXpFqyjs4xDglptVnynxTMh8EXOk3/W+6rfib060VMt1W/EzpvtJtVtu+SZPL6EdgzruxeI7v3TjveHjLW/V5WvXbYs3mzs9XLps66PLl7/XcL+Cr/Anu3b/hd8T2CsRn/1bk/gq+uhWfuz/BB1lWx0nM2Zovd4cuTm9n1DMg4gi9iaPEh4zvy+Tvwjnwl+C3i83mH5aAMg8WfV4sndm+38M3u+0zGIEPmnpuoXM7OXtWPFh/Wj0J+U6ryLTt7VT9afK+uHxn/RfVjq1rO9BLVj4z/lknXj72+Y5xeff6fyRjcq+dr1dmM7zLi+bJjcTzbO2oP21F8I8XWZL0j9tyqTxkpvnZjTmv1jGf5kPVpe+NxBOMC2mI+k49JK99F77LRsuWt5jmjd2y0DzVPvUkrm8/BSrGniXyuYj7yBb4xLG6z+R7j39Zhe7sKxiLm2Hj19skKxr+az2qBPyvWO2CM7q2T0XzG16pf2fdfli+a38Pnx/T67iy+Vs+e6edH8h2hGJ/s/0LG15N79jCqHgPvkO/v2fll83BWo5od3e+oRzmyzke9dCv21NzemP3r8gs7M2gf
   </data>
  </layer>
- <objectgroup name="Collision">
+ <objectgroup name="Collision" visible="0">
   <object id="51" name="object" type="object" x="312" y="888">
    <polyline points="0,0 -24,-16 -184,-16 -208,0 -208,16 -232,32 -232,72 -264,96 -264,272 -248,280 -216,280 -200,288 -200,312 -176,320 -168,344 16,352 32,328 24,296 40,288 608,288 624,296 640,312 648,320 848,320 864,288 888,272 896,256 920,240 928,32 904,16 872,-16 856,-40 824,-48 656,-48 632,-40 632,0 624,16 608,8 608,-32 592,-48 552,-48 536,-72 480,-80"/>
   </object>
@@ -93,11 +93,9 @@
    </properties>
   </object>
   <object id="45" name="CampFire" type="CampFire" x="736" y="744" width="48" height="8" rotation="0.645099"/>
-  <object id="46" name="LavaRing" type="LavaRing" x="1048" y="1008" width="40" height="24"/>
   <object id="47" name="Barrel" type="Barrel" x="496" y="736" width="48" height="8" rotation="0.645099"/>
-  <object id="444" name="LavaRing" type="LavaRing" x="208" y="1032" width="40" height="24"/>
  </objectgroup>
- <objectgroup name="Npc">
+ <objectgroup name="Npc" visible="0">
   <object id="30" name="EntityEye" type="EntityEye" x="192" y="896" width="56" height="8"/>
   <object id="31" name="EntityBat" type="EntityBat" x="448" y="1112" width="48" height="8"/>
   <object id="32" name="EntityGhost" type="EntityGhost" x="1048" y="888" width="64" height="8"/>
