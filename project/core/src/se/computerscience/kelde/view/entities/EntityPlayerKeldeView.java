@@ -37,24 +37,26 @@ public class EntityPlayerKeldeView{
 
 
     public void draw(SpriteBatch batch) {
+        Animation currentAnimation;
         direction = entityPlayerKelde.getDirection();
         elapsedTime += Gdx.graphics.getDeltaTime();
-        if(!entityPlayerKelde.isWalking()) {
-            batch.draw(standAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        }
-        if (entityPlayerKelde.isWalking()) {
-            batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
-        }
+
+
         if (entityPlayerKelde.isSlashing()) {
-            batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+            currentAnimation = daggerAnimation[direction];
         }
-        if (entityPlayerKelde.getIsShooting()) {
-            batch.draw(bowAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        else if (entityPlayerKelde.getIsShooting()) {
+            currentAnimation = bowAnimation[direction];
+        }
+        else if (entityPlayerKelde.isWalking()) {
+            currentAnimation = walkAnimation[direction];
+        }
+        else {
+            currentAnimation = standAnimation[direction];
         }
 
 
-
-
+        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
 
         if (elapsedTime > 100.0f) {
             elapsedTime = 0;
