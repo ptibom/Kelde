@@ -34,7 +34,7 @@ public class GameWorldView{
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
 
     private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
-    private final List<IEntitieView> entitieViews = new ArrayList<>();
+    private final List<IEntityView> entitieViews = new ArrayList<>();
 
     public GameWorldView(GameWorld gameWorld) {
         guiOverlayView = new GuiOverlayView(gameWorld.getGui());
@@ -64,7 +64,7 @@ public class GameWorldView{
         for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
-        for (final IEntitieView entitieView: entitieViews){
+        for (final IEntityView entitieView: entitieViews){
             entitieView.draw(batch);
         }
 
@@ -98,7 +98,7 @@ public class GameWorldView{
     public void removeItemView(ItemEntityView itemEntityView){
         itemEntityViews.remove(itemEntityView);
     }
-    public void addNPCEntity(IEntitieView entitieView){
+    public void addNPCEntity(IEntityView entitieView){
         entitieViews.add(entitieView);
     }
     public void addWorldObject(IWorldObjectView worldObjectView){

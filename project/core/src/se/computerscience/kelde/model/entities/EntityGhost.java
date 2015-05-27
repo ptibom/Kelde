@@ -12,7 +12,7 @@ import java.util.Random;
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
  */
-public class EntityGhost implements IEntitie {
+public class EntityGhost extends EntityEnemy {
 
     //Variables
     private final IPhysicalBody entityBody;

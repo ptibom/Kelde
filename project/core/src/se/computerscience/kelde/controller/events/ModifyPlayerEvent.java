@@ -7,7 +7,7 @@ package se.computerscience.kelde.controller.events;
 
 public class ModifyPlayerEvent {
     public enum Tag {
-        CHANGE_POS;
+        CHANGE_POS, DAMAGE;
     }
 
     private final Tag tag;

@@ -11,7 +11,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
-public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
+public class EntityPlayerKelde extends EntityPlayer {
     private static final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
 
     private boolean slashing;
@@ -22,6 +22,17 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         this.ib2DWorld = ib2DWorld;
+    }
+
+    public void takeDamage(int damage) {
+        int newHealth;
+        if (getHealth()-damage < 0) {
+            newHealth = 0;
+        }
+        else {
+            newHealth = getHealth()-damage;
+        }
+        setHealth(newHealth);
     }
 
     public void setVelocity(float x, float y) {

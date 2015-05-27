@@ -35,7 +35,6 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
         entityPlayerKelde.setIsSlashing(isSlashing);
         entityPlayerKelde.setIsShooting(isShooting);
-
     }
 
     public void setKeyDown(int keycode) {
@@ -98,12 +97,21 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
 
     @Override
     public void onModifyPlayerEvent(ModifyPlayerEvent event) {
-        if (event.getTag() != ModifyPlayerEvent.Tag.CHANGE_POS){
-            return;
+        System.out.println("collision");
+        if (event.getTag() == ModifyPlayerEvent.Tag.CHANGE_POS){
+            if (event.getObject() instanceof Point) {
+                final Point point = (Point) event.getObject();
+                entityPlayerKelde.setPosition(point.x,point.y);
+            }
         }
-        if (event.getObject() instanceof Point) {
-            final Point point = (Point) event.getObject();
-            entityPlayerKelde.setPosition(point.x,point.y);
+        else if (event.getTag() == ModifyPlayerEvent.Tag.DAMAGE) {
+            System.out.println((int)event.getObject());
+            entityPlayerKelde.takeDamage((int) event.getObject());
         }
+
+    }
+
+    public int getHealth() {
+        return entityPlayerKelde.getHealth();
     }
 }
