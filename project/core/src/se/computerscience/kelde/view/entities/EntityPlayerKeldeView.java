@@ -45,7 +45,7 @@ public class EntityPlayerKeldeView{
         if (entityPlayerKelde.isWalking()) {
             batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
-        if (entityPlayerKelde.getIsSlashing()) {
+        if (entityPlayerKelde.isSlashing()) {
             batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
         if (entityPlayerKelde.getIsShooting()) {

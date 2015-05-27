@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ItemSets {
+    private ItemSets() {
+
+    }
+
     public static List<IItem> getSet1() {
         final List<IItem> items = new ArrayList<>();
         items.add(new Sword());

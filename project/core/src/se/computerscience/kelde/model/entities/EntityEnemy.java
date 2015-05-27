@@ -5,10 +5,10 @@
 package se.computerscience.kelde.model.entities;
 
 public class EntityEnemy implements INPCEntity {
-    private boolean isFriendly = false;
+    private final static boolean FRIENDLY = false;
 
     @Override
     public boolean isFriendly() {
-        return isFriendly;
+        return FRIENDLY;
     }
 }

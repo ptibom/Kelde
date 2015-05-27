@@ -27,6 +27,7 @@ public class LavaRingController implements IWorldObjectsController{
         for (final LavaSplashController lavaSplashController: lavaSplashControllers){
             lavaSplashController.update(delta);
         }
+        lavaRing.update(delta);
     }
     public LavaSplashController setControllers(LavaSplashView lavaSplashView){
         return new LavaSplashController(lavaSplashView.getLavaSplash());

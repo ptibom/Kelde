@@ -64,15 +64,13 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private void createWorldObjects() {
         final IMap map = gameWorld.getMap();
         final MapLayer layer = map.getTiledMap().getLayers().get("GameWorld");
-        final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
         for (final MapObject mapObject : layer.getObjects()) {
             final IWorldObjects modelObject;
-            final IWorldObjectView viewObject;
-            final IWorldObjectsController controllerObject;
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             final String prop = (String) mapObject.getProperties().get("Extra");
             try {
+                final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
                 final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
                 final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
@@ -81,8 +79,8 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
                 }else {
                     modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
                 }
-                viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final IWorldObjectView viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
             } catch (Exception e) {
@@ -92,21 +90,18 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     }
     private void createNPCEntities() {
         final IMap map = gameWorld.getMap();
-        IEntitie modelObject;
-        IEntitieView viewObject;
-        IMonsterController controllerObject;
         final MapLayer layer = map.getTiledMap().getLayers().get("Npc");
-        final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
         for (final MapObject mapObject : layer.getObjects()) {
             final float x = (float) mapObject.getProperties().get("x");
             final float y = (float) mapObject.getProperties().get("y");
             try {
+                final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
                 final Class modelCls = Class.forName("se.computerscience.kelde.model.entities."+mapObject.getName());
                 final Class viewCls = Class.forName("se.computerscience.kelde.view.entities."+mapObject.getName()+"View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.entities." + mapObject.getName() + "Controller");
-                modelObject = (IEntitie)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
-                viewObject = (IEntitieView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final IEntitie modelObject = (IEntitie)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
+                final IEntitieView viewObject = (IEntitieView)viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
                 gameWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {

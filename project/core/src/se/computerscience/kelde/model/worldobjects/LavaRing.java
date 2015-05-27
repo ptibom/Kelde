@@ -24,6 +24,9 @@ public class LavaRing implements IWorldObjects {
             lavaSplashs.add(lavaSplash(ib2DWorld, x, y));
         }
     }
+    public void update(float delta){
+        // not used
+    }
     public LavaSplash lavaSplash(IB2DWorld ib2DWorld, float x, float y){
         return new LavaSplash(ib2DWorld,x,y);
     }

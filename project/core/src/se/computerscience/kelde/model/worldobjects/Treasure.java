@@ -27,11 +27,11 @@ public class Treasure implements IWorldObjects {
         entityBody = new PhysicalBodyStatic(positionX, positionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         int margin = 0;
         List<IItem> items;
-        if (itemSset.equals("set1")){
+        if ("set1".equals(itemSset)){
             items = ItemSets.getSet1();
-        }else if (itemSset.equals("set2")){
+        }else if ("set2".equals(itemSset)){
             items = ItemSets.getSet2();
-        }else if (itemSset.equals("set3")){
+        }else if ("set3".equals(itemSset)){
             items = ItemSets.getSet3();
         }else {
             items = ItemSets.getSet1();
