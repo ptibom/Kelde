@@ -6,7 +6,6 @@
 
 package se.computerscience.kelde.model.entities;
 
-import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -18,9 +17,11 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
     private boolean slashing;
     private boolean isShooting;
     private final IPhysicalBody entityBody;
+    IB2DWorld ib2DWorld;
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        this.ib2DWorld = ib2DWorld;
     }
 
     public void setVelocity(float x, float y) {
@@ -69,6 +70,6 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
     }
 
     public void setPosition(float x ,float y){
-        entityBody.setPosition(x,y);
+            entityBody.setPosition(x,y);
     }
 }

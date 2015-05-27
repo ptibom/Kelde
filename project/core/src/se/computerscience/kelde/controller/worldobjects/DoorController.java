@@ -11,7 +11,6 @@ import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.view.worldobjects.DoorView;
 
-import java.util.Vector;
 
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
     private final Door door;
@@ -28,8 +27,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
 
         if (door.getLocation().equals("shop1")){
             teleportTo = TeleportTo.BEGINNNER_HOUSE1;
-        }
-        if (door.getLocation().equals("Lava")){
+        } else if (door.getLocation().equals("Lava")){
            screenTag = ScreenEvent.ScreenTag.LAVA_WORLD;
         }else if (door.getLocation().equals("Start")){
             screenTag = ScreenEvent.ScreenTag.START_WORLD;
@@ -49,7 +47,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
 
             if (teleportTo == TeleportTo.BEGINNNER_HOUSE1){
-                ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.CHANGE_POS,new Point(200,200)));
+                ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.CHANGE_POS, new Point(200,200)));
             }else {
                 ScreenChanger.setNextScreen(screenTag);
             }

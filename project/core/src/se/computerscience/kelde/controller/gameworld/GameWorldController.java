@@ -116,7 +116,6 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
-
         for (final ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }

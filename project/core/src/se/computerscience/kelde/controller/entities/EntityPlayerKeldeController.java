@@ -102,7 +102,7 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
             return;
         }
         if (event.getObject() instanceof Point) {
-            Point point = (Point) event.getObject();
+            final Point point = (Point) event.getObject();
             entityPlayerKelde.setPosition(point.x,point.y);
         }
     }
