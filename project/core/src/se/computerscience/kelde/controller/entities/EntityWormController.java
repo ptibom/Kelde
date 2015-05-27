@@ -8,7 +8,7 @@ import se.computerscience.kelde.view.entities.EntitySmallWormView;
  * Created by Anders on 2015-04-25.
  * @author Anders Bolin
  */
-public class EntityWormController {
+public class EntityWormController implements IMonsterController{
 
     //Variables
     private final EntitySmallWorm entitySmallWorm;

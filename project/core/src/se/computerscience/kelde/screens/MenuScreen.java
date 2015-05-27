@@ -32,7 +32,7 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         final GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        SpriteBatch batch = new SpriteBatch();
+        final SpriteBatch batch = new SpriteBatch();
         batch.begin();
         startMenuController.render( delta);
         batch.end();

@@ -8,7 +8,7 @@ import se.computerscience.kelde.view.entities.EntityGhostView;
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
  */
-public class EntityGhostController {
+public class EntityGhostController implements IMonsterController {
 
     //Variables
     private final EntityGhost entityGhost;
@@ -18,7 +18,7 @@ public class EntityGhostController {
         this.entityGhost = entityGhost;
         this.entityGhostView = entityGhostView;
     }
-
+    @Override
     public void update(float delta) {
         entityGhostView.update(delta);
         entityGhost.update(delta);

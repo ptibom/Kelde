@@ -13,7 +13,7 @@ import se.computerscience.kelde.model.entities.EntityEye;
  * Created by Anders on 2015-04-08.
  * @author Anders
  */
-public class EntityEyeView {
+public class EntityEyeView implements IEntitieView{
 
 
     //Variables

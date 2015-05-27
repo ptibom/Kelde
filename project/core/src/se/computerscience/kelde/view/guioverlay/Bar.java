@@ -1,6 +1,5 @@
 package se.computerscience.kelde.view.guioverlay;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -38,7 +37,7 @@ public class Bar {
 
     // returns the new  value of the length of the bar
     public double calculateNewStatusBar(int health){
-        double calcBarWidth = barWidth;
+       final double calcBarWidth = barWidth;
         return   (calcBarWidth/100) * health;
     }
 

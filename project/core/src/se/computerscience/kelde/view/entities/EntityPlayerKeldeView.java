@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeView {
+public class EntityPlayerKeldeView{
 
 
     private final EntityPlayerKelde entityPlayerKelde;
@@ -37,24 +37,26 @@ public class EntityPlayerKeldeView {
 
 
     public void draw(SpriteBatch batch) {
+        Animation currentAnimation;
         direction = entityPlayerKelde.getDirection();
         elapsedTime += Gdx.graphics.getDeltaTime();
-        if(!entityPlayerKelde.isWalking()) {
-            batch.draw(standAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+
+
+        if (entityPlayerKelde.isSlashing()) {
+            currentAnimation = daggerAnimation[direction];
         }
-        if (entityPlayerKelde.isWalking()) {
-            batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        else if (entityPlayerKelde.getIsShooting()) {
+            currentAnimation = bowAnimation[direction];
         }
-        if (entityPlayerKelde.getIsSlashing()) {
-            batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        else if (entityPlayerKelde.isWalking()) {
+            currentAnimation = walkAnimation[direction];
         }
-        if (entityPlayerKelde.getIsShooting()) {
-            batch.draw(bowAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
+        else {
+            currentAnimation = standAnimation[direction];
         }
 
 
-
-
+        batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
 
         if (elapsedTime > 100.0f) {
             elapsedTime = 0;

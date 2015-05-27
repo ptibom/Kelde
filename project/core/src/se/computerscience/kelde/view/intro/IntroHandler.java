@@ -109,6 +109,39 @@ public class IntroHandler {
             }
         }
 
+
+        drawAnimations(batch);
+
+
+
+        // Lastly we draw the first intro's foreground.
+        if (introModel.getMenuTime() < 47000) {
+
+            batch.draw(introForegroundTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+        }
+
+        batch.draw(introBorderTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+        batch.end();
+    }
+
+
+    // We need to choose which function in the animationhandler to activate, we check for keyframe
+    public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
+
+        final boolean renderStillImage = instruct.getKeyFrame() != -1;
+
+        if (renderStillImage) {
+            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,0.5);
+
+        }
+
+        else {
+            animationHandler.drawAnimation(batch, instruct,delta,0.5);
+        }
+    }
+
+
+    private void drawAnimations(SpriteBatch batch){
         //Drawing the demon in intro
         for (final IntroInstruction instruct : allInstructions.get(0)) {
             drawHelper(batch, animationHandlerDemon, instruct);
@@ -134,31 +167,6 @@ public class IntroHandler {
         for (final IntroInstruction instruct : allInstructions.get(5)) {
             drawHelper(batch, animationService, animationHandlerSpell, instruct);
 
-        }
-
-        // Lastly we draw the first intro's foreground.
-        if (introModel.getMenuTime() < 47000) {
-
-            batch.draw(introForegroundTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
-        }
-
-        batch.draw(introBorderTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
-        batch.end();
-    }
-
-
-    // We need to choose which function in the animationhandler to activate, we check for keyframe
-    public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
-
-        final boolean renderStillImage = instruct.getKeyFrame() != -1;
-
-        if (renderStillImage) {
-            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,0.5);
-
-        }
-
-        else {
-            animationHandler.drawAnimation(batch, instruct,delta,0.5);
         }
     }
 

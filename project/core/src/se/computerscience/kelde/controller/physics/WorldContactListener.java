@@ -14,7 +14,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
-
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 import java.util.concurrent.ConcurrentLinkedQueue;
 

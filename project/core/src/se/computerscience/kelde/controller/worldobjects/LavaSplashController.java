@@ -21,7 +21,7 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
 
     private boolean lavaOn;
     private static Random random = new Random();
-    private static final float MAX_VELOCITY = 0.2f , MIN_VELOCITY = 0f; // the velocity range for the splash
+    private static final float MAX_VELOCITY = 0.2f , MIN_VELOCITY = .02f; // the velocity range for the splash
     public LavaSplashController(LavaSplash lavaSplash) {
         this.lavaSplash = lavaSplash;
         velocityControl = new Vector2(0, 0);
@@ -56,7 +56,7 @@ public class LavaSplashController implements IWorldObjectsController, ICollision
             velocityControl.y += velocityY;
             lavaSplash.setVelocity(velocityControl.x, velocityControl.y);
             // whn they go out of screen, the splashes will return to start position
-            if (lavaSplash.getPositionX() > 1000 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 1000 || lavaSplash.getPositionY() < 0){
+            if (lavaSplash.getPositionX() > 2000 || lavaSplash.getPositionX() < 0 || lavaSplash.getPositionY() > 2000 || lavaSplash.getPositionY() < 0){
                 lavaSplash.setPosition(startPosX,startPosY);
                 lavaOn = false;
             }

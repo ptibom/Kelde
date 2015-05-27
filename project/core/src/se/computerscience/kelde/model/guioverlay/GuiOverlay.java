@@ -6,14 +6,14 @@ package se.computerscience.kelde.model.guioverlay;
 public class GuiOverlay {
 
 
-    private final String HEALTH_BAR = "gui/health_bar.png";
-    private final String BACKGROUND_BAR = "gui/bar_background.png";
-    private final String MANA_BAR = "gui/mana_bar.png";
-    private final String MANA_FOREGROUND_BAR = "gui/mana_bar_foreground.png";
-    private final String HEALTH_FOREGROUND_BAR = "gui/health_bar_foreground.png";
-    private final String MENU_RECTANGLE = "gui/menu_rectangle.png";
-    private final String TEXT_NAME = "gui/textbox_name.png";
-    private final String GUI_BUTTON = "gui/gui_button.png";
+    private static final String HEALTH_BAR = "gui/health_bar.png";
+    private static final String BACKGROUND_BAR = "gui/bar_background.png";
+    private static  final String MANA_BAR = "gui/mana_bar.png";
+    private static final String MANA_FOREGROUND_BAR = "gui/mana_bar_foreground.png";
+    private static final String HEALTH_FOREGROUND_BAR = "gui/health_bar_foreground.png";
+    private static final String MENU_RECTANGLE = "gui/menu_rectangle.png";
+    private static final String TEXT_NAME = "gui/textbox_name.png";
+    private static final String GUI_BUTTON = "gui/gui_button.png";
     private final String[] barTexturePackage;
 
     private int currentPlayerHealth = 50;

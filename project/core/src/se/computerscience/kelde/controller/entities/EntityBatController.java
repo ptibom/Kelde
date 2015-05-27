@@ -11,7 +11,7 @@ import se.computerscience.kelde.model.entities.EntityBat;
 import se.computerscience.kelde.view.entities.EntityBatView;
 
 
-public class EntityBatController {
+public class EntityBatController implements IMonsterController {
 
     //Variables
     private final EntityBat entityBat;
@@ -21,7 +21,7 @@ public class EntityBatController {
         this.entityBat = entityBat;
         this.entityBatView = entityBatView;
     }
-
+    @Override
     public void update(float delta) {
         entityBatView.update(delta);
         entityBat.update(delta);
