@@ -21,6 +21,9 @@ public class BarrelView implements IWorldObjectView{
         final Texture texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
+    public void update(float delta){
+        // not used
+    }
     @Override
     public void draw (SpriteBatch batch) {
         sprite.setPosition(barrel.getPositionX(), barrel.getPositionY());

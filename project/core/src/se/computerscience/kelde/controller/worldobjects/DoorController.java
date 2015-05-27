@@ -12,9 +12,11 @@ import se.computerscience.kelde.view.worldobjects.DoorView;
 
 public class DoorController implements IWorldObjectsController, ICollisionEventHandler {
     private final Door door;
+    private final DoorView doorView;
     private ScreenEvent.ScreenTag screenTag;
     public DoorController(Door door,DoorView doorView) {
         this.door = door;
+        this.doorView = doorView;
         CollisionEventBus.INSTANCE.register(this);
         if (door.getWorld().equals("Lava")){
            screenTag = ScreenEvent.ScreenTag.LAVA_WORLD;
@@ -25,7 +27,7 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
 
     @Override
     public void update(float delta) {
-        // Not used
+        doorView.update(delta);
     }
 
     @Override

@@ -34,7 +34,6 @@ public class Treasure implements IWorldObjects {
         }else if (itemSset.equals("set3")){
             items = ItemSets.getSet3();
         }else {
-            System.out.println(itemSset);
             items = ItemSets.getSet1();
         }
         for (final IItem item : items) {

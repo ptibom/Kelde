@@ -47,10 +47,10 @@ public class GameWorldView{
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
-        for (IWorldObjectView worldObjectView: worldObjectViews){
+        for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
-        for (IEntitieView entitieView: entitieViews){
+        for (final IEntitieView entitieView: entitieViews){
             entitieView.draw(batch);
         }
         batch.end();

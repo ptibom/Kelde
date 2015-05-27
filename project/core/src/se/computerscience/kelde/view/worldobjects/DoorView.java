@@ -22,7 +22,9 @@ public class DoorView implements IWorldObjectView {
         final Texture texture = new Texture(SPRITE_LOCATION1);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
-
+    public void update(float delta){
+        // not used
+    }
     @Override
     public void draw(SpriteBatch batch) {
         sprite.setPosition(door.getPositionX(), door.getPositionY());

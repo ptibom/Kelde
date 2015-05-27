@@ -46,10 +46,10 @@ public class LavaWorldView {
         // Draw sprites
         batch.begin();
         entityPlayerKeldeView.draw(batch);
-        for (IWorldObjectView worldObjectView: worldObjectViews){
+        for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
-        for (IEntitieView entitieView: entitieViews){
+        for (final IEntitieView entitieView: entitieViews){
             entitieView.draw(batch);
         }
         batch.end();

@@ -15,7 +15,9 @@ import java.util.List;
 public class LavaRingController implements IWorldObjectsController{
 
     private final List<LavaSplashController> lavaSplashControllers = new ArrayList<>();
+    private final LavaRing lavaRing;
     public LavaRingController(LavaRing lavaRing,LavaRingView lavaRingView) {
+        this.lavaRing = lavaRing;
         for (final LavaSplashView lavaSplashView: lavaRingView.getLavaSplashViews()) {
             lavaSplashControllers.add(setControllers(lavaSplashView));
         }

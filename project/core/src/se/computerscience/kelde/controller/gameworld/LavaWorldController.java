@@ -23,6 +23,8 @@ import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LavaWorldController implements IGameWorldController{
 
@@ -33,7 +35,7 @@ public class LavaWorldController implements IGameWorldController{
     private final EntityPlayerKeldeController entityPlayerKeldeController;
     private final List<IWorldObjectsController> worldObjectsControllers = new ArrayList<>();
     private final List<IMonsterController> npcControllers = new ArrayList<>();
-
+    private Logger logger;
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
         lavaWorldView = new LavaWorldView(lavaWorld);
@@ -61,17 +63,17 @@ public class LavaWorldController implements IGameWorldController{
                 final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
                 final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
-                if (prop != null){
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
-                }else {
+                if (prop == null){
                     modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class).newInstance(b2DWorld, x, y);
+                }else {
+                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
                 }
                 viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
                 controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
                 lavaWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, e.toString());
             }
         }
     }
@@ -95,7 +97,7 @@ public class LavaWorldController implements IGameWorldController{
                 lavaWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, e.toString());
             }
         }
     }

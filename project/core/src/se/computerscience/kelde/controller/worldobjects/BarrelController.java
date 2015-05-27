@@ -21,6 +21,7 @@ public class BarrelController implements IWorldObjectsController, ICollisionEven
 
     @Override
     public void update(float delta){
+        barrelView.update(delta);
         // Not used
     }
 

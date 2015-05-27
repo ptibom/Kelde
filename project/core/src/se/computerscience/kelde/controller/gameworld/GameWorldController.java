@@ -25,6 +25,8 @@ import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GameWorldController implements IGameWorldController,IItemEventHandler {
     private final GameWorld gameWorld;
@@ -34,8 +36,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private final List<IWorldObjectsController> worldObjectsControllers = new ArrayList<>();
     private final List<IMonsterController> npcControllers = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
-
-
+    private Logger logger;
     public GameWorldController() {
         gameWorld = new GameWorld();
         gameWorldView = new GameWorldView(gameWorld);
@@ -85,7 +86,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING,e.toString());
             }
         }
     }
@@ -109,7 +110,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
                 gameWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, e.toString());
             }
         }
     }
