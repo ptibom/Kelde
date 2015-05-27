@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 
-import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 import se.computerscience.kelde.model.worldobjects.*;
 import se.computerscience.kelde.view.entities.*;
 

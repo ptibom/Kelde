@@ -1,5 +1,6 @@
 package se.computerscience.kelde.controller.inventory;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.inventory.Inventory;
 import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.view.inventory.InventoryView;
@@ -15,19 +16,22 @@ public class InventoryController {
 
     public InventoryController(Inventory inventoryModel, InventoryView inventoryView){
 
-        this.inventoryModel = new Inventory();
-        this.inventoryView = new InventoryView(inventoryModel);
+        this.inventoryModel = inventoryModel;
+        this.inventoryView = inventoryView;
     }
 
     public void update(IItem newItem){
             inventoryModel.update(newItem);
+
+    }
+
+    public void render(SpriteBatch batch){
+        inventoryView.draw(batch);
     }
 
 
-    public InventoryView getInventoryView(){
 
-        return inventoryView;
-    }
+
 
 
 

@@ -27,8 +27,8 @@ public class GameWorld {
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
-    private GuiOverlay guiOverlay;
-    private Inventory inventory;
+    private final GuiOverlay guiOverlay;
+    private final Inventory inventory;
 
 
     private final IMap map;

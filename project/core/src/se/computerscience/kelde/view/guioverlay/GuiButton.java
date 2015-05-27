@@ -34,9 +34,9 @@ public class GuiButton extends TextButton  {
         deltaHeight = screenHeight - oldScreenHeight;
 
         // A regular collision-check with the button
-        if((mouseXPos > originX  && mouseXPos <  originX + getWidth() && mouseYPos >
-                originY + deltaHeight && mouseYPos <  originY  +getHeight() +deltaHeight)
-                &&(Gdx.input.isButtonPressed(Input.Buttons.LEFT))){
+        if(mouseXPos > originX  && mouseXPos <  originX + getWidth() && mouseYPos >
+                originY + deltaHeight && mouseYPos <  originY  +getHeight() +deltaHeight
+                &&Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 
                 return true;
 

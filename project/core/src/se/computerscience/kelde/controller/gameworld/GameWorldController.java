@@ -24,7 +24,6 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.entities.IEntitie;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 
-import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 import se.computerscience.kelde.model.items.IItem;
 
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
@@ -132,6 +131,8 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     }
 
     public void render(float delta) {
+
+
         updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
@@ -150,6 +151,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         worldPhysicsController.update(delta);
         guiOverlayController.update(delta);
         gameWorldView.render(delta);
+
 
     }
 
@@ -191,7 +193,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
             IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
-            gameWorld.getInventory().update(item);
+            inventoryController.update(item);
         }
 
 

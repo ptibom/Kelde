@@ -7,7 +7,6 @@ package se.computerscience.kelde.view.inventory;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.model.inventory.IInventoryGui;
-import se.computerscience.kelde.model.inventory.Inventory;
 import se.computerscience.kelde.model.items.IItem;
 
 import java.util.List;
@@ -15,10 +14,10 @@ import java.util.List;
 
 public class InventoryView {
 
-    IInventoryGui inventoryModel;
-    List<IItem> inventoryItems;
-    List<int[]> itemPositions;
-    Texture inventoryGuiTexture;
+    private final IInventoryGui inventoryModel;
+    private final List<IItem> inventoryItems;
+    private final List<int[]> itemPositions;
+    private final Texture inventoryGuiTexture;
 
     public InventoryView(IInventoryGui inventoryModel) {
 

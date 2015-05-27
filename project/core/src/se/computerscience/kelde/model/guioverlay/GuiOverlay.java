@@ -1,5 +1,7 @@
 package se.computerscience.kelde.model.guioverlay;
 
+import java.util.Arrays;
+
 /**
  * @author: Daniel Olsson
  */
@@ -28,7 +30,7 @@ public class GuiOverlay {
 
     public String[] getBarAssets(){
 
-        return barTexturePackage;
+        return Arrays.copyOf(barTexturePackage, barTexturePackage.length);
     }
 
     public void update(int health, int mana){

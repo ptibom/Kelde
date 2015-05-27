@@ -22,4 +22,8 @@ public class GuiOverlayController {
 
         gameGuiModel.update(75,75);
     }
+
+    public GuiOverlayView getGuiView(){
+        return gameGuiView;
+    }
 }
