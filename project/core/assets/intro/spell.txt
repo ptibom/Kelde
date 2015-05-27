@@ -1,0 +1,88 @@
+spell.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+AnimStart1
+  rotate: false
+  xy: 2 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+AnimStart2
+  rotate: false
+  xy: 104 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+AnimStart3
+  rotate: false
+  xy: 206 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Explode1
+  rotate: false
+  xy: 308 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Explode2
+  rotate: false
+  xy: 410 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Explode3
+  rotate: false
+  xy: 2 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Explode4
+  rotate: false
+  xy: 104 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Explode5
+  rotate: false
+  xy: 206 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Looping1
+  rotate: false
+  xy: 308 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Looping2
+  rotate: false
+  xy: 410 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Looping3
+  rotate: false
+  xy: 2 206
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Looping5
+  rotate: false
+  xy: 104 206
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

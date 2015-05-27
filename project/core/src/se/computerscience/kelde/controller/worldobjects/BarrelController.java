@@ -8,19 +8,17 @@ package se.computerscience.kelde.controller.worldobjects;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.worldobjects.Barrel;
-import se.computerscience.kelde.view.worldobjects.BarrelView;
 
 
 public class BarrelController implements IWorldObjectsController, ICollisionEventHandler {
-    Barrel barrel;
-    BarrelView barrelView;
-    public BarrelController(Barrel barrel, BarrelView barrelView) {
+    private final Barrel barrel;
+    public BarrelController(Barrel barrel) {
         this.barrel = barrel;
-        this.barrelView = barrelView;
     }
 
     @Override
     public void update(float delta){
+        // Not used
     }
 
     @Override

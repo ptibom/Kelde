@@ -10,9 +10,9 @@ import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBodySensor;
  * @author: Hossein Hussain
  */
 public class Door implements IWorldObjects {
-    private final float BODY_WIDTH = 16;
-    private final float BODY_HEIGHT = 24;
-    IPhysicalBody entityBody;
+    private final static float BODY_WIDTH = 16;
+    private final static float BODY_HEIGHT = 24;
+    private final IPhysicalBody entityBody;
 
     public Door(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);

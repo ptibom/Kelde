@@ -9,7 +9,7 @@ package se.computerscience.kelde.model.encapsulation.libgdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class Camera implements ICamera {
-    OrthographicCamera orthographicCamera;
+    private final OrthographicCamera orthographicCamera;
 
     public Camera() {
         orthographicCamera = new OrthographicCamera();

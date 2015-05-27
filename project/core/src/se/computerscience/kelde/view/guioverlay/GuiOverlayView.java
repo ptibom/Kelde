@@ -1,8 +1,6 @@
 package se.computerscience.kelde.view.guioverlay;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -18,15 +16,15 @@ import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 // This class takes care of the rendering of the Graphical User Interface
 public class GuiOverlayView {
     SpriteBatch batch;
-    final private int BUTTON_X = 685, BUTTON_QUEST_Y = 200, BUTTON_MAIN_MENU_Y = 115, BUTTON_INVENTORY_Y = 285, BUTTON_TEXT = 540;
-    final private int BUTTON_INVENTORY_TRUE_Y = 115, BUTTON_MAIN_MENU_TRUE_Y = 285;
-    GuiOverlay guiOverlayModel;
-    Texture menuRectangle;
-    GuiButton questButton, inventoryButton, mainMenuButton;
-    TextButton textButtonName;
+    static final private int BUTTON_X = 685, BUTTON_QUEST_Y = 200, BUTTON_MAIN_MENU_Y = 115, BUTTON_INVENTORY_Y = 285, BUTTON_TEXT = 540;
+    static final private int BUTTON_INVENTORY_TRUE_Y = 115, BUTTON_MAIN_MENU_TRUE_Y = 285;
+   private final GuiOverlay guiOverlayModel;
+    private final Texture menuRectangle;
+    private final GuiButton questButton, inventoryButton, mainMenuButton;
+    private final TextButton textButtonName;
     // Gui health bars, possible to initialize with value
-    Bar healthBar;
-    Bar manaBar;
+    final Bar healthBar;
+    final Bar manaBar;
 
     public GuiOverlayView(GuiOverlay gameGuiModel) {
 

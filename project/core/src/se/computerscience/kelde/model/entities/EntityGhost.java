@@ -15,16 +15,15 @@ import java.util.Random;
 public class EntityGhost {
 
     //Variables
-    //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private int DAMAGE = 15;
-    private int HEALTH = 100;
+    private static final int DAMAGE = 15;
+    private int healt = 100;
     private static final int ATTACK_DISTANCE = 150;
-    private final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
-    private float elapsedTime = 0;
+    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private float elapsedTime;
     private static final int LOOT = 25;
-    private boolean ALIVE = true;
+    private boolean alive = true;
     private Heading direction;
 
     public EntityGhost(float x, float y, IB2DWorld ib2DWorld) {
@@ -32,11 +31,13 @@ public class EntityGhost {
         random = new Random();
     }
 
-
+    public int getAttackDistance() {
+        return ATTACK_DISTANCE;
+    }
 
     private void setRandomSpeed() {
-        int vx = random.nextInt(3) - 1;
-        int vy = random.nextInt(3) - 1;
+        final int vx = random.nextInt(3) - 1;
+        final int vy = random.nextInt(3) - 1;
         entityBody.setVelocity(vx, vy);
 
     }
@@ -51,9 +52,9 @@ public class EntityGhost {
 
 
     public Heading getHeading() {
-        float x = entityBody.getVelocityX();
-        float y = entityBody.getVelocityY();
-        float degree = (float)Math.toDegrees(Math.atan2(x, y));
+        final float x = entityBody.getVelocityX();
+        final float y = entityBody.getVelocityY();
+        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
         } else if(degree <= -135.0f || degree >= 135.0f) {
@@ -74,11 +75,22 @@ public class EntityGhost {
         return (int) (entityBody.getPositionY()-BODY_WIDTH);
     }
 
-    public int getDAMAGE() {
+    public void setDamage(int damage) {
+        healt -= damage;
+        if(healt <= 0) {
+            alive = false;
+        }
+    }
+
+    public int getDamage() {
         return DAMAGE;
     }
 
-    public int getHEALTH() {
-        return HEALTH;
+    public int getHealt() {
+        return healt;
     }
+
+    public boolean isAlive() { return alive; }
+
+    public int getLoot() { return LOOT;}
 }

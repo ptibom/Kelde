@@ -12,10 +12,10 @@ import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
 public class EntityPlayerKelde extends EntityPlayer {
-    private final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
-    private boolean isSlashing = false;
-    private boolean isShooting = false;
-    IPhysicalBody entityBody;
+    private static final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
+    private boolean isSlashing;
+    private boolean isShooting;
+    private final IPhysicalBody entityBody;
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
