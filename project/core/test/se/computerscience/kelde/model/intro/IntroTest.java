@@ -18,16 +18,16 @@ import static org.junit.Assert.assertNotEquals;
 /**
  * @author: Daniel Olsson
  */
+
+// Testing all input to intro, and if its working correctly.
 public class IntroTest {
 
-   private Intro introModel;
+    private Intro introModel;
 
-
-    public IntroTest(){
+    public IntroTest() {
         final Charset charset = Charset.forName("UTF-8");
         final ArrayList<List<String>> allData = new ArrayList<List<String>>();
         try {
-
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/spell.txt"), charset));
@@ -38,9 +38,8 @@ public class IntroTest {
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemondialog.intro"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationspellinstr.intro"), charset));
             this.introModel = new Intro(allData);
-        }
-        catch (IOException e){
-           final Logger logg = Logger.getLogger("test");
+        } catch (IOException e) {
+            final Logger logg = Logger.getLogger("test");
             logg.isLoggable(Level.FINE);
         }
 
@@ -50,7 +49,7 @@ public class IntroTest {
     @Test
     public void testGetInstructions() throws Exception {
 
-            assertEquals(6, introModel.getInstructions().size());
+        assertEquals(6, introModel.getInstructions().size());
 
     }
 
@@ -60,7 +59,6 @@ public class IntroTest {
         assertEquals(3, ConstantsAnimation.getWizardLength().length);
 
     }
-
 
 
     @Test
@@ -86,42 +84,40 @@ public class IntroTest {
     }
 
 
-
-
     @Test
     public void testGetMenuTime() throws Exception {
-        assertEquals(0,(int)introModel.getMenuTime());
+        assertEquals(0, (int) introModel.getMenuTime());
     }
 
     @Test
     public void testUpdateTimer() throws Exception {
         introModel.updateStateTime(0.5f);
-        assertEquals(0,(int)introModel.getStateTime());
+        assertEquals(0, (int) introModel.getStateTime());
     }
 
     @Test
     public void testResetTimer() throws Exception {
         introModel.updateTimer();
         introModel.resetTimer();
-        assertNotEquals(0f,introModel.getMenuTime(),0f);
+        assertNotEquals(0f, introModel.getMenuTime(), 0f);
 
     }
 
 
     @Test
     public void testGetStateTime() throws Exception {
-        assertEquals(0,(int)introModel.getStateTime());
+        assertEquals(0, (int) introModel.getStateTime());
     }
 
     @Test
     public void testUpdateStateTime() throws Exception {
         introModel.updateStateTime(1f);
-        assertEquals(0.5f, (int)introModel.getStateTime(),0.5f);
+        assertEquals(0.5f, (int) introModel.getStateTime(), 0.5f);
     }
 
     @Test
     public void testGetAnimationSpeed() throws Exception {
-        assertEquals(0.27f,(int)introModel.getAnimationSpeed(),0.27f);
+        assertEquals(0.27f, (int) introModel.getAnimationSpeed(), 0.27f);
 
     }
 }

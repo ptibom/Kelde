@@ -71,7 +71,7 @@ public class IntroHandler {
         Map<String, Animation> spellAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getSpellAnimations(),
                 introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroSpellPathImage()));
 
-        this.animationHandlerWizard1 = new AnimationHandler(IntroModel,wizardAnimations, 1350, 200, IntroModel.getWizardTalkCoordinates()[0],
+        this.animationHandlerWizard1 = new AnimationHandler(IntroModel, wizardAnimations, 1350, 200, IntroModel.getWizardTalkCoordinates()[0],
                 IntroModel.getWizardTalkCoordinates()[1], 0);
 
         this.animationHandlerDemon = new AnimationHandler(IntroModel, demonAnimations, 1285, 580, 128, 128, 47);
@@ -97,12 +97,12 @@ public class IntroHandler {
         batch.begin();
 
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture1, 0, 0,introBackgroundTexture1.getWidth()/2,introBackgroundTexture1.getHeight()/2);
+            batch.draw(introBackgroundTexture1, 0, 0, introBackgroundTexture1.getWidth() / 2, introBackgroundTexture1.getHeight() / 2);
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture2, 0, 0,introBackgroundTexture2.getWidth()/2,introBackgroundTexture2.getHeight()/2);
+            batch.draw(introBackgroundTexture2, 0, 0, introBackgroundTexture2.getWidth() / 2, introBackgroundTexture2.getHeight() / 2);
         }
 
-        if(introModel.getMenuTime()<FIRST_INTRO_TEXT_LENGTH) {
+        if (introModel.getMenuTime() < FIRST_INTRO_TEXT_LENGTH) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
                 dialogueHandler.drawTextDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta, 0.5);
@@ -139,10 +139,10 @@ public class IntroHandler {
         // Lastly we draw the first intro's foreground.
         if (introModel.getMenuTime() < 47000) {
 
-            batch.draw(introForegroundTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+            batch.draw(introForegroundTexture, 0, 0, introForegroundTexture.getWidth() / 2, introForegroundTexture.getHeight() / 2);
         }
 
-        batch.draw(introBorderTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+        batch.draw(introBorderTexture, 0, 0, introForegroundTexture.getWidth() / 2, introForegroundTexture.getHeight() / 2);
         batch.end();
     }
 
@@ -153,12 +153,10 @@ public class IntroHandler {
         boolean renderStillImage = !(instruct.getKeyFrame() == -1);
 
         if (renderStillImage) {
-            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,0.5);
+            animationHandler.drawAnimation(batch, instruct, delta, instruct.getKeyFrame(), 0.5);
 
-        }
-
-        else {
-            animationHandler.drawAnimation(batch, instruct,delta,0.5);
+        } else {
+            animationHandler.drawAnimation(batch, instruct, delta, 0.5);
         }
     }
 
@@ -171,7 +169,7 @@ public class IntroHandler {
     //This drawhelper renders the bubbles
     public void drawHelper(SpriteBatch batch, DialogueHandler dialogHandler, IntroInstruction instruct) {
 
-        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(),0.5);
+        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(), 0.5);
 
     }
 }

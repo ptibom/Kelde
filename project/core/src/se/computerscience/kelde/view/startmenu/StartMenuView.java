@@ -82,11 +82,11 @@ public class StartMenuView {
 
 
         batch.begin();
-        batch.draw(middleGroundTexture,0, 0,960,540);
+        batch.draw(middleGroundTexture, 0, 0, 960, 540);
         menuAnimationHandler.drawMenuAnimations(batch);
 
 
-        batch.draw(foregroundTexture,0, 0,960,540);
+        batch.draw(foregroundTexture, 0, 0, 960, 540);
         batch.end();
         return 0;
     }
@@ -161,7 +161,7 @@ public class StartMenuView {
         menuStage.addActor(exitbutton);
     }
 
-    public void stopMusic(){
+    public void stopMusic() {
         backgroundMusic.stop();
     }
 

@@ -24,19 +24,19 @@ public class IntroController {
     private final Intro introModel;
     private IntroView introView;
 
+    // This class takes care of input to model and gets callbacks from the view.
     public IntroController() throws IOException {
         final Charset charset = Charset.forName("UTF-8");
         final ArrayList<List<String>> allData = new ArrayList<List<String>>();
-        allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/spell.txt"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationdemon.intro"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationwizardinstr.intro"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationwizard2instr.intro"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"),charset));
-        allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"),charset));
-
+        allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/spell.txt"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationdemon.intro"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizardinstr.intro"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizard2instr.intro"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"), charset));
+        allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"), charset));
 
 
         this.introModel = new Intro(allData);
@@ -53,9 +53,8 @@ public class IntroController {
     }
 
     public void render(float delta) {
-         introView.render(delta);
+        introView.render(delta);
     }
-
 
 
 }

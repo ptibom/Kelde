@@ -11,14 +11,13 @@ import static org.junit.Assert.assertEquals;
  * @author: Daniel Olsson
  */
 public class InstructionToolsTest {
-
+    // Testing if the method can load a instruction data correctly
     @Test
     public void testLoadAndGatherInstructions() throws Exception {
 
-
         final List<String> arrayList = new ArrayList<>();
         arrayList.add("2 3 55 55 70 -50 demonwalk");
-        final  List<IntroInstruction> instructinList= InstructionTools.loadAndGatherInstructions(arrayList);
+        final List<IntroInstruction> instructinList = InstructionTools.loadAndGatherInstructions(arrayList);
         assertEquals(1, instructinList.size());
 
     }

@@ -15,7 +15,7 @@ import java.util.List;
 public class MenuAnimationConverter {
 
 
-
+    // Conoverting a in-house menu animation to libgdx animation
     public static List<Animation> menuAnimToLibAnim(List<MenuAnimation> menuAnimations, Texture spriteSheetTexture) {
 
         List<Animation> convertedAnimations = new ArrayList<>();
@@ -24,8 +24,8 @@ public class MenuAnimationConverter {
         for (MenuAnimation anAnimation : menuAnimations) {
 
 
-            TextureRegion[] allFramesinAnimation = new  TextureRegion[3];
-            for (int i = 0; i<3; i++) {
+            TextureRegion[] allFramesinAnimation = new TextureRegion[3];
+            for (int i = 0; i < 3; i++) {
                 MenuSprite sprite = anAnimation.getMenuSpriteFrames().get(i);
                 allFramesinAnimation[i] = (new TextureRegion(spriteSheetTexture, sprite.getSpriteStartXPosition(), sprite.getSpriteStartYPosition(),
                         sprite.getSpriteWidth(), sprite.getSpriteHeight()));

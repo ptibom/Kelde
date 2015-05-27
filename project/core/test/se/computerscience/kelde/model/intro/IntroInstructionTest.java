@@ -8,19 +8,23 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author: Daniel Olsson
  */
+
+// Testing if an Instruction can be created correctly
 public class IntroInstructionTest {
 
     private final IntroInstruction test;
     private final IntroInstruction test2;
     private final IntroInstruction test3;
     private final IntroInstructData testData;
-    public IntroInstructionTest(){
-        test = new IntroInstruction(5,4,3f,2,6,7,8, "goforward");
-        test2 = new IntroInstruction(15,4,4);
-        test3 = new IntroInstruction(12,4,4, "goforth");
-        testData = new IntroInstructData(1,2,3,4);
+
+    public IntroInstructionTest() {
+        test = new IntroInstruction(5, 4, 3f, 2, 6, 7, 8, "goforward");
+        test2 = new IntroInstruction(15, 4, 4);
+        test3 = new IntroInstruction(12, 4, 4, "goforth");
+        testData = new IntroInstructData(1, 2, 3, 4);
 
     }
+
     @Test
     public void testGetKeyFrame() throws Exception {
 
@@ -31,17 +35,17 @@ public class IntroInstructionTest {
     @Test
     public void testGetStartTime() throws Exception {
 
-        assertEquals((int)5,(int)test.getStartTime());
+        assertEquals((int) 5, (int) test.getStartTime());
     }
 
     @Test
     public void testGetEndTime() throws Exception {
-        assertEquals(4, (int)test.getEndTime());
+        assertEquals(4, (int) test.getEndTime());
     }
 
     @Test
     public void testGetInstructData() throws Exception {
-        assertEquals(1,testData.getXvel());
+        assertEquals(1, testData.getXvel());
 
     }
 
@@ -54,7 +58,7 @@ public class IntroInstructionTest {
     @Test
     public void testGetAnimationName() throws Exception {
 
-        assertEquals("goforward",test.getAnimationName());
+        assertEquals("goforward", test.getAnimationName());
 
     }
 
@@ -66,7 +70,7 @@ public class IntroInstructionTest {
 
     @Test
     public void testGetStartCount() throws Exception {
-        assertEquals(12 , (int)test3.getStartCount());
+        assertEquals(12, (int) test3.getStartCount());
 
     }
 }

@@ -19,19 +19,14 @@ import static org.junit.Assert.assertEquals;
  * @author: Daniel Olsson
  */
 public class AnimationServiceTest {
+
     private final Charset charset = Charset.forName("UTF-8");
-
-
-
     private final List<List<String>> allData = new ArrayList<List<String>>();
-
-
     private Intro introModel;
 
     @Before
-    public void initTest(){
-        try{
-
+    public void initTest() {
+        try {
 
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
@@ -43,26 +38,18 @@ public class AnimationServiceTest {
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemondialog.intro"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationspellinstr.intro"), charset));
 
-
-
-
-            introModel = new Intro(allData);}
-        catch(IOException e){
+            introModel = new Intro(allData);
+        } catch (IOException e) {
             final Logger alog = Logger.getLogger("test");
             alog.isLoggable(Level.FINE);
         }
     }
 
-
-
     @Test
     public void testGetWizardAnimations() throws Exception {
 
-
         final AnimationService animService = new AnimationService(introModel);
-
-        final  Map<String, IntroAnimation> mappedWizardTalkAnimation = animService.getWizardAnimations();
-
+        final Map<String, IntroAnimation> mappedWizardTalkAnimation = animService.getWizardAnimations();
         final int wizardLength = mappedWizardTalkAnimation.size();
         assertEquals(3, wizardLength);
     }
@@ -70,13 +57,9 @@ public class AnimationServiceTest {
     @Test
     public void testGetWizard2Animations() throws Exception {
 
-
         final AnimationService animService = new AnimationService(introModel);
-
         final Map<String, IntroAnimation> mappedWizard2TalkAnimation = animService.getWizard2Animations();
-
         final int wizardLength2 = mappedWizard2TalkAnimation.size();
-
         assertEquals(7, wizardLength2);
 
     }
@@ -84,12 +67,9 @@ public class AnimationServiceTest {
     @Test
     public void testGetDemonAnimations() throws Exception {
 
-
-        final  AnimationService animService = new AnimationService(introModel);
-
+        final AnimationService animService = new AnimationService(introModel);
         final Map<String, IntroAnimation> mappedDemonTalkAnimation = animService.getDemonAnimations();
-
-        final  int demonLength = mappedDemonTalkAnimation.size();
+        final int demonLength = mappedDemonTalkAnimation.size();
 
         assertEquals(9, demonLength);
     }
@@ -97,12 +77,9 @@ public class AnimationServiceTest {
     @Test
     public void testGetSpellAnimations() throws Exception {
 
-
-        final  AnimationService animService = new AnimationService(introModel);
-
-        final  Map<String, IntroAnimation> mappedSpellAnimation = animService.getSpellAnimations();
-
-        final  int spellLength = mappedSpellAnimation.size();
+        final AnimationService animService = new AnimationService(introModel);
+        final Map<String, IntroAnimation> mappedSpellAnimation = animService.getSpellAnimations();
+        final int spellLength = mappedSpellAnimation.size();
 
         assertEquals(3, spellLength);
     }
@@ -110,24 +87,17 @@ public class AnimationServiceTest {
     @Test
     public void testGetInterpolDataX() throws Exception {
 
-
-
-        final  AnimationService animService = new AnimationService(introModel);
-        final  int[] Xpoldata = animService.getInterpolDataX();
-
-        assertEquals(ConstantsAnimation.getAnimXCords().length*4, Xpoldata.length);
+        final AnimationService animService = new AnimationService(introModel);
+        final int[] Xpoldata = animService.getInterpolDataX();
+        assertEquals(ConstantsAnimation.getAnimXCords().length * 4, Xpoldata.length);
 
     }
 
     @Test
     public void testGetInterpolDataY() throws Exception {
 
-
-
-        final  AnimationService animService = new AnimationService(introModel);
-
-        final  int[] Ypoldata = animService.getInterpolDataY();
-
-        assertEquals(ConstantsAnimation.getAnimYCords().length*4, Ypoldata.length);
+        final AnimationService animService = new AnimationService(introModel);
+        final int[] Ypoldata = animService.getInterpolDataY();
+        assertEquals(ConstantsAnimation.getAnimYCords().length * 4, Ypoldata.length);
     }
 }

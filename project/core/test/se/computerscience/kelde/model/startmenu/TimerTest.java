@@ -8,23 +8,24 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author: Daniel Olsson
  */
-
+// Checking if the menu timer class is working correctly
 public class TimerTest {
 
     private Timer t;
+
     @Before
     public void setUp() throws Exception {
-    t = new Timer();
+        t = new Timer();
     }
 
     @Test
     public void testUpdateStateTime() throws Exception {
-    t.updateStateTime(5f);
-       assertEquals((int) t.getStateTime(),5);
+        t.updateStateTime(5f);
+        assertEquals((int) t.getStateTime(), 5);
     }
 
     @Test
     public void testGetStateTime() throws Exception {
-        assertEquals((int)t.getStateTime(),0);
+        assertEquals((int) t.getStateTime(), 0);
     }
 }

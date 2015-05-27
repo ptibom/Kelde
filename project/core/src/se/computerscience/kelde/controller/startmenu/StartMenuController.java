@@ -13,6 +13,8 @@ import java.io.IOException;
 /**
  * @author: Daniel Olsson
  */
+
+// Gets callback from intro to for instance change screen.
 public class StartMenuController {
 
     private final StartMenu startMenuModel;
@@ -32,26 +34,18 @@ public class StartMenuController {
             }
         });
 
-
-
-
-
         startMenuView.addActors();
-
     }
 
 
-    public void render( float delta) {
+    public void render(float delta) {
 
-         startMenuView.renderMenu( delta);
-
+        startMenuView.renderMenu(delta);
 
     }
-
-    public void resize(int width, int height){
+// The window need to be resized
+    public void resize(int width, int height) {
         startMenuView.resize(width, height);
     }
-
-
 
 }

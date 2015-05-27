@@ -8,7 +8,6 @@ public class Timer {
 
     private float stateTime;
 
-
     public void updateStateTime(float delta) {
         stateTime += delta;
     }

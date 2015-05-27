@@ -1,4 +1,7 @@
 package se.computerscience.kelde.model.intro;
+/**
+ * @author: Daniel Olsson
+ */
 
 // Definition of a single frame
 public class IntroSpriteFrame {

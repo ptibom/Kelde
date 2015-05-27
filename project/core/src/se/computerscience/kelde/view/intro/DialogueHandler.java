@@ -24,6 +24,7 @@ public class DialogueHandler {
     private final String[] dialogues;
     private final Timer t;
 
+    // Takes care of all the dialogue kind of animations
     public DialogueHandler(Intro IntroModel, double introDelay) {
         t = new Timer();
         t.resetTimer();
@@ -49,7 +50,7 @@ public class DialogueHandler {
             dialogueImages[i] = new Texture(dialogues[i]);
         }
     }
-
+// This method draws the text dialogue in the first intro
     public void drawTextDialogue(int dialoguenumber, SpriteBatch batch, double startTime, double endTime, float delta, double scale) {
 
         // Here we send take the dialogue number and render it according to start and end time
@@ -58,7 +59,7 @@ public class DialogueHandler {
         if (AnimationToolsUtilites.timeRange(IntroModel.getMenuTime(), startTime, endTime)) {
 
 
-            TextureRegion regionToRender = introTextTextDialogues.get(dialoguenumber).updateTextureRegion(IntroModel, delta);
+            TextureRegion regionToRender = introTextTextDialogues.get(dialoguenumber).updateTextureRegion();
                 t.updateTimer();
                 if(introTextTextDialogues.get(dialoguenumber).getTimeToLast()+startTime*1000>t.getMenuTime())
                 batch.draw(regionToRender, 0, 260, (int) (regionToRender.getRegionWidth() * scale), (int) (regionToRender.getRegionHeight() * scale));
@@ -66,7 +67,7 @@ public class DialogueHandler {
         }
     }
 
-
+// This method draws the dialoges in the second intro for instance.
     public void drawChatDialogue(SpriteBatch batch, int dialogueNumber, double startTime, double endTime, double scale) {
 
 

@@ -16,13 +16,13 @@ public class AnimationConverter
 
 {
     // Converts an set of in house introAnimations  to a set of  Libgdx animations.
-    public static Map<String,Animation> convertToLibgdxAnimation( Map<String, IntroAnimation> animationToConvert , float animationLength,
-                                                           Texture spriteTexture){
+    public static Map<String, Animation> convertToLibgdxAnimation(Map<String, IntroAnimation> animationToConvert, float animationLength,
+                                                                  Texture spriteTexture) {
 
-        Map<String,Animation> convertedAnimation = new HashMap<>();
+        Map<String, Animation> convertedAnimation = new HashMap<>();
         Iterator introAnimations = animationToConvert.entrySet().iterator();
 
-        while(introAnimations.hasNext()){
+        while (introAnimations.hasNext()) {
 
             Map.Entry anEntry = (Map.Entry) introAnimations.next();
             String key = (String) anEntry.getKey();
@@ -30,7 +30,7 @@ public class AnimationConverter
 
 
             Array<TextureRegion> loadingTextureRegion = new Array<>();
-            for(IntroSpriteFrame aSprite : introAnimation.getIntroSpriteFrames()){
+            for (IntroSpriteFrame aSprite : introAnimation.getIntroSpriteFrames()) {
 
                 loadingTextureRegion.add(new TextureRegion(spriteTexture, aSprite.getSpriteStartXPosition(),
                         aSprite.getSpriteStartYPosition(), aSprite.getSpriteWidth(), aSprite.getSpriteWidth()));
@@ -41,11 +41,8 @@ public class AnimationConverter
         }
 
 
-
-
         return convertedAnimation;
     }
-
 
 
 }

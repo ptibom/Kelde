@@ -3,8 +3,9 @@ package se.computerscience.kelde.model.intro;
 import com.badlogic.gdx.audio.Music;
 
 /**
- * Created by Daniel on 5/27/2015.
+ * @author: Daniel Olsson
  */
+
 public class ConstantsPath {
 
 

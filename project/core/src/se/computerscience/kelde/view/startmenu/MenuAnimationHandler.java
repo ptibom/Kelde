@@ -11,13 +11,14 @@ import java.util.List;
 /**
  * @author: Daniel Olsson
  */
+
+// This class takes care of handling the menu animations
 public class MenuAnimationHandler {
 
-    private static final int MOVEMENT_SPEED = 18, ORIGIN_X = -2400, ORIGIN_Y =70;
-    private static final int CHARACTER_OFFSET = 300 ;
+    private static final int MOVEMENT_SPEED = 18, ORIGIN_X = -2400, ORIGIN_Y = 70;
+    private static final int CHARACTER_OFFSET = 300;
     private final StartMenu startMenuModel;
     private final List<Animation> allWalkingAnimations;
-
 
 
     public MenuAnimationHandler(StartMenu startMenuModel) {
@@ -37,7 +38,7 @@ public class MenuAnimationHandler {
         for (int i = 0; i < allWalkingAnimations.size(); i++) {
 
             batch.draw(allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true),
-                    ORIGIN_X + CHARACTER_OFFSET * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, ORIGIN_Y, 64,64);
+                    ORIGIN_X + CHARACTER_OFFSET * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, ORIGIN_Y, 64, 64);
         }
 
     }

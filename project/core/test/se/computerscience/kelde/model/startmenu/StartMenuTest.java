@@ -5,15 +5,17 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertEquals;
+
 /**
  * @author: Daniel Olsson
  */
-
+// Cheecks the startmenu model clas if it's working correctly
 public class StartMenuTest {
 
     private StartMenu startMenu;
+
     @Before
-    public void setUp(){
+    public void setUp() {
         startMenu = new StartMenu();
     }
 
@@ -21,24 +23,21 @@ public class StartMenuTest {
     public void testGetWalkingCharacterPathPicture() throws Exception {
 
         assertSame(startMenu.getWalkingCharacterPathPicture(), "menu/walkingcharacters.png");
-
-
     }
 
     @Test
     public void testGetBackgroundSoundPath() throws Exception {
-
-        assertSame(startMenu.getBackgroundSoundPath(),"menu/dethrone.mp3");
+        assertSame(startMenu.getBackgroundSoundPath(), "menu/dethrone.mp3");
     }
 
     @Test
     public void testGetBackground() throws Exception {
-        assertSame(startMenu.getBackground() , "menu/background.png");
+        assertSame(startMenu.getBackground(), "menu/background.png");
     }
 
     @Test
     public void testGetForeground() throws Exception {
-        assertSame(startMenu.getForeground() , "menu/foreground.png");
+        assertSame(startMenu.getForeground(), "menu/foreground.png");
     }
 
     @Test
@@ -48,13 +47,12 @@ public class StartMenuTest {
 
     @Test
     public void testGetStateTime() throws Exception {
-        assertEquals(0 , (int)startMenu.getStateTime());
-
+        assertEquals(0, (int) startMenu.getStateTime());
     }
 
     @Test
     public void testUpdateStateTime() throws Exception {
         startMenu.updateStateTime(5f);
-        assertEquals((int)startMenu.getStateTime(),5);
+        assertEquals((int) startMenu.getStateTime(), 5);
     }
 }

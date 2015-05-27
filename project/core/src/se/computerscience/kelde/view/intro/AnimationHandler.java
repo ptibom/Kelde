@@ -20,14 +20,13 @@ public class AnimationHandler {
     private TextureRegion currentFrame;
     private Map<String, Animation> animations;
     private final int ORIGIN_X, ORIGIN_Y;
-    private int  width, height;
+    private int width, height;
     private double offsetX, offsetY, heightChangeX, heightChangeY;
     private int[] animPathInterpolatedX;
     private int[] animPathInterpolatedY;
 
 
     // An animationhandler suited for each specificn sprite with their own coordinates and height
-
     public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width, double introDelay) {
         this.width = width;
         this.height = height;
@@ -65,7 +64,7 @@ public class AnimationHandler {
 
             spriteFlip(currentFrame, isFlipped);
 
-            batch.draw(currentFrame, (int)(interPolX*scale), (int)(interPolY*scale), (int)(100*scale), (int)(100*scale));
+            batch.draw(currentFrame, (int) (interPolX * scale), (int) (interPolY * scale), (int) (100 * scale), (int) (100 * scale));
 
         }
 
@@ -94,13 +93,13 @@ public class AnimationHandler {
 
             spriteFlip(currentFrame, isFlipped);
 
-            int heightIn = (int)(height + (int) heightChangeY);
+            int heightIn = (int) (height + (int) heightChangeY);
             int widthIn = this.width + (int) this.heightChangeX;
-            int xIn =  ORIGIN_X + (int) offsetX;
+            int xIn = ORIGIN_X + (int) offsetX;
             int yIn = ORIGIN_Y + (int) offsetY;
 
 
-            batch.draw(currentFrame,(int)(xIn*scale),(int)(yIn*scale), (int)(widthIn*scale),(int)(heightIn*scale) );
+            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
 
         }
 
@@ -115,8 +114,8 @@ public class AnimationHandler {
         double endTime = instruct.getEndTime();
         int widthChange = instruct.getInstructData().getWidthChange();
         int heightChange = instruct.getInstructData().getHeightChange();
-        int xvelocity =  instruct.getInstructData().getXvel();
-        int yvelocity =  instruct.getInstructData().getYvel();
+        int xvelocity = instruct.getInstructData().getXvel();
+        int yvelocity = instruct.getInstructData().getYvel();
         String animation = instruct.getAnimationName();
 
 
@@ -128,11 +127,11 @@ public class AnimationHandler {
             currentFrame = animations.get(animation).getKeyFrame(specialKeyframe, true);
 
             int xIn = ORIGIN_X + (int) offsetX;
-            int yIn =  ORIGIN_Y + (int) offsetY;
+            int yIn = ORIGIN_Y + (int) offsetY;
             int widthIn = width + (int) heightChangeX;
             int heightIn = height + (int) heightChangeY;
 
-            batch.draw(currentFrame,(int)(xIn*scale) ,(int)(yIn*scale),(int)(widthIn*scale) ,(int)(heightIn*scale) );
+            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
 
         }
 

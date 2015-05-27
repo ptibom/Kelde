@@ -1,4 +1,7 @@
 package se.computerscience.kelde.model.startmenu;
+/**
+ * @author: Daniel Olsson
+ */
 
 // Definition of a single frame
 public class MenuSprite {
