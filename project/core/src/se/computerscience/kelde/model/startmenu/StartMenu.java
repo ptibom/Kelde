@@ -12,7 +12,7 @@ public class StartMenu {
     private static final String WALKING_CHARACTER_PATH_PICTURE = "menu/walkingcharacters.png";
     private static final String BACKGROUND_SOUND = "menu/dethrone.mp3";
 
-    Timer menuTimer = new Timer();
+    private final Timer menuTimer = new Timer();
 
     public String getWalkingCharacterPathPicture() {
 

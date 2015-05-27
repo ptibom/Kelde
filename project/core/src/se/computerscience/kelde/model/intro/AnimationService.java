@@ -98,7 +98,7 @@ public class AnimationService {
 
     // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
     // into an animation, then collect these animations into a map for ease of finding them.
-    private void readAndLoadAnimation(Object[] animationDataCollection,
+    private  List<IntroAnimation> readAndLoadAnimation(Object[] animationDataCollection,
                                       Object[] animationMapArray) {
 
         //Converting Object to it's specific type. We need to know the length of each animation
@@ -106,9 +106,8 @@ public class AnimationService {
 
 
         // The width and height of the sprite is stored in the beginning
-        final List<IntroAnimation> tempAnimationList = createListofAnimations(new ArrayList<>(), Integer.valueOf(0),
+        final List<IntroAnimation> tempAnimationList = AnimationBuilder.createListofAnimations(
                 (int[])animationDataCollection[0],   (int[])animationDataCollection[1] );
-
 
         //Creates an temporary collection of sprites which is one animation
 
@@ -138,6 +137,7 @@ public class AnimationService {
             }
         }
 
+        return tempAnimationList;
     }
 
 
@@ -172,34 +172,6 @@ public class AnimationService {
 
     public int[] getInterpolDataY() {
         return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
-    }
-
-    public  IntroSpriteFrame createNewInstance(int k, int[] data){
-
-        return new IntroSpriteFrame(data[k + 2],data[k + 3],data[0],data[1]);
-
-    }
-
-    public  List<IntroAnimation> createListofAnimations(List<IntroAnimation> tempList, int k, int[] data, int[] data2){
-        List<IntroSpriteFrame> tempListOfFrames;
-        for (int i = 0 ; i < ( data).length; i++) {
-            tempListOfFrames = createNewIntroSpriteList();
-            for (int j = 0; j < data[i]; j++, k += 2) {
-                tempListOfFrames.add(createNewInstance(k,  data2));
-            }
-            tempList.add(createIntroAnimation(tempListOfFrames));
-        }
-
-        return tempList;
-    }
-
-    public IntroAnimation createIntroAnimation(List<IntroSpriteFrame> tempList){
-
-        return new IntroAnimation(tempList);
-    }
-
-    public  List<IntroSpriteFrame> createNewIntroSpriteList(){
-        return new ArrayList<>();
     }
 
 

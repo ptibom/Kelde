@@ -21,8 +21,7 @@ import java.util.List;
 
 public class IntroController {
 
-    private final Intro introModel;
-    private IntroView introView;
+    private final IntroView introView;
 
     // This class takes care of input to model and gets callbacks from the view.
     public IntroController() throws IOException {
@@ -38,9 +37,7 @@ public class IntroController {
         allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"), charset));
         allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"), charset));
 
-
-        this.introModel = new Intro(allData);
-        this.introView = new IntroView(introModel);
+        this.introView = new IntroView(new Intro(allData));
 
         introView.getButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {

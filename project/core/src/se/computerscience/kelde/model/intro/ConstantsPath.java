@@ -1,12 +1,10 @@
 package se.computerscience.kelde.model.intro;
 
-import com.badlogic.gdx.audio.Music;
-
 /**
  * @author: Daniel Olsson
  */
 
-public class ConstantsPath {
+public final class ConstantsPath {
 
 
 
@@ -22,6 +20,10 @@ public class ConstantsPath {
     public static final String INTRO_WIZARD_ANIMATION_PATH_IMAGE = "intro/introtalk.png";
 
     private static final String INTRO_SOUND_PATH = "intro/dfear.mp3";
+
+    private ConstantsPath(){
+
+    }
 
     public static String getIntroBorderPathImage() {
         return INTRO_BORDER_PATH_IMAGE;

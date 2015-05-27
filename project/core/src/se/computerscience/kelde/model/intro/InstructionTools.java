@@ -11,7 +11,8 @@ import java.util.List;
 public final class InstructionTools {
 
 
-
+    private static String[] splitData;
+    private static  List<IntroInstruction> setOfInstruction;
 
 
     private InstructionTools(){
@@ -23,11 +24,11 @@ public final class InstructionTools {
 
     // Takes a string with instructions and converts it into instruction class to feed the animationhandler
     public static List<IntroInstruction> loadAndGatherInstructions(List<String> instructionString) throws FileNotFoundException {
-        String[] splitData;
-        final List<IntroInstruction> setOfInstruction = new ArrayList<>();
+
+        setOfInstruction = new ArrayList<>();
 
         for (final String data : instructionString) {
-            splitData= data.split(" ");
+            splitData = data.split(" ");
 
             // We need all 5 intro files for this intro to function
             if(instructionString.isEmpty()) {

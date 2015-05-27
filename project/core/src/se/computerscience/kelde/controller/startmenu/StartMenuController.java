@@ -1,6 +1,5 @@
 package se.computerscience.kelde.controller.startmenu;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import se.computerscience.kelde.controller.events.ScreenEvent;
@@ -17,11 +16,10 @@ import java.io.IOException;
 // Gets callback from intro to for instance change screen.
 public class StartMenuController {
 
-    private final StartMenu startMenuModel;
     private final StartMenuView startMenuView;
 
     public StartMenuController() throws IOException {
-        startMenuModel = new StartMenu();
+         final StartMenu startMenuModel = new StartMenu();
         this.startMenuView = new StartMenuView(startMenuModel);
         startMenuView.getButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -31,6 +29,7 @@ public class StartMenuController {
         startMenuView.getLoadButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
 
+                // This is not used at the moment
             }
         });
 
