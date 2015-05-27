@@ -108,4 +108,8 @@ public class GameWorldView{
     public GuiOverlayView getGuiOverlayView(){
     return guiOverlayView;
     }
+
+    public InventoryView getInventoryView(){
+        return inventoryView;
+    }
 }

@@ -10,8 +10,8 @@ import se.computerscience.kelde.view.inventory.InventoryView;
 public class InventoryController {
 
 
-    Inventory inventoryModel;
-    InventoryView inventoryView;
+    private final Inventory inventoryModel;
+    private final InventoryView inventoryView;
 
     public InventoryController(Inventory inventoryModel, InventoryView inventoryView){
 
@@ -21,6 +21,12 @@ public class InventoryController {
 
     public void update(IItem newItem){
             inventoryModel.update(newItem);
+    }
+
+
+    public InventoryView getInventoryView(){
+
+        return inventoryView;
     }
 
 

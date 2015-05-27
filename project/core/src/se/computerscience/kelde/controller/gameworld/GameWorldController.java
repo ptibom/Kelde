@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import se.computerscience.kelde.controller.entities.*;
 import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.controller.inventory.InventoryController;
 import se.computerscience.kelde.controller.items.ItemEntityController;
 
 
@@ -47,6 +48,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
 
     private final GuiOverlayController guiOverlayController;
+    private final InventoryController inventoryController;
 
 
     private Logger logger;
@@ -63,7 +65,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         gameWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
         guiOverlayController = new GuiOverlayController(gameWorld.getGui(), gameWorldView.getGuiOverlayView());
-
+        inventoryController = new InventoryController(gameWorld.getInventory(), gameWorldView.getInventoryView());
 
         ItemEventBus.INSTANCE.register(this);
     }

@@ -16,8 +16,8 @@ import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 
 // This class takes care of the rendering of the Graphical User Interface
 public class GuiOverlayView {
-    static final private int BUTTON_X = 685, BUTTON_MAIN_MENU_Y = 90, BUTTON_INVENTORY_Y = 180, BUTTON_TEXT = 540;
-    static final private int BUTTON_INVENTORY_TRUE_Y = 310, BUTTON_MAIN_MENU_TRUE_Y = 400;
+    static final private int BUTTON_X = 685, BUTTON_MAIN_MENU_Y = 30, BUTTON_INVENTORY_Y = 100, BUTTON_TEXT = 540;
+    static final private int BUTTON_INVENTORY_TRUE_Y = 370, BUTTON_MAIN_MENU_TRUE_Y = 470;
    private final GuiOverlay guiOverlayModel;
     private final Texture menuRectangle;
     private final  GuiButton inventoryButton, mainMenuButton;
@@ -30,7 +30,7 @@ public class GuiOverlayView {
         // The real coordinates do not coorialate with the buttons, because, you add viewport height
         menuRectangle = new Texture(gameGuiModel.getMenuRectangleImagePath());
         // The buttons Questlog and MainMenu are switched, but this has no ope
-        textButtonName = new TextButton("myName", createSkin(gameGuiModel.getTextBoxImagePath()));
+        textButtonName = new TextButton("Kelde", createSkin(gameGuiModel.getTextBoxImagePath()));
 
         // Set out position Y does not correlate to input Y, had to switch check.
         inventoryButton = new GuiButton("Main Menu",
