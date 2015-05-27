@@ -34,7 +34,7 @@ public class MenuScreen implements Screen {
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         SpriteBatch batch = new SpriteBatch();
         batch.begin();
-        startMenuController.render(batch, delta);
+        startMenuController.render( delta);
         batch.end();
     }
 

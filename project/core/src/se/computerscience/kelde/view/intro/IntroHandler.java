@@ -6,10 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.model.intro.AnimationService;
-import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.model.intro.IntroAnimation;
-import se.computerscience.kelde.model.intro.IntroInstruction;
+import se.computerscience.kelde.model.intro.*;
 
 import java.util.List;
 import java.util.Map;
@@ -51,11 +48,11 @@ public class IntroHandler {
     public IntroHandler(Intro IntroModel, AnimationService animationService) {
 
         //The textures and music is loaded
-        introMusic = Gdx.audio.newMusic(new FileHandle(IntroModel.getIntroSound()));
-        introBackgroundTexture1 = new Texture(IntroModel.getIntroBackgroundImage());
-        introBorderTexture = new Texture(IntroModel.getIntroBorderImage());
-        introForegroundTexture = new Texture(IntroModel.getForegroundIntroImage());
-        introBackgroundTexture2 = new Texture(IntroModel.getCaveBackground());
+        introMusic = Gdx.audio.newMusic(new FileHandle(ConstantsPath.getIntroMusic()));
+        introBackgroundTexture1 = new Texture(ConstantsPath.getIntroBackgroundPathImage());
+        introBorderTexture = new Texture(ConstantsPath.getIntroBorderPathImage());
+        introForegroundTexture = new Texture(ConstantsPath.getForegroundIntroPathImage());
+        introBackgroundTexture2 = new Texture(ConstantsPath.getIntroCaveBackground());
 
         // Here we create the handlers that takes care of the animation of
         // each specific sprite, be it demon, wizard etc.
@@ -66,13 +63,13 @@ public class IntroHandler {
 
         //Converting animations
         Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
-                introModel.getAnimationSpeed(), new Texture(introModel.getIntroWizardTalkImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroWizardAnimationPathImage()));
         Map<String, Animation> demonAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getDemonAnimations(),
-                introModel.getAnimationSpeed(), new Texture(introModel.getDemonAnd2ndWizardImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
         Map<String, Animation> wizard2 = AnimationConverter.convertToLibgdxAnimation(animationService.getWizard2Animations(),
-                introModel.getAnimationSpeed(), new Texture(introModel.getDemonAnd2ndWizardImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
         Map<String, Animation> spellAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getSpellAnimations(),
-                introModel.getAnimationSpeed(), new Texture(introModel.getSpellSpritePath()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroSpellPathImage()));
 
         this.animationHandlerWizard1 = new AnimationHandler(IntroModel,wizardAnimations, 1350, 200, IntroModel.getWizardTalkCoordinates()[0],
                 IntroModel.getWizardTalkCoordinates()[1], 0);

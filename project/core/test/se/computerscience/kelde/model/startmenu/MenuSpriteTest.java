@@ -3,7 +3,7 @@ package se.computerscience.kelde.model.startmenu;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author: Daniel Olsson
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class MenuSpriteTest {
 
-    MenuSprite test;
+    private MenuSprite test;
 
     @Before
     public void setUp() throws Exception {
@@ -20,21 +20,21 @@ public class MenuSpriteTest {
 
     @Test
     public void testGetSpriteStartXPosition() throws Exception {
-        assertTrue(1 == test.getSpriteStartXPosition());
+        assertEquals(1,test.getSpriteStartXPosition());
     }
 
     @Test
     public void testGetSpriteStartYPosition() throws Exception {
-        assertTrue(2 == test.getSpriteStartYPosition());
+        assertEquals(2,test.getSpriteStartYPosition());
     }
 
     @Test
     public void testGetSpriteWidth() throws Exception {
-        assertTrue(3 == test.getSpriteWidth());
+        assertEquals(3,test.getSpriteWidth());
     }
 
     @Test
     public void testGetSpriteHeight() throws Exception {
-        assertTrue(4 == test.getSpriteHeight());
+        assertEquals(4, test.getSpriteHeight());
     }
 }

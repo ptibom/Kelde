@@ -1,7 +1,5 @@
 package se.computerscience.kelde.model.startmenu;
 
-import java.io.IOException;
-
 /**
  * @author: Daniel Olsson
  */

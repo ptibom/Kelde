@@ -3,7 +3,6 @@ package se.computerscience.kelde.view.intro;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.model.intro.Timer;
 
 /**
  * @author: Daniel Olsson

@@ -1,8 +1,6 @@
 package se.computerscience.kelde.model.startmenu;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,9 +25,8 @@ public class AnimationLoader {
 
     }
 
-    public static List<MenuAnimation> loadWalkingCharacters(StartMenu startMenuModel) {
+    public static List<MenuAnimation> loadWalkingCharacters() {
 
-        Texture walkingCharacterTexture = new Texture(startMenuModel.getWalkingCharacterPathPicture());
 
         for (int i = 0, x = SPRITE_SHEET_X_START, y = SPRITE_SHEET_Y_START; i < SPRITE_SHEET_SIZE; i++) {
 

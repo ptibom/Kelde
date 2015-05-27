@@ -6,16 +6,13 @@ package se.computerscience.kelde.model.intro;
 
 public class IntroInstruction {
 
-    private boolean flipped = false;
-    private double startCount = 0;
+    private boolean flipped;
+    private double startCount;
     private float keyFrame = -1;
     private int dialogNumber = -1;
-    private double startTime = 0;
-    private double endTime = 0;
-    private double xvelocity = 0;
-    private double yvelocity = 0;
-    private double widthChange = 0;
-    private double heightChange = 0;
+    private final double  startTime;
+    private final double endTime;
+    private IntroInstructData instructData;
     private String animationName;
 
     public IntroInstruction(int dialogNumber, double startTime, double endTime) {
@@ -38,10 +35,7 @@ public class IntroInstruction {
 
         this.startTime = startTime;
         this.endTime = endTime;
-        this.widthChange = widthChange;
-        this.heightChange = heightChange;
-        this.xvelocity = xvelocity;
-        this.yvelocity = yvelocity;
+        instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
         this.animationName = animationName;
 
     }
@@ -50,10 +44,7 @@ public class IntroInstruction {
         this.keyFrame = keyFrame;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.widthChange = widthChange;
-        this.heightChange = heightChange;
-        this.xvelocity = xvelocity;
-        this.yvelocity = yvelocity;
+        instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
         this.animationName = animationName;
 
     }
@@ -73,25 +64,12 @@ public class IntroInstruction {
         return endTime;
     }
 
-    public double getXVelocity() {
-        return xvelocity;
+    public IntroInstructData getInstructData() {
+        return instructData;
 
     }
 
-    public double getYVelocity() {
 
-        return yvelocity;
-    }
-
-    public double getWidthChange() {
-
-        return widthChange;
-    }
-
-    public double getHeightChange() {
-        return heightChange;
-
-    }
 
     public boolean isFlipped() {
         return flipped;

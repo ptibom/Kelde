@@ -1,0 +1,6 @@
+0 2 0 0 0 0 walkforward 4
+2 6 30 30 -120 -40 walkforward
+6 8 0 0 0 0 walkforward 4
+8 40 0 0 0 0 wandlight
+40 43 0 0 0 0 walkforward 4
+43 47 -15 -15 60 20 backwalk

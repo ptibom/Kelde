@@ -3,8 +3,8 @@ package se.computerscience.kelde.view.intro;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import se.computerscience.kelde.model.intro.AnimationToolsUtilites;
 import se.computerscience.kelde.model.intro.Intro;
-import se.computerscience.kelde.model.intro.AnimationTools;
 import se.computerscience.kelde.model.intro.Timer;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class DialogueHandler {
         // Here we send take the dialogue number and render it according to start and end time
         // A text-dialogue is always render as large as the screen is
 
-        if (AnimationTools.timeRange(IntroModel.getMenuTime(), startTime, endTime)) {
+        if (AnimationToolsUtilites.timeRange(IntroModel.getMenuTime(), startTime, endTime)) {
 
 
             TextureRegion regionToRender = introTextTextDialogues.get(dialoguenumber).updateTextureRegion(IntroModel, delta);
@@ -70,7 +70,7 @@ public class DialogueHandler {
     public void drawChatDialogue(SpriteBatch batch, int dialogueNumber, double startTime, double endTime, double scale) {
 
 
-        if (AnimationTools.timeRange(IntroModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(IntroModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
             batch.draw(dialogueImages[dialogueNumber], 0, 0,(int)(dialogueImages[dialogueNumber].getWidth()*scale),
                     (int) (dialogueImages[dialogueNumber].getHeight()*scale));
         }

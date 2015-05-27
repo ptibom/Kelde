@@ -3,7 +3,7 @@ package se.computerscience.kelde.model.startmenu;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author: Daniel Olsson
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class TimerTest {
 
-    Timer t;
+    private Timer t;
     @Before
     public void setUp() throws Exception {
     t = new Timer();
@@ -20,11 +20,11 @@ public class TimerTest {
     @Test
     public void testUpdateStateTime() throws Exception {
     t.updateStateTime(5f);
-       assertTrue(t.getStateTime() == 5f);
+       assertEquals((int) t.getStateTime(),5);
     }
 
     @Test
     public void testGetStateTime() throws Exception {
-        assertTrue(t.getStateTime() == 0f);
+        assertEquals((int)t.getStateTime(),0);
     }
 }

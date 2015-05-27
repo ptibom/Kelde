@@ -1,57 +1,55 @@
 package se.computerscience.kelde.model.intro;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author: Daniel Olsson
  */
 public class AnimationServiceTest {
-    Charset charset = Charset.forName("UTF-8");
+    private final Charset charset = Charset.forName("UTF-8");
 
 
 
-    public ArrayList<List<String>> allData = new ArrayList<List<String>>();
+    private final List<List<String>> allData = new ArrayList<List<String>>();
 
 
-    Intro introModel;
+    private Intro introModel;
 
     @Before
     public void initTest(){
         try{
 
 
-            allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt"), charset));
-          allData.add(Files.readAllLines(Paths.get("intro/spell.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationdemon.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationwizardinstr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationwizard2instr.intro"), charset));
-           allData.add(Files.readAllLines(Paths.get("intro/animationwizarddialogue.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("intro/animationdemondialog.intro"), charset));
-           allData.add(Files.readAllLines(Paths.get("intro/animationspellinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/spell.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemon.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizardinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizard2instr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizarddialogue.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemondialog.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationspellinstr.intro"), charset));
 
 
 
 
-        introModel = new Intro(allData);}
+            introModel = new Intro(allData);}
         catch(IOException e){
-            System.out.println("A file not found");
+            final Logger alog = Logger.getLogger("test");
+            alog.isLoggable(Level.FINE);
         }
     }
 
@@ -61,11 +59,11 @@ public class AnimationServiceTest {
     public void testGetWizardAnimations() throws Exception {
 
 
-        AnimationService animService = new AnimationService(introModel);
+        final AnimationService animService = new AnimationService(introModel);
 
-        HashMap<String, IntroAnimation> mappedWizardTalkAnimation = animService.getWizardAnimations();
+        final  Map<String, IntroAnimation> mappedWizardTalkAnimation = animService.getWizardAnimations();
 
-        int wizardLength = mappedWizardTalkAnimation.size();
+        final int wizardLength = mappedWizardTalkAnimation.size();
         assertEquals(3, wizardLength);
     }
 
@@ -73,11 +71,11 @@ public class AnimationServiceTest {
     public void testGetWizard2Animations() throws Exception {
 
 
-        AnimationService animService = new AnimationService(introModel);
+        final AnimationService animService = new AnimationService(introModel);
 
-        HashMap<String, IntroAnimation> mappedWizard2TalkAnimation = animService.getWizard2Animations();
+        final Map<String, IntroAnimation> mappedWizard2TalkAnimation = animService.getWizard2Animations();
 
-        int wizardLength2 = mappedWizard2TalkAnimation.size();
+        final int wizardLength2 = mappedWizard2TalkAnimation.size();
 
         assertEquals(7, wizardLength2);
 
@@ -87,11 +85,11 @@ public class AnimationServiceTest {
     public void testGetDemonAnimations() throws Exception {
 
 
-        AnimationService animService = new AnimationService(introModel);
+        final  AnimationService animService = new AnimationService(introModel);
 
-        HashMap<String, IntroAnimation> mappedDemonTalkAnimation = animService.getDemonAnimations();
+        final Map<String, IntroAnimation> mappedDemonTalkAnimation = animService.getDemonAnimations();
 
-        int demonLength = mappedDemonTalkAnimation.size();
+        final  int demonLength = mappedDemonTalkAnimation.size();
 
         assertEquals(9, demonLength);
     }
@@ -100,11 +98,11 @@ public class AnimationServiceTest {
     public void testGetSpellAnimations() throws Exception {
 
 
-        AnimationService animService = new AnimationService(introModel);
+        final  AnimationService animService = new AnimationService(introModel);
 
-        HashMap<String, IntroAnimation> mappedSpellAnimation = animService.getSpellAnimations();
+        final  Map<String, IntroAnimation> mappedSpellAnimation = animService.getSpellAnimations();
 
-        int spellLength = mappedSpellAnimation.size();
+        final  int spellLength = mappedSpellAnimation.size();
 
         assertEquals(3, spellLength);
     }
@@ -114,10 +112,10 @@ public class AnimationServiceTest {
 
 
 
-        AnimationService animService = new AnimationService(introModel);
-        int[] Xpoldata = animService.getInterpolDataX();
+        final  AnimationService animService = new AnimationService(introModel);
+        final  int[] Xpoldata = animService.getInterpolDataX();
 
-        assertEquals(introModel.getXAnimPathArray().length*4, Xpoldata.length);
+        assertEquals(ConstantsAnimation.getAnimXCords().length*4, Xpoldata.length);
 
     }
 
@@ -126,10 +124,10 @@ public class AnimationServiceTest {
 
 
 
-        AnimationService animService = new AnimationService(introModel);
+        final  AnimationService animService = new AnimationService(introModel);
 
-        int[] Ypoldata = animService.getInterpolDataY();
+        final  int[] Ypoldata = animService.getInterpolDataY();
 
-        assertEquals(introModel.getYAnimPathArray().length*4, Ypoldata.length);
+        assertEquals(ConstantsAnimation.getAnimYCords().length*4, Ypoldata.length);
     }
 }

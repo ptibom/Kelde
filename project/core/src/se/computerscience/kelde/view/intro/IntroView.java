@@ -4,22 +4,18 @@ package se.computerscience.kelde.view.intro;
  */
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import se.computerscience.kelde.controller.events.ScreenEvent;
-import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 
-import java.awt.*;
+;
 
 
 public class IntroView {

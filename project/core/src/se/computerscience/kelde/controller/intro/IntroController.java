@@ -8,13 +8,12 @@ import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.view.intro.IntroView;
 
-
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.nio.charset.Charset;
 
 /**
  * @author: Daniel Olsson
@@ -22,12 +21,12 @@ import java.nio.charset.Charset;
 
 public class IntroController {
 
-    private Intro introModel;
+    private final Intro introModel;
     private IntroView introView;
 
     public IntroController() throws IOException {
-        Charset charset = Charset.forName("UTF-8");
-        ArrayList<List<String>> allData = new ArrayList<List<String>>();
+        final Charset charset = Charset.forName("UTF-8");
+        final ArrayList<List<String>> allData = new ArrayList<List<String>>();
         allData.add(Files.readAllLines(Paths.get("intro/introsprites.txt"),charset));
         allData.add(Files.readAllLines(Paths.get("intro/introtalk.txt"),charset));
         allData.add(Files.readAllLines(Paths.get("intro/spell.txt"),charset));

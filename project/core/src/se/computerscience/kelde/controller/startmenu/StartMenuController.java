@@ -8,7 +8,6 @@ import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 import se.computerscience.kelde.view.startmenu.StartMenuView;
 
-
 import java.io.IOException;
 
 /**
@@ -29,7 +28,7 @@ public class StartMenuController {
         });
         startMenuView.getLoadButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("will never work");
+
             }
         });
 
@@ -42,7 +41,7 @@ public class StartMenuController {
     }
 
 
-    public void render(SpriteBatch batch, float delta) {
+    public void render( float delta) {
 
          startMenuView.renderMenu( delta);
 

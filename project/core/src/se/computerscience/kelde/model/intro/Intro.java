@@ -58,9 +58,9 @@ public class Intro {
         int INTRO_SPELL_SPRITE_SIZE = 100;
 
         // Reads the input strings to an array of values for each image
-        INTRO_DEMON_SPRITE_COORDINATES = AnimationTools.loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE,introDemonData);
-        INTRO_WIZARD_SPRITE_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE, introWizardData);
-        INTRO_SPELL_SPRITE_COORDINATES =AnimationTools.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
+        INTRO_DEMON_SPRITE_COORDINATES = AnimationToolsUtilites.loadTextureRegionData(INTRO_DEMON_SPRITE_SIZE, introDemonData);
+        INTRO_WIZARD_SPRITE_COORDINATES = AnimationToolsUtilites.loadTextureRegionData(INTRO_WIZARD_SPRITE_SIZE, introWizardData);
+        INTRO_SPELL_SPRITE_COORDINATES = AnimationToolsUtilites.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
 
         //Read from file .intro
         List<String> introDemonInstructions = inputData.get(3);
@@ -89,9 +89,6 @@ public class Intro {
         return allInstructions;
     }
 
-    public int[] getWizardAnimationData() {
-        return ConstantsAnimation.INTRO_WIZARD_ANIMATION_LENGTH_DATA;
-    }
 
 
     public int[] getWizardTalkCoordinates() {
@@ -106,10 +103,6 @@ public class Intro {
         return Arrays.copyOf(INTRO_SPELL_SPRITE_COORDINATES,INTRO_SPELL_SPRITE_COORDINATES.length);
     }
 
-    public int[] getSpellAnimationLength() {
-
-        return ConstantsAnimation.INTRO_SPELL_ANIMATION_LENGTH_DATA;
-    }
 
     public String[] getDialogues() { return Arrays.copyOf(INTRO_DIALOGUE_IMAGES,INTRO_DIALOGUE_IMAGES.length);
 
@@ -126,48 +119,9 @@ public class Intro {
 
     }
 
-    public String getSpellSpritePath() {
 
-        return ConstantsAnimation.INTRO_SPELL_PATH_IMAGE;
-    }
 
-    public String getDemonAnd2ndWizardImage() {
 
-        return ConstantsAnimation.INTRO_DEMON_ANIMATION_PATH_IMAGE;
-    }
-
-    public int[] getDemonAnimationData() {
-
-        return ConstantsAnimation.INTRO_DEMON_ANIMATION_LENGTH_DATA;
-    }
-
-    public String getIntroWizardTalkImage() {
-        return ConstantsAnimation.INTRO_WIZARD_ANIMATION_PATH_IMAGE;
-    }
-
-    public String getIntroBorderImage() {
-
-        return ConstantsAnimation.INTRO_BORDER_PATH_IMAGE;
-    }
-
-    public String getIntroBackgroundImage() {
-
-        return ConstantsAnimation.INTRO_BACKGROUND_PATH_IMAGE;
-
-    }
-
-    public String getIntroSound() {
-
-        return INTRO_SOUND_PATH;
-    }
-
-    public String getForegroundIntroImage() {
-        return ConstantsAnimation.FOREGROUND_INTRO_PATH_IMAGE;
-    }
-
-    public String getCaveBackground() {
-        return ConstantsAnimation.INTRO_CAVE_BACKGROUND;
-    }
 
     public double getMenuTime() {
 
@@ -184,15 +138,6 @@ public class Intro {
         introTimer.resetTimer();
     }
 
-    public int[] getXAnimPathArray() {
-        return ConstantsAnimation.animPathCordsX;
-
-    }
-
-    public int[] getYAnimPathArray() {
-        return ConstantsAnimation.animPathCordsY;
-
-    }
 
     public float getStateTime() {
         return introTimer.getStateTime();

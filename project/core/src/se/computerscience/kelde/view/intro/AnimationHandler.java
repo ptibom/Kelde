@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.AnimationService;
+import se.computerscience.kelde.model.intro.AnimationToolsUtilites;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.intro.IntroInstruction;
-import se.computerscience.kelde.model.intro.AnimationTools;
 
 import java.util.Map;
 
@@ -50,7 +50,7 @@ public class AnimationHandler {
 
         //Drawing an interpolated animation using X and Y coordinates from arrays,
 
-        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
             double timePassed = introModel.getMenuTime() / 1000 - startCount - introDelay;
 
@@ -79,14 +79,14 @@ public class AnimationHandler {
         boolean isFlipped = instruct.isFlipped();
         double startTime = instruct.getStartTime();
         double endTime = instruct.getEndTime();
-        int widthChange = (int) instruct.getWidthChange();
-        int heightChange = (int) instruct.getHeightChange();
-        int xvelocity = (int) instruct.getXVelocity();
-        int yvelocity = (int) instruct.getYVelocity();
+        int widthChange = (int) instruct.getInstructData().getWidthChange();
+        int heightChange = (int) instruct.getInstructData().getHeightChange();
+        int xvelocity = (int) instruct.getInstructData().getXvel();
+        int yvelocity = (int) instruct.getInstructData().getYvel();
         String animation = instruct.getAnimationName();
 
 
-        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
             calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
 
@@ -113,15 +113,15 @@ public class AnimationHandler {
 
         double startTime = instruct.getStartTime();
         double endTime = instruct.getEndTime();
-        int widthChange = (int) instruct.getWidthChange();
-        int heightChange = (int) instruct.getHeightChange();
-        int xvelocity = (int) instruct.getXVelocity();
-        int yvelocity = (int) instruct.getYVelocity();
+        int widthChange = instruct.getInstructData().getWidthChange();
+        int heightChange = instruct.getInstructData().getHeightChange();
+        int xvelocity =  instruct.getInstructData().getXvel();
+        int yvelocity =  instruct.getInstructData().getYvel();
         String animation = instruct.getAnimationName();
 
 
         // This function will be used if you want to lock the animation in to a certain keyframe
-        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
 
             calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
 

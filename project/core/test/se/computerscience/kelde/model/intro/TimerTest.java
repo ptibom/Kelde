@@ -2,13 +2,13 @@ package se.computerscience.kelde.model.intro;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 /**
  * @author: Daniel Olsson
  */
 public class TimerTest {
-    Timer test;
+    private final Timer test;
 
     public TimerTest(){
         test = new Timer();
@@ -21,8 +21,8 @@ public class TimerTest {
 
         test.resetTimer();
         test.updateTimer();
-        double test2 = test.getMenuTime();
-        assertTrue (0==test2);
+       final  double test2 = test.getMenuTime();
+        assertEquals(0,(int) test2);
 
 
     }
@@ -30,25 +30,25 @@ public class TimerTest {
     @Test
     public void testUpdateStateTime() throws Exception {
 
-        float noupdate = test.getStateTime();
+        final float noupdate = test.getStateTime();
 
         test.updateStateTime(0.5f);
-        float update = test.getStateTime();
+        final float update = test.getStateTime();
 
-        assertTrue(noupdate!=update);
+        assertNotSame(noupdate, update);
     }
 
     @Test
     public void testGetStateTime() throws Exception {
 
-        assertTrue(0.f == test.getStateTime());
+        assertEquals(0, (int) test.getStateTime());
 
     }
 
     @Test
     public void testGetMenuTime() throws Exception {
 
-        assertTrue(0 == test.getMenuTime());
+        assertEquals(0 ,(int) test.getMenuTime());
 
     }
 
@@ -58,6 +58,6 @@ public class TimerTest {
         test.updateTimer();
         test.resetTimer();
 
-        assertTrue(0 == test.getMenuTime());
+        assertEquals(0, (int) test.getMenuTime());
     }
 }

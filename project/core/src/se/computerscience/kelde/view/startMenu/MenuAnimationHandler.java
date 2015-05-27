@@ -3,8 +3,6 @@ package se.computerscience.kelde.view.startmenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import se.computerscience.kelde.model.startmenu.AnimationLoader;
 import se.computerscience.kelde.model.startmenu.StartMenu;
 
@@ -26,7 +24,7 @@ public class MenuAnimationHandler {
 
         this.startMenuModel = startMenuModel;
 
-        allWalkingAnimations = MenuAnimationConverter.menuAnimToLibAnim(AnimationLoader.loadWalkingCharacters(startMenuModel),
+        allWalkingAnimations = MenuAnimationConverter.menuAnimToLibAnim(AnimationLoader.loadWalkingCharacters(),
                 new Texture(startMenuModel.getWalkingCharacterPathPicture()));
 
     }

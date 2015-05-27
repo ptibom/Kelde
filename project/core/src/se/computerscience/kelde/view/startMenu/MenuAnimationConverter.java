@@ -3,14 +3,11 @@ package se.computerscience.kelde.view.startmenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import se.computerscience.kelde.model.intro.IntroAnimation;
-import se.computerscience.kelde.model.intro.IntroSpriteFrame;
 import se.computerscience.kelde.model.startmenu.MenuAnimation;
 import se.computerscience.kelde.model.startmenu.MenuSprite;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by MonoMan on 5/24/2015.

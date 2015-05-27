@@ -1,6 +1,5 @@
 package se.computerscience.kelde.model.intro;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,10 +7,15 @@ import java.util.List;
  */
 
 // Usueful tool to time the animations
-public class AnimationTools {
+public final class AnimationToolsUtilites {
+
+
+    private AnimationToolsUtilites(){
+
+    }
 
     public static boolean timeRange(double time, double x, double y) {
-        return ((time / 1000) >= x) && ((time / 1000) < y);
+        return (time / 1000) >= x && (time / 1000) < y;
 
     }
 

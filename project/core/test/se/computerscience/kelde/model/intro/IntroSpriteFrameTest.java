@@ -2,7 +2,7 @@ package se.computerscience.kelde.model.intro;
 
 import org.junit.Test;
 
-
+import static org.junit.Assert.assertEquals;
 /**
  * @author: Daniel Olsson
  */
@@ -17,21 +17,21 @@ public class IntroSpriteFrameTest {
     @Test
     public void testSpriteStartXPosition() throws Exception {
 
-        assert(10 == test.getSpriteStartXPosition());
+        assertEquals(10,test.getSpriteStartXPosition());
     }
 
     @Test
     public void testGetSpriteStartYPosition() throws Exception {
-    assert(120 == test.getSpriteStartYPosition());
+        assertEquals(120,test.getSpriteStartYPosition());
     }
 
     @Test
     public void testGetSpriteWidth() throws Exception {
-    assert(40 == test.getSpriteWidth());
+        assertEquals(40,test.getSpriteWidth());
     }
 
     @Test
     public void testGetSpriteHeight() throws Exception {
-    assert(30 == test.getSpriteHeight());
+        assertEquals(30 ,test.getSpriteHeight());
     }
 }
