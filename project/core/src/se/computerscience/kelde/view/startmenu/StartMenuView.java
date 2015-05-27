@@ -70,7 +70,7 @@ public class StartMenuView {
 
         // This is the draw part, draws background, characters, then foreground.
         batch.begin();
-        batch.draw(backgroundTexture, 0, 0,960,540);
+        batch.draw(backgroundTexture, 0, 0, 960, 540);
 
 
         batch.end();
@@ -82,8 +82,9 @@ public class StartMenuView {
 
 
         batch.begin();
-        menuAnimationHandler.drawMenuAnimations(batch);
         batch.draw(middleGroundTexture,0, 0,960,540);
+        menuAnimationHandler.drawMenuAnimations(batch);
+
 
         batch.draw(foregroundTexture,0, 0,960,540);
         batch.end();
