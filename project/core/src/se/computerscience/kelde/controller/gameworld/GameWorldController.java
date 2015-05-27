@@ -168,5 +168,4 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             itemEntityControllers.remove(event.getObject());
         }
     }
-
 }

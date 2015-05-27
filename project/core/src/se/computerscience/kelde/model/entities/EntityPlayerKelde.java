@@ -6,6 +6,7 @@
 
 package se.computerscience.kelde.model.entities;
 
+import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
@@ -65,5 +66,9 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
 
     public boolean isSlashing() {
         return slashing;
+    }
+
+    public void setPosition(float x ,float y){
+        entityBody.setPosition(x,y);
     }
 }
