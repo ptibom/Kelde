@@ -36,6 +36,7 @@ public class GameWorld {
     private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
+        inventory = new Inventory();
         guiOverlay = new GuiOverlay();
         map = new Map(MAP_LOCATION);
         camera = new Camera();
