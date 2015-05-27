@@ -20,14 +20,13 @@ import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
-import se.computerscience.kelde.model.entities.IEntitie;
+import se.computerscience.kelde.model.entities.INPCEntity;
 import se.computerscience.kelde.model.gameworld.GameWorld;
 
-import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 import se.computerscience.kelde.model.items.IItem;
 
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
-import se.computerscience.kelde.view.entities.IEntitieView;
+import se.computerscience.kelde.view.entities.IEntityView;
 
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
@@ -118,8 +117,8 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
                 final Class modelCls = Class.forName("se.computerscience.kelde.model.entities."+mapObject.getName());
                 final Class viewCls = Class.forName("se.computerscience.kelde.view.entities."+mapObject.getName()+"View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.entities." + mapObject.getName() + "Controller");
-                final IEntitie modelObject = (IEntitie)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
-                final IEntitieView viewObject = (IEntitieView)viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final INPCEntity modelObject = (INPCEntity)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
+                final IEntityView viewObject = (IEntityView)viewCls.getConstructor(modelCls).newInstance(modelObject);
                 final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
                 gameWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
@@ -143,7 +142,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         }
 
         worldPhysicsController.update(delta);
-        guiOverlayController.update(delta);
+        guiOverlayController.update(delta, entityPlayerKeldeController.getHealth(), 0); // 0 mana
         gameWorldView.render(delta);
 
     }

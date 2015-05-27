@@ -16,8 +16,8 @@ public class GuiOverlay {
     private static final String GUI_BUTTON = "gui/gui_button.png";
     private final String[] barTexturePackage;
 
-    private int currentPlayerHealth = 50;
-    private int currentPlayerMana = 50;
+    private int currentPlayerHealth;
+    private int currentPlayerMana;
 
 
     public GuiOverlay(){

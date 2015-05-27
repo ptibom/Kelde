@@ -18,8 +18,8 @@ public class GuiOverlayController {
         this.gameGuiView = gameGuiView;
     }
 
-    public void update(float delta){
+    public void update(float delta, int health, int mana){
 
-        gameGuiModel.update(75,75);
+        gameGuiModel.update(health, mana);
     }
 }

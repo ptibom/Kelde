@@ -18,7 +18,7 @@ import se.computerscience.kelde.model.entities.EntitySmallWorm;
  * Created by Anders on 2015-04-25.
  * @author Anders Bolin
  */
-public class EntitySmallWormView implements IEntitieView{
+public class EntitySmallWormView implements IEntityView {
 
     //Variables
     private final EntitySmallWorm entitySmallWorm;

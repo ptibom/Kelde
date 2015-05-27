@@ -6,15 +6,14 @@
 
 package se.computerscience.kelde.controller.physics;
 
+import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import se.computerscience.kelde.controller.events.CollisionEvent;
-import se.computerscience.kelde.controller.events.CollisionEventBus;
-import se.computerscience.kelde.controller.events.ICollisionEventHandler;
-import se.computerscience.kelde.model.worldobjects.IWorldObjects;
+import se.computerscience.kelde.model.entities.INPCEntity;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 
@@ -58,16 +57,27 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
     public void computeCollision(Contact contact, CollisionEvent.Tag state) {
         final Object objectA = contact.getFixtureA().getUserData();
         final Object objectB = contact.getFixtureB().getUserData();
+        if (objectA == null || objectB == null) {
+            return;
+        }
 
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
-            if (objectB instanceof IWorldObjects) {
-                eventCache.add(new CollisionEvent(state, objectB));
+            eventCache.add(new CollisionEvent(state, objectB));
+            if (objectB instanceof INPCEntity) {
+                INPCEntity npc = (INPCEntity) objectB;
+                if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
+                    ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
+                }
             }
         }
         else if (objectB instanceof EntityPlayerKelde) {
-            if (objectA instanceof IWorldObjects) {
-                eventCache.add(new CollisionEvent(state, objectA));
+            eventCache.add(new CollisionEvent(state, objectA));
+            if (objectA instanceof INPCEntity) {
+                INPCEntity npc = (INPCEntity) objectB;
+                if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
+                    ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
+                }
             }
         }
     }
