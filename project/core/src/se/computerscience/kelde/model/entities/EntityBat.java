@@ -11,7 +11,7 @@ import java.util.Random;
  * Created by Anders on 2015-04-06.
  * @author: Anders Bolin
  */
-public class EntityBat {
+public class EntityBat implements IEntitie {
 
     //Variables
     private static final int DAMAGE = 10;

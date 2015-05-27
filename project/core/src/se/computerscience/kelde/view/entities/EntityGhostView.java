@@ -12,7 +12,7 @@ import se.computerscience.kelde.model.entities.EntityGhost;
  * Created by Anders on 2015-05-16.
  * @author Anders Bolin
  */
-public class EntityGhostView {
+public class EntityGhostView implements IEntitieView{
 
     //Variables
     private final EntityGhost entityGhost;

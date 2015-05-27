@@ -58,31 +58,31 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
         if (Input.Keys.UP == keycode && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             velocityControl.y = 0;
         }
-        if (Input.Keys.DOWN == keycode && !Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        else if (Input.Keys.DOWN == keycode && !Gdx.input.isKeyPressed(Input.Keys.UP)) {
             velocityControl.y = 0;
         }
-        if (Input.Keys.RIGHT == keycode && !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        else if (Input.Keys.RIGHT == keycode && !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             velocityControl.x = 0;
         }
-        if (Input.Keys.LEFT == keycode && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        else if (Input.Keys.LEFT == keycode && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             velocityControl.x = 0;
         }
-        if (Input.Keys.LEFT == keycode && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        else if (Input.Keys.LEFT == keycode && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             velocityControl.x = WALKSPEED;
         }
-        if (Input.Keys.RIGHT == keycode && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        else if (Input.Keys.RIGHT == keycode && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             velocityControl.x = -WALKSPEED;
         }
-        if (Input.Keys.UP == keycode && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        else if (Input.Keys.UP == keycode && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             velocityControl.y = -WALKSPEED;
         }
-        if (Input.Keys.DOWN == keycode && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        else if (Input.Keys.DOWN == keycode && Gdx.input.isKeyPressed(Input.Keys.UP)) {
             velocityControl.y = WALKSPEED;
         }
-        if(keycode == Input.Keys.SPACE) {
+        else if(keycode == Input.Keys.SPACE) {
             isSlashing = false;
         }
-        if(keycode == Input.Keys.ALT_LEFT) {
+        else if(keycode == Input.Keys.ALT_LEFT) {
             isShooting = false;
         }
     }

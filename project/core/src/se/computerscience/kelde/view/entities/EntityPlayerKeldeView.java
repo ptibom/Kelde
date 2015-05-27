@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeView {
+public class EntityPlayerKeldeView{
 
 
     private final EntityPlayerKelde entityPlayerKelde;
@@ -45,7 +45,7 @@ public class EntityPlayerKeldeView {
         if (entityPlayerKelde.isWalking()) {
             batch.draw(walkAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
-        if (entityPlayerKelde.getIsSlashing()) {
+        if (entityPlayerKelde.isSlashing()) {
             batch.draw(daggerAnimation[direction].getKeyFrame(elapsedTime, true), entityPlayerKelde.getPositionX(), entityPlayerKelde.getPositionY());
         }
         if (entityPlayerKelde.getIsShooting()) {
