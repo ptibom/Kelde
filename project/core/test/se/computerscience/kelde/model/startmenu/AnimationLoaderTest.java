@@ -18,14 +18,14 @@ public class AnimationLoaderTest {
 
     @Before
     public void setUp() {
-        ;
-        animLoader = new AnimationLoader();
+
+
     }
 
     @Test
     public void testLoadWalkingCharacters() throws Exception {
 
-        final List<MenuAnimation> anims = animLoader.loadWalkingCharacters();
+        final List<MenuAnimation> anims = AnimationLoader.loadWalkingCharacters();
         assertEquals(anims.size(), 14);
 
     }

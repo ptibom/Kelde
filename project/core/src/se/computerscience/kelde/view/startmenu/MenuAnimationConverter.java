@@ -12,31 +12,49 @@ import java.util.List;
 /**
  * Created by MonoMan on 5/24/2015.
  */
-public class MenuAnimationConverter {
+public final class MenuAnimationConverter {
 
+    private static  List<Animation> convertedAnimations;
+    private static TextureRegion[] allFramesinAnimation;
 
-    // Conoverting a in-house menu animation to libgdx animation
+    private MenuAnimationConverter(){
+
+    }
+
     public static List<Animation> menuAnimToLibAnim(List<MenuAnimation> menuAnimations, Texture spriteSheetTexture) {
 
-        List<Animation> convertedAnimations = new ArrayList<>();
         convertedAnimations = new ArrayList<>();
 
-        for (MenuAnimation anAnimation : menuAnimations) {
+        for (final MenuAnimation anAnimation : menuAnimations) {
 
 
-            TextureRegion[] allFramesinAnimation = new TextureRegion[3];
-            for (int i = 0; i < 3; i++) {
-                MenuSprite sprite = anAnimation.getMenuSpriteFrames().get(i);
-                allFramesinAnimation[i] = (new TextureRegion(spriteSheetTexture, sprite.getSpriteStartXPosition(), sprite.getSpriteStartYPosition(),
-                        sprite.getSpriteWidth(), sprite.getSpriteHeight()));
+            allFramesinAnimation =getTextureRegionSizeThree();
+            for (int i = 0; i<3; i++) {
+                final MenuSprite sprite = anAnimation.getMenuSpriteFrames().get(i);
+                allFramesinAnimation[i] = getTextureRegion(spriteSheetTexture, sprite);
             }
 
-            convertedAnimations.add(new Animation(0.27f, (TextureRegion[]) allFramesinAnimation));
+            convertedAnimations.add(getAnimation  (allFramesinAnimation));
         }
 
         return convertedAnimations;
 
     }
 
+    public static TextureRegion getTextureRegion(Texture spriteSheetTexture,MenuSprite sprite ) {
+
+        return new TextureRegion(spriteSheetTexture, sprite.getSpriteStartXPosition(), sprite.getSpriteStartYPosition(),
+                sprite.getSpriteWidth(), sprite.getSpriteHeight());
+
+    }
+
+    public static Animation getAnimation(TextureRegion[] textReg){
+
+        return new Animation(0.27f, textReg);
+    }
+
+    public static TextureRegion[] getTextureRegionSizeThree(){
+        return new  TextureRegion[3];
+    }
 
 }

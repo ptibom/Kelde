@@ -15,18 +15,19 @@ import java.util.Map;
  */
 public class AnimationHandler {
 
-    private double introDelay;
-    private Intro introModel;
+    private final double INTRO_DELAY;
+    final private Intro introModel;
     private TextureRegion currentFrame;
-    private Map<String, Animation> animations;
+    final private Map<String, Animation> animations;
     private final int ORIGIN_X, ORIGIN_Y;
-    private int width, height;
+    private final int  width, height;
     private double offsetX, offsetY, heightChangeX, heightChangeY;
     private int[] animPathInterpolatedX;
     private int[] animPathInterpolatedY;
 
 
     // An animationhandler suited for each specificn sprite with their own coordinates and height
+
     public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width, double introDelay) {
         this.width = width;
         this.height = height;
@@ -34,37 +35,30 @@ public class AnimationHandler {
         this.animations = animations;
         this.ORIGIN_X = x;
         this.ORIGIN_Y = y;
-        this.introDelay = introDelay;
+        INTRO_DELAY = introDelay;
 
     }
 
     public void drawAnimation(SpriteBatch batch, AnimationService animationloader, IntroInstruction instruct, double scale) {
 
-        boolean isFlipped = instruct.isFlipped();
-        double startCount = instruct.getStartCount();
-        double startTime = instruct.getStartTime();
-        double endTime = instruct.getEndTime();
-        String animation = instruct.getAnimationName();
-
-
         //Drawing an interpolated animation using X and Y coordinates from arrays,
 
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY,  instruct.getEndTime() + INTRO_DELAY)) {
 
-            double timePassed = introModel.getMenuTime() / 1000 - startCount - introDelay;
+            final double timePassed = introModel.getMenuTime() / 1000 - instruct.getStartCount() - INTRO_DELAY;
 
             animPathInterpolatedX = animationloader.getInterpolDataX();
             animPathInterpolatedY = animationloader.getInterpolDataY();
 
 
-            float interPolX = (float) (animPathInterpolatedX[(int) (timePassed * 24)]);
-            float interPolY = (float) (animPathInterpolatedY[(int) (timePassed * 24)]);
+            final float interPolX = (float) (animPathInterpolatedX[(int) (timePassed * 24)]);
+            final float interPolY = (float) (animPathInterpolatedY[(int) (timePassed * 24)]);
 
-            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
+            currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(introModel.getStateTime(), true);
 
-            spriteFlip(currentFrame, isFlipped);
+            spriteFlip(currentFrame,  instruct.isFlipped());
 
-            batch.draw(currentFrame, (int) (interPolX * scale), (int) (interPolY * scale), (int) (100 * scale), (int) (100 * scale));
+            batch.draw(currentFrame, (int)(interPolX*scale), (int)(interPolY*scale), (int)(100*scale), (int)(100*scale));
 
         }
 
@@ -75,31 +69,22 @@ public class AnimationHandler {
     public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta, double scale) {
 
 
-        boolean isFlipped = instruct.isFlipped();
-        double startTime = instruct.getStartTime();
-        double endTime = instruct.getEndTime();
-        int widthChange = (int) instruct.getInstructData().getWidthChange();
-        int heightChange = (int) instruct.getInstructData().getHeightChange();
-        int xvelocity = (int) instruct.getInstructData().getXvel();
-        int yvelocity = (int) instruct.getInstructData().getYvel();
-        String animation = instruct.getAnimationName();
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
+
+            calculateNewDrawValues( instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
+                    instruct.getInstructData().getWidthChange(), instruct.getInstructData().getHeightChange(), delta);
+
+            currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(introModel.getStateTime(), true);
+
+            spriteFlip(currentFrame, instruct.isFlipped());
+
+            final int heightIn = height + (int) heightChangeY;
+            final  int widthIn = this.width + (int) this.heightChangeX;
+            final  int xIn =  ORIGIN_X + (int) offsetX;
+            final int yIn = ORIGIN_Y + (int) offsetY;
 
 
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
-
-            calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
-
-            currentFrame = animations.get(animation).getKeyFrame(introModel.getStateTime(), true);
-
-            spriteFlip(currentFrame, isFlipped);
-
-            int heightIn = (int) (height + (int) heightChangeY);
-            int widthIn = this.width + (int) this.heightChangeX;
-            int xIn = ORIGIN_X + (int) offsetX;
-            int yIn = ORIGIN_Y + (int) offsetY;
-
-
-            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
+            batch.draw(currentFrame,(int)(xIn*scale),(int)(yIn*scale), (int)(widthIn*scale),(int)(heightIn*scale) );
 
         }
 
@@ -110,28 +95,20 @@ public class AnimationHandler {
     // Drawing a still image
     public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta, float specialKeyframe, double scale) {
 
-        double startTime = instruct.getStartTime();
-        double endTime = instruct.getEndTime();
-        int widthChange = instruct.getInstructData().getWidthChange();
-        int heightChange = instruct.getInstructData().getHeightChange();
-        int xvelocity = instruct.getInstructData().getXvel();
-        int yvelocity = instruct.getInstructData().getYvel();
-        String animation = instruct.getAnimationName();
-
-
         // This function will be used if you want to lock the animation in to a certain keyframe
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY,  instruct.getEndTime() + INTRO_DELAY)) {
 
-            calculateNewDrawValues(xvelocity, yvelocity, widthChange, heightChange, delta);
+            calculateNewDrawValues(instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
+                    instruct.getInstructData().getWidthChange(),  instruct.getInstructData().getHeightChange(), delta);
 
-            currentFrame = animations.get(animation).getKeyFrame(specialKeyframe, true);
+            currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(specialKeyframe, true);
 
-            int xIn = ORIGIN_X + (int) offsetX;
-            int yIn = ORIGIN_Y + (int) offsetY;
-            int widthIn = width + (int) heightChangeX;
-            int heightIn = height + (int) heightChangeY;
+            final int xIn = ORIGIN_X + (int) offsetX;
+            final int yIn =  ORIGIN_Y + (int) offsetY;
+            final int widthIn = width + (int) heightChangeX;
+            final int heightIn = height + (int) heightChangeY;
 
-            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
+            batch.draw(currentFrame,(int)(xIn*scale) ,(int)(yIn*scale),(int)(widthIn*scale) ,(int)(heightIn*scale) );
 
         }
 

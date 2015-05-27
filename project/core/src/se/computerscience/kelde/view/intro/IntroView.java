@@ -15,36 +15,50 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 
+;
+
+
 public class IntroView {
+
 
     // Intro model that returns the data, and introhandler that handles animations
     private static final int SCREEN_W = 1920, SCREEN_H = 1080;
-    private Intro introModel;
-    private IntroHandler introHandler;
-    private Stage stage;
-    private TextButton test;
+    private final Intro introModel;
+    private final IntroHandler introHandler;
+    private final Stage stage;
+    private final TextButton test;
 
     public IntroView(Intro introModel) {
         stage = new Stage();
+        final String def = "default";
+        final String bak = "background";
         Gdx.input.setInputProcessor(stage);
-        Skin skin = new Skin();
-        BitmapFont font = new BitmapFont();
-        skin.add("default", font);
+        final Skin skin = new Skin();
+        final BitmapFont font = new BitmapFont();
+        skin.add(def, font);
 
-        Pixmap pixmap = new Pixmap(SCREEN_W, SCREEN_H, Pixmap.Format.RGB888);
+        final Pixmap pixmap = new Pixmap(SCREEN_W,SCREEN_H, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
         skin.add("background", new Texture(pixmap));
 
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        final TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = skin.newDrawable(bak, Color.RED);
+        textButtonStyle.down = skin.newDrawable(bak, Color.GREEN);
+        textButtonStyle.checked = skin.newDrawable(bak, Color.DARK_GRAY);
+        textButtonStyle.over = skin.newDrawable(bak, Color.BLUE);
+        textButtonStyle.font = skin.getFont(def);
+        skin.add(def, textButtonStyle);
 
-        textButtonStyle.up = skin.newDrawable("background", Color.BLACK);
-        textButtonStyle.down = skin.newDrawable("background", Color.BLACK);
-        textButtonStyle.checked = skin.newDrawable("background", Color.BLACK);
-        textButtonStyle.over = skin.newDrawable("background", Color.BLACK);
-        textButtonStyle.font = skin.getFont("default");
-        skin.add("default", textButtonStyle);
-        test = new TextButton("", skin);
+
+
+        textButtonStyle.up = skin.newDrawable(bak, Color.RED);
+        textButtonStyle.down = skin.newDrawable(bak, Color.GREEN);
+        textButtonStyle.checked = skin.newDrawable(bak, Color.DARK_GRAY);
+        textButtonStyle.over = skin.newDrawable(bak, Color.BLUE);
+        textButtonStyle.font = skin.getFont(def);
+        skin.add(def, textButtonStyle);
+        test = new TextButton( bak,skin);
 
         introModel.resetTimer();
         this.introModel = introModel;
@@ -52,7 +66,6 @@ public class IntroView {
         introHandler.startIntroMusic();
         stage.addActor(test);
     }
-
     // Need to resize, incase user resizes screen
     public void resize(int width, int height) {
         stage.getCamera().position.x = width;
@@ -63,9 +76,10 @@ public class IntroView {
 
     public void render(float delta) {
 
+
         stage.draw();
         stage.act();
-        SpriteBatch batch = new SpriteBatch();
+        final SpriteBatch batch = new SpriteBatch();
 
         //We need to update the state time to get different animation frames.
         introModel.updateStateTime(delta);
@@ -76,15 +90,24 @@ public class IntroView {
 
         //Here we tell the handler to draw the intro, instructions are included in model
         introHandler.drawIntro(batch, delta);
+
+        //Check for touch, if so we change screen
+
+
+
     }
 
-    public TextButton getButton() {
+
+    public TextButton getButton(){
         return test;
     }
 
-    public IntroHandler getHandler() {
+    public IntroHandler getHandler(){
         return introHandler;
     }
+
+
+
 
 
 }

@@ -30,7 +30,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        GL20 gl = Gdx.graphics.getGL20();
+        final GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         SpriteBatch batch = new SpriteBatch();
         batch.begin();
@@ -45,17 +45,17 @@ public class MenuScreen implements Screen {
 
     @Override
     public void pause() {
-
+        // No need for this
     }
 
     @Override
     public void resume() {
-
+        // No need for this
     }
 
     @Override
     public void hide() {
-
+        // No need for this
     }
 
     @Override

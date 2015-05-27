@@ -9,10 +9,10 @@ import java.util.*;
 public class AnimationService {
 
     // The finished collection of animations
-   private final Map<String, IntroAnimation> mappedWizardTalkAnimation;
-   private final Map<String, IntroAnimation> mappedDemonTalkAnimation;
-   private final Map<String, IntroAnimation> mappedWizard2TalkAnimation;
-   private final Map<String, IntroAnimation> mappedSpellAnimation;
+    private final Map<String, IntroAnimation> mappedWizardTalkAnimation;
+    private final Map<String, IntroAnimation> mappedDemonTalkAnimation;
+    private final Map<String, IntroAnimation> mappedWizard2TalkAnimation;
+    private final Map<String, IntroAnimation> mappedSpellAnimation;
     private final static int LENGTH_OF_FIRST_PART = 8;
 
     // Path for spell animations
@@ -69,12 +69,12 @@ public class AnimationService {
         final int[] demonSpriteCoordinates = introModel.getIntroDemonCoordinates();
 
 
-       final String[] keyForAnimations2 = new String[]{"demonspellhit", "demonlaughleft", "demontalkleft", "demonsideleft",
+        final String[] keyForAnimations2 = new String[]{"demonspellhit", "demonlaughleft", "demontalkleft", "demonsideleft",
                 "demonlaughright", "demontalkright", "demonbreathe", "demonwalk", "demonpoint", "wizardshoot",
                 "wizardbehind", "wizardstandright", "wizardstandleft", "wizardtalkleft", "wizardtalkright", "wizardwalk"};
 
         final Object[] animationDataCollectionDem = new Object[]{demonAndSecondWizardAnimationLengthData, demonSpriteCoordinates,
-                 keyForAnimations2};
+                keyForAnimations2};
         final  Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionDem, animationMapsDem);
@@ -88,7 +88,7 @@ public class AnimationService {
 
         final  String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
         final Object[] animationDataCollectionSpell = new Object[]{spellAnimationLengthData, spellSpriteCoordinates,
-                 keyForAnimations3};
+                keyForAnimations3};
         final Object[] animationMapsSpell = new Object[]{mappedSpellAnimation};
 
         readAndLoadAnimation(animationDataCollectionSpell, animationMapsSpell);
@@ -99,14 +99,14 @@ public class AnimationService {
     // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
     // into an animation, then collect these animations into a map for ease of finding them.
     private void readAndLoadAnimation(Object[] animationDataCollection,
-                                     Object[] animationMapArray) {
+                                      Object[] animationMapArray) {
 
         //Converting Object to it's specific type. We need to know the length of each animation
 
 
 
         // The width and height of the sprite is stored in the beginning
-        final List<IntroAnimation> tempAnimationList = createListofAnimations(new ArrayList<>(), new Integer(0),
+        final List<IntroAnimation> tempAnimationList = createListofAnimations(new ArrayList<>(), Integer.valueOf(0),
                 (int[])animationDataCollection[0],   (int[])animationDataCollection[1] );
 
 
@@ -171,7 +171,7 @@ public class AnimationService {
     }
 
     public int[] getInterpolDataY() {
-             return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
+        return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
     }
 
     public  IntroSpriteFrame createNewInstance(int k, int[] data){
@@ -181,7 +181,7 @@ public class AnimationService {
     }
 
     public  List<IntroAnimation> createListofAnimations(List<IntroAnimation> tempList, int k, int[] data, int[] data2){
-         List<IntroSpriteFrame> tempListOfFrames;
+        List<IntroSpriteFrame> tempListOfFrames;
         for (int i = 0 ; i < ( data).length; i++) {
             tempListOfFrames = createNewIntroSpriteList();
             for (int j = 0; j < data[i]; j++, k += 2) {
@@ -195,7 +195,7 @@ public class AnimationService {
 
     public IntroAnimation createIntroAnimation(List<IntroSpriteFrame> tempList){
 
-            return new IntroAnimation(tempList);
+        return new IntroAnimation(tempList);
     }
 
     public  List<IntroSpriteFrame> createNewIntroSpriteList(){

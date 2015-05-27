@@ -21,18 +21,17 @@ import se.computerscience.kelde.model.startmenu.StartMenu;
 public class StartMenuView {
 
 
-    private final int ORIGINAL_SCREEN_WIDTH = 1920;
-    private final int ORIGINAL_SCREEN_HEIGHT = 1080;
+    private static final int ORIGINAL_SCREEN_WIDTH = 1920;
+    private static final int ORIGINAL_SCREEN_HEIGHT = 1080;
     private final Stage menuStage;
     private final Music backgroundMusic;
     private final StartMenu startMenuModel;
-    private SpriteBatch batch;
-    private Skin skin, skin2, skin3;
-    private TextButton newGameButton, loadGameButton, exitbutton;
+    private final SpriteBatch batch;
+    private final  TextButton newGameButton, loadGameButton, exitbutton;
     private final MenuAnimationHandler menuAnimationHandler;
     private final Texture backgroundTexture, foregroundTexture, middleGroundTexture;
 
-    private Viewport viewport;
+    private final  Viewport viewport;
 
     public StartMenuView(StartMenu startMenuModel) {
 
@@ -45,7 +44,34 @@ public class StartMenuView {
         viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, menuStage.getCamera());
         Gdx.input.setInputProcessor(menuStage);
         middleGroundTexture = new Texture(startMenuModel.getMidGround());
-        initButtons();
+
+
+        //Initializing buttons
+
+        // Creates skins for buttons and creates textButtons with them
+        final  Skin skin = createSkin("menu/startbutton.png");
+        final Skin skin2 = createSkin("menu/loadbutton.png");
+        final Skin skin3 = createSkin("menu/exitbutton.png");
+
+
+        loadGameButton = new TextButton("", skin2);
+        newGameButton = new TextButton("", skin);
+        exitbutton = new TextButton("", skin3);
+
+        //Initializes their positions and adds them to the stage
+        final int LOAD_BUTTON_POS_X = 730;
+        final int LOAD_BUTTON_POS_Y = 373;
+        final int START_BUTTON_POS_X = 730;
+        final int START_BUTTON_POS_Y = 550;
+        final int EXIT_BUTTON_POS_X = 1140;
+        final int EXIT_BUTTON_POS_Y = 370;
+
+        newGameButton.setPosition(START_BUTTON_POS_X, START_BUTTON_POS_Y);
+        loadGameButton.setPosition(LOAD_BUTTON_POS_X, LOAD_BUTTON_POS_Y);
+        exitbutton.setPosition(EXIT_BUTTON_POS_X, EXIT_BUTTON_POS_Y);
+
+
+
         menuStage.setViewport(viewport);
 
         // Loads other assets as textures and music
@@ -82,11 +108,11 @@ public class StartMenuView {
 
 
         batch.begin();
-        batch.draw(middleGroundTexture, 0, 0, 960, 540);
+
+        batch.draw(middleGroundTexture,0, 0,960,540);
         menuAnimationHandler.drawMenuAnimations(batch);
 
-
-        batch.draw(foregroundTexture, 0, 0, 960, 540);
+        batch.draw(foregroundTexture,0, 0,960,540);
         batch.end();
         return 0;
     }
@@ -99,46 +125,25 @@ public class StartMenuView {
 
     }
 
-    public void initButtons() {
-        // Creates skins for buttons and creates textButtons with them
-        skin = createSkin("menu/startbutton.png");
-        skin2 = createSkin("menu/loadbutton.png");
-        skin3 = createSkin("menu/exitbutton.png");
-
-
-        loadGameButton = new TextButton("", skin2);
-        newGameButton = new TextButton("", skin);
-        exitbutton = new TextButton("", skin3);
-
-
-        //Initializes their positions and adds them to the stage
-        int LOAD_BUTTON_POS_X = 730, LOAD_BUTTON_POS_Y = 373, START_BUTTON_POS_X = 730,
-                START_BUTTON_POS_Y = 550, EXIT_BUTTON_POS_X = 1140, EXIT_BUTTON_POS_Y = 370;
-
-        newGameButton.setPosition(START_BUTTON_POS_X, START_BUTTON_POS_Y);
-        loadGameButton.setPosition(LOAD_BUTTON_POS_X, LOAD_BUTTON_POS_Y);
-        exitbutton.setPosition(EXIT_BUTTON_POS_X, EXIT_BUTTON_POS_Y);
-
-
-    }
 
 
     // Creates and returns a Skin using image from file path
     public Skin createSkin(String imageFilePath) {
-        Skin skin = new Skin();
-        BitmapFont font = new BitmapFont();
+        final Skin skin = new Skin();
+        final BitmapFont font = new BitmapFont();
+        final String bak = "background";
         skin.add("default", font);
 
-        Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth() / 4, (int) Gdx.graphics.getHeight() / 10, Pixmap.Format.RGB888);
+        final Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth() / 4, (int) Gdx.graphics.getHeight() / 10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
-        skin.add("background", new Texture(imageFilePath));
+        skin.add(bak, new Texture(imageFilePath));
 
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("background", Color.RED);
-        textButtonStyle.down = skin.newDrawable("background", Color.GREEN);
-        textButtonStyle.checked = skin.newDrawable("background", Color.DARK_GRAY);
-        textButtonStyle.over = skin.newDrawable("background", Color.BLUE);
+        final TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = skin.newDrawable(bak, Color.RED);
+        textButtonStyle.down = skin.newDrawable(bak, Color.GREEN);
+        textButtonStyle.checked = skin.newDrawable(bak, Color.DARK_GRAY);
+        textButtonStyle.over = skin.newDrawable(bak, Color.BLUE);
         textButtonStyle.font = skin.getFont("default");
         skin.add("default", textButtonStyle);
 
@@ -161,7 +166,7 @@ public class StartMenuView {
         menuStage.addActor(exitbutton);
     }
 
-    public void stopMusic() {
+    public void stopMusic(){
         backgroundMusic.stop();
     }
 

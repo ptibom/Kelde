@@ -9,37 +9,43 @@ import se.computerscience.kelde.model.intro.Intro;
  */
 public class TextDialogue {
 
-    private double scale = 0.5;
-    private Texture dialogueTexture;
-    private TextureRegion textRegion;
+    final static private double SCALE = 0.5;
+    final private Texture dialogueTexture;
     private double percentToShow;
     private static final int OFFSET_FROM_SCREEN = 50;
     private static final int SCREEN_HEIGHT = 1080;
     private static final int SCREEN_WIDTH = 1920;
     private static final int TEXT_MOVEMENT_SPEED = 384;
-    private final double timeLengthToShow;
+    private  final double timeLengthToShow;
 
-    // This represent a text in the first intro, it has a variable for keeping time how long to persist.
     public TextDialogue(Texture dialogueTexture, double timeLengthToShow) {
         this.dialogueTexture = dialogueTexture;
         percentToShow = 0;
         this.timeLengthToShow = timeLengthToShow;
 
     }
-    //
+
+
     public TextureRegion updateTextureRegion() {
+
 
         if (percentToShow + OFFSET_FROM_SCREEN == SCREEN_WIDTH) {
             percentToShow = SCREEN_WIDTH;
-        } else
+        } else {
             percentToShow += SCREEN_WIDTH * TEXT_MOVEMENT_SPEED;
+        }
 
-        textRegion = new TextureRegion(dialogueTexture, (int) ((OFFSET_FROM_SCREEN + percentToShow) * scale), (int) (SCREEN_HEIGHT * scale));
-        return textRegion;
+
+
+
+        return new TextureRegion(dialogueTexture, (int) ((OFFSET_FROM_SCREEN + percentToShow)*SCALE), (int)(SCREEN_HEIGHT*SCALE));
+
     }
 
-    public double getTimeToLast() {
+    public double getTimeToLast(){
         return timeLengthToShow;
     }
+
+
 
 }

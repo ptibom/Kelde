@@ -1,5 +1,6 @@
 package se.computerscience.kelde.model.intro;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ import java.util.List;
 public final class AnimationToolsUtilites {
 
 
+    private static  int[] textureRegionCoordinates;
+    private static int dataIndex;
     private AnimationToolsUtilites(){
 
     }
@@ -22,19 +25,20 @@ public final class AnimationToolsUtilites {
     // Loading the coordinates for each TextureRegion from raw input
     public static int [] loadTextureRegionData(int spriteSize, List<String> data) {
 
-        int[] TextureRegionCoordinates = new int[(data.size()-7/7)];
+        textureRegionCoordinates = new int[data.size()-7/7];
 
-        TextureRegionCoordinates[0] = spriteSize;
-        TextureRegionCoordinates[1] = spriteSize;
-        for (int i = 7, dataIndex = 2; i < data.size(); i += 7) {
+        textureRegionCoordinates[0] = spriteSize;
+        textureRegionCoordinates[1] = spriteSize;
+        dataIndex = 2;
+        for (int i = 7; i < data.size(); i += 7) {
 
 
-            String[] tempFormat = data.get(i - 1).split(" ");
-            TextureRegionCoordinates[dataIndex] = Integer.parseInt(tempFormat[3]);
-            TextureRegionCoordinates[dataIndex + 1] = Integer.parseInt(tempFormat[4].replaceAll("\r", ""));
+            final String[] tempFormat = data.get(i - 1).split(" ");
+            textureRegionCoordinates[dataIndex] = Integer.parseInt(tempFormat[3]);
+            textureRegionCoordinates[dataIndex + 1] = Integer.parseInt(tempFormat[4].replaceAll("\r", ""));
             dataIndex += 2;
         }
-        return TextureRegionCoordinates;
+        return Arrays.copyOf(textureRegionCoordinates,textureRegionCoordinates.length);
 
     }
 
