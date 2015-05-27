@@ -10,7 +10,7 @@ import com.badlogic.gdx.InputProcessor;
 import se.computerscience.kelde.controller.gameworld.IGameWorldController;
 
 public class InputController implements InputProcessor {
-   IGameWorldController gameWorldController;
+    private final IGameWorldController gameWorldController;
 
     public InputController(IGameWorldController gameWorldController) {
         this.gameWorldController = gameWorldController;

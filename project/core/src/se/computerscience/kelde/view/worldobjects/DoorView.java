@@ -12,15 +12,16 @@ import se.computerscience.kelde.model.worldobjects.Door;
 
 public class DoorView implements IWorldObjectView {
     private final Door door;
-    private Sprite sprite;
+    private final Sprite sprite;
     private final Texture texture;
-    private final int WIDTH = 32, HEIGHT = 48;
-    private final String SPRITE_LOCATION1 = "door1.png";
-    private final String SPRITE_LOCATION2 = "door2.png";
+    private final static int WIDTH = 32, HEIGHT = 48;
+    private final static String SPRITE_LOCATION1 = "door1.png";
+    private final static String SPRITE_LOCATION2 = "door2.png";
+
     // you can choose with door to display when init.
     public DoorView(Door door, String spriteName) {
         this.door = door;
-        if (spriteName.equals("door1")){
+        if ("door1".equals(spriteName)){
             texture = new Texture(SPRITE_LOCATION1);
         }else{
             texture = new Texture(SPRITE_LOCATION2);

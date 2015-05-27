@@ -5,17 +5,21 @@
 package se.computerscience.kelde;
 
 import com.badlogic.gdx.Game;
-import se.computerscience.kelde.events.IScreenEventHandler;
-import se.computerscience.kelde.events.ScreenEvent;
-import se.computerscience.kelde.events.ScreenEventBus;
+import se.computerscience.kelde.controller.events.IScreenEventHandler;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.screens.GameScreen;
+import se.computerscience.kelde.screens.IntroScreen;
+import se.computerscience.kelde.screens.LavaScreen;
+import se.computerscience.kelde.screens.MenuScreen;
 
 public class KeldeGame extends Game implements IScreenEventHandler {
+
 	/** Called when application is created */
 	@Override
 	public void create () {
         ScreenEventBus.INSTANCE.register(this);
-		setScreen(new GameScreen());
+		setScreen(new MenuScreen());
 	}
 
 	@Override
@@ -24,6 +28,17 @@ public class KeldeGame extends Game implements IScreenEventHandler {
             switch (event.getScreenTag()) {
                 case START_WORLD:
                     setScreen(new GameScreen());
+                    break;
+                case LAVA_WORLD:
+                    setScreen(new LavaScreen());
+                    break;
+                case INTRO:
+                    setScreen(new IntroScreen());
+                    break;
+                case START_MENU:
+                    setScreen(new MenuScreen());
+                    break;
+                default:
                     break;
             }
         }

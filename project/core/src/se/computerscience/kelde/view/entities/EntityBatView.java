@@ -18,12 +18,11 @@ public class EntityBatView {
     private final EntityBat entityBat;
 
     //Variables
-    private TextureAtlas textureAtlasNorth, textureAtlasSouth, textureAtlasE, textureAtlasW;
     private Animation animationN, animationS, animationE, animationW;
 
     private SpriteBatch batch;
     private Animation animation;
-    private float elapsedTime = 0, delta = 0;
+    private float elapsedTime, delta;
     /**
      * Public constructor
      */
@@ -35,19 +34,19 @@ public class EntityBatView {
     }
 
     private void createTextures() {
-        textureAtlasW = new TextureAtlas(Gdx.files.internal("batWest.atlas"));
+        final TextureAtlas textureAtlasW = new TextureAtlas(Gdx.files.internal("batWest.atlas"));
         animationW = new Animation(0.15f, textureAtlasW.getRegions());
-        textureAtlasE = new TextureAtlas(Gdx.files.internal("batEast.atlas"));
+        final TextureAtlas textureAtlasE = new TextureAtlas(Gdx.files.internal("batEast.atlas"));
         animationE = new Animation(0.15f, textureAtlasE.getRegions());
-        textureAtlasNorth = new TextureAtlas(Gdx.files.internal("bat.atlas"));
+        final TextureAtlas textureAtlasNorth = new TextureAtlas(Gdx.files.internal("bat.atlas"));
         animationN = new Animation(0.15f, textureAtlasNorth.getRegions());
-        textureAtlasSouth = new TextureAtlas(Gdx.files.internal("batSouth.atlas"));
+        final TextureAtlas textureAtlasSouth = new TextureAtlas(Gdx.files.internal("batSouth.atlas"));
         animationS = new Animation(0.15f, textureAtlasSouth.getRegions());
     }
 
     public void draw(Batch batch) {
-        Heading direction = entityBat.getHeading();
-        if(direction == Heading.EAST) { // TODO: Change as in KeldeView
+        final Heading direction = entityBat.getHeading();
+        if(direction == Heading.EAST) {
             animation = animationE;
         } else if(direction == Heading.NORTH) {
             animation = animationN;

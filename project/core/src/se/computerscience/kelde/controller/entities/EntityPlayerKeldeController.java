@@ -11,74 +11,83 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 
 public class EntityPlayerKeldeController implements IWorldObjectsController {
-    EntityPlayerKelde entityPlayerKelde;
-    EntityPlayerKeldeView entityPlayerKeldeView;
-    Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
-    private Boolean KNIFE_SLASH, ARROW;
+    private final EntityPlayerKelde entityPlayerKelde;
+    private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
+    private boolean isSlashing, isShooting;
+    private final static float WALKSPEED = 1.4f;
 
-    public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde, EntityPlayerKeldeView entityPlayerKeldeView) {
+
+    public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde) {
         this.entityPlayerKelde = entityPlayerKelde;
-        this.entityPlayerKeldeView = entityPlayerKeldeView;
         velocityControl = new Vector2(0, 0);
-        KNIFE_SLASH = false;
-        ARROW = false;
+        isSlashing = false;
+        isShooting = false;
     }
 
     public void update(float delta) {
-        getKeyInput();
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
-        entityPlayerKelde.setIsSlashing(KNIFE_SLASH);
-        entityPlayerKelde.setIsShooting(ARROW);
+        entityPlayerKelde.setIsSlashing(isSlashing);
+        entityPlayerKelde.setIsShooting(isShooting);
 
     }
 
-    public void getKeyInput() {
-        velocityControl.set(0, 0);
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            velocityControl.y = 1;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            velocityControl.y = -1;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            velocityControl.x = 1;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            velocityControl.x = -1;
-        }
-    }
     public void setKeyDown(int keycode) {
-        velocityControl.set(0, 0);
         if (Input.Keys.UP == keycode) {
-            velocityControl.y = 1;
+            velocityControl.y = WALKSPEED;
+        }
+        else if (Input.Keys.RIGHT == keycode) {
+            velocityControl.x = WALKSPEED;
         }
         else if (Input.Keys.DOWN == keycode) {
-            velocityControl.y = -1;
-        }
-        if (Input.Keys.RIGHT == keycode) {
-            velocityControl.x = 1;
+            velocityControl.y = -WALKSPEED;
         }
         else if (Input.Keys.LEFT == keycode) {
-            velocityControl.x = -1;
+            velocityControl.x = -WALKSPEED;
         }
-
-        if(keycode == Input.Keys.SPACE) {
-            KNIFE_SLASH = true;
+        else if(keycode == Input.Keys.SPACE) {
+            isSlashing = true;
         }
-        if(keycode == Input.Keys.ALT_LEFT) {
-            ARROW = true;
+        else if(keycode == Input.Keys.ALT_LEFT) {
+            isShooting = true;
         }
     }
 
     public void setKeyUp(int keycode) {
+        if (Input.Keys.UP == keycode && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            velocityControl.y = 0;
+        }
+        if (Input.Keys.DOWN == keycode && !Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            velocityControl.y = 0;
+        }
+        if (Input.Keys.RIGHT == keycode && !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            velocityControl.x = 0;
+        }
+        if (Input.Keys.LEFT == keycode && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            velocityControl.x = 0;
+        }
+        if (Input.Keys.LEFT == keycode && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            velocityControl.x = WALKSPEED;
+        }
+        if (Input.Keys.RIGHT == keycode && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            velocityControl.x = -WALKSPEED;
+        }
+        if (Input.Keys.UP == keycode && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            velocityControl.y = -WALKSPEED;
+        }
+        if (Input.Keys.DOWN == keycode && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            velocityControl.y = WALKSPEED;
+        }
         if(keycode == Input.Keys.SPACE) {
-            KNIFE_SLASH = false;
+            isSlashing = false;
         }
         if(keycode == Input.Keys.ALT_LEFT) {
-            ARROW = false;
+            isShooting = false;
         }
+    }
+
+    public Vector2 getVelocityControl() {
+        return velocityControl;
     }
 }

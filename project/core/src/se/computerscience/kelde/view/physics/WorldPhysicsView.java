@@ -8,8 +8,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import se.computerscience.kelde.model.physics.WorldPhysics;
 
 public class WorldPhysicsView {
-    private Box2DDebugRenderer box2DDebugRenderer; // Renders box2d objects for debugging.
-    private WorldPhysics worldPhysics; // Having access to model is good. For getting data of what to render.
+    private final Box2DDebugRenderer box2DDebugRenderer; // Renders box2d objects for debugging.
+    private final WorldPhysics worldPhysics; // Having access to model is good. For getting data of what to render.
 
     public WorldPhysicsView(WorldPhysics worldPhysics) {
         this.worldPhysics = worldPhysics;

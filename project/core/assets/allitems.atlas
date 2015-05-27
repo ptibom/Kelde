@@ -1,0 +1,33 @@
+
+allitems.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0001
+  rotate: false
+  xy: 32, 0
+  size: 32, 32
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+0002
+  rotate: false
+  xy: 64, 64
+  size: 32, 32
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+0003
+  rotate: false
+  xy: 96,96
+  size: 32, 32
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+0004
+  rotate: false
+  xy: 32,160
+  size: 32, 32
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
