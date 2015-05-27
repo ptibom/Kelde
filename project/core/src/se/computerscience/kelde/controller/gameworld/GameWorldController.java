@@ -139,9 +139,11 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         for (final ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
+
         for (final IMonsterController monster: npcControllers){
             monster.update(delta);
         }
+
 
         worldPhysicsController.update(delta);
         guiOverlayController.update(delta);
@@ -186,7 +188,13 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
             gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
+            IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
+            gameWorld.getInventory().update(item);
         }
+
+
+
+
     }
 
 }

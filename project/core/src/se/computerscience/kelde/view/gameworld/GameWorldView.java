@@ -13,6 +13,7 @@ import se.computerscience.kelde.model.worldobjects.*;
 import se.computerscience.kelde.view.entities.*;
 
 import se.computerscience.kelde.view.guioverlay.GuiOverlayView;
+import se.computerscience.kelde.view.inventory.InventoryView;
 import se.computerscience.kelde.view.items.ItemEntityView;
 
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
@@ -26,6 +27,7 @@ public class GameWorldView{
     private final GameWorld gameWorld;
     private final SpriteBatch batch;
     private final GuiOverlayView guiOverlayView;
+    private final InventoryView inventoryView;
 
     private final WorldPhysicsView worldPhysicsView;
     private final EntityPlayerKeldeView entityPlayerKeldeView;
@@ -37,6 +39,7 @@ public class GameWorldView{
 
     public GameWorldView(GameWorld gameWorld) {
         guiOverlayView = new GuiOverlayView(gameWorld.getGui());
+        inventoryView = new InventoryView(gameWorld.getInventory());
         this.gameWorld = gameWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
         batch = new SpriteBatch();
@@ -54,6 +57,7 @@ public class GameWorldView{
         batch.begin();
         entityPlayerKeldeView.draw(batch);
         guiOverlayView.draw(batch);
+        inventoryView.draw(batch);
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }

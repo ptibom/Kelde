@@ -13,6 +13,7 @@ import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 
+import se.computerscience.kelde.model.inventory.Inventory;
 import se.computerscience.kelde.model.items.IItem;
 
 import se.computerscience.kelde.model.worldobjects.*;
@@ -27,6 +28,7 @@ public class GameWorld {
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
     private GuiOverlay guiOverlay;
+    private Inventory inventory;
 
 
     private final IMap map;
@@ -72,6 +74,10 @@ public class GameWorld {
         return itemEntities;
     }
     public GuiOverlay getGui(){ return guiOverlay;
+    }
+
+    public Inventory getInventory(){
+       return inventory;
     }
 
     public void removeItem(ItemEntity item) {
