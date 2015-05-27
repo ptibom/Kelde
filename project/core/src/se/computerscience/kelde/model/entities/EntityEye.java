@@ -16,13 +16,13 @@ public class EntityEye {
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private int DAMAGE = 15;
-    private int HEALTH = 100;
+    private static final int DAMAGE = 15;
+    private int health = 100;
     private static final int ATTACK_DISTANCE = 150;
-    private final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
-    private float elapsedTime = 0;
+    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private float elapsedTime;
     private static final int LOOT = 25;
-    private boolean ALIVE = true;
+    private boolean alive = true;
     private Heading direction;
 
     /**
@@ -34,12 +34,20 @@ public class EntityEye {
 
     }
 
+    public int getDAMAGE() {
+        return DAMAGE;
+    }
+
+    public boolean isALIVE() {
+        return alive;
+    }
+
     /**
      * A getter for the health value
      * @return the HEALTH
      */
     public int getHEALTH() {
-        return HEALTH;
+        return health;
     }
 
     /**
@@ -63,12 +71,15 @@ public class EntityEye {
      * @param takenDamage is the damage value taken
      */
     public void setTakenDamage(int takenDamage) {
-        HEALTH -= takenDamage;
+        health -= takenDamage;
+        if(health <= 0) {
+            alive = false;
+        }
     }
 
     private void setRandomSpeed() {
-        int vx = random.nextInt(3) - 1;
-        int vy = random.nextInt(3) - 1;
+        final int vx = random.nextInt(3) - 1;
+        final int vy = random.nextInt(3) - 1;
         entityBody.setVelocity(vx, vy);
 
     }
@@ -83,9 +94,9 @@ public class EntityEye {
 
 
     public Heading getHeading() {
-        float x = entityBody.getVelocityX();
-        float y = entityBody.getVelocityY();
-        float degree = (float)Math.toDegrees(Math.atan2(x, y));
+        final float x = entityBody.getVelocityX();
+        final float y = entityBody.getVelocityY();
+        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
         if(degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
         } else if(degree <= -135.0f || degree >= 135.0f) {

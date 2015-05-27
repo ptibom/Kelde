@@ -16,7 +16,7 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
     private boolean isSlashing, isShooting;
-    private final float walkSpeed = 1.4f;
+    private final static float WALKSPEED = 1.4f;
 
 
     public EntityPlayerKeldeController(EntityPlayerKelde entityPlayerKelde) {
@@ -35,16 +35,16 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
 
     public void setKeyDown(int keycode) {
         if (Input.Keys.UP == keycode) {
-            velocityControl.y = walkSpeed;
+            velocityControl.y = WALKSPEED;
         }
         else if (Input.Keys.RIGHT == keycode) {
-            velocityControl.x = walkSpeed;
+            velocityControl.x = WALKSPEED;
         }
         else if (Input.Keys.DOWN == keycode) {
-            velocityControl.y = -walkSpeed;
+            velocityControl.y = -WALKSPEED;
         }
         else if (Input.Keys.LEFT == keycode) {
-            velocityControl.x = -walkSpeed;
+            velocityControl.x = -WALKSPEED;
         }
         else if(keycode == Input.Keys.SPACE) {
             isSlashing = true;
@@ -68,16 +68,16 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
             velocityControl.x = 0;
         }
         if (Input.Keys.LEFT == keycode && Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            velocityControl.x = walkSpeed;
+            velocityControl.x = WALKSPEED;
         }
         if (Input.Keys.RIGHT == keycode && Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            velocityControl.x = -walkSpeed;
+            velocityControl.x = -WALKSPEED;
         }
         if (Input.Keys.UP == keycode && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            velocityControl.y = -walkSpeed;
+            velocityControl.y = -WALKSPEED;
         }
         if (Input.Keys.DOWN == keycode && Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            velocityControl.y = walkSpeed;
+            velocityControl.y = WALKSPEED;
         }
         if(keycode == Input.Keys.SPACE) {
             isSlashing = false;

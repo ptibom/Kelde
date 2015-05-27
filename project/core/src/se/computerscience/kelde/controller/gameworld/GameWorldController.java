@@ -33,7 +33,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private final TreasureController treasureController2;
     private final DoorController doorController;
 
-    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
+    private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
 
     private final EntityBatController entityBatController;
     private final EntityEyeController entityEyeController;
@@ -84,7 +84,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             worldObj.update(delta);
         }
 
-        for (ItemEntityController entityControllerlist : itemEntityControllers ){
+        for (final ItemEntityController entityControllerlist : itemEntityControllers ){
             entityControllerlist.update(delta);
         }
 

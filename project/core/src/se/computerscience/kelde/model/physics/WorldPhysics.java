@@ -25,7 +25,7 @@ public class WorldPhysics {
         ib2DWorld = new B2DWorld();
         ib2DCamera = new Camera();
 
-        IB2DParser parser = new B2DParser(BOX2D_SCALE);
+        final IB2DParser parser = new B2DParser(BOX2D_SCALE);
         parser.load(ib2DWorld, map);
     }
 

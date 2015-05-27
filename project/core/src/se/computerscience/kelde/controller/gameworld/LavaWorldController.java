@@ -26,7 +26,7 @@ public class LavaWorldController implements IGameWorldController{
 
     private final DoorController doorController;
     private final LavaRingController lavaRingController;
-    private List<IWorldObjectsController> worldObjList = new ArrayList<>();
+    private final List<IWorldObjectsController> worldObjList = new ArrayList<>();
     private final BombController bombController;
     private final CampFireController campFireController;
     private final EntityGhostController entityGhostController;
@@ -53,7 +53,7 @@ public class LavaWorldController implements IGameWorldController{
 
     public void render(float delta) {
         entityPlayerKeldeController.update(delta);
-        for (IWorldObjectsController worldObjectsController: worldObjList){
+        for (final IWorldObjectsController worldObjectsController: worldObjList){
             worldObjectsController.update(delta);
         }
         entityGhostController.update(delta);

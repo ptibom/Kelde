@@ -26,8 +26,8 @@ public class LavaWorld {
     private final CampFire campFire;
     private final EntityGhost entityGhost;
 
-    private IMap map;
-    private ICamera camera;
+    private final IMap map;
+    private final ICamera camera;
     public LavaWorld() {
         map = new Map(MAP_LOCATION);
         camera = new Camera();
