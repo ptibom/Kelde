@@ -8,8 +8,10 @@ package se.computerscience.kelde.view.gameworld;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.entities.IEntitieView;
+import se.computerscience.kelde.view.items.ItemEntityView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.*;
 
@@ -27,7 +29,7 @@ public class LavaWorldView {
 
     private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
     private final List<IEntitieView> entitieViews = new ArrayList<>();
-
+    private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -46,6 +48,9 @@ public class LavaWorldView {
         // Draw sprites
         batch.begin();
         entityPlayerKeldeView.draw(batch);
+        for (final ItemEntityView itemView : itemEntityViews){
+            itemView.draw(batch);
+        }
         for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
@@ -56,6 +61,12 @@ public class LavaWorldView {
 
         // Physics debug renderer, comment out to remove debugger lines.
         worldPhysicsView.render(delta);
+    }
+    public void addEntityViews(ItemEntity itemEntity){
+        itemEntityViews.add(new ItemEntityView(itemEntity));
+    }
+    public void removeItemView(ItemEntityView itemEntityView){
+        itemEntityViews.remove(itemEntityView);
     }
     public void updateProjectionMatrix() {
         batch.setProjectionMatrix(lavaWorld.getCamera().getOrthographicCamera().combined);
@@ -72,7 +83,9 @@ public class LavaWorldView {
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
     }
-
+    public List<ItemEntityView> getItemEntityViews() {
+        return itemEntityViews;
+    }
     public void addNPCEntity(IEntitieView entitieView){
         entitieViews.add(entitieView);
     }

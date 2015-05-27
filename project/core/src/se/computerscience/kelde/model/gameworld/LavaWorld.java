@@ -10,7 +10,12 @@ import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LavaWorld {
@@ -18,7 +23,7 @@ public class LavaWorld {
     private static final String MAP_LOCATION = "testmap.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
-
+    private final List<ItemEntity> itemEntities = new ArrayList<>();
     private final IMap map;
     private final ICamera camera;
     public LavaWorld() {
@@ -27,7 +32,15 @@ public class LavaWorld {
         worldPhysics = new WorldPhysics(map);
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(),350,140);
     }
-
+    public void addItems(IItem item) {
+        itemEntities.add(new ItemEntity(item.getItemPositionX(), item.getItemPositionY(), worldPhysics.getIb2DWorld(), item));
+    }
+    public List<ItemEntity> getItemEntities() {
+        return itemEntities;
+    }
+    public void removeItem(ItemEntity item) {
+        itemEntities.remove(item);
+    }
     public void resizeCamera (int width, int height) {
         camera.setViewPortWidth(width);
         camera.setViewPortHeight(height);

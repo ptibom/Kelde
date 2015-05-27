@@ -9,6 +9,11 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
 import se.computerscience.kelde.controller.entities.IMonsterController;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
+import se.computerscience.kelde.controller.events.IItemEventHandler;
+import se.computerscience.kelde.controller.events.ItemEvent;
+import se.computerscience.kelde.controller.events.ItemEventBus;
+import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
 import se.computerscience.kelde.controller.worldobjects.*;
@@ -16,6 +21,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.entities.IEntitie;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
+import se.computerscience.kelde.model.items.IItem;
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 import se.computerscience.kelde.view.entities.IEntitieView;
 import se.computerscience.kelde.view.gameworld.LavaWorldView;
@@ -26,7 +32,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LavaWorldController implements IGameWorldController{
+public class LavaWorldController implements IGameWorldController, IItemEventHandler{
 
     private final LavaWorld lavaWorld;
     private final LavaWorldView lavaWorldView;
@@ -35,6 +41,7 @@ public class LavaWorldController implements IGameWorldController{
     private final EntityPlayerKeldeController entityPlayerKeldeController;
     private final List<IWorldObjectsController> worldObjectsControllers = new ArrayList<>();
     private final List<IMonsterController> npcControllers = new ArrayList<>();
+    private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
     private Logger logger;
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
@@ -43,11 +50,24 @@ public class LavaWorldController implements IGameWorldController{
         createNPCEntities();
         worldPhysicsController = new WorldPhysicsController(lavaWorld.getWorldPhysics(), lavaWorldView.getWorldPhysicsView());
         entityPlayerKeldeController = new EntityPlayerKeldeController(lavaWorld.getEntityPlayerKelde());
-
+        ItemEventBus.INSTANCE.register(this);
 
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
     }
+    public void updateItemControllers(){
+        if (itemEntityControllers.size() == lavaWorld.getItemEntities().size()){
+            return;
+        }
+        for (int i = itemEntityControllers.size(); i < lavaWorld.getItemEntities().size() ;i++) {
+            itemEntityControllers.add(itemEntityController(i));
+        }
+    }
+
+    public ItemEntityController itemEntityController(int i){
+        return new ItemEntityController(lavaWorld.getItemEntities().get(i) , lavaWorldView.getItemEntityViews().get(i));
+    }
+
     private void createWorldObjects() {
         final IMap map = lavaWorld.getMap();
         final MapLayer layer = map.getTiledMap().getLayers().get("GameWorld");
@@ -102,12 +122,16 @@ public class LavaWorldController implements IGameWorldController{
         }
     }
     public void render(float delta) {
+        updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
         for (final IMonsterController monster: npcControllers){
             monster.update(delta);
+        }
+        for (final ItemEntityController entityControllerlist : itemEntityControllers ){
+            entityControllerlist.update(delta);
         }
         worldPhysicsController.update(delta);
         lavaWorldView.render(delta);
@@ -122,6 +146,8 @@ public class LavaWorldController implements IGameWorldController{
 
     public void dispose() {
         // Release resources.
+        CollisionEventBus.INSTANCE.unregisterAll();
+        ItemEventBus.INSTANCE.unregisterAll();
         lavaWorldView.dispose();
         lavaWorld.dispose();
         worldPhysicsController.dispose();
@@ -135,5 +161,21 @@ public class LavaWorldController implements IGameWorldController{
     @Override
     public void setKeyUp(int keycode) {
         entityPlayerKeldeController.setKeyUp(keycode);
+    }
+
+    @Override
+    public void onItemEvent(ItemEvent event) {
+        if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntityController)){
+            return;
+        }
+        if (event.getTag() == ItemEvent.Tag.ITEM) {
+            lavaWorld.addItems((IItem) event.getObject());
+            lavaWorldView.addEntityViews(lavaWorld.getItemEntities().get(lavaWorld.getItemEntities().size() - 1));
+        }
+        if (event.getTag() == ItemEvent.Tag.DEL_ITEM){
+            lavaWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
+            lavaWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
+            itemEntityControllers.remove(event.getObject());
+        }
     }
 }
