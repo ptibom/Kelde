@@ -43,6 +43,8 @@ public class EntityGhost extends EntityEnemy {
 
     }
     /*
+    * Description: monster will charge the players position when
+    * monster is hypotenuse is less then or equal to 200.
     * @param monsterx Ghost x axis in the map
     * @param monstery Ghost y axis in the map
     * @param playerx Player x axis in the map
@@ -52,7 +54,7 @@ public class EntityGhost extends EntityEnemy {
     * @param dif the hypotenuse between the player and monster
     * @param SPEEDx monsters moving speed
     * */
-    public void update(float delta,float playerx, float playery) {
+    public void chargePlayer(float delta, float playerx, float playery){
         elapsedTime += delta;
         final float monsterx = entityBody.getPositionX() , monstery = entityBody.getPositionY();
         final float dx = monsterx - playerx, dy = monstery - playery;
@@ -82,6 +84,10 @@ public class EntityGhost extends EntityEnemy {
                 elapsedTime=0;
             }
         }
+    }
+
+    public void update(float delta,float playerx, float playery) {
+        chargePlayer(delta,playerx,playery);
     }
 
 
