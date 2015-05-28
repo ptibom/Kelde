@@ -54,7 +54,7 @@ public class GameWorldView{
         camera = new OrthographicCamera();
         camera.update();
 
-        viewport = new FitViewport(960, 540, camera);
+        viewport = new FitViewport(960, 640, camera);
 
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
         batch = new SpriteBatch();
@@ -95,7 +95,9 @@ public class GameWorldView{
     }
 
     public void resize(int width, int height) {
+        camera.position.set(width / (float)2, height / (float)2, 0);
         viewport.update(width, height, true);
+        System.out.println(width + " " + height);
         batch.setProjectionMatrix(camera.combined);
     }
     
