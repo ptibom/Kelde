@@ -4,6 +4,7 @@
 
 package se.computerscience.kelde.controller.physics;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import se.computerscience.kelde.controller.events.CollisionEvent;
 import se.computerscience.kelde.controller.events.CollisionEventBus;
 import se.computerscience.kelde.model.physics.WorldPhysics;
@@ -24,7 +25,7 @@ public class WorldPhysicsController {
     }
 
     public void resizeCamera(int width, int height) {
-        worldPhysics.resizeCamera(width, height);
+        worldPhysicsView.resize(width, height);
     }
 
     public void dispose() {

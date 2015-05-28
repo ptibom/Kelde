@@ -18,12 +18,10 @@ public class WorldPhysics {
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
 
-    private final ICamera ib2DCamera; // Used to debug box2d visually.
     private final IB2DWorld ib2DWorld; // Wrapping box2d World.
 
     public WorldPhysics(IMap map) {
         ib2DWorld = new B2DWorld();
-        ib2DCamera = new Camera();
 
         final IB2DParser parser = new B2DParser(BOX2D_SCALE);
         parser.load(ib2DWorld, map);
@@ -34,17 +32,6 @@ public class WorldPhysics {
         ib2DWorld.step(delta, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
 
-    public void resizeCamera(int width, int height) {
-        // Prevents stretching/resizing of images. Keeps a perfect resolution when window is resized.
-        ib2DCamera.setViewPortWidth(width*BOX2D_SCALE);
-        ib2DCamera.setViewPortHeight(height*BOX2D_SCALE);
-        ib2DCamera.setPosition(width * BOX2D_SCALE / (float)2, height * BOX2D_SCALE / (float)2, 0);
-        ib2DCamera.update();
-    }
-
-    public ICamera getIb2DCamera() {
-        return ib2DCamera;
-    }
 
     public IB2DWorld getIb2DWorld() {
         return ib2DWorld;
