@@ -22,7 +22,7 @@ public class EntityEyeController implements IMonsterController{
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta,float x,float y) {
         entityEyeView.update(delta);
         entityEye.update(delta);
     }

@@ -58,7 +58,7 @@ public class EntityBat extends EntityEnemy {
         }
     }
 
-    public void update(float delta) {
+    public void update(float delta, float x, float y) {
         elapsedTime += delta;
         if (elapsedTime > 2) {
             setRandomSpeed();

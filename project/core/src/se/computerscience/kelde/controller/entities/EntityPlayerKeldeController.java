@@ -114,4 +114,7 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
     public int getHealth() {
         return entityPlayerKelde.getHealth();
     }
+    public Point getPosition(){
+        return new Point(entityPlayerKelde.getPositionX(),entityPlayerKelde.getPositionY());
+    }
 }

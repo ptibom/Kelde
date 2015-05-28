@@ -20,9 +20,9 @@ public class EntityWormController implements IMonsterController{
     }
 
 
-    public void update(float delta) {
+    public void update(float delta, float x, float y) {
         entityWormView.update(delta);
-        entitySmallWorm.update(delta);
+        entitySmallWorm.update(delta, x,y);
     }
 
     public void draw(SpriteBatch batch) {
