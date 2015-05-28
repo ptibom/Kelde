@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-05-16.
+ *
  * @author Anders Bolin
  */
 public class EntityGhost extends EntityEnemy {
@@ -42,6 +43,7 @@ public class EntityGhost extends EntityEnemy {
         entityBody.setVelocity(vx, vy);
 
     }
+
     /*
     * Description: monster will charge the players position when
     * monster is hypotenuse is less then or equal to 200.
@@ -54,70 +56,66 @@ public class EntityGhost extends EntityEnemy {
     * @param dif the hypotenuse between the player and monster
     * @param SPEEDx monsters moving speed
     * */
-    public void chargePlayer(float delta, float playerx, float playery){
+    public void chargePlayer(float delta, float playerx, float playery) {
         elapsedTime += delta;
-        final float monsterx = entityBody.getPositionX() , monstery = entityBody.getPositionY();
+        final float monsterx = entityBody.getPositionX(), monstery = entityBody.getPositionY();
         final float dx = monsterx - playerx, dy = monstery - playery;
-        final float dif = (float)Math.sqrt(dx*dx+dy*dy);
-        final boolean xdir = playerx - monsterx > 0 , ydir = playery - monstery > 0;
+        final float dif = (float) Math.sqrt(dx * dx + dy * dy);
+        final boolean xdir = playerx - monsterx > 0, ydir = playery - monstery > 0;
         final float speed = .7f;
-        if (dif >=0 && dif <= 200){
-            if (dif >=0 && dif <= 30){
-                entityBody.setVelocity(0, 0);
-            }else {
-                if (elapsedTime > .5) {
-                    if (xdir && ydir) {
-                        entityBody.setVelocity(speed, speed);
-                    } else if (!xdir && !ydir) {
-                        entityBody.setVelocity(-speed, -speed);
-                    } else if (xdir && !ydir) {
-                        entityBody.setVelocity(speed, -speed);
-                    } else if (!xdir && ydir) {
-                        entityBody.setVelocity(-speed, speed);
-                    }
-                    elapsedTime=0;
+        if (dif >= 0 && dif <= 200) {
+            if (elapsedTime > .5) {
+                if (xdir && ydir) {
+                    entityBody.setVelocity(speed, speed);
+                } else if (!xdir && !ydir) {
+                    entityBody.setVelocity(-speed, -speed);
+                } else if (xdir && !ydir) {
+                    entityBody.setVelocity(speed, -speed);
+                } else if (!xdir && ydir) {
+                    entityBody.setVelocity(-speed, speed);
                 }
+                elapsedTime = 0;
             }
-        }else {
+        } else {
             if (elapsedTime > 3) {
                 setRandomSpeed();
-                elapsedTime=0;
+                elapsedTime = 0;
             }
         }
     }
 
-    public void update(float delta,float playerx, float playery) {
-        chargePlayer(delta,playerx,playery);
+    public void update(float delta, float playerx, float playery) {
+        chargePlayer(delta, playerx, playery);
     }
 
 
     public Heading getHeading() {
         final float x = entityBody.getVelocityX();
         final float y = entityBody.getVelocityY();
-        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
-        if(degree > 45.0f && degree < 135.0f) {
+        final float degree = (float) Math.toDegrees(Math.atan2(x, y));
+        if (degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
-        } else if(degree <= -135.0f || degree >= 135.0f) {
+        } else if (degree <= -135.0f || degree >= 135.0f) {
             direction = Heading.SOUTH;
-        } else if(degree <= 45.0f && degree >= -45.0f) {
+        } else if (degree <= 45.0f && degree >= -45.0f) {
             direction = Heading.NORTH;
-        } else if(degree < -45.0f && degree > -135.0f) {
+        } else if (degree < -45.0f && degree > -135.0f) {
             direction = Heading.EAST;
         }
         return direction;
     }
 
     public float getPositionX() {
-        return (int) (entityBody.getPositionX()-BODY_HEIGHT);
+        return (int) (entityBody.getPositionX() - BODY_HEIGHT);
     }
 
     public float getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH);
+        return (int) (entityBody.getPositionY() - BODY_WIDTH);
     }
 
     public void setDamage(int damage) {
         healt -= damage;
-        if(healt <= 0) {
+        if (healt <= 0) {
             alive = false;
         }
     }
@@ -130,7 +128,11 @@ public class EntityGhost extends EntityEnemy {
         return healt;
     }
 
-    public boolean isAlive() { return alive; }
+    public boolean isAlive() {
+        return alive;
+    }
 
-    public int getLoot() { return LOOT;}
+    public int getLoot() {
+        return LOOT;
+    }
 }
