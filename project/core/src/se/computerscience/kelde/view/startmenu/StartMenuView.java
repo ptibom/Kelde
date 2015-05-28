@@ -114,6 +114,11 @@ public class StartMenuView {
 
         batch.draw(foregroundTexture,0, 0,960,540);
         batch.end();
+
+        if(exitbutton.isPressed()){
+            Gdx.app.exit();
+        }
+
         return 0;
     }
 

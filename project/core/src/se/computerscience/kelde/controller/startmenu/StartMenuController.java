@@ -23,13 +23,15 @@ public class StartMenuController {
         this.startMenuView = new StartMenuView(startMenuModel);
         startMenuView.getButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                startMenuView.stopMusic();
                 ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.INTRO));
             }
         });
         startMenuView.getLoadButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                startMenuView.stopMusic();
+                ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
 
-                // This is not used at the moment
             }
         });
 

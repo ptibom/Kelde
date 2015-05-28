@@ -9,10 +9,14 @@ package se.computerscience.kelde.controller.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import se.computerscience.kelde.controller.events.IModifyPlayerEventHandler;
+import se.computerscience.kelde.controller.events.ModifyPlayerEvent;
+import se.computerscience.kelde.controller.events.ModifyPlayerEventBus;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
+import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 
-public class EntityPlayerKeldeController implements IWorldObjectsController {
+public class EntityPlayerKeldeController implements IWorldObjectsController, IModifyPlayerEventHandler{
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
     private boolean isSlashing, isShooting;
@@ -24,13 +28,13 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
         velocityControl = new Vector2(0, 0);
         isSlashing = false;
         isShooting = false;
+        ModifyPlayerEventBus.INSTANCE.register(this);
     }
 
     public void update(float delta) {
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
         entityPlayerKelde.setIsSlashing(isSlashing);
         entityPlayerKelde.setIsShooting(isShooting);
-
     }
 
     public void setKeyDown(int keycode) {
@@ -89,5 +93,25 @@ public class EntityPlayerKeldeController implements IWorldObjectsController {
 
     public Vector2 getVelocityControl() {
         return velocityControl;
+    }
+
+    @Override
+    public void onModifyPlayerEvent(ModifyPlayerEvent event) {
+        System.out.println("collision");
+        if (event.getTag() == ModifyPlayerEvent.Tag.CHANGE_POS){
+            if (event.getObject() instanceof Point) {
+                final Point point = (Point) event.getObject();
+                entityPlayerKelde.setPosition(point.x,point.y);
+            }
+        }
+        else if (event.getTag() == ModifyPlayerEvent.Tag.DAMAGE) {
+            System.out.println((int)event.getObject());
+            entityPlayerKelde.takeDamage((int) event.getObject());
+        }
+
+    }
+
+    public int getHealth() {
+        return entityPlayerKelde.getHealth();
     }
 }

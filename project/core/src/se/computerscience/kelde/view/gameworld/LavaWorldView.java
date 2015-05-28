@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import se.computerscience.kelde.model.gameworld.LavaWorld;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
-import se.computerscience.kelde.view.entities.IEntitieView;
+import se.computerscience.kelde.view.entities.IEntityView;
 import se.computerscience.kelde.view.items.ItemEntityView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
 import se.computerscience.kelde.view.worldobjects.*;
@@ -28,7 +28,7 @@ public class LavaWorldView {
     private final EntityPlayerKeldeView entityPlayerKeldeView;
 
     private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
-    private final List<IEntitieView> entitieViews = new ArrayList<>();
+    private final List<IEntityView> entitieViews = new ArrayList<>();
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
@@ -54,7 +54,7 @@ public class LavaWorldView {
         for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
-        for (final IEntitieView entitieView: entitieViews){
+        for (final IEntityView entitieView: entitieViews){
             entitieView.draw(batch);
         }
         batch.end();
@@ -86,7 +86,7 @@ public class LavaWorldView {
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
-    public void addNPCEntity(IEntitieView entitieView){
+    public void addNPCEntity(IEntityView entitieView){
         entitieViews.add(entitieView);
     }
     public void addWorldObject(IWorldObjectView worldObjectView){

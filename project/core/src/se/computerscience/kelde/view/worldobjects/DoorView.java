@@ -27,6 +27,9 @@ public class DoorView implements IWorldObjectView {
     }
     @Override
     public void draw(SpriteBatch batch) {
+        if (door.getLocation().equals("shop1")){
+            return;
+        }
         sprite.setPosition(door.getPositionX(), door.getPositionY());
         sprite.draw(batch);
     }

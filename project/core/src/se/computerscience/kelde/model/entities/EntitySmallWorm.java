@@ -11,7 +11,7 @@ import java.util.Random;
  * Created by Anders on 2015-04-25.
  * @author Anders Bolin
  */
-public class EntitySmallWorm {
+public class EntitySmallWorm extends EntityEnemy {
 
     //Variables
     private static final int DAMAGE = 10;

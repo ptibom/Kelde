@@ -11,15 +11,28 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
-public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
+public class EntityPlayerKelde extends EntityPlayer {
     private static final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
 
     private boolean slashing;
     private boolean isShooting;
     private final IPhysicalBody entityBody;
+    IB2DWorld ib2DWorld;
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
+        this.ib2DWorld = ib2DWorld;
+    }
+
+    public void takeDamage(int damage) {
+        int newHealth;
+        if (getHealth()-damage < 0) {
+            newHealth = 0;
+        }
+        else {
+            newHealth = getHealth()-damage;
+        }
+        setHealth(newHealth);
     }
 
     public void setVelocity(float x, float y) {
@@ -65,5 +78,9 @@ public class EntityPlayerKelde extends EntityPlayer implements IEntitie{
 
     public boolean isSlashing() {
         return slashing;
+    }
+
+    public void setPosition(float x ,float y){
+            entityBody.setPosition(x,y);
     }
 }

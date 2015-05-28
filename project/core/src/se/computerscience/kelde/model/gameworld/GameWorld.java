@@ -10,8 +10,14 @@ import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+
+import se.computerscience.kelde.model.guioverlay.GuiOverlay;
+
+import se.computerscience.kelde.model.inventory.Inventory;
 import se.computerscience.kelde.model.items.IItem;
+
 import se.computerscience.kelde.model.worldobjects.*;
+
 import se.computerscience.kelde.model.physics.WorldPhysics;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +27,23 @@ public class GameWorld {
     private static final String MAP_LOCATION = "map.tmx";
     private final WorldPhysics worldPhysics;
     private final EntityPlayerKelde entityPlayerKelde;
+    private final GuiOverlay guiOverlay;
+    private final Inventory inventory;
+
 
     private final IMap map;
 
     private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
+        inventory = new Inventory();
+        guiOverlay = new GuiOverlay();
         map = new Map(MAP_LOCATION);
         //camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        // init the world objects and monsters from tiled map editor
         //creating the player
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
+
     }
 
     public void addItems(IItem item) {
@@ -54,7 +65,16 @@ public class GameWorld {
     public List<ItemEntity> getItemEntities() {
         return itemEntities;
     }
+    public GuiOverlay getGui(){ return guiOverlay;
+    }
+
+    public Inventory getInventory(){
+       return inventory;
+    }
+
     public void removeItem(ItemEntity item) {
+
         itemEntities.remove(item);
     }
+
 }

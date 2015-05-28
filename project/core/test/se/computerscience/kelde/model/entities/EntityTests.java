@@ -6,7 +6,6 @@ package se.computerscience.kelde.model.entities;
 
 import org.junit.Assert;
 import org.junit.Test;
-import se.computerscience.kelde.model.items.Axe;
 
 public class EntityTests {
     @Test
