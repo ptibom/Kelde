@@ -34,15 +34,17 @@ public class GameWorldView{
     private final List<IEntitieView> entitieViews = new ArrayList<>();
 
     OrthographicCamera camera;
+    Viewport viewport;
 
     public GameWorldView(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        camera = new OrthographicCamera(30, 30 * (h / w));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera = new OrthographicCamera();
         camera.update();
+
+        viewport = new FitViewport(960, 540, camera);
 
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
         batch = new SpriteBatch();
@@ -76,13 +78,12 @@ public class GameWorldView{
     public void addEntityViews(ItemEntity itemEntity){
         itemEntityViews.add(new ItemEntityView(itemEntity));
     }
+
     public void resize(int width, int height) {
-        camera.viewportWidth = 1000f;
-        camera.viewportHeight = 1000f * height/width;
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
+        viewport.update(width, height, true);
         batch.setProjectionMatrix(camera.combined);
     }
+    
     public void dispose() {
         mapRenderer.dispose();
     }

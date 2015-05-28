@@ -23,29 +23,22 @@ public class GameWorld {
     private final EntityPlayerKelde entityPlayerKelde;
 
     private final IMap map;
-    //private final ICamera camera;
+
     private final List<ItemEntity> itemEntities = new ArrayList<>();
 
     public GameWorld() {
         map = new Map(MAP_LOCATION);
         //camera = new Camera();
         worldPhysics = new WorldPhysics(map);
-        // init  the world objects and monsters from tiled map editor
+        // init the world objects and monsters from tiled map editor
         //creating the player
         entityPlayerKelde = new EntityPlayerKelde(worldPhysics.getIb2DWorld(), 100, 100);
     }
-    public void resizeCamera(int width, int height) {
-        //camera.setViewPortWidth(1000);
-        //camera.setViewPortHeight(1000);
-        //camera.setPosition(width / (float) 2, height / (float) 2, 0); // Temporary camera position. Divide by 2 to make the map stick by the corner.
-        //camera.update();
-    }
+
     public void addItems(IItem item) {
         itemEntities.add(new ItemEntity(item.getItemPositionX(), item.getItemPositionY(), worldPhysics.getIb2DWorld(), item));
     }
-    //public ICamera getCamera() {
-        //return camera;
-    //}
+
     public void dispose() {
         map.dispose();
     }
