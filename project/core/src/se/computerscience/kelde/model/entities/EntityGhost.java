@@ -16,15 +16,15 @@ import java.util.Random;
  */
 public class EntityGhost extends EntityEnemy {
 
+    private static final int DAMAGE = 15;
+    private static final int ATTACK_DISTANCE = 150;
+    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private static final int LOOT = 25;
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private static final int DAMAGE = 15;
     private int healt = 100;
-    private static final int ATTACK_DISTANCE = 150;
-    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
     private float elapsedTime;
-    private static final int LOOT = 25;
     private boolean alive = true;
     private Heading direction;
 
@@ -51,10 +51,12 @@ public class EntityGhost extends EntityEnemy {
     * @param monstery Ghost y axis in the map
     * @param playerx Player x axis in the map
     * @param playery Player y axis in the map
-    * @param dx the distance between monster and player in x axsis
-    * @param dy the distance between monster and player in y axsis
+    * @param dx the distance between monster and player in x a-xsis
+    * @param dy the distance between monster and player in y a-xsis
+    * @param xdir and ydir, checks with direction monster have to face
+    *        to go to the player.
     * @param dif the hypotenuse between the player and monster
-    * @param SPEEDx monsters moving speed
+    * @param speed monsters moving speed when in range of player
     * */
     public void chargePlayer(float delta, float playerx, float playery) {
         elapsedTime += delta;
@@ -113,15 +115,15 @@ public class EntityGhost extends EntityEnemy {
         return (int) (entityBody.getPositionY() - BODY_WIDTH);
     }
 
+    public int getDamage() {
+        return DAMAGE;
+    }
+
     public void setDamage(int damage) {
         healt -= damage;
         if (healt <= 0) {
             alive = false;
         }
-    }
-
-    public int getDamage() {
-        return DAMAGE;
     }
 
     public int getHealt() {
