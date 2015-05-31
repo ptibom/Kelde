@@ -27,7 +27,6 @@ import java.util.List;
 
 public class GameWorldView {
     private final OrthogonalTiledMapRenderer mapRenderer;
-    private final GameWorld gameWorld;
     private final SpriteBatch batch;
     private final GuiOverlayView guiOverlayView;
     private final InventoryView inventoryView;
@@ -44,9 +43,7 @@ public class GameWorldView {
     private final Viewport viewport;
 
     public GameWorldView(GameWorld gameWorld) {
-
         inventoryView = new InventoryView(gameWorld.getInventory());
-        this.gameWorld = gameWorld;
 
         camera = new OrthographicCamera();
         camera.update();

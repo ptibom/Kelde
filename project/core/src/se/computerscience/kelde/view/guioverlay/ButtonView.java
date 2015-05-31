@@ -17,8 +17,8 @@ public class ButtonView {
     private final CharSequence text;
     private final Sprite sprite;
     private final BitmapFont font;
-    private final int OFFSET_X = 60;
-    private final int OFFSET_Y = 35;
+    private final static int OFFSET_X = 60;
+    private final static int OFFSET_Y = 35;
     private final Viewport viewport;
     private final Vector2 position;
     private final Vector2 size;
@@ -41,8 +41,8 @@ public class ButtonView {
 
     public boolean isClicked(int x, int y) {
         // Check if x and y is within area of the button. And project new coordinates for scaling
-        Vector2 maxBoundaries = viewport.project(new Vector2(position.x + size.x, position.y + size.y));
-        Vector2 minBoundaries = viewport.project(new Vector2(position.x, position.y));
+        final Vector2 maxBoundaries = viewport.project(new Vector2(position.x + size.x, position.y + size.y));
+        final Vector2 minBoundaries = viewport.project(new Vector2(position.x, position.y));
         return x > minBoundaries.x && x < maxBoundaries.x
                 && y > minBoundaries.y && y < maxBoundaries.y;
     }

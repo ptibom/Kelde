@@ -131,9 +131,6 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
     }
 
     public void render(float delta) {
-        float playerPostionX = entityPlayerKeldeController.getPosition().x;
-        float playerPostionY = entityPlayerKeldeController.getPosition().y;
-
         updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
@@ -144,6 +141,8 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
         }
 
         for (final IMonsterController monster: npcControllers){
+            final float playerPostionX = entityPlayerKeldeController.getPosition().x;
+            final float playerPostionY = entityPlayerKeldeController.getPosition().y;
             monster.update(delta,playerPostionX,playerPostionY);
         }
 
