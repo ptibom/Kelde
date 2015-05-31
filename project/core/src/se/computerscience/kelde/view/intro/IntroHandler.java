@@ -113,7 +113,6 @@ public class IntroHandler {
     public void drawIntro(float delta) {
         this.delta = delta;
 
-
         batch.begin();
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
             batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
@@ -140,8 +139,6 @@ public class IntroHandler {
         batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
         batch.end();
     }
-
-
 
     // We need to choose which function in the animationhandler to activate, we check for keyframe
     public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
@@ -200,9 +197,9 @@ public class IntroHandler {
     }
 
     public void setScale(double height){
-        scale = height / MAX_WIDTH;
+        final double ResizeToCorrectSize = 1.778;
+        scale = height*ResizeToCorrectSize/ MAX_WIDTH;
     }
-
 
     public void dispose(){
         batch.dispose();

@@ -148,7 +148,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
 
         worldPhysicsController.update(delta);
-        guiOverlayController.update(delta, entityPlayerKeldeController.getHealth(), 0); // 0 mana
+        guiOverlayController.update( entityPlayerKeldeController.getHealth(), 0); // 0 mana
         gameWorldView.render(delta);
 
 

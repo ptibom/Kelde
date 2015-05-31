@@ -44,9 +44,9 @@ public class StartMenuView {
         middleGroundTexture = new Texture(startMenuModel.getMidGround());
 
         // Creating the menu buttons
-        loadGameButton = new MenuButton("", MenuButton.createSkin("menu/loadbutton.png"));
-        newGameButton = new MenuButton("", MenuButton.createSkin("menu/startbutton.png"));
-        exitbutton = new MenuButton("", MenuButton.createSkin("menu/exitbutton.png"));
+        loadGameButton = new MenuButton(MenuButton.createSkin("menu/loadbutton.png"));
+        newGameButton = new MenuButton(MenuButton.createSkin("menu/startbutton.png"));
+        exitbutton = new MenuButton(MenuButton.createSkin("menu/exitbutton.png"));
 
         //Creating an inner table, to get the right spacing for load and new game button
         innerTable.add(newGameButton);

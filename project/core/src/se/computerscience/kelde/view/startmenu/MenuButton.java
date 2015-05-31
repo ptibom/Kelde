@@ -17,8 +17,8 @@ public class MenuButton extends TextButton {
         super("not used", createSkin(""));
     }
 
-    public MenuButton(String label, Skin skin){
-        super(label, skin);
+    public MenuButton( Skin skin){
+        super("", skin);
     }
 
     public static Skin createSkin(String imageFilePath){
