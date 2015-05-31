@@ -119,15 +119,6 @@ public class Intro {
 
 
 
-    public String getIntroSound() {
-
-        return INTRO_SOUND_PATH;
-    }
-
-
-
-
-
     public double getMenuTime() {
 
         return introTimer.getMenuTime();

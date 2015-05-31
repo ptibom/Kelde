@@ -19,7 +19,10 @@ import java.util.Map;
 
 public class IntroHandler {
 
+    private double scale = 0.5;
 
+    private final static int MAX_WIDTH = 1920;
+    private final static int MAX_HEIGHT = 1080;
     private static final int FIRST_INTRO_LENGTH = 47000;
     private static final int FIRST_INTRO_TEXT_LENGTH = 45000;
     private static final int LENGTH_OF_TEXT_STAYING = 47;
@@ -59,7 +62,7 @@ public class IntroHandler {
         this.introModel = introModel;
         this.animationService = animationService;
         dialogueHandler = new DialogueHandler(introModel, 47);
-
+        scale = 0.5;
 
         //Converting animations
         final  Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
@@ -71,8 +74,8 @@ public class IntroHandler {
         final Map<String, Animation> spellAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getSpellAnimations(),
                 this.introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroSpellPathImage()));
 
-        this.animationHandlerWizard1 = new AnimationHandler(this.introModel,wizardAnimations, 1350, 200, this.introModel.getWizardTalkCoordinates()[0],
-                this.introModel.getWizardTalkCoordinates()[1], 0);
+        this.animationHandlerWizard1 = new AnimationHandler(this.introModel,wizardAnimations, 1350, 200, this.introModel
+                .getWizardTalkCoordinates()[0], this.introModel.getWizardTalkCoordinates()[1], 0);
 
         this.animationHandlerDemon = new AnimationHandler(this.introModel, demonAnimations, 1285, 580, 128, 128, 47);
         this.animationHandlerWizard2 = new AnimationHandler(this.introModel, wizard2, -200, 90, 420, 420, 47);
@@ -96,31 +99,31 @@ public class IntroHandler {
         this.delta = delta;
         batch.begin();
 
+
+
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture1, 0, 0,introBackgroundTexture1.getWidth()/2,introBackgroundTexture1.getHeight()/2);
+            batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture2, 0, 0,introBackgroundTexture2.getWidth()/2,introBackgroundTexture2.getHeight()/2);
+            batch.draw(introBackgroundTexture2, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
         }
 
         if(introModel.getMenuTime()<FIRST_INTRO_TEXT_LENGTH) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
-                dialogueHandler.drawTextDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta, 0.5);
+                dialogueHandler.drawTextDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta, scale);
             }
         }
 
 
         drawAnimations(batch);
 
-
-
         // Lastly we draw the first intro's foreground.
-        if (introModel.getMenuTime() < 47000) {
+        if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
 
-            batch.draw(introForegroundTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+            batch.draw(introForegroundTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
         }
 
-        batch.draw(introBorderTexture, 0, 0, introForegroundTexture.getWidth()/2, introForegroundTexture.getHeight()/2);
+        batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
         batch.end();
     }
 
@@ -128,15 +131,17 @@ public class IntroHandler {
     // We need to choose which function in the animationhandler to activate, we check for keyframe
     public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
 
+
+        // Checking if it's an still image or not to render
         final boolean renderStillImage = instruct.getKeyFrame() != -1;
 
         if (renderStillImage) {
-            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,0.5);
+            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,scale);
 
         }
 
         else {
-            animationHandler.drawAnimation(batch, instruct,delta,0.5);
+            animationHandler.drawAnimation(batch, instruct,delta,scale);
         }
     }
 
@@ -173,13 +178,20 @@ public class IntroHandler {
     // This function takes care of interpolated X and Y animation render.
     public void drawHelper(SpriteBatch batch, AnimationService animationloader, AnimationHandler animationHandler,
                            IntroInstruction instruct) {
-        animationHandler.drawAnimation(batch, animationloader, instruct, 0.5);
+        animationHandler.drawAnimation(batch, animationloader, instruct,scale);
     }
 
     //This drawhelper renders the bubbles
     public void drawHelper(SpriteBatch batch, DialogueHandler dialogHandler, IntroInstruction instruct) {
 
-        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(),0.5);
+        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(), scale);
 
     }
+
+    public void setScale(double height){
+        scale = height / MAX_WIDTH;
+
+    }
+
 }
+

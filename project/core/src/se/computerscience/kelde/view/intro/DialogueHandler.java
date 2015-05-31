@@ -17,6 +17,9 @@ import java.util.List;
 // Handles all the kind of dialogues in the intro, from the text at the start and
 // the speech bubbles later.
 public class DialogueHandler {
+    private final static int ORIGINAL_POSITION = 520;
+    private final static int A_SECOND = 1000;
+    private final static int DELAY_PARAMETER_A = 2000, DELAY_PARAMETER_B = 9000;
     private final double introDelay;
     private final Intro introModel;
     private final List<TextDialogue> introTextTextDialogues;
@@ -42,7 +45,7 @@ public class DialogueHandler {
 
         // Here we add the dialogues and texts to an array, to ease of use.
         for (int i = 0; i < introTexts.length; i++) {
-            introTextTextDialogues.add(createTextDialogue(introTexts[i], i * 2000 + 9000));
+            introTextTextDialogues.add(createTextDialogue(introTexts[i], i * DELAY_PARAMETER_A + DELAY_PARAMETER_B));
         }
 
         for (int i = 0; i < dialogues.length; i++) {
@@ -60,8 +63,8 @@ public class DialogueHandler {
 
             regionToRender=getTextureRegion(dialoguenumber, delta);
             t.updateTimer();
-            if(introTextTextDialogues.get(dialoguenumber).getTimeToLast()+startTime*1000>t.getMenuTime()) {
-                batch.draw(regionToRender, 0, 260, (int) (regionToRender.getRegionWidth() * scale), (int) (regionToRender.getRegionHeight() * scale));
+            if(introTextTextDialogues.get(dialoguenumber).getTimeToLast()+startTime*A_SECOND>t.getMenuTime()) {
+                batch.draw(regionToRender, 0, (int)(ORIGINAL_POSITION*scale), (int) (regionToRender.getRegionWidth() * scale), (int) (regionToRender.getRegionHeight() * scale));
             }
 
         }

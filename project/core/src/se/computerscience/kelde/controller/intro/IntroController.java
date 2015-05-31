@@ -50,8 +50,13 @@ public class IntroController {
     }
 
     public void render(float delta) {
+
         introView.render(delta);
     }
 
+
+    public void resize(int width, int height){
+        introView.resize(width, height);
+    }
 
 }

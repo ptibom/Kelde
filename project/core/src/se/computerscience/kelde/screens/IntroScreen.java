@@ -41,7 +41,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        // No need for this
+      introController.resize(width, height);
     }
 
     @Override
