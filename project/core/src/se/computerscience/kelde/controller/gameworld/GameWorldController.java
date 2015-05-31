@@ -191,7 +191,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
             gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
-            IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
+           final IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
             inventoryController.update(item);
         }
 

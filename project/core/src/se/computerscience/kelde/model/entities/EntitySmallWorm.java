@@ -27,6 +27,7 @@ public class EntitySmallWorm extends EntityEnemy {
 
     //Constructor
     public EntitySmallWorm(float x, float y, IB2DWorld ib2DWorld){
+        super();
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
     }

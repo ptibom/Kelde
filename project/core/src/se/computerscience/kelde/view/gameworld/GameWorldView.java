@@ -4,8 +4,7 @@
 
 package se.computerscience.kelde.view.gameworld;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
+
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -41,16 +40,14 @@ public class GameWorldView{
     private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
     private final List<IEntityView> entitieViews = new ArrayList<>();
 
-    OrthographicCamera camera;
-    Viewport viewport;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
 
     public GameWorldView(GameWorld gameWorld) {
 
         inventoryView = new InventoryView(gameWorld.getInventory());
         this.gameWorld = gameWorld;
 
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
         camera = new OrthographicCamera();
         camera.update();
 
@@ -95,7 +92,7 @@ public class GameWorldView{
     }
 
     public void resize(int width, int height) {
-        camera.position.set(width / (float)2, height / (float)2, 0);
+        camera.position.set(width / (float) 2, height / (float)2, 0);
         viewport.update(width, height, true);
         batch.setProjectionMatrix(camera.combined);
     }

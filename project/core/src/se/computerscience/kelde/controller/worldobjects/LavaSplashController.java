@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class LavaSplashController implements IWorldObjectsController, ICollisionEventHandler {
     private final LavaSplash lavaSplash;
-    private Vector2 velocityControl;
+    private final Vector2 velocityControl;
     private final float velocityX, velocityY;
     private final float startPosX,startPosY;
 

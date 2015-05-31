@@ -5,8 +5,6 @@
  */
 
 package se.computerscience.kelde.model.gameworld;
-import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
-import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;

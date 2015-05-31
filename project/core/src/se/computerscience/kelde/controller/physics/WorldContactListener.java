@@ -65,7 +65,7 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
         if (objectA instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectB));
             if (objectB instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectB;
+               final INPCEntity npc = (INPCEntity) objectB;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }
@@ -74,7 +74,7 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
         else if (objectB instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectA));
             if (objectA instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectB;
+               final INPCEntity npc = (INPCEntity) objectB;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }
