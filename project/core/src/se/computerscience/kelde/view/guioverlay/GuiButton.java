@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
  * @author: Daniel Olsson
  * @revised: Philip Tibom
  */
-public class GuiButton {
+public final class GuiButton {
 
+    private GuiButton(){
+
+    }
 
     // Creating a new skin for the buttons
     public static Skin createSkin(String imageFilePath) {

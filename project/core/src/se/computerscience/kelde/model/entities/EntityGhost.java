@@ -61,12 +61,12 @@ public class EntityGhost extends EntityEnemy {
         final float monsterX = entityBody.getPositionX();
         final float monsterY = entityBody.getPositionY();
 
-        final float distance = NPCAI.distance(playerX,playerY,monsterX,monsterY);
-        final float vx = NPCAI.getVelocity(NPCAI.deltaX(playerX,monsterX));
-        final float vy = NPCAI.getVelocity(NPCAI.deltaY(playerY,monsterY));
+        final float distance = NPCAI.distance(playerX, playerY, monsterX, monsterY);
 
         if (distance >= 0 && distance <= ATTACK_DISTANCE) {
             if (elapsedTime > 1) {
+                final float vx = NPCAI.getVelocity(NPCAI.deltaX(playerX,monsterX));
+                final float vy = NPCAI.getVelocity(NPCAI.deltaY(playerY,monsterY));
                 entityBody.setVelocity(vx, vy);
                 elapsedTime = 0;
             }

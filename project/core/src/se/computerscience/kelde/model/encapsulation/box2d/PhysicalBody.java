@@ -16,7 +16,8 @@ public class PhysicalBody implements IPhysicalBody {
     private final Body body;
     protected final BodyDef def;
     protected final FixtureDef fdef;
-
+    // Suppress PMD warning.
+    @SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
     public PhysicalBody(float x, float y, float width, float height, IB2DWorld ib2DWorld, Object userdata) {
         worldPhysics = ib2DWorld.getBox2DWorld();
         def = new BodyDef();

@@ -15,7 +15,10 @@ public class Item implements IItem {
     private final ISprite sprite;
     protected IRegion region;
 
+    // Suppress PMD warning.
+    @SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
     public Item() {
+
         setTextureAtlas();
         region = new Region(textureAtlas);
         setRegion();
@@ -25,7 +28,6 @@ public class Item implements IItem {
     protected void setTextureAtlas() {
         textureAtlas = new Atlas("allitems.atlas");
     }
-
     protected void setRegion() {
         region.setRegion(textureAtlas.findRegion(""));
     }
