@@ -23,7 +23,7 @@ public class IntroScreen implements Screen {
         try {
             introController = new IntroController();
         } catch (IOException e) {
-            final  Logger log = Logger.getLogger(IOException.class.getName());
+            final Logger log = Logger.getLogger(IOException.class.getName());
             if (log.isLoggable(Level.FINE)) {
                 log.fine("File not found");
             }
@@ -33,7 +33,7 @@ public class IntroScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        final  GL20 gl = Gdx.graphics.getGL20();
+        final GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
@@ -43,7 +43,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-      introController.resize(width, height);
+        introController.resize(width, height);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void dispose() {
-       introController.dispose();
+        introController.dispose();
     }
 
 

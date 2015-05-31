@@ -1,5 +1,7 @@
-/** Description: Modelling the world physics. Using box2d physics engine.
- *  @author: Philip Tibom
+/**
+ * Description: Modelling the world physics. Using box2d physics engine.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.physics;
@@ -8,8 +10,6 @@ import se.computerscience.kelde.model.encapsulation.box2d.B2DParser;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DParser;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-import se.computerscience.kelde.model.encapsulation.libgdx.Camera;
-import se.computerscience.kelde.model.encapsulation.libgdx.ICamera;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 
 public class WorldPhysics {

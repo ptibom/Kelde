@@ -6,6 +6,7 @@
 package se.computerscience.kelde.model.constants;
 
 import se.computerscience.kelde.model.items.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public final class ItemSets {
         items.add(new KeyLava());
         return items;
     }
-    public static List<IItem> getSet3(){
+
+    public static List<IItem> getSet3() {
         final List<IItem> items = new ArrayList<>();
         items.add(new HealthPotion());
         items.add(new ManaPotion());

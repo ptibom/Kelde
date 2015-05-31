@@ -27,16 +27,19 @@ public class PhysicalBody implements IPhysicalBody {
         fdef = new FixtureDef();
         setIsSensor(); // call method in subclass
         final PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width*WorldPhysics.BOX2D_SCALE, height*WorldPhysics.BOX2D_SCALE);
+        shape.setAsBox(width * WorldPhysics.BOX2D_SCALE, height * WorldPhysics.BOX2D_SCALE);
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(userdata);
     }
+
     // Sub class may override this method
     protected void setBodyType() {
         def.type = BodyType.DynamicBody;
     }
-    protected void setIsSensor() {fdef.isSensor = false;}
 
+    protected void setIsSensor() {
+        fdef.isSensor = false;
+    }
 
 
     @Override
@@ -44,9 +47,11 @@ public class PhysicalBody implements IPhysicalBody {
         // x & y is meters per second. Not pixels.
         body.setLinearVelocity(x, y);
     }
-    public void setPosition(float x , float y){
-        body.setTransform(new Vector2(x * WorldPhysics.BOX2D_SCALE, y *WorldPhysics.BOX2D_SCALE), 0);
+
+    public void setPosition(float x, float y) {
+        body.setTransform(new Vector2(x * WorldPhysics.BOX2D_SCALE, y * WorldPhysics.BOX2D_SCALE), 0);
     }
+
     @Override
     public void setDampening(float dampening) {
         body.setLinearDamping(dampening);
@@ -54,12 +59,12 @@ public class PhysicalBody implements IPhysicalBody {
 
     @Override
     public float getPositionY() {
-        return body.getPosition().y/WorldPhysics.BOX2D_SCALE;
+        return body.getPosition().y / WorldPhysics.BOX2D_SCALE;
     }
 
     @Override
     public float getPositionX() {
-        return body.getPosition().x/WorldPhysics.BOX2D_SCALE;
+        return body.getPosition().x / WorldPhysics.BOX2D_SCALE;
     }
 
     @Override

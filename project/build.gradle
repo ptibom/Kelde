@@ -66,9 +66,12 @@ project(":core") {
         compile 'net.dermetfan.libgdx-utils:libgdx-utils:0.10.0'
         compile 'net.dermetfan.libgdx-utils:libgdx-utils-box2d:0.10.0' // box2d module
         compile 'net.dermetfan.libgdx-utils:libgdx-utils-box2d-gwt:0.10.0:sources' // box2d module GWT backend (sources)
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop" // Include natives to support Unit Testing
-        compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop" // Include natives to support Unit Testing
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop" // Include natives to support Unit Testing
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        // Include natives to support Unit Testing
+        compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+        // Include natives to support Unit Testing
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        // Include natives to support Unit Testing
         testCompile "junit:junit:4.11"
     }
 }

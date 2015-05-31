@@ -12,7 +12,8 @@ import se.computerscience.kelde.model.worldobjects.BombArea;
 
 public class BombAreaController implements IWorldObjectsController, ICollisionEventHandler {
     private final BombArea bombArea;
-    private boolean blow;;
+    private boolean blow;
+    ;
 
     public BombAreaController(BombArea bombArea) {
         this.bombArea = bombArea;
@@ -23,21 +24,24 @@ public class BombAreaController implements IWorldObjectsController, ICollisionEv
     public void update(float delta) {
         // not used
     }
+
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != bombArea){
+        if (event.getObject() != bombArea) {
             return;
         }
-        if (blow){
+        if (blow) {
             //make damage on kelde
             return;
         }
     }
+
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);
     }
-    public void updatePos(float x, float y){
-        bombArea.updatePos(x+15 , y+15);
+
+    public void updatePos(float x, float y) {
+        bombArea.updatePos(x + 15, y + 15);
     }
 
     public void setBlow(boolean blow) {

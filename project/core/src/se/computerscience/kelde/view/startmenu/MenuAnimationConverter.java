@@ -16,10 +16,10 @@ import java.util.List;
 // Converts in house animation data to libgdx animations
 public final class MenuAnimationConverter {
 
-    private static  List<Animation> convertedAnimations;
+    private static List<Animation> convertedAnimations;
     private static TextureRegion[] allFramesinAnimation;
 
-    private MenuAnimationConverter(){
+    private MenuAnimationConverter() {
 
     }
 
@@ -30,13 +30,13 @@ public final class MenuAnimationConverter {
         for (final MenuAnimation anAnimation : menuAnimations) {
 
 
-            allFramesinAnimation =getTextureRegionSizeThree();
-            for (int i = 0; i<3; i++) {
+            allFramesinAnimation = getTextureRegionSizeThree();
+            for (int i = 0; i < 3; i++) {
                 final MenuSprite sprite = anAnimation.getMenuSpriteFrames().get(i);
                 allFramesinAnimation[i] = getTextureRegion(spriteSheetTexture, sprite);
             }
 
-            convertedAnimations.add(getAnimation  (allFramesinAnimation));
+            convertedAnimations.add(getAnimation(allFramesinAnimation));
         }
 
         return convertedAnimations;
@@ -50,12 +50,12 @@ public final class MenuAnimationConverter {
 
     }
 
-    private static Animation getAnimation(TextureRegion[] textReg){
+    private static Animation getAnimation(TextureRegion[] textReg) {
 
         return new Animation(0.27f, textReg);
     }
 
-    private static TextureRegion[] getTextureRegionSizeThree(){
-        return new  TextureRegion[3];
+    private static TextureRegion[] getTextureRegionSizeThree() {
+        return new TextureRegion[3];
     }
 }

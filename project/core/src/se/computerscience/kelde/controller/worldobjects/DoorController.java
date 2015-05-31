@@ -5,8 +5,8 @@
  */
 package se.computerscience.kelde.controller.worldobjects;
 
-import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.worldobjects.Door;
 import se.computerscience.kelde.view.worldobjects.DoorView;
@@ -16,20 +16,23 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
     private final Door door;
     private final DoorView doorView;
     private ScreenEvent.ScreenTag screenTag;
+
     enum TeleportTo {
         LAVA, BEGINNNER_HOUSE1
     }
+
     private TeleportTo teleportTo;
-    public DoorController(Door door,DoorView doorView) {
+
+    public DoorController(Door door, DoorView doorView) {
         this.door = door;
         this.doorView = doorView;
         CollisionEventBus.INSTANCE.register(this);
 
-        if (door.getLocation().equals("shop1")){
+        if (door.getLocation().equals("shop1")) {
             teleportTo = TeleportTo.BEGINNNER_HOUSE1;
-        } else if (door.getLocation().equals("Lava")){
-           screenTag = ScreenEvent.ScreenTag.LAVA_WORLD;
-        }else if (door.getLocation().equals("Start")){
+        } else if (door.getLocation().equals("Lava")) {
+            screenTag = ScreenEvent.ScreenTag.LAVA_WORLD;
+        } else if (door.getLocation().equals("Start")) {
             screenTag = ScreenEvent.ScreenTag.START_WORLD;
         }
     }
@@ -46,13 +49,14 @@ public class DoorController implements IWorldObjectsController, ICollisionEventH
         }
         if (event.getTag() == CollisionEvent.Tag.BEGIN) {
 
-            if (teleportTo == TeleportTo.BEGINNNER_HOUSE1){
-                ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.CHANGE_POS, new Point(200,200)));
-            }else {
+            if (teleportTo == TeleportTo.BEGINNNER_HOUSE1) {
+                ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.CHANGE_POS, new Point(200, 200)));
+            } else {
                 ScreenChanger.setNextScreen(screenTag);
             }
         }
     }
+
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);
     }

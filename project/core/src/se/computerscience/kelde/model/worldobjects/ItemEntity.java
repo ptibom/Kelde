@@ -12,11 +12,12 @@ import se.computerscience.kelde.model.items.IItem;
 
 public class ItemEntity implements IWorldObjects {
     private final IItem item;
-    private final static float  BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private final static float BODY_WIDTH = 16, BODY_HEIGHT = 16;
     private final IPhysicalBody physicalBody;
     private boolean visible = true;
+
     public ItemEntity(float x, float y, IB2DWorld ib2DWorld, IItem item) {
-        physicalBody = new PhysicalBodySensor(x, y, BODY_WIDTH,BODY_HEIGHT , ib2DWorld, this);
+        physicalBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         this.item = item;
     }
 
@@ -33,6 +34,7 @@ public class ItemEntity implements IWorldObjects {
     public IItem getItem() {
         return item;
     }
+
     @Override
     public float getPositionY() {
         return physicalBody.getPositionY() - BODY_HEIGHT;

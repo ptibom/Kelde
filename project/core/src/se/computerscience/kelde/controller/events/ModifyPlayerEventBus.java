@@ -8,7 +8,7 @@ package se.computerscience.kelde.controller.events;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum  ModifyPlayerEventBus {
+public enum ModifyPlayerEventBus {
     INSTANCE;
 
     private final List<IModifyPlayerEventHandler> handlers = new ArrayList<>();
@@ -27,7 +27,7 @@ public enum  ModifyPlayerEventBus {
         }
     }
 
-    public void unregisterAll () {
+    public void unregisterAll() {
         handlers.clear();
     }
 }

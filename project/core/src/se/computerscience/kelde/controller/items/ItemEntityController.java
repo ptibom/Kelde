@@ -10,7 +10,7 @@ import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.worldobjects.ItemEntity;
 import se.computerscience.kelde.view.items.ItemEntityView;
 
-public class ItemEntityController implements IWorldObjectsController , ICollisionEventHandler{
+public class ItemEntityController implements IWorldObjectsController, ICollisionEventHandler {
     private final ItemEntity itemEntity;
     private final ItemEntityView itemEntityView;
 
@@ -28,10 +28,10 @@ public class ItemEntityController implements IWorldObjectsController , ICollisio
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != itemEntity){
+        if (event.getObject() != itemEntity) {
             return;
         }
-        if (event.getTag() == CollisionEvent.Tag.BEGIN){
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
             ItemEventBus.INSTANCE.publish(new ItemEvent(ItemEvent.Tag.DEL_ITEM, this));
             itemEntity.playerPickUp();
         }

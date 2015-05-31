@@ -12,7 +12,8 @@ import se.computerscience.kelde.controller.events.ScreenEventBus;
 public final class ScreenChanger {
     private static boolean doChange;
     private static ScreenEvent.ScreenTag nextScreen;
-    private ScreenChanger(){
+
+    private ScreenChanger() {
 
     }
 

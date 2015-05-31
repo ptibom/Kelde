@@ -11,7 +11,7 @@ import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.worldobjects.Bomb;
 import se.computerscience.kelde.view.worldobjects.BombView;
 
-public class BombController implements  IWorldObjectsController, ICollisionEventHandler{
+public class BombController implements IWorldObjectsController, ICollisionEventHandler {
     private final Bomb bomb;
     private final BombView bombView;
     private final BombAreaController bombAreaController;
@@ -26,22 +26,23 @@ public class BombController implements  IWorldObjectsController, ICollisionEvent
     @Override
     public void update(float delta) {
         bombAreaController.update(delta);
-        if (bomb.isDetonate()){
+        if (bomb.isDetonate()) {
             bombView.update(delta);
         }
-        bombAreaController.updatePos(bomb.getPositionX(),bomb.getPositionY());
+        bombAreaController.updatePos(bomb.getPositionX(), bomb.getPositionY());
     }
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != bomb){
+        if (event.getObject() != bomb) {
             return;
         }
-        if (event.getTag() == CollisionEvent.Tag.BEGIN){
+        if (event.getTag() == CollisionEvent.Tag.BEGIN) {
             bomb.setDetonate(true);
             bombAreaController.setBlow(true);
         }
     }
+
     public void dispose() {
         CollisionEventBus.INSTANCE.unregister(this);
     }

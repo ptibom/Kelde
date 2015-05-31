@@ -14,6 +14,7 @@ import se.computerscience.kelde.controller.services.ScreenChanger;
 
 public class LavaScreen implements Screen {
     private LavaWorldController lavaWorldController;
+
     @Override
     public void show() {
         lavaWorldController = new LavaWorldController();
@@ -30,6 +31,7 @@ public class LavaScreen implements Screen {
         ScreenChanger.performingChange();
 
     }
+
     @Override
     public void resize(int width, int height) {
         lavaWorldController.resizeCamera(width, height);

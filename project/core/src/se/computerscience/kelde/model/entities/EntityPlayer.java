@@ -1,5 +1,7 @@
-/** Description: This is a player controlled character with base-stats. The used player character will be extend this class for modularity.
- *  @author: Philip Tibom
+/**
+ * Description: This is a player controlled character with base-stats. The used player character will be extend this class for modularity.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

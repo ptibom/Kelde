@@ -10,7 +10,7 @@ import se.computerscience.kelde.model.worldobjects.Barrel;
  *
  * @author: Hossein Hussain
  */
-public class BarrelView implements IWorldObjectView{
+public class BarrelView implements IWorldObjectView {
     private final Barrel barrel;
     private final Sprite sprite;
     private static final int WIDTH = 32, HEIGHT = 48;
@@ -21,11 +21,13 @@ public class BarrelView implements IWorldObjectView{
         final Texture texture = new Texture(SPRITE_LOCATION);
         sprite = new Sprite(texture, WIDTH, HEIGHT);
     }
-    public void update(float delta){
+
+    public void update(float delta) {
         // not used
     }
+
     @Override
-    public void draw (SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
         sprite.setPosition(barrel.getPositionX(), barrel.getPositionY());
         sprite.draw(batch);
     }

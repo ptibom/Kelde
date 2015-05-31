@@ -1,6 +1,9 @@
 package se.computerscience.kelde.model.intro;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Daniel Olsson
@@ -75,16 +78,16 @@ public class AnimationService {
 
         final Object[] animationDataCollectionDem = new Object[]{demonAndSecondWizardAnimationLengthData, demonSpriteCoordinates,
                 keyForAnimations2};
-        final  Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
+        final Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionDem, animationMapsDem);
         /////////////////////////////////
         // Loading animations for spell//
         /////////////////////////////////
         final int[] spellAnimationLengthData = ConstantsAnimation.getSpellLength();
-        final   int[] spellSpriteCoordinates = introModel.getSpellIntroCoordinaters();
+        final int[] spellSpriteCoordinates = introModel.getSpellIntroCoordinaters();
 
-        final  String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
+        final String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
         final Object[] animationDataCollectionSpell = new Object[]{spellAnimationLengthData, spellSpriteCoordinates,
                 keyForAnimations3};
         final Object[] animationMapsSpell = new Object[]{mappedSpellAnimation};
@@ -94,11 +97,11 @@ public class AnimationService {
 
     // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
     // into an animation, then collect these animations into a map for ease of finding them.
-    private  List<IntroAnimation> readAndLoadAnimation(Object[] animationDataCollection,
-                                      Object[] animationMapArray) {
+    private List<IntroAnimation> readAndLoadAnimation(Object[] animationDataCollection,
+                                                      Object[] animationMapArray) {
         // The width and height of the sprite is stored in the beginning
         final List<IntroAnimation> tempAnimationList = AnimationBuilder.createListofAnimations(
-                (int[])animationDataCollection[0],   (int[])animationDataCollection[1] );
+                (int[]) animationDataCollection[0], (int[]) animationDataCollection[1]);
 
         //If we have spritesheet with two different animations, this is a special case.
         if (animationMapArray.length > 1) {
@@ -109,7 +112,7 @@ public class AnimationService {
                     ((Map<String, IntroAnimation>) animationMapArray[1]).put(((String[]) animationDataCollection[2])[i], tempAnimationList.get(i));
 
                 } else {
-                    ((Map<String, IntroAnimation>)animationMapArray[0]).put(((String[]) animationDataCollection[2])[i], tempAnimationList.get(i));
+                    ((Map<String, IntroAnimation>) animationMapArray[0]).put(((String[]) animationDataCollection[2])[i], tempAnimationList.get(i));
                 }
             }
         }
@@ -122,6 +125,7 @@ public class AnimationService {
         }
         return tempAnimationList;
     }
+
     //Getters for the generated animations
     public Map<String, IntroAnimation> getWizardAnimations() {
         return mappedWizardTalkAnimation;
@@ -138,15 +142,14 @@ public class AnimationService {
     public Map<String, IntroAnimation> getSpellAnimations() {
         return mappedSpellAnimation;
     }
+
     public int[] getInterpolDataX() {
         return Arrays.copyOf(animPathInterpolatedX, animPathInterpolatedX.length);
     }
+
     public int[] getInterpolDataY() {
         return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
     }
-
-
-
 
 
 }

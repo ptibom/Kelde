@@ -11,6 +11,7 @@ import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 
 public class B2DParser implements IB2DParser {
     private final Box2DMapObjectParser parser;
+
     public B2DParser(float scale) {
         // Load all the objects from the Game Map and populate the box2d world with polygon objects.
         parser = new Box2DMapObjectParser(scale);

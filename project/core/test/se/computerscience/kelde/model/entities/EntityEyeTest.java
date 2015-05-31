@@ -1,12 +1,10 @@
 package se.computerscience.kelde.model.entities;
 
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Anders on 2015-05-30.
@@ -19,7 +17,7 @@ public class EntityEyeTest {
 
     @Before
     public void setUp() throws Exception {
-        entityEye = new EntityEye(100,100, new B2DWorld());
+        entityEye = new EntityEye(100, 100, new B2DWorld());
     }
 
     @Test
@@ -50,7 +48,7 @@ public class EntityEyeTest {
 
     @Test
     public void testPositionY() {
-        Assert.assertEquals(78, (int)entityEye.getPositionY());
+        Assert.assertEquals(78, (int) entityEye.getPositionY());
     }
 
     @Test

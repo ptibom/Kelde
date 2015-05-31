@@ -6,7 +6,7 @@
 package se.computerscience.kelde.model.items;
 
 public class Bow extends Item {
-    private final static boolean  CONSUMABLE = false;
+    private final static boolean CONSUMABLE = false;
     private final static boolean WEAPON = true;
     private final static int DAMAGE = 10;
 
@@ -18,10 +18,12 @@ public class Bow extends Item {
     public int getDamage() {
         return DAMAGE;
     }
+
     @Override
     public boolean isConsumable() {
         return CONSUMABLE;
     }
+
     @Override
     public boolean isWeapon() {
         return WEAPON;

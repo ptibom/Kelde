@@ -1,4 +1,5 @@
 package se.computerscience.kelde.model.intro;
+
 /**
  * @author: Daniel Olsson
  */
@@ -8,10 +9,10 @@ public class IntroSpriteFrame {
 
     private final int spriteStartXPosition;
     private final int spriteStartYPosition;
-    private final  int spriteWidth;
+    private final int spriteWidth;
     private final int spriteHeight;
 
-    public IntroSpriteFrame(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight){
+    public IntroSpriteFrame(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight) {
         this.spriteStartXPosition = spriteStartXPosition;
         this.spriteStartYPosition = spriteStartYPosition;
         this.spriteWidth = spriteWidth;
@@ -19,11 +20,11 @@ public class IntroSpriteFrame {
 
     }
 
-    public int getSpriteStartXPosition(){
+    public int getSpriteStartXPosition() {
         return spriteStartXPosition;
     }
 
-    public int getSpriteStartYPosition(){
+    public int getSpriteStartYPosition() {
         return spriteStartYPosition;
     }
 
@@ -31,7 +32,7 @@ public class IntroSpriteFrame {
         return spriteWidth;
     }
 
-    public int getSpriteHeight(){
+    public int getSpriteHeight() {
         return spriteHeight;
     }
 

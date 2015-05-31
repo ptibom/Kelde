@@ -14,15 +14,14 @@ public class MenuAnimation {
     private final List<MenuSprite> framesOfAnimation;
 
 
-
-    public MenuAnimation(List<MenuSprite> framesOfAnimation){
+    public MenuAnimation(List<MenuSprite> framesOfAnimation) {
 
         this.framesOfAnimation = framesOfAnimation;
 
     }
 
 
-    public List<MenuSprite> getMenuSpriteFrames(){
+    public List<MenuSprite> getMenuSpriteFrames() {
         return framesOfAnimation;
     }
 }

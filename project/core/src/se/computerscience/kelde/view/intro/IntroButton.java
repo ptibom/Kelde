@@ -14,15 +14,15 @@ public class IntroButton extends TextButton {
 
     private static final int SCREEN_W = 1920, SCREEN_H = 1080;
 
-    private IntroButton(){
+    private IntroButton() {
         super("not used", createSkin());
     }
 
-    public IntroButton(String label, Skin skin){
+    public IntroButton(String label, Skin skin) {
         super(label, skin);
     }
 
-    public static Skin createSkin(){
+    public static Skin createSkin() {
         final String def = "default";
         final String bak = "background";
 
@@ -30,7 +30,7 @@ public class IntroButton extends TextButton {
         final BitmapFont font = new BitmapFont();
         skin.add(def, font);
 
-        final Pixmap pixmap = new Pixmap(SCREEN_W,SCREEN_H, Pixmap.Format.RGB888);
+        final Pixmap pixmap = new Pixmap(SCREEN_W, SCREEN_H, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
         skin.add("background", new Texture(pixmap));

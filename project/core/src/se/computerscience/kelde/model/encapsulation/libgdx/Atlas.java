@@ -9,15 +9,18 @@ package se.computerscience.kelde.model.encapsulation.libgdx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-public class Atlas implements IAtlas{
+public class Atlas implements IAtlas {
     private final TextureAtlas textureAtlas;
-    public Atlas(String fileName){
+
+    public Atlas(String fileName) {
         textureAtlas = new TextureAtlas(Gdx.files.internal(fileName));
     }
+
     @Override
-    public TextureAtlas.AtlasRegion findRegion(String region){
+    public TextureAtlas.AtlasRegion findRegion(String region) {
         return textureAtlas.findRegion(region);
     }
+
     @Override
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;

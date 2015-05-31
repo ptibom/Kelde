@@ -30,6 +30,7 @@ public class ManaPotion extends Item {
     public boolean isConsumable() {
         return CONSUMABLE;
     }
+
     @Override
     public boolean isWeapon() {
         return WEAPON;
