@@ -55,17 +55,18 @@ public class EntityGhost extends EntityEnemy {
     * @param dy the distance between monster and player in y a-xsis
     * @param xdir and ydir, checks with direction monster have to face
     *        to go to the player.
-    * @param dif the hypotenuse between the player and monster
+    * @param distance the hypotenuse between the player and monster
     * @param speed monsters moving speed when in range of player
     * */
     public void chargePlayer(float delta, float playerx, float playery) {
         elapsedTime += delta;
         final float monsterx = entityBody.getPositionX(), monstery = entityBody.getPositionY();
         final float dx = monsterx - playerx, dy = monstery - playery;
-        final float dif = (float) Math.sqrt(dx * dx + dy * dy);
-        final boolean xdir = playerx - monsterx > 0, ydir = playery - monstery > 0;
-        final float speed = .7f;
-        if (dif >= 0 && dif <= 200) {
+        final float distance = (float) Math.sqrt(dx * dx + dy * dy);
+
+        if (distance >= 0 && distance <= 200) {
+            final boolean xdir = playerx - monsterx > 0, ydir = playery - monstery > 0;
+            final float speed = .7f;
             if (elapsedTime > .5) {
                 if (xdir && ydir) {
                     entityBody.setVelocity(speed, speed);
