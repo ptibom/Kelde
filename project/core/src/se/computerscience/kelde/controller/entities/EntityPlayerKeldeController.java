@@ -15,7 +15,8 @@ import se.computerscience.kelde.controller.events.ModifyPlayerEventBus;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-
+// Suppress PMD warning
+@SuppressWarnings("PMD.CyclomaticComplexity")
 public class EntityPlayerKeldeController implements IWorldObjectsController, IModifyPlayerEventHandler {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)
