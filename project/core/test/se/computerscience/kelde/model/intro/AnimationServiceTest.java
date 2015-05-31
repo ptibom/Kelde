@@ -3,6 +3,7 @@ package se.computerscience.kelde.model.intro;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -23,12 +24,13 @@ public class AnimationServiceTest {
     private final Charset charset = Charset.forName("UTF-8");
     private final List<List<String>> allData = new ArrayList<List<String>>();
     private Intro introModel;
+    
 
     @Before
     public void initTest() {
         try {
 
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(("./intro/introsprites.txt")), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/spell.txt"), charset));
             allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemon.intro"), charset));

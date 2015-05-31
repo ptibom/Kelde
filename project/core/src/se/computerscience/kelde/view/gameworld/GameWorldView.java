@@ -45,7 +45,7 @@ public class GameWorldView{
     Viewport viewport;
 
     public GameWorldView(GameWorld gameWorld) {
-        guiOverlayView = new GuiOverlayView(gameWorld.getGui());
+
         inventoryView = new InventoryView(gameWorld.getInventory());
         this.gameWorld = gameWorld;
 
@@ -55,7 +55,7 @@ public class GameWorldView{
         camera.update();
 
         viewport = new FitViewport(960, 640, camera);
-
+        guiOverlayView = new GuiOverlayView(gameWorld.getGui(),viewport);
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
         batch = new SpriteBatch();
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
