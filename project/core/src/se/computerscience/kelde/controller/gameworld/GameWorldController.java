@@ -102,7 +102,7 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
                 final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
-            } catch (ReflectiveOperationException e){//ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            } catch (ReflectiveOperationException e){
                 logger.log(Level.WARNING, e.toString());
             }
         }
