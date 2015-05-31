@@ -8,6 +8,8 @@ package se.computerscience.kelde.view.gameworld;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -42,6 +44,8 @@ public class GameWorldView {
     private final OrthographicCamera camera;
     private final Viewport viewport;
 
+    private final Sprite fightTextSprite;
+
     public GameWorldView(GameWorld gameWorld) {
         inventoryView = new InventoryView(gameWorld.getInventory());
 
@@ -55,6 +59,8 @@ public class GameWorldView {
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
         entityPlayerKeldeView = new EntityPlayerKeldeView(gameWorld.getEntityPlayerKelde());
 
+        fightTextSprite = new Sprite(new Texture("fighttext.png"));
+        fightTextSprite.setPosition(200, 610);
     }
 
     public void render(float delta) {
@@ -78,6 +84,7 @@ public class GameWorldView {
 
         guiOverlayView.draw(batch);
         inventoryView.draw(batch);
+        fightTextSprite.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
