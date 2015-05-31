@@ -58,8 +58,6 @@ public class StartMenuView {
         table.setPosition(TABLE_ORIGIN_X, TABLE_ORIGIN_Y);
         table.getPadBottom();
         menuStage.addActor(table);
-
-
         menuStage.setViewport(viewport);
 
         // Loads other assets as textures and music
@@ -121,7 +119,7 @@ public class StartMenuView {
         backgroundMusic.stop();
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
     }
 
