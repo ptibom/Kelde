@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface IInventoryGui {
 
-     List<IItem> getInventoryItems();
+    List<IItem> getInventoryItems();
 
-     String getInventoryGuiImage();
+    String getInventoryGuiImage();
 
-     List<int[]> getItemPositions();
+    List<int[]> getItemPositions();
 
-     int getInventoryPositionX();
+    int getInventoryPositionX();
 
-     int getInventoryPositionY();
+    int getInventoryPositionY();
 
 }

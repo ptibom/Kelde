@@ -15,13 +15,16 @@ public class Axe extends Item {
     protected void setRegion() {
         region.setRegion(textureAtlas.findRegion("0002"));
     }
+
     public int getDamage() {
         return DAMAGE;
     }
+
     @Override
     public boolean isConsumable() {
         return CONSUMABLE;
     }
+
     @Override
     public boolean isWeapon() {
         return WEAPON;

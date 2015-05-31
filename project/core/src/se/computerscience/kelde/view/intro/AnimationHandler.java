@@ -20,7 +20,7 @@ public class AnimationHandler {
     private TextureRegion currentFrame;
     final private Map<String, Animation> animations;
     private final int ORIGIN_X, ORIGIN_Y;
-    private final int  width, height;
+    private final int width, height;
     private double offsetX, offsetY, heightChangeX, heightChangeY;
     private int[] animPathInterpolatedX;
     private int[] animPathInterpolatedY;
@@ -53,9 +53,9 @@ public class AnimationHandler {
 
             currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(introModel.getStateTime(), true);
 
-            spriteFlip(currentFrame,  instruct.isFlipped());
+            spriteFlip(currentFrame, instruct.isFlipped());
 
-            batch.draw(currentFrame, (int)(interPolX*scale), (int)(interPolY*scale), (int)(100*scale), (int)(100*scale));
+            batch.draw(currentFrame, (int) (interPolX * scale), (int) (interPolY * scale), (int) (100 * scale), (int) (100 * scale));
 
         }
     }
@@ -65,7 +65,7 @@ public class AnimationHandler {
 
         if (AnimationTools.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
 
-            calculateNewDrawValues( instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
+            calculateNewDrawValues(instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
                     instruct.getInstructData().getWidthChange(), instruct.getInstructData().getHeightChange(), delta);
 
             currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(introModel.getStateTime(), true);
@@ -73,11 +73,11 @@ public class AnimationHandler {
             spriteFlip(currentFrame, instruct.isFlipped());
 
             final int heightIn = height + (int) heightChangeY;
-            final  int widthIn = this.width + (int) this.heightChangeX;
-            final  int xIn =  ORIGIN_X + (int) offsetX;
+            final int widthIn = this.width + (int) this.heightChangeX;
+            final int xIn = ORIGIN_X + (int) offsetX;
             final int yIn = ORIGIN_Y + (int) offsetY;
 
-            batch.draw(currentFrame,(int)(xIn*scale),(int)(yIn*scale), (int)(widthIn*scale),(int)(heightIn*scale) );
+            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
         }
     }
 
@@ -88,16 +88,16 @@ public class AnimationHandler {
         if (AnimationTools.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
 
             calculateNewDrawValues(instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
-                    instruct.getInstructData().getWidthChange(),  instruct.getInstructData().getHeightChange(), delta);
+                    instruct.getInstructData().getWidthChange(), instruct.getInstructData().getHeightChange(), delta);
 
             currentFrame = animations.get(instruct.getAnimationName()).getKeyFrame(specialKeyframe, true);
 
             final int xIn = ORIGIN_X + (int) offsetX;
-            final int yIn =  ORIGIN_Y + (int) offsetY;
+            final int yIn = ORIGIN_Y + (int) offsetY;
             final int widthIn = width + (int) heightChangeX;
             final int heightIn = height + (int) heightChangeY;
 
-            batch.draw(currentFrame,(int)(xIn*scale) ,(int)(yIn*scale),(int)(widthIn*scale) ,(int)(heightIn*scale) );
+            batch.draw(currentFrame, (int) (xIn * scale), (int) (yIn * scale), (int) (widthIn * scale), (int) (heightIn * scale));
         }
     }
 

@@ -13,7 +13,7 @@ import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
 import se.computerscience.kelde.view.entities.IEntityView;
 import se.computerscience.kelde.view.items.ItemEntityView;
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
-import se.computerscience.kelde.view.worldobjects.*;
+import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class LavaWorldView {
     private final List<IWorldObjectView> worldObjectViews = new ArrayList<>();
     private final List<IEntityView> entitieViews = new ArrayList<>();
     private final List<ItemEntityView> itemEntityViews = new ArrayList<>();
+
     public LavaWorldView(LavaWorld lavaWorld) {
         this.lavaWorld = lavaWorld;
         mapRenderer = new OrthogonalTiledMapRenderer(lavaWorld.getMap().getTiledMap());
@@ -48,13 +49,13 @@ public class LavaWorldView {
         // Draw sprites
         batch.begin();
         entityPlayerKeldeView.draw(batch);
-        for (final ItemEntityView itemView : itemEntityViews){
+        for (final ItemEntityView itemView : itemEntityViews) {
             itemView.draw(batch);
         }
-        for (final IWorldObjectView worldObjectView: worldObjectViews){
+        for (final IWorldObjectView worldObjectView : worldObjectViews) {
             worldObjectView.draw(batch);
         }
-        for (final IEntityView entitieView: entitieViews){
+        for (final IEntityView entitieView : entitieViews) {
             entitieView.draw(batch);
         }
         batch.end();
@@ -62,34 +63,44 @@ public class LavaWorldView {
         // Physics debug renderer, comment out to remove debugger lines.
         worldPhysicsView.render(delta);
     }
-    public void addEntityViews(ItemEntity itemEntity){
+
+    public void addEntityViews(ItemEntity itemEntity) {
         itemEntityViews.add(new ItemEntityView(itemEntity));
     }
-    public void removeItemView(ItemEntityView itemEntityView){
+
+    public void removeItemView(ItemEntityView itemEntityView) {
         itemEntityViews.remove(itemEntityView);
     }
+
     public void updateProjectionMatrix() {
         batch.setProjectionMatrix(lavaWorld.getCamera().getOrthographicCamera().combined);
     }
+
     public void dispose() {
         mapRenderer.dispose();
     }
+
     public OrthogonalTiledMapRenderer getMapRenderer() {
         return mapRenderer;
     }
+
     public WorldPhysicsView getWorldPhysicsView() {
         return worldPhysicsView;
     }
+
     public EntityPlayerKeldeView getEntityPlayerKeldeView() {
         return entityPlayerKeldeView;
     }
+
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
-    public void addNPCEntity(IEntityView entitieView){
+
+    public void addNPCEntity(IEntityView entitieView) {
         entitieViews.add(entitieView);
     }
-    public void addWorldObject(IWorldObjectView worldObjectView){
+
+    public void addWorldObject(IWorldObjectView worldObjectView) {
         worldObjectViews.add(worldObjectView);
     }
 }

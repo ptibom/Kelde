@@ -30,6 +30,7 @@ public class HealthPotion extends Item {
     public boolean isConsumable() {
         return CONSUMABLE;
     }
+
     @Override
     public boolean isWeapon() {
         return WEAPON;

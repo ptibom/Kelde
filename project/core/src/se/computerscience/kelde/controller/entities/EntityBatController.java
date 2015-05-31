@@ -1,5 +1,6 @@
 /**
  * Created by
+ *
  * @author: Anders Bolin
  */
 
@@ -25,6 +26,7 @@ public class EntityBatController implements IMonsterController , IModifyNPCEvent
         this.entityBatView = entityBatView;
         ModifyNPCEventBus.INSTANCE.register(this);
     }
+
     @Override
     public void update(float delta, float x , float y) {
         entityBatView.update(delta);

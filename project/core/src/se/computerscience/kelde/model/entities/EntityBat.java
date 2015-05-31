@@ -9,6 +9,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-04-06.
+ *
  * @author: Anders Bolin
  */
 public class EntityBat extends EntityEnemy {
@@ -26,7 +27,8 @@ public class EntityBat extends EntityEnemy {
     private Heading direction;
 
     //Constructor
-    public EntityBat(float x, float y, IB2DWorld ib2DWorld){
+    public EntityBat(float x, float y, IB2DWorld ib2DWorld) {
+        super();
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
     }
@@ -53,7 +55,7 @@ public class EntityBat extends EntityEnemy {
 
     public void setTakenDamage(int takenDamage) {
         health -= takenDamage;
-        if(health <= 0) {
+        if (health <= 0) {
             alive = false;
         }
     }
@@ -103,24 +105,24 @@ public class EntityBat extends EntityEnemy {
     }
 
     public int getPositionX() {
-        return (int) (entityBody.getPositionX()-BODY_HEIGHT*2);
+        return (int) (entityBody.getPositionX() - BODY_HEIGHT * 2);
     }
-    
+
     public int getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH*2);
+        return (int) (entityBody.getPositionY() - BODY_WIDTH * 2);
     }
 
     public Heading getHeading() {
         final float x = entityBody.getVelocityX();
         final float y = entityBody.getVelocityY();
-        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
-        if(degree > 45.0f && degree < 135.0f) {
+        final float degree = (float) Math.toDegrees(Math.atan2(x, y));
+        if (degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
-        } else if(degree <= -135.0f || degree >= 135.0f) {
+        } else if (degree <= -135.0f || degree >= 135.0f) {
             direction = Heading.SOUTH;
-        } else if(degree <= 45.0f && degree >= -45.0f) {
+        } else if (degree <= 45.0f && degree >= -45.0f) {
             direction = Heading.NORTH;
-        } else if(degree < -45.0f && degree > -135.0f) {
+        } else if (degree < -45.0f && degree > -135.0f) {
             direction = Heading.EAST;
         }
         return direction;

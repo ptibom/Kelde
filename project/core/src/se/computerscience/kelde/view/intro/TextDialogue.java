@@ -15,7 +15,7 @@ public class TextDialogue {
     private static final int SCREEN_HEIGHT = 1080;
     private static final int SCREEN_WIDTH = 1920;
     private static final int TEXT_MOVEMENT_SPEED = 384;
-    private  final double timeLengthToShow;
+    private final double timeLengthToShow;
 
     public TextDialogue(Texture dialogueTexture, double timeLengthToShow) {
         this.dialogueTexture = dialogueTexture;
@@ -25,12 +25,12 @@ public class TextDialogue {
     }
 
     public TextureRegion updateTextureRegion() {
-            percentToShow += SCREEN_WIDTH * TEXT_MOVEMENT_SPEED;
+        percentToShow += SCREEN_WIDTH * TEXT_MOVEMENT_SPEED;
 
-        return new TextureRegion(dialogueTexture, (int) ((OFFSET_FROM_SCREEN + percentToShow)*SCALE), (int)(SCREEN_HEIGHT*SCALE));
+        return new TextureRegion(dialogueTexture, (int) ((OFFSET_FROM_SCREEN + percentToShow) * SCALE), (int) (SCREEN_HEIGHT * SCALE));
     }
 
-    public double getTimeToLast(){
+    public double getTimeToLast() {
         return timeLengthToShow;
     }
 }

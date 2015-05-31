@@ -10,7 +10,7 @@ public class IntroInstruction {
     private double startCount;
     private float keyFrame = -1;
     private int dialogNumber = -1;
-    private final double  startTime;
+    private final double startTime;
     private final double endTime;
     private IntroInstructData instructData;
     private String animationName;
@@ -31,7 +31,7 @@ public class IntroInstruction {
     public IntroInstruction(double startTime, double endTime, int widthChange, int heightChange, int xvelocity, int yvelocity, String animationName) {
         this.startTime = startTime;
         this.endTime = endTime;
-        instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
+        instructData = new IntroInstructData(xvelocity, yvelocity, widthChange, heightChange);
         this.animationName = animationName;
     }
 
@@ -39,7 +39,7 @@ public class IntroInstruction {
         this.keyFrame = keyFrame;
         this.startTime = startTime;
         this.endTime = endTime;
-        instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
+        instructData = new IntroInstructData(xvelocity, yvelocity, widthChange, heightChange);
         this.animationName = animationName;
     }
 

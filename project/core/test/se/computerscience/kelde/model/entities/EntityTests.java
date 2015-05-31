@@ -1,5 +1,7 @@
-/** Description: Testing methods in Entities
- *  @author: Philip Tibom
+/**
+ * Description: Testing methods in Entities
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

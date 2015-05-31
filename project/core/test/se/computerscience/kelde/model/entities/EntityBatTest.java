@@ -6,8 +6,6 @@ import org.junit.Test;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Anders on 2015-05-30.
  *
@@ -19,7 +17,7 @@ public class EntityBatTest {
 
     @Before
     public void setUp() throws Exception {
-        entityBat = new EntityBat(100,100, new B2DWorld());
+        entityBat = new EntityBat(100, 100, new B2DWorld());
     }
 
     @Test

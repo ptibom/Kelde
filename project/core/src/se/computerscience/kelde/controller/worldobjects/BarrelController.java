@@ -14,13 +14,14 @@ import se.computerscience.kelde.view.worldobjects.BarrelView;
 public class BarrelController implements IWorldObjectsController, ICollisionEventHandler {
     private final Barrel barrel;
     private final BarrelView barrelView;
-    public BarrelController(Barrel barrel,BarrelView barrelView) {
+
+    public BarrelController(Barrel barrel, BarrelView barrelView) {
         this.barrel = barrel;
         this.barrelView = barrelView;
     }
 
     @Override
-    public void update(float delta){
+    public void update(float delta) {
         barrelView.update(delta);
         // Not used
     }

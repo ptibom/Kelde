@@ -10,5 +10,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public interface IMap {
     TiledMap getTiledMap();
+
     void dispose();
 }

@@ -9,6 +9,7 @@ import se.computerscience.kelde.view.entities.EntityGhostView;
 
 /**
  * Created by Anders on 2015-05-16.
+ *
  * @author Anders Bolin
  */
 public class EntityGhostController implements IMonsterController,IModifyNPCEventHandler {
@@ -22,6 +23,7 @@ public class EntityGhostController implements IMonsterController,IModifyNPCEvent
         this.entityGhostView = entityGhostView;
         ModifyNPCEventBus.INSTANCE.register(this);
     }
+
     @Override
     public void update(float delta, float x, float y) {
         entityGhostView.update(delta);

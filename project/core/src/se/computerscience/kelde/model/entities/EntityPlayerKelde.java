@@ -21,6 +21,7 @@ public class EntityPlayerKelde extends EntityPlayer {
     private final IPhysicalBody entityBody;
     private final KeldeDmgArea keldeDmgArea;
     IB2DWorld ib2DWorld;
+
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
@@ -30,11 +31,10 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     public void takeDamage(int damage) {
         int newHealth;
-        if (getHealth()-damage < 0) {
+        if (getHealth() - damage < 0) {
             newHealth = 0;
-        }
-        else {
-            newHealth = getHealth()-damage;
+        } else {
+            newHealth = getHealth() - damage;
         }
         setHealth(newHealth);
     }
@@ -42,14 +42,11 @@ public class EntityPlayerKelde extends EntityPlayer {
     public void setVelocity(float x, float y) {
         if (x > 0) {
             setDirection(Direction.EAST);
-        }
-        else if (x < 0) {
+        } else if (x < 0) {
             setDirection(Direction.WEST);
-        }
-        else if (y > 0) {
+        } else if (y > 0) {
             setDirection(Direction.NORTH);
-        }
-        else if (y < 0) {
+        } else if (y < 0) {
             setDirection(Direction.SOUTH);
         }
         entityBody.setVelocity(x, y);
@@ -84,8 +81,8 @@ public class EntityPlayerKelde extends EntityPlayer {
         return slashing;
     }
 
-    public void setPosition(float x ,float y){
-            entityBody.setPosition(x,y);
+    public void setPosition(float x, float y) {
+        entityBody.setPosition(x, y);
     }
 
     public KeldeDmgArea getKeldeDmgArea() {

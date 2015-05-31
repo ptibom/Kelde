@@ -6,12 +6,12 @@
 
 package se.computerscience.kelde.controller.physics;
 
-import se.computerscience.kelde.controller.events.*;
-import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.entities.INPCEntity;
 import se.computerscience.kelde.model.entities.IPlayerEntity;
 import se.computerscience.kelde.model.worldobjects.KeldeDmgArea;
@@ -88,8 +88,8 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
         if (objectA instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectB));
             if (objectB instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectB;
                 EntityPlayerKelde player = (EntityPlayerKelde) objectA;
+                final INPCEntity npc = (INPCEntity) objectB;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }
@@ -97,11 +97,10 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
                     ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc ,player.getStrength()));
                 }
             }
-        }
-        else if (objectB instanceof EntityPlayerKelde) {
+        } else if (objectB instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectA));
             if (objectA instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectB;
+                final INPCEntity npc = (INPCEntity) objectB;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }

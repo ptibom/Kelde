@@ -11,6 +11,7 @@ import se.computerscience.kelde.model.entities.EntityBat;
 
 /**
  * Created by Anders on 2015-04-06.
+ *
  * @author Anders Bolin
  */
 public class EntityBatView implements IEntityView {
@@ -23,6 +24,7 @@ public class EntityBatView implements IEntityView {
     private SpriteBatch batch;
     private Animation animation;
     private float elapsedTime, delta;
+
     /**
      * Public constructor
      */
@@ -46,18 +48,18 @@ public class EntityBatView implements IEntityView {
 
     public void draw(Batch batch) {
         final Heading direction = entityBat.getHeading();
-        if(direction == Heading.EAST) {
+        if (direction == Heading.EAST) {
             animation = animationE;
-        } else if(direction == Heading.NORTH) {
+        } else if (direction == Heading.NORTH) {
             animation = animationN;
-        } else if(direction == Heading.WEST) {
+        } else if (direction == Heading.WEST) {
             animation = animationW;
-        } else if(direction == Heading.SOUTH) {
+        } else if (direction == Heading.SOUTH) {
             animation = animationS;
         }
 
         elapsedTime += delta;
-        if(elapsedTime > 100.0f) {
+        if (elapsedTime > 100.0f) {
             elapsedTime = 0f;
         }
         batch.draw(animation.getKeyFrame(elapsedTime, true), entityBat.getPositionX(), entityBat.getPositionY());

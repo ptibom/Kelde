@@ -11,7 +11,7 @@ import se.computerscience.kelde.controller.events.ICollisionEventHandler;
 import se.computerscience.kelde.model.worldobjects.CampFire;
 import se.computerscience.kelde.view.worldobjects.CampFireView;
 
-public class CampFireController implements IWorldObjectsController , ICollisionEventHandler{
+public class CampFireController implements IWorldObjectsController, ICollisionEventHandler {
     private final CampFire campFire;
     private final CampFireView campFireView;
 
@@ -28,7 +28,7 @@ public class CampFireController implements IWorldObjectsController , ICollisionE
 
     @Override
     public void onCollisionEvent(CollisionEvent event) {
-        if (event.getObject() != campFire){
+        if (event.getObject() != campFire) {
             return;
         }
         // make damage

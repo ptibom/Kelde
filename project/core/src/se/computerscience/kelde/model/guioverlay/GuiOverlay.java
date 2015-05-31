@@ -22,40 +22,41 @@ public class GuiOverlay {
     private int currentPlayerMana;
 
 
-    public GuiOverlay(){
+    public GuiOverlay() {
 
-        barTexturePackage = new String[]{MANA_BAR,HEALTH_BAR,BACKGROUND_BAR,MANA_FOREGROUND_BAR,HEALTH_FOREGROUND_BAR};
+        barTexturePackage = new String[]{MANA_BAR, HEALTH_BAR, BACKGROUND_BAR, MANA_FOREGROUND_BAR, HEALTH_FOREGROUND_BAR};
 
     }
 
-    public String[] getBarAssets(){
+    public String[] getBarAssets() {
 
         return Arrays.copyOf(barTexturePackage, barTexturePackage.length);
     }
 
-    public void update(int health, int mana){
+    public void update(int health, int mana) {
 
         this.currentPlayerHealth = health;
         this.currentPlayerMana = mana;
     }
 
 
-    public int getCurrentMana(){
+    public int getCurrentMana() {
         return currentPlayerMana;
     }
-    public int getCurrentHealth(){
+
+    public int getCurrentHealth() {
         return currentPlayerHealth;
     }
 
-    public String getMenuRectangleImagePath(){
+    public String getMenuRectangleImagePath() {
         return MENU_RECTANGLE;
     }
 
-    public String getTextBoxImagePath(){
+    public String getTextBoxImagePath() {
         return TEXT_NAME;
     }
 
-    public String getGuiButtonImagePath(){
+    public String getGuiButtonImagePath() {
         return GUI_BUTTON;
     }
 

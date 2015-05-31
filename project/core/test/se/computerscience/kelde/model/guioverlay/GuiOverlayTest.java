@@ -9,10 +9,10 @@ import org.junit.Before;
 public class GuiOverlayTest extends TestCase {
 
 
-    GuiOverlay guiOverlay= new GuiOverlay();
+    GuiOverlay guiOverlay = new GuiOverlay();
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
     }
 
@@ -24,19 +24,19 @@ public class GuiOverlayTest extends TestCase {
     }
 
     public void testUpdate() throws Exception {
-        guiOverlay.update(100,100);
+        guiOverlay.update(100, 100);
         assertEquals(200, guiOverlay.getCurrentHealth() + guiOverlay.getCurrentMana());
     }
 
     public void testGetCurrentMana() throws Exception {
 
-        guiOverlay.update(100,100);
+        guiOverlay.update(100, 100);
 
-        assertEquals(100,guiOverlay.getCurrentMana());
+        assertEquals(100, guiOverlay.getCurrentMana());
     }
 
     public void testGetCurrentHealth() throws Exception {
-        guiOverlay.update(100,100);
+        guiOverlay.update(100, 100);
         assertEquals(100, guiOverlay.getCurrentHealth());
     }
 

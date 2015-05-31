@@ -11,6 +11,7 @@ import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 public class ItemEntityView implements IWorldObjectView {
     private final ItemEntity itemEntity;
+
     public ItemEntityView(ItemEntity itemEntity) {
         this.itemEntity = itemEntity;
     }

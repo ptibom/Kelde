@@ -29,6 +29,7 @@ public class EntityGhost extends EntityEnemy {
     private Heading direction;
 
     public EntityGhost(float x, float y, IB2DWorld ib2DWorld) {
+        super();
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
     }
@@ -104,6 +105,7 @@ public class EntityGhost extends EntityEnemy {
 
     public float getPositionY() {
         return (int) (entityBody.getPositionY() - BODY_WIDTH);
+
     }
 
     public int getDamage() {

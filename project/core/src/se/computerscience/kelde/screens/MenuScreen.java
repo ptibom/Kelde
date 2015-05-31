@@ -22,8 +22,7 @@ public class MenuScreen implements Screen {
     public void show() {
         try {
             startMenuController = new StartMenuController();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
         }
     }
@@ -34,7 +33,7 @@ public class MenuScreen implements Screen {
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         final SpriteBatch batch = new SpriteBatch();
         batch.begin();
-        startMenuController.render( delta);
+        startMenuController.render(delta);
         batch.end();
     }
 

@@ -1,14 +1,10 @@
 package se.computerscience.kelde.model.entities;
 
-import com.badlogic.gdx.physics.box2d.World;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
-import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Anders on 2015-05-30.
@@ -36,12 +32,12 @@ public class EntityGhostTest {
 
     @Test
     public void testGetPositionX() throws Exception {
-        Assert.assertEquals(84, (int)entityGhost.getPositionX());
+        Assert.assertEquals(84, (int) entityGhost.getPositionX());
     }
 
     @Test
     public void testGetPositionY() throws Exception {
-        Assert.assertEquals(84, (int)entityGhost.getPositionY());
+        Assert.assertEquals(84, (int) entityGhost.getPositionY());
     }
 
     @Test

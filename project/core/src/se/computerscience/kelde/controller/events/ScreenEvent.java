@@ -9,6 +9,7 @@ public class ScreenEvent {
     public enum Tag {
         SET_SCREEN
     }
+
     public enum ScreenTag {
         START_WORLD, LAVA_WORLD, START_MENU, INTRO
     }

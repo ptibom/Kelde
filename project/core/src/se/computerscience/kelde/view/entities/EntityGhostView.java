@@ -10,6 +10,7 @@ import se.computerscience.kelde.model.entities.EntityGhost;
 
 /**
  * Created by Anders on 2015-05-16.
+ *
  * @author Anders Bolin
  */
 public class EntityGhostView implements IEntityView {
@@ -40,17 +41,19 @@ public class EntityGhostView implements IEntityView {
 
     public void draw(Batch batch) {
         final Heading direction = entityGhost.getHeading();
-        if(direction == Heading.EAST) {
+        if (direction == Heading.EAST) {
             animation = animationW;
-        } else if(direction == Heading.NORTH) {
+        } else if (direction == Heading.NORTH) {
             animation = animationN;
-        } else if(direction == Heading.WEST) {
+        } else if (direction == Heading.WEST) {
             animation = animationE;
-        } else if(direction == Heading.SOUTH) {
+        } else if (direction == Heading.SOUTH) {
             animation = animationS;
         }
         elapsedTime += delta;
-        if(elapsedTime > 100.0f) { elapsedTime = 0f; }
+        if (elapsedTime > 100.0f) {
+            elapsedTime = 0f;
+        }
         batch.draw(animation.getKeyFrame(elapsedTime, true), entityGhost.getPositionX(), entityGhost.getPositionY());
     }
 

@@ -30,7 +30,7 @@ public enum CollisionEventBus {
         }
     }
 
-    public void unregisterAll () {
+    public void unregisterAll() {
         handlers.clear();
     }
 }

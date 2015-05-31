@@ -19,7 +19,7 @@ public final class ConstantsPath {
 
     private static final String INTRO_SOUND_PATH = "intro/dfear.mp3";
 
-    private ConstantsPath(){
+    private ConstantsPath() {
 
     }
 
@@ -51,7 +51,7 @@ public final class ConstantsPath {
         return INTRO_WIZARD_ANIMATION_PATH_IMAGE;
     }
 
-    public static String getIntroMusic(){
+    public static String getIntroMusic() {
         return INTRO_SOUND_PATH;
     }
 }

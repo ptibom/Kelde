@@ -20,15 +20,17 @@ public class Bomb implements IWorldObjects {
     public Bomb(IB2DWorld ib2DWorld, float x, float y) {
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         entityBody.setDampening(15f);
-        bombArea = new BombArea(ib2DWorld,entityBody.getPositionX(),entityBody.getPositionY());
+        bombArea = new BombArea(ib2DWorld, entityBody.getPositionX(), entityBody.getPositionY());
     }
+
     @Override
     public float getPositionY() {
-        return entityBody.getPositionY()-BODY_HEIGHT ;
+        return entityBody.getPositionY() - BODY_HEIGHT;
     }
+
     @Override
     public float getPositionX() {
-        return entityBody.getPositionX()-BODY_WIDTH ;
+        return entityBody.getPositionX() - BODY_WIDTH;
     }
 
     public boolean isDetonate() {
@@ -38,7 +40,8 @@ public class Bomb implements IWorldObjects {
     public void setDetonate(boolean detonate) {
         this.detonate = detonate;
     }
-    public void destroy(){
+
+    public void destroy() {
         entityBody.destroy();
     }
 

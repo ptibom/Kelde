@@ -25,7 +25,7 @@ public class DialogueHandler {
     private final List<TextDialogue> introTextTextDialogues;
     private final Texture[] dialogueImages = new Texture[30];
     private final Timer t;
-    private  TextureRegion regionToRender;
+    private TextureRegion regionToRender;
 
     public DialogueHandler(Intro introModel, double introDelay) {
         t = new Timer();
@@ -57,10 +57,10 @@ public class DialogueHandler {
         // Here we send take the dialogue number and render it according to start and end time
         // A text-dialogue is always render as large as the screen is
         if (AnimationTools.timeRange(introModel.getMenuTime(), startTime, endTime)) {
-            regionToRender=getTextureRegion(dialoguenumber, delta);
+            regionToRender = getTextureRegion(dialoguenumber, delta);
             t.updateTimer();
-            if(introTextTextDialogues.get(dialoguenumber).getTimeToLast()+startTime*A_SECOND>t.getMenuTime()) {
-                batch.draw(regionToRender, 0, (int)(ORIGINAL_POSITION*scale), (int) (regionToRender.getRegionWidth() * scale), (int) (regionToRender.getRegionHeight() * scale));
+            if (introTextTextDialogues.get(dialoguenumber).getTimeToLast() + startTime * A_SECOND > t.getMenuTime()) {
+                batch.draw(regionToRender, 0, (int) (ORIGINAL_POSITION * scale), (int) (regionToRender.getRegionWidth() * scale), (int) (regionToRender.getRegionHeight() * scale));
             }
 
         }
@@ -74,15 +74,16 @@ public class DialogueHandler {
         }
     }
 
-    public Texture createNewTexture(String textPath){
+    public Texture createNewTexture(String textPath) {
         return new Texture(textPath);
 
     }
-    public TextDialogue createTextDialogue(String textPath, int i){
+
+    public TextDialogue createTextDialogue(String textPath, int i) {
         return new TextDialogue(createNewTexture(textPath), i);
     }
 
-    public TextureRegion getTextureRegion( int dialogueNumber, float delta){
+    public TextureRegion getTextureRegion(int dialogueNumber, float delta) {
         return introTextTextDialogues.get(dialogueNumber).updateTextureRegion();
     }
 

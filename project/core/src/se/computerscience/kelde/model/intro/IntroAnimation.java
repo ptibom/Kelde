@@ -12,11 +12,11 @@ public class IntroAnimation {
 
     private final List<IntroSpriteFrame> framesOfAnimation;
 
-    public IntroAnimation(List<IntroSpriteFrame> framesOfAnimation){
+    public IntroAnimation(List<IntroSpriteFrame> framesOfAnimation) {
         this.framesOfAnimation = framesOfAnimation;
     }
 
-    public List<IntroSpriteFrame> getIntroSpriteFrames(){
+    public List<IntroSpriteFrame> getIntroSpriteFrames() {
         return framesOfAnimation;
     }
 }

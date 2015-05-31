@@ -15,9 +15,9 @@ public class InventoryTest extends TestCase {
     Inventory inventory;
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
-        testItem = new TestItem ();
+        testItem = new TestItem();
         inventory = new Inventory();
 
     }
@@ -27,13 +27,13 @@ public class InventoryTest extends TestCase {
 
         inventory.update(testItem);
 
-        assertEquals(1,inventory.getInventoryItems().size());
+        assertEquals(1, inventory.getInventoryItems().size());
 
     }
 
     public void testGetInventoryItems() throws Exception {
 
-        assertEquals(0,inventory.getInventoryItems().size());
+        assertEquals(0, inventory.getInventoryItems().size());
 
     }
 
@@ -45,7 +45,7 @@ public class InventoryTest extends TestCase {
     public void testGetItemPositions() throws Exception {
         inventory.update(testItem);
         int[] testValue = inventory.getItemPositions().get(0);
-        assertEquals(testValue[0]+testValue[1], 1070);
+        assertEquals(testValue[0] + testValue[1], 1070);
 
     }
 
@@ -60,7 +60,7 @@ public class InventoryTest extends TestCase {
         assertEquals(inventory.getInventoryPositionY(), 170);
     }
 
-    class TestItem implements IItem{
+    class TestItem implements IItem {
 
 
         @Override

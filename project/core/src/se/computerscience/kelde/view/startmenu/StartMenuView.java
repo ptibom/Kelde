@@ -44,9 +44,9 @@ public class StartMenuView {
         middleGroundTexture = new Texture(startMenuModel.getMidGround());
 
         // Creating the menu buttons
-        loadGameButton = new MenuButton("", MenuButton.createSkin("menu/loadbutton.png"));
-        newGameButton = new MenuButton("", MenuButton.createSkin("menu/startbutton.png"));
-        exitbutton = new MenuButton("", MenuButton.createSkin("menu/exitbutton.png"));
+        loadGameButton = new MenuButton(MenuButton.createSkin("menu/loadbutton.png"));
+        newGameButton = new MenuButton(MenuButton.createSkin("menu/startbutton.png"));
+        exitbutton = new MenuButton(MenuButton.createSkin("menu/exitbutton.png"));
 
         //Creating an inner table, to get the right spacing for load and new game button
         innerTable.add(newGameButton);
@@ -58,8 +58,6 @@ public class StartMenuView {
         table.setPosition(TABLE_ORIGIN_X, TABLE_ORIGIN_Y);
         table.getPadBottom();
         menuStage.addActor(table);
-
-
         menuStage.setViewport(viewport);
 
         // Loads other assets as textures and music
@@ -121,7 +119,7 @@ public class StartMenuView {
         backgroundMusic.stop();
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
     }
 

@@ -13,15 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
  */
 public class MenuButton extends TextButton {
 
-    private MenuButton(){
+    private MenuButton() {
         super("not used", createSkin(""));
     }
 
-    public MenuButton(String label, Skin skin){
-        super(label, skin);
+    public MenuButton(Skin skin) {
+        super("", skin);
     }
 
-    public static Skin createSkin(String imageFilePath){
+    public static Skin createSkin(String imageFilePath) {
         final Skin skin = new Skin();
         final BitmapFont font = new BitmapFont();
         final String bak = "background";

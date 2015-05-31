@@ -9,6 +9,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-04-08.
+ *
  * @author Anders
  */
 public class EntityEye extends EntityEnemy {
@@ -29,6 +30,7 @@ public class EntityEye extends EntityEnemy {
      * Public constructor
      */
     public EntityEye(float x, float y, IB2DWorld ib2DWorld) {
+        super();
         entityBody = new PhysicalBody(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         random = new Random();
 
@@ -44,6 +46,7 @@ public class EntityEye extends EntityEnemy {
 
     /**
      * A getter for the health value
+     *
      * @return the HEALTH
      */
     public int getHEALTH() {
@@ -52,6 +55,7 @@ public class EntityEye extends EntityEnemy {
 
     /**
      * A getter for the distance the attacks
+     *
      * @return the ATTACK_DISTANCE
      */
     public int getAttackDistance() {
@@ -60,6 +64,7 @@ public class EntityEye extends EntityEnemy {
 
     /**
      * A getter for the Loot value
+     *
      * @return the loot value
      */
     public int getLoot() {
@@ -68,11 +73,12 @@ public class EntityEye extends EntityEnemy {
 
     /**
      * Sets the damage taken to the health value.
+     *
      * @param takenDamage is the damage value taken
      */
     public void setTakenDamage(int takenDamage) {
         health -= takenDamage;
-        if(health <= 0) {
+        if (health <= 0) {
             alive = false;
         }
     }
@@ -124,24 +130,24 @@ public class EntityEye extends EntityEnemy {
     public Heading getHeading() {
         final float x = entityBody.getVelocityX();
         final float y = entityBody.getVelocityY();
-        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
-        if(degree > 45.0f && degree < 135.0f) {
+        final float degree = (float) Math.toDegrees(Math.atan2(x, y));
+        if (degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
-        } else if(degree <= -135.0f || degree >= 135.0f) {
+        } else if (degree <= -135.0f || degree >= 135.0f) {
             direction = Heading.SOUTH;
-        } else if(degree <= 45.0f && degree >= -45.0f) {
+        } else if (degree <= 45.0f && degree >= -45.0f) {
             direction = Heading.NORTH;
-        } else if(degree < -45.0f && degree > -135.0f) {
+        } else if (degree < -45.0f && degree > -135.0f) {
             direction = Heading.EAST;
         }
         return direction;
     }
 
     public float getPositionX() {
-        return (int) (entityBody.getPositionX()-BODY_HEIGHT);
+        return (int) (entityBody.getPositionX() - BODY_HEIGHT);
     }
 
     public float getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH-6);
+        return (int) (entityBody.getPositionY() - BODY_WIDTH - 6);
     }
 }

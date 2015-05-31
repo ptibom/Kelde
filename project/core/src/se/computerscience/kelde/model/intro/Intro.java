@@ -13,22 +13,22 @@ import java.util.List;
 public class Intro {
 
     // Coordinates on sprite sheet used to read them in and create TextureRegion
-    final private  int[] INTRO_WIZARD_SPRITE_COORDINATES;
-    final private  int[] INTRO_DEMON_SPRITE_COORDINATES;
-    final private  int[] INTRO_SPELL_SPRITE_COORDINATES;
+    final private int[] INTRO_WIZARD_SPRITE_COORDINATES;
+    final private int[] INTRO_DEMON_SPRITE_COORDINATES;
+    final private int[] INTRO_SPELL_SPRITE_COORDINATES;
 
     // Dialogue and Text images
-    private  final String[] INFO_TEXT_PATH_IMAGES = new String[8];
-    private  final String[] INTRO_DIALOGUE_IMAGES = new String[30];
+    private final String[] INFO_TEXT_PATH_IMAGES = new String[8];
+    private final String[] INTRO_DIALOGUE_IMAGES = new String[30];
 
-    private  final static float ANIMATION_SPEED = 0.27f;
+    private final static float ANIMATION_SPEED = 0.27f;
     private final List<List<IntroInstruction>> allInstructions = new ArrayList<List<IntroInstruction>>();
     private final Timer introTimer;
 
     public Intro(List<List<String>> inputData) throws IOException {
 
         // Read from file .txt
-        final  List<String> introDemonData = inputData.get(0);
+        final List<String> introDemonData = inputData.get(0);
         final List<String> introWizardData = inputData.get(1);
         final List<String> introSpellData = inputData.get(2);
 
@@ -54,12 +54,12 @@ public class Intro {
         INTRO_SPELL_SPRITE_COORDINATES = AnimationTools.loadTextureRegionData(INTRO_SPELL_SPRITE_SIZE, introSpellData);
 
         //Read from file .intro
-        final  List<String> introDemonInstructions = inputData.get(3);
+        final List<String> introDemonInstructions = inputData.get(3);
         final List<String> introWizard1Instructions = inputData.get(4);
         final List<String> introWizard2Instructions = inputData.get(5);
         final List<String> introWizardDialogueInstructions = inputData.get(6);
-        final  List<String> introDemonDialogueInstructions = inputData.get(7);
-        final  List<String> introSpellInstructions = inputData.get(8);
+        final List<String> introDemonDialogueInstructions = inputData.get(7);
+        final List<String> introSpellInstructions = inputData.get(8);
 
         // Loading data for the demon's dialoges.
         allInstructions.add(InstructionTools.loadAndGatherInstructions(introDemonInstructions));
@@ -78,15 +78,15 @@ public class Intro {
     }
 
     public int[] getWizardTalkCoordinates() {
-        return Arrays.copyOf(INTRO_WIZARD_SPRITE_COORDINATES,INTRO_WIZARD_SPRITE_COORDINATES.length);
+        return Arrays.copyOf(INTRO_WIZARD_SPRITE_COORDINATES, INTRO_WIZARD_SPRITE_COORDINATES.length);
     }
 
     public int[] getSpellIntroCoordinaters() {
-        return Arrays.copyOf(INTRO_SPELL_SPRITE_COORDINATES,INTRO_SPELL_SPRITE_COORDINATES.length);
+        return Arrays.copyOf(INTRO_SPELL_SPRITE_COORDINATES, INTRO_SPELL_SPRITE_COORDINATES.length);
     }
 
     public String[] getDialogues() {
-        return Arrays.copyOf(INTRO_DIALOGUE_IMAGES,INTRO_DIALOGUE_IMAGES.length);
+        return Arrays.copyOf(INTRO_DIALOGUE_IMAGES, INTRO_DIALOGUE_IMAGES.length);
     }
 
     public String[] getIntroTextImages() {
@@ -94,7 +94,7 @@ public class Intro {
     }
 
     public int[] getIntroDemonCoordinates() {
-        return Arrays.copyOf(INTRO_DEMON_SPRITE_COORDINATES,INTRO_DEMON_SPRITE_COORDINATES.length);
+        return Arrays.copyOf(INTRO_DEMON_SPRITE_COORDINATES, INTRO_DEMON_SPRITE_COORDINATES.length);
 
     }
 
@@ -122,15 +122,15 @@ public class Intro {
         return ANIMATION_SPEED;
     }
 
-    public int getTextSpeed(){
+    public int getTextSpeed() {
         return ConstantsAnimation.getTextMovementSpeed();
     }
 
-    public int getOriginOfText(){
+    public int getOriginOfText() {
         return ConstantsAnimation.getOriginText();
     }
 
-    public int getTextLengthOfStaying(){
+    public int getTextLengthOfStaying() {
         return ConstantsAnimation.getLengthOfTextStaying();
     }
 
