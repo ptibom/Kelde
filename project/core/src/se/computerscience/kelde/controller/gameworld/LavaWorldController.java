@@ -159,6 +159,11 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
     }
 
     @Override
+    public void setMouseDown(int x, int y) {
+
+    }
+
+    @Override
     public void onItemEvent(ItemEvent event) {
         if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntityController)){
             return;

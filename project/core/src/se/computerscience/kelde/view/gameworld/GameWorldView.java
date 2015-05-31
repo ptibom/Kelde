@@ -68,12 +68,10 @@ public class GameWorldView{
         // Draw sprites
         batch.begin();
         entityPlayerKeldeView.draw(batch);
-        guiOverlayView.draw(batch);
-        inventoryView.draw(batch);
+
         for (final ItemEntityView itemView : itemEntityViews){
             itemView.draw(batch);
         }
-
         for (final IWorldObjectView worldObjectView: worldObjectViews){
             worldObjectView.draw(batch);
         }
@@ -81,6 +79,8 @@ public class GameWorldView{
             entitieView.draw(batch);
         }
 
+        guiOverlayView.draw(batch);
+        inventoryView.draw(batch);
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.

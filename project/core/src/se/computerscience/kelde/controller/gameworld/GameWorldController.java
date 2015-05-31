@@ -1,5 +1,7 @@
-/** Description: Controls the Game World.
- *  @author: Philip Tibom
+/**
+ * Description: Controls the Game World.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.controller.gameworld;
@@ -36,7 +38,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GameWorldController implements IGameWorldController,IItemEventHandler {
+public class GameWorldController implements IGameWorldController, IItemEventHandler {
     private final GameWorld gameWorld;
     private final GameWorldView gameWorldView;
     private final WorldPhysicsController worldPhysicsController;
@@ -45,10 +47,8 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
     private final List<IMonsterController> npcControllers = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
 
-
     private final GuiOverlayController guiOverlayController;
     private final InventoryController inventoryController;
-
 
     private Logger logger;
 
@@ -68,18 +68,20 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
 
         ItemEventBus.INSTANCE.register(this);
     }
-    public void updateItemControllers(){
-        if (itemEntityControllers.size() == gameWorld.getItemEntities().size()){
+
+    public void updateItemControllers() {
+        if (itemEntityControllers.size() == gameWorld.getItemEntities().size()) {
             return;
         }
-        for (int i = itemEntityControllers.size(); i < gameWorld.getItemEntities().size() ;i++) {
+        for (int i = itemEntityControllers.size(); i < gameWorld.getItemEntities().size(); i++) {
             itemEntityControllers.add(itemEntityController(i));
         }
     }
 
-    public ItemEntityController itemEntityController(int i){
-        return new ItemEntityController(gameWorld.getItemEntities().get(i) , gameWorldView.getItemEntityViews().get(i));
+    public ItemEntityController itemEntityController(int i) {
+        return new ItemEntityController(gameWorld.getItemEntities().get(i), gameWorldView.getItemEntityViews().get(i));
     }
+
     private void createWorldObjects() {
         final IMap map = gameWorld.getMap();
         final MapLayer layer = map.getTiledMap().getLayers().get("GameWorld");
@@ -90,24 +92,25 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             final String prop = (String) mapObject.getProperties().get("Extra");
             try {
                 final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
-                final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
-                final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects." + mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects." + mapObject.getName() + "View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
-                if (prop == null){
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class).newInstance(b2DWorld, x, y);
-                }else {
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
+                if (prop == null) {
+                    modelObject = (IWorldObjects) modelCls.getConstructor(IB2DWorld.class, float.class, float.class).newInstance(b2DWorld, x, y);
+                } else {
+                    modelObject = (IWorldObjects) modelCls.getConstructor(IB2DWorld.class, float.class, float.class, String.class).newInstance(b2DWorld, x, y, prop);
                 }
-                final IWorldObjectView viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final IWorldObjectView viewObject = (IWorldObjectView) viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
             } catch (Exception e) {
-                logger.log(Level.WARNING,e.toString());
+                logger.log(Level.WARNING, e.toString());
             }
         }
 
     }
+
     private void createNPCEntities() {
         final IMap map = gameWorld.getMap();
         final MapLayer layer = map.getTiledMap().getLayers().get("Npc");
@@ -116,12 +119,12 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
             final float y = (float) mapObject.getProperties().get("y");
             try {
                 final IB2DWorld b2DWorld = gameWorld.getWorldPhysics().getIb2DWorld();
-                final Class modelCls = Class.forName("se.computerscience.kelde.model.entities."+mapObject.getName());
-                final Class viewCls = Class.forName("se.computerscience.kelde.view.entities."+mapObject.getName()+"View");
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.entities." + mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.entities." + mapObject.getName() + "View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.entities." + mapObject.getName() + "Controller");
-                final INPCEntity modelObject = (INPCEntity)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
-                final IEntityView viewObject = (IEntityView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final INPCEntity modelObject = (INPCEntity) modelCls.getConstructor(float.class, float.class, IB2DWorld.class).newInstance(x, y, b2DWorld);
+                final IEntityView viewObject = (IEntityView) viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 gameWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {
@@ -138,17 +141,17 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
-        for (final ItemEntityController entityControllerlist : itemEntityControllers ){
+        for (final ItemEntityController entityControllerlist : itemEntityControllers) {
             entityControllerlist.update(delta);
         }
 
-        for (final IMonsterController monster: npcControllers){
+        for (final IMonsterController monster : npcControllers) {
             monster.update(delta);
         }
 
 
         worldPhysicsController.update(delta);
-        guiOverlayController.update( entityPlayerKeldeController.getHealth(), 0); // 0 mana
+        guiOverlayController.update(delta, entityPlayerKeldeController.getHealth(), 0); // 0 mana
         gameWorldView.render(delta);
 
 
@@ -175,27 +178,31 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         entityPlayerKeldeController.setKeyDown(keycode);
     }
 
-    public void setKeyUp(int keycode) { entityPlayerKeldeController.setKeyUp(keycode);
+    public void setKeyUp(int keycode) {
+        entityPlayerKeldeController.setKeyUp(keycode);
+    }
+
+    @Override
+    public void setMouseDown(int x, int y) {
+        guiOverlayController.setMouseDown(x, y);
     }
 
     @Override
     public void onItemEvent(ItemEvent event) {
-        if (!(event.getObject() instanceof IItem|| event.getObject() instanceof ItemEntityController)){
+        if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntityController)) {
             return;
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             gameWorld.addItems((IItem) event.getObject());
-            gameWorldView.addEntityViews(gameWorld.getItemEntities().get(gameWorld.getItemEntities().size()-1));
+            gameWorldView.addEntityViews(gameWorld.getItemEntities().get(gameWorld.getItemEntities().size() - 1));
         }
-        if (event.getTag() == ItemEvent.Tag.DEL_ITEM){
+        if (event.getTag() == ItemEvent.Tag.DEL_ITEM) {
             gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
             gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
            final IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
             inventoryController.update(item);
         }
-
-
 
 
     }

@@ -1,11 +1,12 @@
 /**
- * Description:
+ * Description: Handles input from keyboard and mouse
  *
  * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import se.computerscience.kelde.controller.gameworld.IGameWorldController;
 
@@ -35,6 +36,7 @@ public class InputController implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        gameWorldController.setMouseDown(screenX, Gdx.graphics.getHeight()-screenY);
         return false;
     }
 
