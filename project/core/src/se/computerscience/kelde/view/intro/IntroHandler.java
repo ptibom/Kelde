@@ -27,7 +27,7 @@ public class IntroHandler {
     private final static int MAX_WIDTH = 1920;
     private final static int MAX_HEIGHT = 1080;
     private static final int FIRST_INTRO_LENGTH = 47000;
-    private static final int FIRST_INTRO_TEXT_LENGTH = 45000;
+
 
     private final SpriteBatch batch;
     private final Music introMusic;
@@ -123,7 +123,7 @@ public class IntroHandler {
             batch.draw(introBackgroundTexture2, 0, 0, (int) (MAX_WIDTH * scaleX), (int) (MAX_HEIGHT * scaleY));
         }
 
-        if (introModel.getMenuTime() < FIRST_INTRO_TEXT_LENGTH) {
+        if (introModel.getMenuTime() < FIRST_INTRO_LENGTH-2000) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
                 dialogueHandler.drawTextDialogue(i, batch, introModel.getOriginOfText() +
