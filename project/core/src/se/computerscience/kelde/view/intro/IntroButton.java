@@ -36,10 +36,10 @@ public class IntroButton extends TextButton {
         skin.add("background", new Texture(pixmap));
 
         final TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable(bak, Color.RED);
-        textButtonStyle.down = skin.newDrawable(bak, Color.GREEN);
-        textButtonStyle.checked = skin.newDrawable(bak, Color.DARK_GRAY);
-        textButtonStyle.over = skin.newDrawable(bak, Color.BLUE);
+        textButtonStyle.up = skin.newDrawable(bak, Color.BLACK);
+        textButtonStyle.down = skin.newDrawable(bak, Color.BLACK);
+        textButtonStyle.checked = skin.newDrawable(bak, Color.BLACK);
+        textButtonStyle.over = skin.newDrawable(bak, Color.BLACK);
         textButtonStyle.font = skin.getFont(def);
         skin.add(def, textButtonStyle);
         return skin;
