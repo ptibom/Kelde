@@ -3,7 +3,7 @@ package se.computerscience.kelde.view.intro;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import se.computerscience.kelde.model.intro.AnimationToolsUtilites;
+import se.computerscience.kelde.model.intro.AnimationTools;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.intro.Timer;
 
@@ -38,7 +38,6 @@ public class DialogueHandler {
         final String[] dialogues = introModel.getDialogues();
         final String[] introTexts = introModel.getIntroTextImages();
 
-
         // This is the delay for the intro, part2 starts later and everything is
         // then counted from 0.
         this.introDelay = introDelay;
@@ -57,10 +56,7 @@ public class DialogueHandler {
 
         // Here we send take the dialogue number and render it according to start and end time
         // A text-dialogue is always render as large as the screen is
-
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime, endTime)) {
-
-
+        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime, endTime)) {
             regionToRender=getTextureRegion(dialoguenumber, delta);
             t.updateTimer();
             if(introTextTextDialogues.get(dialoguenumber).getTimeToLast()+startTime*A_SECOND>t.getMenuTime()) {
@@ -70,24 +66,19 @@ public class DialogueHandler {
         }
     }
 
-
     public void drawChatDialogue(SpriteBatch batch, int dialogueNumber, double startTime, double endTime, double scale) {
 
-
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
+        if (AnimationTools.timeRange(introModel.getMenuTime(), startTime + introDelay, endTime + introDelay)) {
             batch.draw(dialogueImages[dialogueNumber], 0, 0, (int) (dialogueImages[dialogueNumber].getWidth() * scale),
                     (int) (dialogueImages[dialogueNumber].getHeight() * scale));
         }
     }
 
-
     public Texture createNewTexture(String textPath){
         return new Texture(textPath);
 
     }
-
     public TextDialogue createTextDialogue(String textPath, int i){
-
         return new TextDialogue(createNewTexture(textPath), i);
     }
 

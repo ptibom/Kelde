@@ -10,11 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 
-;
-
-
 public class IntroView {
-
 
     // Intro model that returns the data, and introhandler that handles animations
     private final Intro introModel;
@@ -34,14 +30,10 @@ public class IntroView {
     }
     // Need to resize, incase user resizes screen
     public void resize(int width, int height) {
-
         introHandler.setScale(width);
-
     }
 
     public void render(float delta) {
-
-
         stage.draw();
         stage.act();
         final SpriteBatch batch = new SpriteBatch();
@@ -57,13 +49,7 @@ public class IntroView {
         introHandler.drawIntro(batch, delta);
 
         //Check for touch, if so we change screen
-
-
-
     }
-
-
-
 
     public TextButton getButton(){
         return test;
@@ -72,9 +58,4 @@ public class IntroView {
     public IntroHandler getHandler(){
         return introHandler;
     }
-
-
-
-
-
 }

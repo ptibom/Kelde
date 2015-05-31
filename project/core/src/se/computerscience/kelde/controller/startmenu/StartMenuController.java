@@ -34,9 +34,7 @@ public class StartMenuController {
 
             }
         });
-
     }
-
 
     public void render(float delta) {
 

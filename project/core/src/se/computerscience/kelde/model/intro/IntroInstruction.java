@@ -16,15 +16,12 @@ public class IntroInstruction {
     private String animationName;
 
     public IntroInstruction(int dialogNumber, double startTime, double endTime) {
-
         this.dialogNumber = dialogNumber;
         this.startTime = startTime;
         this.endTime = endTime;
-
     }
 
     public IntroInstruction(double startCount, double startTime, double endTime, String animationName) {
-
         this.startCount = startCount;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -32,12 +29,10 @@ public class IntroInstruction {
     }
 
     public IntroInstruction(double startTime, double endTime, int widthChange, int heightChange, int xvelocity, int yvelocity, String animationName) {
-
         this.startTime = startTime;
         this.endTime = endTime;
         instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
         this.animationName = animationName;
-
     }
 
     public IntroInstruction(double startTime, double endTime, float keyFrame, int widthChange, int heightChange, int xvelocity, int yvelocity, String animationName) {
@@ -46,30 +41,23 @@ public class IntroInstruction {
         this.endTime = endTime;
         instructData = new IntroInstructData(xvelocity,yvelocity,widthChange,heightChange);
         this.animationName = animationName;
-
     }
 
     public float getKeyFrame() {
         return keyFrame;
-
     }
 
     public double getStartTime() {
         return startTime;
-
     }
 
     public double getEndTime() {
-
         return endTime;
     }
 
     public IntroInstructData getInstructData() {
         return instructData;
-
     }
-
-
 
     public boolean isFlipped() {
         return flipped;

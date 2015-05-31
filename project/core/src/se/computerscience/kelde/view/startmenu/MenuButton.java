@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 /**
- * Created by MonoMan on 5/31/2015.
+ * @author: Daniel Olsson
  */
 public class MenuButton extends TextButton {
 

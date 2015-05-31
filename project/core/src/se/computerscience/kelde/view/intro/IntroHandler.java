@@ -20,14 +20,11 @@ import java.util.Map;
 public class IntroHandler {
 
     private double scale = 0.5;
-
     private final static int MAX_WIDTH = 1920;
     private final static int MAX_HEIGHT = 1080;
     private static final int FIRST_INTRO_LENGTH = 47000;
     private static final int FIRST_INTRO_TEXT_LENGTH = 45000;
-    private static final int LENGTH_OF_TEXT_STAYING = 47;
-    private static final int ORIGIN_OF_TEXT = 8;
-    private static final int TEXT_MOVEMENT_SPEED = 4;
+
 
     private final Music introMusic;
     private final List<List<IntroInstruction>> allInstructions;
@@ -42,7 +39,7 @@ public class IntroHandler {
     final private Texture introForegroundTexture, introBorderTexture;
 
     //The animation loader loads the actual animations from the sprite sheet
-   final  private AnimationService animationService;
+    final  private AnimationService animationService;
 
     //Intro model is needed to keep time, and dialoguehandler to draw the dialogue/texts
     private final Intro introModel;
@@ -66,20 +63,38 @@ public class IntroHandler {
 
         //Converting animations
         final  Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
-                this.introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroWizardAnimationPathImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroWizardAnimationPathImage()));
         final Map<String, Animation> demonAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getDemonAnimations(),
-                this.introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
         final Map<String, Animation> wizard2 = AnimationConverter.convertToLibgdxAnimation(animationService.getWizard2Animations(),
-                this.introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
         final Map<String, Animation> spellAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getSpellAnimations(),
-                this.introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroSpellPathImage()));
+                introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroSpellPathImage()));
 
-        this.animationHandlerWizard1 = new AnimationHandler(this.introModel,wizardAnimations, 1350, 200, this.introModel
-                .getWizardTalkCoordinates()[0], this.introModel.getWizardTalkCoordinates()[1], 0);
+        final int introLength = 47;
+        final int wizardOriginX = 1350;
+        final int wizardOriginY = 200;
+        final int demonOriginX = 1285;
+        final int demonOriginY = 580;
+        final int demonSpriteSize = 128;
+        final int wizard2OriginX = -200;
+        final int wizard2OriginY = 90;
+        final int wizard2SpriteSize = 420;
+        final int spellOriginX = 740;
+        final int spellOriginY = 400;
+        final int spellSpriteSize = 128;
 
-        this.animationHandlerDemon = new AnimationHandler(this.introModel, demonAnimations, 1285, 580, 128, 128, 47);
-        this.animationHandlerWizard2 = new AnimationHandler(this.introModel, wizard2, -200, 90, 420, 420, 47);
-        this.animationHandlerSpell = new AnimationHandler(this.introModel, spellAnimations, 740, 400, 128, 128, 47);
+         animationHandlerWizard1 = new AnimationHandler(introModel,wizardAnimations, wizardOriginX, wizardOriginY,
+                introModel.getWizardTalkCoordinates()[0], introModel.getWizardTalkCoordinates()[1], 0);
+
+        animationHandlerDemon = new AnimationHandler(introModel, demonAnimations, demonOriginX, demonOriginY,
+                demonSpriteSize, demonSpriteSize, introLength);
+
+        animationHandlerWizard2 = new AnimationHandler(introModel, wizard2, wizard2OriginX, wizard2OriginY,
+                wizard2SpriteSize, wizard2SpriteSize, introLength);
+
+        animationHandlerSpell = new AnimationHandler(introModel, spellAnimations, spellOriginX, spellOriginY,
+                spellSpriteSize, spellSpriteSize, introLength);
 
         //Retrieving the instructions.
         allInstructions = this.introModel.getInstructions();
@@ -99,8 +114,6 @@ public class IntroHandler {
         this.delta = delta;
         batch.begin();
 
-
-
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
             batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
@@ -110,10 +123,10 @@ public class IntroHandler {
         if(introModel.getMenuTime()<FIRST_INTRO_TEXT_LENGTH) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
-                dialogueHandler.drawTextDialogue(i, batch, ORIGIN_OF_TEXT + i * TEXT_MOVEMENT_SPEED, LENGTH_OF_TEXT_STAYING, delta, scale);
+                dialogueHandler.drawTextDialogue(i, batch, introModel.getOriginOfText() +
+                        i * introModel.getTextSpeed(), introModel.getTextLengthOfStaying(), delta, scale);
             }
         }
-
 
         drawAnimations(batch);
 
@@ -127,24 +140,19 @@ public class IntroHandler {
         batch.end();
     }
 
-
     // We need to choose which function in the animationhandler to activate, we check for keyframe
     public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
-
 
         // Checking if it's an still image or not to render
         final boolean renderStillImage = instruct.getKeyFrame() != -1;
 
         if (renderStillImage) {
             animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,scale);
-
         }
-
         else {
             animationHandler.drawAnimation(batch, instruct,delta,scale);
         }
     }
-
 
     private void drawAnimations(SpriteBatch batch){
         //Drawing the demon in intro
@@ -190,7 +198,6 @@ public class IntroHandler {
 
     public void setScale(double height){
         scale = height / MAX_WIDTH;
-
     }
 
 }

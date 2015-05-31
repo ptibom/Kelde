@@ -6,8 +6,6 @@ package se.computerscience.kelde.model.intro;
 
 public final class ConstantsPath {
 
-
-
     //Background and foreground images used in the intro
     public static final String INTRO_BORDER_PATH_IMAGE = "intro/borderintro.png";
     public static final String INTRO_BACKGROUND_PATH_IMAGE = "intro/backgroundintro.png";

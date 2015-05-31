@@ -8,12 +8,12 @@ import java.util.List;
  */
 
 // Usueful tool to time the animations
-public final class AnimationToolsUtilites {
+public final class AnimationTools {
 
 
     private static  int[] textureRegionCoordinates;
     private static int dataIndex;
-    private AnimationToolsUtilites(){
+    private AnimationTools(){
 
     }
 

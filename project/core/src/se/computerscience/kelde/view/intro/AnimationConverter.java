@@ -12,55 +12,48 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public final class AnimationConverter
+public final class AnimationConverter {
 
-{ private AnimationConverter(){
+    private AnimationConverter() {
+    }
 
-}
     // Converts an set of in house introAnimations  to a set of  Libgdx animations.
-    public static Map<String,Animation> convertToLibgdxAnimation( Map<String, IntroAnimation> animationToConvert , float animationLength,
-                                                                  Texture spriteTexture){
+    public static Map<String, Animation> convertToLibgdxAnimation(Map<String, IntroAnimation> animationToConvert, float animationLength,
+                                                                  Texture spriteTexture) {
 
-
-
-        final Map<String,Animation> convertedAnimation = new HashMap<>();
+        final Map<String, Animation> convertedAnimation = new HashMap<>();
         final Iterator introAnimations = animationToConvert.entrySet().iterator();
 
-        while(introAnimations.hasNext()){
+        while (introAnimations.hasNext()) {
 
             final Map.Entry anEntry = (Map.Entry) introAnimations.next();
-            final  String key = (String) anEntry.getKey();
+            final String key = (String) anEntry.getKey();
             final IntroAnimation introAnimation = (IntroAnimation) anEntry.getValue();
+            final Array<TextureRegion> loadingTextureRegion = getArray();
 
-
-            final  Array<TextureRegion> loadingTextureRegion = getArray();
-            for(final IntroSpriteFrame aSprite : introAnimation.getIntroSpriteFrames()){
-
-                loadingTextureRegion.add(getTextureRegion(aSprite,spriteTexture));
+            for (final IntroSpriteFrame aSprite : introAnimation.getIntroSpriteFrames()) {
+                loadingTextureRegion.add(getTextureRegion(aSprite, spriteTexture));
             }
 
-            convertedAnimation.put(key,getAnimation(animationLength,loadingTextureRegion ));
+            convertedAnimation.put(key, getAnimation(animationLength, loadingTextureRegion));
 
         }
-
 
         return convertedAnimation;
     }
 
-
-    public static Animation getAnimation(float animationLength, Array<TextureRegion> loadingTextureRegion){
-        return  new Animation(animationLength, loadingTextureRegion);
+    public static Animation getAnimation(float animationLength, Array<TextureRegion> loadingTextureRegion) {
+        return new Animation(animationLength, loadingTextureRegion);
     }
 
-    public static TextureRegion getTextureRegion(IntroSpriteFrame aSprite, Texture spriteTexture){
+    public static TextureRegion getTextureRegion(IntroSpriteFrame aSprite, Texture spriteTexture) {
         return new TextureRegion(spriteTexture, aSprite.getSpriteStartXPosition(),
                 aSprite.getSpriteStartYPosition(), aSprite.getSpriteWidth(), aSprite.getSpriteWidth());
     }
 
-    public static  Array<TextureRegion> getArray(){
+    public static Array<TextureRegion> getArray() {
         return new Array<>();
     }
-
 
 
 }

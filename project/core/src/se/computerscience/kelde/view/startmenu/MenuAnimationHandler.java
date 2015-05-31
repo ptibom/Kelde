@@ -18,29 +18,21 @@ public class MenuAnimationHandler {
     private final StartMenu startMenuModel;
     private final List<Animation> allWalkingAnimations;
 
-
-
     public MenuAnimationHandler(StartMenu startMenuModel) {
 
         this.startMenuModel = startMenuModel;
 
         allWalkingAnimations = MenuAnimationConverter.menuAnimToLibAnim(AnimationLoader.loadWalkingCharacters(),
                 new Texture(startMenuModel.getWalkingCharacterPathPicture()));
-
     }
-
 
     // Draws out all the characters walking in the intro scene
     public void drawMenuAnimations(SpriteBatch batch) {
-
 
         for (int i = 0; i < allWalkingAnimations.size(); i++) {
 
             batch.draw(allWalkingAnimations.get(i).getKeyFrame(startMenuModel.getStateTime(), true),
                     ORIGIN_X + CHARACTER_OFFSET * i + (startMenuModel.getStateTime()) * MOVEMENT_SPEED, ORIGIN_Y, 64,64);
         }
-
     }
-
-
 }

@@ -20,23 +20,15 @@ public class Timer {
     }
 
     public float getStateTime() {
-
         return stateTime;
     }
 
-
     public double getMenuTime() {
-
         return menuTime;
     }
 
     public void resetTimer() {
-
         startTime = System.currentTimeMillis();
 
     }
-
-
-
-
 }
