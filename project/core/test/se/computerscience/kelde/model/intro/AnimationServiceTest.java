@@ -28,6 +28,7 @@ public class AnimationServiceTest {
     @Before
     public void initTest() {
         try {
+
             String basepath = System.getProperty("user.dir");
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
@@ -38,6 +39,7 @@ public class AnimationServiceTest {
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
+
 
             introModel = new Intro(allData);
         } catch (IOException e) {

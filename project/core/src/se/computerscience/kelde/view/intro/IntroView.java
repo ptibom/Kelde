@@ -47,6 +47,7 @@ public class IntroView {
         stage.draw();
         stage.act();
 
+
         //We need to update the state time to get different animation frames.
         introModel.updateStateTime(delta);
 

@@ -28,6 +28,7 @@ public class IntroTest {
         final Charset charset = Charset.forName("UTF-8");
         final ArrayList<List<String>> allData = new ArrayList<List<String>>();
         try {
+
             String basepath = System.getProperty("user.dir");
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
@@ -40,6 +41,7 @@ public class IntroTest {
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
 
             introModel = new Intro(allData);
+
         } catch (IOException e) {
             final Logger logg = Logger.getLogger("test");
             logg.isLoggable(Level.FINE);
