@@ -1,5 +1,7 @@
-/** Description: Renders the Physics World.
- *  @author: Philip Tibom
+/**
+ * Description: Renders the Physics World.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.view.physics;
@@ -19,7 +21,7 @@ public class WorldPhysicsView {
     public WorldPhysicsView(WorldPhysics worldPhysics) {
         this.worldPhysics = worldPhysics;
         b2dcamera = new OrthographicCamera();
-        viewport = new FitViewport(960*WorldPhysics.BOX2D_SCALE, 640*WorldPhysics.BOX2D_SCALE, b2dcamera);
+        viewport = new FitViewport(960 * WorldPhysics.BOX2D_SCALE, 640 * WorldPhysics.BOX2D_SCALE, b2dcamera);
         box2DDebugRenderer = new Box2DDebugRenderer();
     }
 

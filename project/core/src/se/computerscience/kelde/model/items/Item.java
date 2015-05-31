@@ -14,6 +14,7 @@ public class Item implements IItem {
     protected IAtlas textureAtlas;
     private final ISprite sprite;
     protected IRegion region;
+
     public Item() {
         setTextureAtlas();
         region = new Region(textureAtlas);
@@ -21,10 +22,11 @@ public class Item implements IItem {
         sprite = new ItemSprite(region);
     }
 
-    protected void setTextureAtlas(){
+    protected void setTextureAtlas() {
         textureAtlas = new Atlas("allitems.atlas");
     }
-    protected void setRegion(){
+
+    protected void setRegion() {
         region.setRegion(textureAtlas.findRegion(""));
     }
 
@@ -39,7 +41,7 @@ public class Item implements IItem {
     }
 
     @Override
-    public ISprite getItemSprite(){
+    public ISprite getItemSprite() {
         return sprite;
     }
 

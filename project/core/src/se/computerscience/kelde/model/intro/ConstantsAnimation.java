@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @author: Daniel Olsson
  */
 
-public final  class ConstantsAnimation {
+public final class ConstantsAnimation {
 
     //The length of all animations, used to read in right amount of frame into the animation
     private static final int[] INTRO_WIZARD_ANIMATION_LENGTH_DATA = new int[]{3, 3, 2};
@@ -54,15 +54,15 @@ public final  class ConstantsAnimation {
         return Arrays.copyOf(ANIM_PATH_CORDS_Y, ANIM_PATH_CORDS_Y.length);
     }
 
-    public static int getTextMovementSpeed(){
+    public static int getTextMovementSpeed() {
         return TEXT_MOVEMENT_SPEED;
     }
 
-    public static int getOriginText(){
+    public static int getOriginText() {
         return ORIGIN_OF_TEXT;
     }
 
-    public static int getLengthOfTextStaying(){
+    public static int getLengthOfTextStaying() {
         return LENGTH_OF_TEXT_STAYING;
     }
 

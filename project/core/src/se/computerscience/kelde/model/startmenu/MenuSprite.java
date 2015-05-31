@@ -1,4 +1,5 @@
 package se.computerscience.kelde.model.startmenu;
+
 /**
  * @author: Daniel Olsson
  */
@@ -9,11 +10,11 @@ public class MenuSprite {
     private final int spriteStartXPosition;
     private final int spriteStartYPosition;
 
-    private final  int spriteWidth;
+    private final int spriteWidth;
     private final int spriteHeight;
 
 
-    public MenuSprite(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight){
+    public MenuSprite(int spriteStartXPosition, int spriteStartYPosition, int spriteWidth, int spriteHeight) {
 
         this.spriteStartXPosition = spriteStartXPosition;
         this.spriteStartYPosition = spriteStartYPosition;
@@ -23,21 +24,21 @@ public class MenuSprite {
     }
 
 
-    public int getSpriteStartXPosition(){
+    public int getSpriteStartXPosition() {
         return spriteStartXPosition;
     }
 
-    public int getSpriteStartYPosition(){
+    public int getSpriteStartYPosition() {
 
         return spriteStartYPosition;
 
     }
 
-    public int getSpriteWidth(){
+    public int getSpriteWidth() {
         return spriteWidth;
     }
 
-    public int getSpriteHeight(){
+    public int getSpriteHeight() {
         return spriteHeight;
     }
 

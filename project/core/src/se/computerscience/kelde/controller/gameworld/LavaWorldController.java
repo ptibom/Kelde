@@ -16,7 +16,7 @@ import se.computerscience.kelde.controller.events.ItemEventBus;
 import se.computerscience.kelde.controller.items.ItemEntityController;
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
-import se.computerscience.kelde.controller.worldobjects.*;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.entities.INPCEntity;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LavaWorldController implements IGameWorldController, IItemEventHandler{
+public class LavaWorldController implements IGameWorldController, IItemEventHandler {
 
     private final LavaWorld lavaWorld;
     private final LavaWorldView lavaWorldView;
@@ -43,6 +43,7 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
     private final List<IMonsterController> npcControllers = new ArrayList<>();
     private final List<ItemEntityController> itemEntityControllers = new ArrayList<>();
     private Logger logger;
+
     public LavaWorldController() {
         lavaWorld = new LavaWorld();
         lavaWorldView = new LavaWorldView(lavaWorld);
@@ -55,17 +56,18 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
         lavaWorld.getWorldPhysics().getIb2DWorld().getBox2DWorld().setContactListener(new WorldContactListener());
 
     }
-    public void updateItemControllers(){
-        if (itemEntityControllers.size() == lavaWorld.getItemEntities().size()){
+
+    public void updateItemControllers() {
+        if (itemEntityControllers.size() == lavaWorld.getItemEntities().size()) {
             return;
         }
-        for (int i = itemEntityControllers.size(); i < lavaWorld.getItemEntities().size() ;i++) {
+        for (int i = itemEntityControllers.size(); i < lavaWorld.getItemEntities().size(); i++) {
             itemEntityControllers.add(itemEntityController(i));
         }
     }
 
-    public ItemEntityController itemEntityController(int i){
-        return new ItemEntityController(lavaWorld.getItemEntities().get(i) , lavaWorldView.getItemEntityViews().get(i));
+    public ItemEntityController itemEntityController(int i) {
+        return new ItemEntityController(lavaWorld.getItemEntities().get(i), lavaWorldView.getItemEntityViews().get(i));
     }
 
     private void createWorldObjects() {
@@ -78,16 +80,16 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
             final String prop = (String) mapObject.getProperties().get("Extra");
             try {
                 final IB2DWorld b2DWorld = lavaWorld.getWorldPhysics().getIb2DWorld();
-                final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects."+mapObject.getName());
-                final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects."+mapObject.getName()+"View");
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.worldobjects." + mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.worldobjects." + mapObject.getName() + "View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.worldobjects." + mapObject.getName() + "Controller");
-                if (prop == null){
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class).newInstance(b2DWorld, x, y);
-                }else {
-                    modelObject = (IWorldObjects)modelCls.getConstructor(IB2DWorld.class,float.class,float.class,String.class).newInstance(b2DWorld, x, y, prop);
+                if (prop == null) {
+                    modelObject = (IWorldObjects) modelCls.getConstructor(IB2DWorld.class, float.class, float.class).newInstance(b2DWorld, x, y);
+                } else {
+                    modelObject = (IWorldObjects) modelCls.getConstructor(IB2DWorld.class, float.class, float.class, String.class).newInstance(b2DWorld, x, y, prop);
                 }
-                final IWorldObjectView viewObject = (IWorldObjectView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final IWorldObjectView viewObject = (IWorldObjectView) viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 lavaWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
             } catch (Exception e) {
@@ -95,6 +97,7 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
             }
         }
     }
+
     private void createNPCEntities() {
         final IMap map = lavaWorld.getMap();
         final MapLayer layer = map.getTiledMap().getLayers().get("Npc");
@@ -103,12 +106,12 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
             final float y = (float) mapObject.getProperties().get("y");
             try {
                 final IB2DWorld b2DWorld = lavaWorld.getWorldPhysics().getIb2DWorld();
-                final Class modelCls = Class.forName("se.computerscience.kelde.model.entities."+mapObject.getName());
-                final Class viewCls = Class.forName("se.computerscience.kelde.view.entities."+mapObject.getName()+"View");
+                final Class modelCls = Class.forName("se.computerscience.kelde.model.entities." + mapObject.getName());
+                final Class viewCls = Class.forName("se.computerscience.kelde.view.entities." + mapObject.getName() + "View");
                 final Class controllerCls = Class.forName("se.computerscience.kelde.controller.entities." + mapObject.getName() + "Controller");
-                final INPCEntity modelObject = (INPCEntity)modelCls.getConstructor(float.class,float.class,IB2DWorld.class).newInstance(x, y,b2DWorld);
-                final IEntityView viewObject = (IEntityView)viewCls.getConstructor(modelCls).newInstance(modelObject);
-                final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject,viewObject);
+                final INPCEntity modelObject = (INPCEntity) modelCls.getConstructor(float.class, float.class, IB2DWorld.class).newInstance(x, y, b2DWorld);
+                final IEntityView viewObject = (IEntityView) viewCls.getConstructor(modelCls).newInstance(modelObject);
+                final IMonsterController controllerObject = (IMonsterController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 lavaWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {
@@ -116,16 +119,17 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
             }
         }
     }
+
     public void render(float delta) {
         updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
-        for (final IMonsterController monster: npcControllers){
+        for (final IMonsterController monster : npcControllers) {
             monster.update(delta);
         }
-        for (final ItemEntityController entityControllerlist : itemEntityControllers ){
+        for (final ItemEntityController entityControllerlist : itemEntityControllers) {
             entityControllerlist.update(delta);
         }
         worldPhysicsController.update(delta);
@@ -165,14 +169,14 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
 
     @Override
     public void onItemEvent(ItemEvent event) {
-        if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntityController)){
+        if (!(event.getObject() instanceof IItem || event.getObject() instanceof ItemEntityController)) {
             return;
         }
         if (event.getTag() == ItemEvent.Tag.ITEM) {
             lavaWorld.addItems((IItem) event.getObject());
             lavaWorldView.addEntityViews(lavaWorld.getItemEntities().get(lavaWorld.getItemEntities().size() - 1));
         }
-        if (event.getTag() == ItemEvent.Tag.DEL_ITEM){
+        if (event.getTag() == ItemEvent.Tag.DEL_ITEM) {
             lavaWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
             lavaWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());

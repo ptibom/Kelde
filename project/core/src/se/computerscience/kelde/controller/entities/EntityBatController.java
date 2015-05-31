@@ -1,5 +1,6 @@
 /**
  * Created by
+ *
  * @author: Anders Bolin
  */
 
@@ -21,6 +22,7 @@ public class EntityBatController implements IMonsterController {
         this.entityBat = entityBat;
         this.entityBatView = entityBatView;
     }
+
     @Override
     public void update(float delta) {
         entityBatView.update(delta);

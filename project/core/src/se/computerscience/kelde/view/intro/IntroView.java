@@ -28,7 +28,7 @@ public class IntroView {
         Gdx.input.setInputProcessor(stage);
 
         // The hidden button for quitting the intro
-        quitIntro = new IntroButton( "",IntroButton.createSkin());
+        quitIntro = new IntroButton("", IntroButton.createSkin());
 
         introModel.resetTimer();
         this.introModel = introModel;
@@ -65,19 +65,19 @@ public class IntroView {
         introHandler.drawIntro(delta);
     }
 
-    public TextButton getButton(){
+    public TextButton getButton() {
         return quitIntro;
     }
 
-    public IntroHandler getHandler(){
+    public IntroHandler getHandler() {
         return introHandler;
     }
 
-    public void dispose(){
-       introHandler.dispose();
+    public void dispose() {
+        introHandler.dispose();
     }
 
-    public double getTime(){
+    public double getTime() {
         return introModel.getMenuTime();
     }
 

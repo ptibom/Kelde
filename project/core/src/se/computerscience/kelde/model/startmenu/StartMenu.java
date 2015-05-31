@@ -35,7 +35,7 @@ public class StartMenu {
         return FOREGROUND;
     }
 
-    public String getMidGround(){
+    public String getMidGround() {
         return MIDDLEGROUND;
     }
 
@@ -46,7 +46,6 @@ public class StartMenu {
     public void updateStateTime(float delta) {
         menuTimer.updateStateTime(delta);
     }
-
 
 
 }

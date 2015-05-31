@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author: Philip Tibom
  */
-public enum  ScreenEventBus {
+public enum ScreenEventBus {
     INSTANCE;
 
     private final List<IScreenEventHandler> handlers = new ArrayList<>();
@@ -27,7 +27,7 @@ public enum  ScreenEventBus {
         }
     }
 
-    public void unregisterAll () {
+    public void unregisterAll() {
         handlers.clear();
     }
 }

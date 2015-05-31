@@ -9,7 +9,7 @@ import java.util.List;
  * @author: Daniel Olsson
  */
 
-public final  class AnimationLoader {
+public final class AnimationLoader {
 
     private final static int SPRITE_SIZE = 136;
     private final static int SPRITE_SHEET_SIZE = 42 / 3;
@@ -22,21 +22,21 @@ public final  class AnimationLoader {
     private static int x = SPRITE_SHEET_X_START;
     private static int y = SPRITE_SHEET_Y_START;
 
-    private AnimationLoader(){
+    private AnimationLoader() {
 
     }
 
 
-    public static List<MenuAnimation> loadWalkingCharacters( ) {
+    public static List<MenuAnimation> loadWalkingCharacters() {
 
 
         for (int i = 0; i < SPRITE_SHEET_SIZE; i++) {
 
 
-            tempAnimationRegions =getArrayList();
+            tempAnimationRegions = getArrayList();
 
             // Alogrithm for getting the coordinates for each sprite on the spritesheet
-            for(int k = 0; k<AMOUNT_PER_ROW;k++) {
+            for (int k = 0; k < AMOUNT_PER_ROW; k++) {
 
                 if (x > SPRITE_SHEET_WIDTH) {
                     x = SPRITE_SHEET_X_START;
@@ -50,7 +50,7 @@ public final  class AnimationLoader {
 
             //Now that we have loaded an animation's textureRegions, we create an animation from it.
             // And then load it into our list of animations.
-            ALL_WALKING_ANIMATIONS.add( getMenuAnimation(tempAnimationRegions));
+            ALL_WALKING_ANIMATIONS.add(getMenuAnimation(tempAnimationRegions));
 
 
         }
@@ -60,19 +60,19 @@ public final  class AnimationLoader {
         return ALL_WALKING_ANIMATIONS;
     }
 
-    public static MenuSprite createMenuSprite(int xcord, int ycord, int spriteSizeWidth, int spriteSizeHeight){
+    public static MenuSprite createMenuSprite(int xcord, int ycord, int spriteSizeWidth, int spriteSizeHeight) {
         return new MenuSprite(xcord, ycord, spriteSizeWidth, spriteSizeHeight);
 
     }
 
-    public static List<MenuSprite> getArrayList(){
-        return   new ArrayList<>();
+    public static List<MenuSprite> getArrayList() {
+        return new ArrayList<>();
     }
 
 
-    public static MenuAnimation getMenuAnimation (List<MenuSprite> listOfAnim){
+    public static MenuAnimation getMenuAnimation(List<MenuSprite> listOfAnim) {
 
-        return new  MenuAnimation(listOfAnim);
+        return new MenuAnimation(listOfAnim);
     }
 
 }

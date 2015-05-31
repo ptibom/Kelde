@@ -12,24 +12,27 @@ import se.computerscience.kelde.view.worldobjects.LavaSplashView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LavaRingController implements IWorldObjectsController{
+public class LavaRingController implements IWorldObjectsController {
 
     private final List<LavaSplashController> lavaSplashControllers = new ArrayList<>();
     private final LavaRing lavaRing;
-    public LavaRingController(LavaRing lavaRing,LavaRingView lavaRingView) {
+
+    public LavaRingController(LavaRing lavaRing, LavaRingView lavaRingView) {
         this.lavaRing = lavaRing;
-        for (final LavaSplashView lavaSplashView: lavaRingView.getLavaSplashViews()) {
+        for (final LavaSplashView lavaSplashView : lavaRingView.getLavaSplashViews()) {
             lavaSplashControllers.add(setControllers(lavaSplashView));
         }
     }
+
     @Override
     public void update(float delta) {
-        for (final LavaSplashController lavaSplashController: lavaSplashControllers){
+        for (final LavaSplashController lavaSplashController : lavaSplashControllers) {
             lavaSplashController.update(delta);
         }
         lavaRing.update(delta);
     }
-    public LavaSplashController setControllers(LavaSplashView lavaSplashView){
+
+    public LavaSplashController setControllers(LavaSplashView lavaSplashView) {
         return new LavaSplashController(lavaSplashView.getLavaSplash());
     }
 }

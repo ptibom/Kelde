@@ -11,6 +11,7 @@ import se.computerscience.kelde.model.entities.EntityEye;
 
 /**
  * Created by Anders on 2015-04-08.
+ *
  * @author Anders
  */
 public class EntityEyeView implements IEntityView {
@@ -20,7 +21,7 @@ public class EntityEyeView implements IEntityView {
     private final EntityEye entityEye;
 
     private Batch batch;
-    private Animation animation,animationN,animationE,animationS,animationW;
+    private Animation animation, animationN, animationE, animationS, animationW;
     private float elapsedTime, delta;
 
     public EntityEyeView(EntityEye entityEye) {
@@ -42,17 +43,19 @@ public class EntityEyeView implements IEntityView {
 
     public void draw(Batch batch) {
         final Heading direction = entityEye.getHeading();
-        if(direction == Heading.EAST) {
+        if (direction == Heading.EAST) {
             animation = animationE;
-        } else if(direction == Heading.NORTH) {
+        } else if (direction == Heading.NORTH) {
             animation = animationN;
-        } else if(direction == Heading.WEST) {
+        } else if (direction == Heading.WEST) {
             animation = animationW;
-        } else if(direction == Heading.SOUTH) {
+        } else if (direction == Heading.SOUTH) {
             animation = animationS;
         }
         elapsedTime += delta;
-        if(elapsedTime > 100.0f) { elapsedTime = 0f; }
+        if (elapsedTime > 100.0f) {
+            elapsedTime = 0f;
+        }
         batch.draw(animation.getKeyFrame(elapsedTime, true), entityEye.getPositionX(), entityEye.getPositionY());
     }
 

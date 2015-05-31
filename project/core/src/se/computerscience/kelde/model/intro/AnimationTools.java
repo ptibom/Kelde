@@ -11,9 +11,10 @@ import java.util.List;
 public final class AnimationTools {
 
 
-    private static  int[] textureRegionCoordinates;
+    private static int[] textureRegionCoordinates;
     private static int dataIndex;
-    private AnimationTools(){
+
+    private AnimationTools() {
 
     }
 
@@ -23,9 +24,9 @@ public final class AnimationTools {
     }
 
     // Loading the coordinates for each TextureRegion from raw input
-    public static int [] loadTextureRegionData(int spriteSize, List<String> data) {
+    public static int[] loadTextureRegionData(int spriteSize, List<String> data) {
 
-        textureRegionCoordinates = new int[data.size()-7/7];
+        textureRegionCoordinates = new int[data.size() - 7 / 7];
 
         textureRegionCoordinates[0] = spriteSize;
         textureRegionCoordinates[1] = spriteSize;
@@ -38,13 +39,9 @@ public final class AnimationTools {
             textureRegionCoordinates[dataIndex + 1] = Integer.parseInt(tempFormat[4].replaceAll("\r", ""));
             dataIndex += 2;
         }
-        return Arrays.copyOf(textureRegionCoordinates,textureRegionCoordinates.length);
+        return Arrays.copyOf(textureRegionCoordinates, textureRegionCoordinates.length);
 
     }
-
-
-
-
 
 
 }

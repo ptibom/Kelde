@@ -6,7 +6,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import se.computerscience.kelde.model.intro.*;
+import se.computerscience.kelde.model.intro.AnimationService;
+import se.computerscience.kelde.model.intro.ConstantsPath;
+import se.computerscience.kelde.model.intro.Intro;
+import se.computerscience.kelde.model.intro.IntroInstruction;
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +43,7 @@ public class IntroHandler {
     final private Texture introForegroundTexture, introBorderTexture;
 
     //The animation loader loads the actual animations from the sprite sheet
-    final  private AnimationService animationService;
+    final private AnimationService animationService;
 
     //Intro model is needed to keep time, and dialoguehandler to draw the dialogue/texts
     private final Intro introModel;
@@ -62,7 +65,7 @@ public class IntroHandler {
         dialogueHandler = new DialogueHandler(introModel, 47);
 
         //Converting animations
-        final  Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
+        final Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
                 introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroWizardAnimationPathImage()));
         final Map<String, Animation> demonAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getDemonAnimations(),
                 introModel.getAnimationSpeed(), new Texture(ConstantsPath.getIntroDemonAnimationPathImage()));
@@ -84,7 +87,7 @@ public class IntroHandler {
         final int spellOriginY = 400;
         final int spellSpriteSize = 128;
 
-         animationHandlerWizard1 = new AnimationHandler(introModel,wizardAnimations, wizardOriginX, wizardOriginY,
+        animationHandlerWizard1 = new AnimationHandler(introModel, wizardAnimations, wizardOriginX, wizardOriginY,
                 introModel.getWizardTalkCoordinates()[0], introModel.getWizardTalkCoordinates()[1], 0);
 
         animationHandlerDemon = new AnimationHandler(introModel, demonAnimations, demonOriginX, demonOriginY,
@@ -115,12 +118,12 @@ public class IntroHandler {
 
         batch.begin();
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH * scaleX),(int)(MAX_HEIGHT * scaleY));
+            batch.draw(introBackgroundTexture1, 0, 0, (int) (MAX_WIDTH * scaleX), (int) (MAX_HEIGHT * scaleY));
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture2, 0, 0,(int)(MAX_WIDTH * scaleX),(int)(MAX_HEIGHT * scaleY));
+            batch.draw(introBackgroundTexture2, 0, 0, (int) (MAX_WIDTH * scaleX), (int) (MAX_HEIGHT * scaleY));
         }
 
-        if(introModel.getMenuTime()<FIRST_INTRO_TEXT_LENGTH) {
+        if (introModel.getMenuTime() < FIRST_INTRO_TEXT_LENGTH) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
                 dialogueHandler.drawTextDialogue(i, batch, introModel.getOriginOfText() +
@@ -133,10 +136,10 @@ public class IntroHandler {
         // Lastly we draw the first intro's foreground. Scale if you want to scaleX it for some reason
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
 
-            batch.draw(introForegroundTexture, 0, 0, (int)(MAX_WIDTH * scaleX), (int)(MAX_HEIGHT * scaleY));
+            batch.draw(introForegroundTexture, 0, 0, (int) (MAX_WIDTH * scaleX), (int) (MAX_HEIGHT * scaleY));
         }
 
-        batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH * scaleX), (int)(MAX_HEIGHT * scaleY));
+        batch.draw(introBorderTexture, 0, 0, (int) (MAX_WIDTH * scaleX), (int) (MAX_HEIGHT * scaleY));
         batch.end();
     }
 
@@ -147,14 +150,13 @@ public class IntroHandler {
         final boolean renderStillImage = instruct.getKeyFrame() != -1;
 
         if (renderStillImage) {
-            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() , (scaleY+scaleX)/2);
-        }
-        else {
-            animationHandler.drawAnimation(batch, instruct,delta, (scaleY+scaleX)/2);
+            animationHandler.drawAnimation(batch, instruct, delta, instruct.getKeyFrame(), (scaleY + scaleX) / 2);
+        } else {
+            animationHandler.drawAnimation(batch, instruct, delta, (scaleY + scaleX) / 2);
         }
     }
 
-    private void drawAnimations(SpriteBatch batch){
+    private void drawAnimations(SpriteBatch batch) {
         //Drawing the demon in intro
         for (final IntroInstruction instruct : allInstructions.get(0)) {
             drawHelper(batch, animationHandlerDemon, instruct);
@@ -186,22 +188,22 @@ public class IntroHandler {
     // This function takes care of interpolated X and Y animation render.
     public void drawHelper(SpriteBatch batch, AnimationService animationloader, AnimationHandler animationHandler,
                            IntroInstruction instruct) {
-        animationHandler.drawAnimation(batch, animationloader, instruct, (scaleY+scaleX)/2);
+        animationHandler.drawAnimation(batch, animationloader, instruct, (scaleY + scaleX) / 2);
     }
 
     //This drawhelper renders the bubbles
     public void drawHelper(SpriteBatch batch, DialogueHandler dialogHandler, IntroInstruction instruct) {
 
-        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(),  (scaleY+scaleX)/2);
+        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(), (scaleY + scaleX) / 2);
 
     }
 
-    public void setScale(double height, double width){
-        scaleX = width/ MAX_WIDTH;
-        scaleY = height/ MAX_HEIGHT;
+    public void setScale(double height, double width) {
+        scaleX = width / MAX_WIDTH;
+        scaleY = height / MAX_HEIGHT;
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
     }
 }

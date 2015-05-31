@@ -31,14 +31,13 @@ public class TreasureView implements IWorldObjectView {
     public void update(float delta) {
         if (treasure.isCheastOpen()) {
             sprite = SPRITE_OPENED;
-        }
-        else {
+        } else {
             sprite = SPRITE_CLOSED;
         }
     }
 
     @Override
-    public void draw (SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
         sprite.setPosition(treasure.getPositionX(), treasure.getPositionY());
         sprite.draw(batch);
     }

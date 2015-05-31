@@ -5,18 +5,16 @@
  */
 
 package se.computerscience.kelde.model.gameworld;
+
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.encapsulation.libgdx.Map;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
-
 import se.computerscience.kelde.model.inventory.Inventory;
 import se.computerscience.kelde.model.items.IItem;
-
-import se.computerscience.kelde.model.worldobjects.*;
-
 import se.computerscience.kelde.model.physics.WorldPhysics;
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,23 +49,29 @@ public class GameWorld {
     public void dispose() {
         map.dispose();
     }
+
     public WorldPhysics getWorldPhysics() {
         return worldPhysics;
     }
+
     public IMap getMap() {
         return map;
     }
+
     public EntityPlayerKelde getEntityPlayerKelde() {
         return entityPlayerKelde;
     }
+
     public List<ItemEntity> getItemEntities() {
         return itemEntities;
     }
-    public GuiOverlay getGui(){ return guiOverlay;
+
+    public GuiOverlay getGui() {
+        return guiOverlay;
     }
 
-    public Inventory getInventory(){
-       return inventory;
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public void removeItem(ItemEntity item) {

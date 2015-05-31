@@ -9,9 +9,10 @@ import org.junit.Before;
 public class IntroInstructDataTest extends TestCase {
 
     IntroInstructData test;
+
     @Before
-    public void setUp(){
-        test  = new IntroInstructData(1,2,3,4);
+    public void setUp() {
+        test = new IntroInstructData(1, 2, 3, 4);
     }
 
     public void testGetXvel() throws Exception {
@@ -20,14 +21,14 @@ public class IntroInstructDataTest extends TestCase {
     }
 
     public void testGetYvel() throws Exception {
-        assertEquals(2,test.getYvel());
+        assertEquals(2, test.getYvel());
     }
 
     public void testGetHeightChange() throws Exception {
-        assertEquals(3,test.getHeightChange());
+        assertEquals(3, test.getHeightChange());
     }
 
     public void testGetWidthChange() throws Exception {
-        assertEquals(4,test.getWidthChange());
+        assertEquals(4, test.getWidthChange());
     }
 }

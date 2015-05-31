@@ -36,7 +36,7 @@ public class InputController implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        gameWorldController.setMouseDown(screenX, Gdx.graphics.getHeight()-screenY);
+        gameWorldController.setMouseDown(screenX, Gdx.graphics.getHeight() - screenY);
         return false;
     }
 

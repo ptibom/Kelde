@@ -36,10 +36,10 @@ public class ButtonView {
 
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
-        font.draw(batch, text, sprite.getX()+OFFSET_X, sprite.getY()+OFFSET_Y);
+        font.draw(batch, text, sprite.getX() + OFFSET_X, sprite.getY() + OFFSET_Y);
     }
 
-    public boolean isClicked (int x, int y) {
+    public boolean isClicked(int x, int y) {
         // Check if x and y is within area of the button. And project new coordinates for scaling
         Vector2 maxBoundaries = viewport.project(new Vector2(position.x + size.x, position.y + size.y));
         Vector2 minBoundaries = viewport.project(new Vector2(position.x, position.y));

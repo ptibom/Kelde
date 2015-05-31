@@ -6,14 +6,14 @@ import se.computerscience.kelde.view.entities.EntityEyeView;
 
 /**
  * Created by Anders on 2015-04-08.
+ *
  * @author Anders
  */
-public class EntityEyeController implements IMonsterController{
+public class EntityEyeController implements IMonsterController {
 
     //Variables
     private final EntityEye entityEye;
     private final EntityEyeView entityEyeView;
-
 
 
     public EntityEyeController(EntityEye entityEye, EntityEyeView entityEyeView) {

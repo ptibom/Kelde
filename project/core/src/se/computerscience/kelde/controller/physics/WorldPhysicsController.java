@@ -1,5 +1,7 @@
-/** Description: WorldCollision handles world object collision from Tiled maps. It loads all objects and uses box2d physics engine to calculate collisions.
- *  @author: Philip Tibom
+/**
+ * Description: WorldCollision handles world object collision from Tiled maps. It loads all objects and uses box2d physics engine to calculate collisions.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.controller.physics;

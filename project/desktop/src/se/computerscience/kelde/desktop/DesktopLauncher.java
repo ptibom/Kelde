@@ -6,11 +6,11 @@ import se.computerscience.kelde.KeldeGame;
 
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.height = 540;
-		config.width = 960;
+    public static void main(String[] arg) {
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.height = 540;
+        config.width = 960;
 
-		new LwjglApplication(new KeldeGame(), config);
-	}
+        new LwjglApplication(new KeldeGame(), config);
+    }
 }

@@ -11,6 +11,7 @@ public class ItemEvent {
         ITEM_ENTITY,
         DEL_ITEM;
     }
+
     private final Tag tag;
     private final Object object;
 

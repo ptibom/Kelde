@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * Created by Anders on 2015-05-16.
+ *
  * @author Anders Bolin
  */
 public class EntityGhost extends EntityEnemy {
@@ -55,30 +56,30 @@ public class EntityGhost extends EntityEnemy {
     public Heading getHeading() {
         final float x = entityBody.getVelocityX();
         final float y = entityBody.getVelocityY();
-        final float degree = (float)Math.toDegrees(Math.atan2(x, y));
-        if(degree > 45.0f && degree < 135.0f) {
+        final float degree = (float) Math.toDegrees(Math.atan2(x, y));
+        if (degree > 45.0f && degree < 135.0f) {
             direction = Heading.WEST;
-        } else if(degree <= -135.0f || degree >= 135.0f) {
+        } else if (degree <= -135.0f || degree >= 135.0f) {
             direction = Heading.SOUTH;
-        } else if(degree <= 45.0f && degree >= -45.0f) {
+        } else if (degree <= 45.0f && degree >= -45.0f) {
             direction = Heading.NORTH;
-        } else if(degree < -45.0f && degree > -135.0f) {
+        } else if (degree < -45.0f && degree > -135.0f) {
             direction = Heading.EAST;
         }
         return direction;
     }
 
     public float getPositionX() {
-        return (int) (entityBody.getPositionX()-BODY_HEIGHT);
+        return (int) (entityBody.getPositionX() - BODY_HEIGHT);
     }
 
     public float getPositionY() {
-        return (int) (entityBody.getPositionY()-BODY_WIDTH);
+        return (int) (entityBody.getPositionY() - BODY_WIDTH);
     }
 
     public void setDamage(int damage) {
         healt -= damage;
-        if(healt <= 0) {
+        if (healt <= 0) {
             alive = false;
         }
     }
@@ -91,7 +92,11 @@ public class EntityGhost extends EntityEnemy {
         return healt;
     }
 
-    public boolean isAlive() { return alive; }
+    public boolean isAlive() {
+        return alive;
+    }
 
-    public int getLoot() { return LOOT;}
+    public int getLoot() {
+        return LOOT;
+    }
 }

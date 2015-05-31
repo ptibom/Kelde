@@ -27,20 +27,20 @@ public class Treasure implements IWorldObjects {
         entityBody = new PhysicalBodyStatic(positionX, positionY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         int margin = 0;
         List<IItem> items;
-        if ("set1".equals(itemSset)){
+        if ("set1".equals(itemSset)) {
             items = ItemSets.getSet1();
-        }else if ("set2".equals(itemSset)){
+        } else if ("set2".equals(itemSset)) {
             items = ItemSets.getSet2();
-        }else if ("set3".equals(itemSset)){
+        } else if ("set3".equals(itemSset)) {
             items = ItemSets.getSet3();
-        }else {
+        } else {
             items = ItemSets.getSet1();
         }
         for (final IItem item : items) {
             item.setItemPositionY(positionY + 50);
             item.setItemPositionX(positionX + margin);
             this.itemslist.add(item);
-            margin+=15;
+            margin += 15;
         }
     }
 

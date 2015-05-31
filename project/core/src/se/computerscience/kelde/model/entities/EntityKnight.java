@@ -1,5 +1,7 @@
-/** Description: Hostile entity
- *  @author: Philip Tibom
+/**
+ * Description: Hostile entity
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.entities;

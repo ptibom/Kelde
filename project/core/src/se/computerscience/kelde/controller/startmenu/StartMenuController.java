@@ -19,7 +19,7 @@ public class StartMenuController {
     private final StartMenuView startMenuView;
 
     public StartMenuController() throws IOException {
-         final StartMenu startMenuModel = new StartMenu();
+        final StartMenu startMenuModel = new StartMenu();
         this.startMenuView = new StartMenuView(startMenuModel);
         startMenuView.getButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -43,7 +43,8 @@ public class StartMenuController {
         startMenuView.renderMenu(delta);
 
     }
-// The window need to be resized
+
+    // The window need to be resized
     public void resize(int width, int height) {
         startMenuView.resize(width, height);
     }

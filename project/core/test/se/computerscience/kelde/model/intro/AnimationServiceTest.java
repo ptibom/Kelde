@@ -3,7 +3,6 @@ package se.computerscience.kelde.model.intro;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -30,16 +29,15 @@ public class AnimationServiceTest {
         try {
 
             String basepath = System.getProperty("user.dir");
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/spell.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemon.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizardinstr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizard2instr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
-
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/introtalk.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/spell.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationdemon.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationwizardinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationwizard2instr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationwizarddialogue.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationdemondialog.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath + "/assets/intro/animationspellinstr.intro"), charset));
 
 
             introModel = new Intro(allData);

@@ -13,6 +13,7 @@ import se.computerscience.kelde.view.worldobjects.TreasureView;
 public class TreasureController implements IWorldObjectsController, ICollisionEventHandler {
     private final Treasure treasure;
     private final TreasureView treasureView;
+
     public TreasureController(Treasure treasure, TreasureView treasureView) {
         this.treasure = treasure;
         this.treasureView = treasureView;

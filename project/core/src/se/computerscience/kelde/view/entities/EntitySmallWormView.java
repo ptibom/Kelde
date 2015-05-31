@@ -1,5 +1,6 @@
 /**
  * Small worm, view class
+ *
  * @author: Anders Bolin
  */
 
@@ -23,7 +24,7 @@ public class EntitySmallWormView implements IEntityView {
     //Variables
     private final EntitySmallWorm entitySmallWorm;
     private final SpriteBatch batch;
-    private Animation animation,animationUp;
+    private Animation animation, animationUp;
     private float elapsedTime, delta;
 
 
@@ -40,17 +41,19 @@ public class EntitySmallWormView implements IEntityView {
 
     public void draw(Batch batch) {
         final Heading direction = entitySmallWorm.getHeading();
-        if(direction == Heading.EAST) {
+        if (direction == Heading.EAST) {
             animation = animationUp;
-        } else if(direction == Heading.NORTH) {
+        } else if (direction == Heading.NORTH) {
             animation = animationUp;
-        } else if(direction == Heading.WEST) {
+        } else if (direction == Heading.WEST) {
             animation = animationUp;
-        } else if(direction == Heading.SOUTH) {
+        } else if (direction == Heading.SOUTH) {
             animation = animationUp;
         }
         elapsedTime += delta;
-        if(elapsedTime > 100.0f) { elapsedTime = 0f; }
+        if (elapsedTime > 100.0f) {
+            elapsedTime = 0f;
+        }
         batch.draw(animation.getKeyFrame(elapsedTime, true), entitySmallWorm.getPositionX(), entitySmallWorm.getPositionY());
     }
 

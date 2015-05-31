@@ -1,5 +1,7 @@
-/** Description: Modelling the world physics. Using box2d physics engine.
- *  @author: Philip Tibom
+/**
+ * Description: Modelling the world physics. Using box2d physics engine.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.model.physics;

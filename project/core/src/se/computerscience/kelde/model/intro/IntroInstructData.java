@@ -8,18 +8,18 @@ public class IntroInstructData {
 
     private final int xVelocity;
     private final int yVelocity;
-    private final int  heightChange;
+    private final int heightChange;
     private final int widthChange;
 
 
-    public IntroInstructData(int xVelocity, int yVelocity, int heightChange, int widthChange){
+    public IntroInstructData(int xVelocity, int yVelocity, int heightChange, int widthChange) {
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.heightChange = heightChange;
         this.widthChange = widthChange;
     }
 
-    public int getXvel(){
+    public int getXvel() {
         return xVelocity;
     }
 
@@ -27,8 +27,8 @@ public class IntroInstructData {
         return yVelocity;
     }
 
-    public int getHeightChange(){
-       return heightChange;
+    public int getHeightChange() {
+        return heightChange;
     }
 
     public int getWidthChange() {

@@ -53,17 +53,17 @@ public class IntroController {
 
         introView.render(delta);
 
-        if(introView.getTime()>INTRO_LENGTH){
+        if (introView.getTime() > INTRO_LENGTH) {
             ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
         }
     }
 
 
-    public void resize(int width, int height){
+    public void resize(int width, int height) {
         introView.resize(width, height);
     }
 
-    public void dispose(){
+    public void dispose() {
         introView.dispose();
     }
 }

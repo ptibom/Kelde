@@ -6,34 +6,31 @@
 
 package se.computerscience.kelde.controller.gameworld;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import se.computerscience.kelde.controller.entities.*;
-import se.computerscience.kelde.controller.events.*;
+import se.computerscience.kelde.controller.entities.EntityPlayerKeldeController;
+import se.computerscience.kelde.controller.entities.IMonsterController;
+import se.computerscience.kelde.controller.events.CollisionEventBus;
+import se.computerscience.kelde.controller.events.IItemEventHandler;
+import se.computerscience.kelde.controller.events.ItemEvent;
+import se.computerscience.kelde.controller.events.ItemEventBus;
+import se.computerscience.kelde.controller.guioverlay.GuiOverlayController;
 import se.computerscience.kelde.controller.inventory.InventoryController;
 import se.computerscience.kelde.controller.items.ItemEntityController;
-
-
-import se.computerscience.kelde.controller.guioverlay.GuiOverlayController;
-
 import se.computerscience.kelde.controller.physics.WorldContactListener;
 import se.computerscience.kelde.controller.physics.WorldPhysicsController;
-import se.computerscience.kelde.controller.worldobjects.*;
+import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.libgdx.IMap;
 import se.computerscience.kelde.model.entities.INPCEntity;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-
 import se.computerscience.kelde.model.items.IItem;
-
 import se.computerscience.kelde.model.worldobjects.IWorldObjects;
 import se.computerscience.kelde.view.entities.IEntityView;
-
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -200,7 +197,7 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
             gameWorld.removeItem(((ItemEntityController) event.getObject()).getItemEntity());
             gameWorldView.removeItemView(((ItemEntityController) event.getObject()).getItemEntityView());
             itemEntityControllers.remove(event.getObject());
-           final IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
+            final IItem item = ((ItemEntityController) event.getObject()).getItemEntity().getItem();
             inventoryController.update(item);
         }
 

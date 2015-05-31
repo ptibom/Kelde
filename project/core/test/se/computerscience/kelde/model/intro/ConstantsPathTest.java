@@ -1,19 +1,11 @@
 package se.computerscience.kelde.model.intro;
 
 import junit.framework.TestCase;
-import org.junit.Before;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author: Daniel Olsson
  */
 public class ConstantsPathTest extends TestCase {
-
 
 
     public void testGetIntroBorderPathImage() throws Exception {
@@ -23,7 +15,7 @@ public class ConstantsPathTest extends TestCase {
     }
 
     public void testGetIntroBackgroundPathImage() throws Exception {
-        assertEquals( "intro/backgroundintro.png", ConstantsPath.getIntroBackgroundPathImage());
+        assertEquals("intro/backgroundintro.png", ConstantsPath.getIntroBackgroundPathImage());
     }
 
     public void testGetForegroundIntroPathImage() throws Exception {
@@ -43,7 +35,7 @@ public class ConstantsPathTest extends TestCase {
     }
 
     public void testGetIntroWizardAnimationPathImage() throws Exception {
-        assertEquals("intro/introtalk.png",ConstantsPath.getIntroWizardAnimationPathImage());
+        assertEquals("intro/introtalk.png", ConstantsPath.getIntroWizardAnimationPathImage());
     }
 
     public void testGetIntroMusic() throws Exception {

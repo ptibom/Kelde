@@ -15,15 +15,16 @@ public class CampFire implements IWorldObjects {
     private final IPhysicalBody entityBody;
 
     public CampFire(IB2DWorld ib2DWorld, float x, float y) {
-        entityBody = new PhysicalBodySensor(x,y,BODY_WIDTH,BODY_HEIGHT,ib2DWorld,this);
+        entityBody = new PhysicalBodySensor(x, y, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
     }
 
     @Override
     public float getPositionY() {
-        return entityBody.getPositionY()-BODY_HEIGHT;
+        return entityBody.getPositionY() - BODY_HEIGHT;
     }
+
     @Override
     public float getPositionX() {
-        return entityBody.getPositionX()-BODY_WIDTH;
+        return entityBody.getPositionX() - BODY_WIDTH;
     }
 }

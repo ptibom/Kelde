@@ -21,16 +21,18 @@ public class CampFireView implements IWorldObjectView {
         this.campFire = campFire;
 
     }
+
     @Override
-    public void draw (SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
         final TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal(SPRITE_LOCATION));
         final Animation animation = new Animation(0.15f, textureAtlas.getRegions());
         elapsedTime += delta;
-        if (elapsedTime >= 10f){
+        if (elapsedTime >= 10f) {
             elapsedTime = 0;
         }
         batch.draw(animation.getKeyFrame(elapsedTime, true), campFire.getPositionX(), campFire.getPositionY());
     }
+
     public void update(float delta) {
         this.delta = delta;
     }

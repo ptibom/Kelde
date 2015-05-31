@@ -1,13 +1,10 @@
 package se.computerscience.kelde.view.guioverlay;
 
-import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
-
-import javax.swing.text.View;
 
 
 /**

@@ -1,5 +1,7 @@
-/** Description: Renders a tile-map with camera.
- *  @author: Philip Tibom
+/**
+ * Description: Renders a tile-map with camera.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.screens;
@@ -7,13 +9,14 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import se.computerscience.kelde.controller.services.ScreenChanger;
 import se.computerscience.kelde.controller.InputController;
 import se.computerscience.kelde.controller.gameworld.GameWorldController;
+import se.computerscience.kelde.controller.services.ScreenChanger;
 
 
 public class GameScreen implements Screen {
     private GameWorldController gameWorldController;
+
     @Override
     public void show() {
         // Initialises objects, like a constructor
@@ -33,6 +36,7 @@ public class GameScreen implements Screen {
         // Checks if we should change screen, and does it.
         ScreenChanger.performingChange();
     }
+
     @Override
     public void resize(int width, int height) {
         gameWorldController.resizeCamera(width, height);

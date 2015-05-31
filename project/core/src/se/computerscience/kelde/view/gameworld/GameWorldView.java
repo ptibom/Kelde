@@ -1,5 +1,7 @@
-/** Description: Renders the Game World.
- *  @author: Philip Tibom
+/**
+ * Description: Renders the Game World.
+ *
+ * @author: Philip Tibom
  */
 
 package se.computerscience.kelde.view.gameworld;
@@ -11,21 +13,19 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import se.computerscience.kelde.model.gameworld.GameWorld;
-
-import se.computerscience.kelde.model.worldobjects.*;
-import se.computerscience.kelde.view.entities.*;
-
+import se.computerscience.kelde.model.worldobjects.ItemEntity;
+import se.computerscience.kelde.view.entities.EntityPlayerKeldeView;
+import se.computerscience.kelde.view.entities.IEntityView;
 import se.computerscience.kelde.view.guioverlay.GuiOverlayView;
 import se.computerscience.kelde.view.inventory.InventoryView;
 import se.computerscience.kelde.view.items.ItemEntityView;
-
 import se.computerscience.kelde.view.physics.WorldPhysicsView;
-import se.computerscience.kelde.view.worldobjects.*;
+import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameWorldView{
+public class GameWorldView {
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final GameWorld gameWorld;
     private final SpriteBatch batch;
@@ -52,7 +52,7 @@ public class GameWorldView{
         camera.update();
 
         viewport = new FitViewport(960, 640, camera);
-        guiOverlayView = new GuiOverlayView(gameWorld.getGui(),viewport);
+        guiOverlayView = new GuiOverlayView(gameWorld.getGui(), viewport);
         mapRenderer = new OrthogonalTiledMapRenderer(gameWorld.getMap().getTiledMap());
         batch = new SpriteBatch();
         worldPhysicsView = new WorldPhysicsView(gameWorld.getWorldPhysics());
@@ -69,13 +69,13 @@ public class GameWorldView{
         batch.begin();
         entityPlayerKeldeView.draw(batch);
 
-        for (final ItemEntityView itemView : itemEntityViews){
+        for (final ItemEntityView itemView : itemEntityViews) {
             itemView.draw(batch);
         }
-        for (final IWorldObjectView worldObjectView: worldObjectViews){
+        for (final IWorldObjectView worldObjectView : worldObjectViews) {
             worldObjectView.draw(batch);
         }
-        for (final IEntityView entitieView: entitieViews){
+        for (final IEntityView entitieView : entitieViews) {
             entitieView.draw(batch);
         }
 
@@ -87,40 +87,45 @@ public class GameWorldView{
         worldPhysicsView.render(delta);
     }
 
-    public void addEntityViews(ItemEntity itemEntity){
+    public void addEntityViews(ItemEntity itemEntity) {
         itemEntityViews.add(new ItemEntityView(itemEntity));
     }
 
     public void resize(int width, int height) {
-        camera.position.set(width / (float) 2, height / (float)2, 0);
+        camera.position.set(width / (float) 2, height / (float) 2, 0);
         viewport.update(width, height, true);
         batch.setProjectionMatrix(camera.combined);
     }
-    
+
     public void dispose() {
         mapRenderer.dispose();
     }
+
     public WorldPhysicsView getWorldPhysicsView() {
         return worldPhysicsView;
     }
+
     public List<ItemEntityView> getItemEntityViews() {
         return itemEntityViews;
     }
 
-    public void removeItemView(ItemEntityView itemEntityView){
+    public void removeItemView(ItemEntityView itemEntityView) {
         itemEntityViews.remove(itemEntityView);
     }
-    public void addNPCEntity(IEntityView entitieView){
+
+    public void addNPCEntity(IEntityView entitieView) {
         entitieViews.add(entitieView);
     }
-    public void addWorldObject(IWorldObjectView worldObjectView){
+
+    public void addWorldObject(IWorldObjectView worldObjectView) {
         worldObjectViews.add(worldObjectView);
     }
-    public GuiOverlayView getGuiOverlayView(){
-    return guiOverlayView;
+
+    public GuiOverlayView getGuiOverlayView() {
+        return guiOverlayView;
     }
 
-    public InventoryView getInventoryView(){
+    public InventoryView getInventoryView() {
         return inventoryView;
     }
 }
