@@ -97,7 +97,6 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
 
     @Override
     public void onModifyPlayerEvent(ModifyPlayerEvent event) {
-        System.out.println("collision");
         if (event.getTag() == ModifyPlayerEvent.Tag.CHANGE_POS){
             if (event.getObject() instanceof Point) {
                 final Point point = (Point) event.getObject();
@@ -105,7 +104,6 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
             }
         }
         else if (event.getTag() == ModifyPlayerEvent.Tag.DAMAGE) {
-            System.out.println((int)event.getObject());
             entityPlayerKelde.takeDamage((int) event.getObject());
         }
 

@@ -90,9 +90,7 @@ public class GuiOverlayView {
 
 
         }
-
-
-        System.out.println();
+        
         if (exitButton.isTouched()) {
             Gdx.app.exit();
         }
