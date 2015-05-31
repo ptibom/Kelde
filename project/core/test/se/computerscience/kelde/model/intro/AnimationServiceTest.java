@@ -39,7 +39,11 @@ public class AnimationServiceTest {
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
-            this.introModel = new Intro(allData);
+
+
+
+            introModel = new Intro(allData);
+
         } catch (IOException e) {
             final Logger logg = Logger.getLogger("test");
             logg.isLoggable(Level.FINE);
