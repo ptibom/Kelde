@@ -19,7 +19,8 @@ import java.util.Map;
 
 public class IntroHandler {
 
-    private double scale = 0.5;
+    private double scaleX = 0.5;
+    private double scaleY = 0.5;
     private final static int MAX_WIDTH = 1920;
     private final static int MAX_HEIGHT = 1080;
     private static final int FIRST_INTRO_LENGTH = 47000;
@@ -59,7 +60,6 @@ public class IntroHandler {
         this.introModel = introModel;
         this.animationService = animationService;
         dialogueHandler = new DialogueHandler(introModel, 47);
-        scale = 0.5;
 
         //Converting animations
         final  Map<String, Animation> wizardAnimations = AnimationConverter.convertToLibgdxAnimation(animationService.getWizardAnimations(),
@@ -115,28 +115,28 @@ public class IntroHandler {
 
         batch.begin();
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
+            batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH * scaleX),(int)(MAX_HEIGHT * scaleY));
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
-            batch.draw(introBackgroundTexture2, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
+            batch.draw(introBackgroundTexture2, 0, 0,(int)(MAX_WIDTH * scaleX),(int)(MAX_HEIGHT * scaleY));
         }
 
         if(introModel.getMenuTime()<FIRST_INTRO_TEXT_LENGTH) {
             //Drawing the intro text
             for (int i = 0; i < 8; i++) {
                 dialogueHandler.drawTextDialogue(i, batch, introModel.getOriginOfText() +
-                        i * introModel.getTextSpeed(), introModel.getTextLengthOfStaying(), delta, scale);
+                        i * introModel.getTextSpeed(), introModel.getTextLengthOfStaying(), delta, scaleY);
             }
         }
 
         drawAnimations(batch);
 
-        // Lastly we draw the first intro's foreground. Scale if you want to scale it for some reason
+        // Lastly we draw the first intro's foreground. Scale if you want to scaleX it for some reason
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
 
-            batch.draw(introForegroundTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
+            batch.draw(introForegroundTexture, 0, 0, (int)(MAX_WIDTH * scaleX), (int)(MAX_HEIGHT * scaleY));
         }
 
-        batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
+        batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH * scaleX), (int)(MAX_HEIGHT * scaleY));
         batch.end();
     }
 
@@ -147,10 +147,10 @@ public class IntroHandler {
         final boolean renderStillImage = instruct.getKeyFrame() != -1;
 
         if (renderStillImage) {
-            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() ,scale);
+            animationHandler.drawAnimation(batch, instruct, delta,instruct.getKeyFrame() , (scaleY+scaleX)/2);
         }
         else {
-            animationHandler.drawAnimation(batch, instruct,delta,scale);
+            animationHandler.drawAnimation(batch, instruct,delta, (scaleY+scaleX)/2);
         }
     }
 
@@ -186,19 +186,19 @@ public class IntroHandler {
     // This function takes care of interpolated X and Y animation render.
     public void drawHelper(SpriteBatch batch, AnimationService animationloader, AnimationHandler animationHandler,
                            IntroInstruction instruct) {
-        animationHandler.drawAnimation(batch, animationloader, instruct,scale);
+        animationHandler.drawAnimation(batch, animationloader, instruct, (scaleY+scaleX)/2);
     }
 
     //This drawhelper renders the bubbles
     public void drawHelper(SpriteBatch batch, DialogueHandler dialogHandler, IntroInstruction instruct) {
 
-        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(), scale);
+        dialogHandler.drawChatDialogue(batch, instruct.getDialogNumber(), instruct.getStartTime(), instruct.getEndTime(),  (scaleY+scaleX)/2);
 
     }
 
-    public void setScale(double height){
-        final double ResizeToCorrectSize = 1.778;
-        scale = height*ResizeToCorrectSize/ MAX_WIDTH;
+    public void setScale(double height, double width){
+        scaleX = width/ MAX_WIDTH;
+        scaleY = height/ MAX_HEIGHT;
     }
 
     public void dispose(){

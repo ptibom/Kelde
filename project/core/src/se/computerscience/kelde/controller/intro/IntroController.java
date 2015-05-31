@@ -21,6 +21,7 @@ import java.util.List;
 
 public class IntroController {
 
+    private static final int INTRO_LENGTH = 170000;
     private final IntroView introView;
 
     // This class takes care of input to model and gets callbacks from the view.
@@ -46,13 +47,15 @@ public class IntroController {
                 introView.dispose();
             }
         });
-
-
     }
 
     public void render(float delta) {
 
         introView.render(delta);
+
+        if(introView.getTime()>INTRO_LENGTH){
+            ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
+        }
     }
 
 

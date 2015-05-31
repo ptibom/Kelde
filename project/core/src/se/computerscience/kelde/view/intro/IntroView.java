@@ -33,7 +33,7 @@ public class IntroView {
         introModel.resetTimer();
         this.introModel = introModel;
         introHandler = new IntroHandler(introModel, new AnimationService(introModel));
-        introHandler.setScale(Gdx.graphics.getHeight());
+        introHandler.setScale(Gdx.graphics.getHeight(), Gdx.graphics.getWidth());
         introHandler.startIntroMusic();
         stage.addActor(quitIntro);
 
@@ -41,6 +41,7 @@ public class IntroView {
         viewport = new FitViewport(ORIGINAL_SCREEN_WIDTH, ORIGINAL_SCREEN_HEIGHT, stage.getCamera());
 
         stage.setViewport(viewport);
+
 
     }
 
@@ -74,6 +75,10 @@ public class IntroView {
 
     public void dispose(){
        introHandler.dispose();
+    }
+
+    public double getTime(){
+        return introModel.getMenuTime();
     }
 
 }

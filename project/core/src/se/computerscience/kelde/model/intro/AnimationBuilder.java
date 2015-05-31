@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Daniel on 5/27/2015.
+ * @author: Daniel Olsson
  */
+
 public  final class AnimationBuilder {
 
 

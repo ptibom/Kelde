@@ -1,8 +1,9 @@
 package se.computerscience.kelde.model.intro;
 
 /**
- * Created by Daniel on 5/27/2015.
+ * @author: Daniel Olsson
  */
+
 public class IntroInstructData {
 
     private final int xVelocity;
