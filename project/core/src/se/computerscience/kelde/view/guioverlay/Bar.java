@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Bar {
 
 // This class does the work for the subclasses.
+    private static final int ORIGIN_X = 24, ORIGIN_Y = 12;
+    private static final int FULL_HEALTH = 100;
     protected Texture progressBarBackground;
     protected Texture progressBarForeground;
     protected Texture progressBar;
@@ -32,13 +34,13 @@ public class Bar {
     public void initBar(int health){
         barWidth = 154;
         barHeight =26;
-        barLengthRegion = new TextureRegion(progressBar,24,12,barWidth,barHeight);
+        barLengthRegion = new TextureRegion(progressBar,ORIGIN_X,ORIGIN_Y,barWidth,barHeight);
     }
 
     // returns the new  value of the length of the bar
     public double calculateNewStatusBar(int health){
        final double calcBarWidth = barWidth;
-        return   (calcBarWidth/100) * health;
+        return   (calcBarWidth/FULL_HEALTH) * health;
     }
 
 }

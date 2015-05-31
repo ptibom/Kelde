@@ -1,5 +1,10 @@
 package se.computerscience.kelde.controller.guioverlay;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import se.computerscience.kelde.controller.events.ScreenEvent;
+import se.computerscience.kelde.controller.events.ScreenEventBus;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 import se.computerscience.kelde.view.guioverlay.GuiOverlayView;
 
@@ -16,11 +21,18 @@ public class GuiOverlayController {
 
         this.gameGuiModel = gameGuiModel;
         this.gameGuiView = gameGuiView;
+
     }
 
     public void update(float delta, int health, int mana){
 
         gameGuiModel.update(health, mana);
+
+
+    }
+
+    public void resize(int width, int height){
+        gameGuiView.resize(width, height);
     }
 
     public GuiOverlayView getGuiView(){

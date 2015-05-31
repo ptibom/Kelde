@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by MonoMan on 5/24/2015.
+ * @author: Daniel Olsson
  */
+
+// Converts in house animation data to libgdx animations
 public final class MenuAnimationConverter {
 
     private static  List<Animation> convertedAnimations;
@@ -41,20 +43,19 @@ public final class MenuAnimationConverter {
 
     }
 
-    public static TextureRegion getTextureRegion(Texture spriteSheetTexture,MenuSprite sprite ) {
+    private static TextureRegion getTextureRegion(Texture spriteSheetTexture, MenuSprite sprite) {
 
         return new TextureRegion(spriteSheetTexture, sprite.getSpriteStartXPosition(), sprite.getSpriteStartYPosition(),
                 sprite.getSpriteWidth(), sprite.getSpriteHeight());
 
     }
 
-    public static Animation getAnimation(TextureRegion[] textReg){
+    private static Animation getAnimation(TextureRegion[] textReg){
 
         return new Animation(0.27f, textReg);
     }
 
-    public static TextureRegion[] getTextureRegionSizeThree(){
+    private static TextureRegion[] getTextureRegionSizeThree(){
         return new  TextureRegion[3];
     }
-
 }

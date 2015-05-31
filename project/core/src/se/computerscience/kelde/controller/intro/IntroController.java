@@ -1,6 +1,7 @@
 package se.computerscience.kelde.controller.intro;
 
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import se.computerscience.kelde.controller.events.ScreenEvent;
@@ -43,6 +44,7 @@ public class IntroController {
             public void clicked(InputEvent event, float x, float y) {
                 introView.getHandler().stopIntroMusic();
                 ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
+                introView.dispose();
             }
         });
 
@@ -50,8 +52,16 @@ public class IntroController {
     }
 
     public void render(float delta) {
+
         introView.render(delta);
     }
 
 
+    public void resize(int width, int height){
+        introView.resize(width, height);
+    }
+
+    public void dispose(){
+        introView.dispose();
+    }
 }

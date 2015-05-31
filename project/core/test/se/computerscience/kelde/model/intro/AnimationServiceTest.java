@@ -3,6 +3,7 @@ package se.computerscience.kelde.model.intro;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -28,21 +29,22 @@ public class AnimationServiceTest {
     public void initTest() {
         try {
 
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/spell.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemon.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizardinstr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizard2instr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizarddialogue.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemondialog.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationspellinstr.intro"), charset));
-
-            introModel = new Intro(allData);
+            String basepath = System.getProperty("user.dir");
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/spell.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemon.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizardinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizard2instr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
+            this.introModel = new Intro(allData);
         } catch (IOException e) {
-            final Logger alog = Logger.getLogger("test");
-            alog.isLoggable(Level.FINE);
+            final Logger logg = Logger.getLogger("test");
+            logg.isLoggable(Level.FINE);
         }
+
     }
 
     @Test

@@ -2,6 +2,9 @@ package se.computerscience.kelde.view.guioverlay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
@@ -13,6 +16,12 @@ public class GuiButton extends TextButton  {
     // The original height and X Y origin.
     private final int oldScreenHeight = Gdx.graphics.getHeight();
     private final int originX, originY;
+
+    private GuiButton(){
+        super("not used", createSkin(""));
+        originX = 0;
+        originY = 0;
+    }
 
     GuiButton(String title, Skin skin, int originX, int originY){
 
@@ -38,13 +47,28 @@ public class GuiButton extends TextButton  {
                 originY + deltaHeight && mouseYPos <  originY  +getHeight() +deltaHeight
                 &&Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 
-                return true;
-
-
-
+            return true;
         }
 
         return false;
+    }
+
+        // Creating a new skin for the buttons
+    public static Skin createSkin(String imageFilePath) {
+        final Skin skin = new Skin();
+        final BitmapFont font = new BitmapFont();
+        skin.add("default", font);
+
+        skin.add("background", new Texture(imageFilePath));
+
+       final TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = skin.newDrawable("background");
+        textButtonStyle.over = skin.newDrawable("background", Color.BLUE);
+        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.fontColor = Color.ORANGE;
+        skin.add("default", textButtonStyle);
+
+        return skin;
     }
 
 

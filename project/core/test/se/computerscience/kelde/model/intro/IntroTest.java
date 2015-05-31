@@ -28,21 +28,22 @@ public class IntroTest {
         final Charset charset = Charset.forName("UTF-8");
         final ArrayList<List<String>> allData = new ArrayList<List<String>>();
         try {
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introsprites.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/introtalk.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/spell.txt"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemon.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizardinstr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizard2instr.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationwizarddialogue.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationdemondialog.intro"), charset));
-            allData.add(Files.readAllLines(Paths.get("C:/FixingTheBranch/sixthTry/EIGTHTRY/Kelde/project/core/assets/intro/animationspellinstr.intro"), charset));
+
+            String basepath = System.getProperty("user.dir");
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/spell.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemon.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizardinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizard2instr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
             this.introModel = new Intro(allData);
         } catch (IOException e) {
             final Logger logg = Logger.getLogger("test");
             logg.isLoggable(Level.FINE);
         }
-
 
     }
 

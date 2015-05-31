@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import se.computerscience.kelde.model.intro.AnimationService;
-import se.computerscience.kelde.model.intro.AnimationToolsUtilites;
+import se.computerscience.kelde.model.intro.AnimationTools;
 import se.computerscience.kelde.model.intro.Intro;
 import se.computerscience.kelde.model.intro.IntroInstruction;
 
@@ -25,9 +25,7 @@ public class AnimationHandler {
     private int[] animPathInterpolatedX;
     private int[] animPathInterpolatedY;
 
-
     // An animationhandler suited for each specificn sprite with their own coordinates and height
-
     public AnimationHandler(Intro introModel, Map<String, Animation> animations, int x, int y, int height, int width, double introDelay) {
         this.width = width;
         this.height = height;
@@ -42,8 +40,7 @@ public class AnimationHandler {
     public void drawAnimation(SpriteBatch batch, AnimationService animationloader, IntroInstruction instruct, double scale) {
 
         //Drawing an interpolated animation using X and Y coordinates from arrays,
-
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY,  instruct.getEndTime() + INTRO_DELAY)) {
+        if (AnimationTools.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
 
             final double timePassed = introModel.getMenuTime() / 1000 - instruct.getStartCount() - INTRO_DELAY;
 
@@ -61,15 +58,12 @@ public class AnimationHandler {
             batch.draw(currentFrame, (int)(interPolX*scale), (int)(interPolY*scale), (int)(100*scale), (int)(100*scale));
 
         }
-
-
     }
 
     //Drawing a moving character
     public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta, double scale) {
 
-
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
+        if (AnimationTools.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
 
             calculateNewDrawValues( instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
                     instruct.getInstructData().getWidthChange(), instruct.getInstructData().getHeightChange(), delta);
@@ -83,20 +77,15 @@ public class AnimationHandler {
             final  int xIn =  ORIGIN_X + (int) offsetX;
             final int yIn = ORIGIN_Y + (int) offsetY;
 
-
             batch.draw(currentFrame,(int)(xIn*scale),(int)(yIn*scale), (int)(widthIn*scale),(int)(heightIn*scale) );
-
         }
-
-
     }
-
 
     // Drawing a still image
     public void drawAnimation(SpriteBatch batch, IntroInstruction instruct, float delta, float specialKeyframe, double scale) {
 
         // This function will be used if you want to lock the animation in to a certain keyframe
-        if (AnimationToolsUtilites.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY,  instruct.getEndTime() + INTRO_DELAY)) {
+        if (AnimationTools.timeRange(introModel.getMenuTime(), instruct.getStartTime() + INTRO_DELAY, instruct.getEndTime() + INTRO_DELAY)) {
 
             calculateNewDrawValues(instruct.getInstructData().getXvel(), instruct.getInstructData().getYvel(),
                     instruct.getInstructData().getWidthChange(),  instruct.getInstructData().getHeightChange(), delta);
@@ -109,39 +98,28 @@ public class AnimationHandler {
             final int heightIn = height + (int) heightChangeY;
 
             batch.draw(currentFrame,(int)(xIn*scale) ,(int)(yIn*scale),(int)(widthIn*scale) ,(int)(heightIn*scale) );
-
         }
-
-
     }
-
 
     //calculating new x and y values as well as height and weight
     public void calculateNewDrawValues(int xvelocity, int yvelocity, int widthChange, int heightChange, float delta) {
-
         this.heightChangeX += heightChange * delta;
         this.heightChangeY += widthChange * delta;
         this.offsetX += xvelocity * delta;
         this.offsetY += yvelocity * delta;
-
     }
 
     // To flip or not to flip the sprite
     public void spriteFlip(TextureRegion currentFrame, boolean drawFlipped) {
-
         if (drawFlipped) {
             if (!currentFrame.isFlipX()) {
                 currentFrame.flip(true, false);
             }
-
         } else {
 
             if (currentFrame.isFlipX()) {
                 currentFrame.flip(true, false);
             }
         }
-
     }
-
-
 }
