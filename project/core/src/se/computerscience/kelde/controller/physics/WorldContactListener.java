@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.controller.events.*;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
 import se.computerscience.kelde.model.entities.INPCEntity;
-import se.computerscience.kelde.model.entities.IPlayerEntity;
 import se.computerscience.kelde.model.worldobjects.KeldeDmgArea;
 
 import java.util.concurrent.ConcurrentLinkedQueue;

@@ -34,8 +34,8 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
     }
 
     public void update(float delta) {
-        float x = entityPlayerKelde.getPositionX() + 32;
-        float y = entityPlayerKelde.getPositionY() + 8;
+        final float x = entityPlayerKelde.getPositionX() + 32;
+        final float y = entityPlayerKelde.getPositionY() + 8;
         float direction = entityPlayerKelde.getDirection();
         // north
         if ( direction == Direction.NORTH){
