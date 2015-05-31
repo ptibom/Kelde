@@ -19,6 +19,8 @@ import se.computerscience.kelde.model.worldobjects.KeldeDmgArea;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 
+// Suppress PMD warning
+@SuppressWarnings("PMD.CyclomaticComplexity")
 public class WorldContactListener implements ContactListener, ICollisionEventHandler {
     // Use cache to wait for concurrency locks
     private final ConcurrentLinkedQueue<CollisionEvent> eventCache = new ConcurrentLinkedQueue<>();
@@ -55,7 +57,7 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
     }
 
     // Suppress PMD warning because the IF-statement would get really long if combined.
-    @SuppressWarnings("PMD.CollapsibleIfStatements")
+    @SuppressWarnings("PMD.AvoidDeeplyNestedIfStmts")
     public void computeCollision(Contact contact, CollisionEvent.Tag state) {
         final Object objectA = contact.getFixtureA().getUserData();
         final Object objectB = contact.getFixtureB().getUserData();
@@ -85,6 +87,7 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
 
 
         // Check whether player is involved in the collision
+
         if (objectA instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectB));
             if (objectB instanceof INPCEntity) {
@@ -101,6 +104,7 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
             eventCache.add(new CollisionEvent(state, objectA));
             if (objectA instanceof INPCEntity) {
                 final INPCEntity npc = (INPCEntity) objectB;
+
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }

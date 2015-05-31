@@ -12,13 +12,12 @@ import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.events.IModifyPlayerEventHandler;
 import se.computerscience.kelde.controller.events.ModifyPlayerEvent;
 import se.computerscience.kelde.controller.events.ModifyPlayerEventBus;
-import se.computerscience.kelde.controller.worldobjects.BombAreaController;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.Point;
 import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
-import se.computerscience.kelde.model.worldobjects.BombArea;
-
+// Suppress PMD warning
+@SuppressWarnings("PMD.CyclomaticComplexity")
 public class EntityPlayerKeldeController implements IWorldObjectsController, IModifyPlayerEventHandler {
     private final EntityPlayerKelde entityPlayerKelde;
     private final Vector2 velocityControl; // Save obj locally to prevent creation of objects. (Optimizing)

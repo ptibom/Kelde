@@ -20,12 +20,11 @@ public class EntityPlayerKelde extends EntityPlayer {
     private boolean isShooting;
     private final IPhysicalBody entityBody;
     private final KeldeDmgArea keldeDmgArea;
-    IB2DWorld ib2DWorld;
+
 
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
-        this.ib2DWorld = ib2DWorld;
         keldeDmgArea = new KeldeDmgArea(ib2DWorld,startPosX,startPosY);
     }
 

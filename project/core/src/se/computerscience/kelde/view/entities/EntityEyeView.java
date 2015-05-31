@@ -1,7 +1,6 @@
 package se.computerscience.kelde.view.entities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -20,7 +19,6 @@ public class EntityEyeView implements IEntityView {
     //Variables
     private final EntityEye entityEye;
 
-    private Batch batch;
     private Animation animation, animationN, animationE, animationS, animationW;
     private float elapsedTime, delta;
 
@@ -61,10 +59,6 @@ public class EntityEyeView implements IEntityView {
 
     public void update(float delta) {
         this.delta = delta;
-    }
-
-    public void resize(OrthographicCamera camera) {
-        batch.setProjectionMatrix(camera.combined);
     }
 
 }

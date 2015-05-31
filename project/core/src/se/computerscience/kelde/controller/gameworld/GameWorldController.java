@@ -47,7 +47,7 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
     private final GuiOverlayController guiOverlayController;
     private final InventoryController inventoryController;
 
-    private Logger logger;
+    private final static Logger LOGGER = Logger.getLogger("");
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -101,8 +101,8 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
                 final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
-            } catch (Exception e) {
-                logger.log(Level.WARNING, e.toString());
+            } catch (ReflectiveOperationException e){
+                LOGGER.log(Level.WARNING, e.toString());
             }
         }
 
@@ -125,15 +125,12 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
                 gameWorldView.addNPCEntity(viewObject);
                 npcControllers.add(controllerObject);
             } catch (Exception e) {
-                logger.log(Level.WARNING, e.toString());
+                LOGGER.log(Level.WARNING, e.toString());
             }
         }
     }
 
     public void render(float delta) {
-        float playerPostionX = entityPlayerKeldeController.getPosition().x;
-        float playerPostionY = entityPlayerKeldeController.getPosition().y;
-
         updateItemControllers();
         entityPlayerKeldeController.update(delta);
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
@@ -144,6 +141,8 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
         }
 
         for (final IMonsterController monster: npcControllers){
+            final float playerPostionX = entityPlayerKeldeController.getPosition().x;
+            final float playerPostionY = entityPlayerKeldeController.getPosition().y;
             monster.update(delta,playerPostionX,playerPostionY);
         }
 

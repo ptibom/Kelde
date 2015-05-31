@@ -2,6 +2,7 @@ package se.computerscience.kelde.model.inventory;
 
 import junit.framework.TestCase;
 import org.junit.Before;
+import org.junit.Test;
 import se.computerscience.kelde.model.encapsulation.libgdx.ISprite;
 import se.computerscience.kelde.model.items.IItem;
 
@@ -21,7 +22,7 @@ public class InventoryTest extends TestCase {
         inventory = new Inventory();
 
     }
-
+    @Test
     public void testUpdate() throws Exception {
 
 
@@ -30,31 +31,31 @@ public class InventoryTest extends TestCase {
         assertEquals(1, inventory.getInventoryItems().size());
 
     }
-
+    @Test
     public void testGetInventoryItems() throws Exception {
 
         assertEquals(0, inventory.getInventoryItems().size());
 
     }
-
+    @Test
     public void testGetInventoryGuiImage() throws Exception {
 
         assertEquals(inventory.getInventoryGuiImage(), "inventory/inventorygui.png");
     }
-
+    @Test
     public void testGetItemPositions() throws Exception {
         inventory.update(testItem);
         int[] testValue = inventory.getItemPositions().get(0);
         assertEquals(testValue[0] + testValue[1], 1070);
 
     }
-
+    @Test
     public void testGetInventoryPositionX() throws Exception {
         inventory.update(testItem);
         assertEquals(inventory.getInventoryPositionX(), 690);
 
     }
-
+    @Test
     public void testGetInventoryPositionY() throws Exception {
         inventory.update(testItem);
         assertEquals(inventory.getInventoryPositionY(), 170);

@@ -5,14 +5,19 @@
  */
 package se.computerscience.kelde.model.entities;
 
-public class NPCAI {
-    public static float speed = 0.5f;
+public final class NPCAI {
+    public static final float SPEED = 0.5f;
+
+    private NPCAI(){
+
+    }
+
     public static float getVelocity(float d){
-        if (d > speed) {
-            return speed;
+        if (d > SPEED) {
+            return SPEED;
         }
-        else if (d < -speed) {
-            return -speed;
+        else if (d < -SPEED) {
+            return -SPEED;
         }
         return 0;
     }
@@ -24,8 +29,8 @@ public class NPCAI {
         return playerY + 8 - monsterY;
     }
     public static float distance(float playerX, float playerY, float monsterX, float monsterY){
-        float dx = deltaX(playerX,monsterX);
-        float dy = deltaY(playerY,monsterY);
+        final float dx = deltaX(playerX,monsterX);
+        final float dy = deltaY(playerY,monsterY);
         return (float) Math.sqrt(dx*dx+dy*dy);
     }
 }
