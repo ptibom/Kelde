@@ -17,6 +17,7 @@ public class IntroView {
     private final IntroHandler introHandler;
     private final Stage stage;
     private final IntroButton test;
+    private final SpriteBatch batch;
 
     public IntroView(Intro introModel) {
         stage = new Stage();
@@ -27,6 +28,7 @@ public class IntroView {
         introHandler = new IntroHandler(introModel, new AnimationService(introModel));
         introHandler.startIntroMusic();
         stage.addActor(test);
+        batch = new SpriteBatch();
     }
     // Need to resize, incase user resizes screen
     public void resize(int width, int height) {
@@ -36,7 +38,7 @@ public class IntroView {
     public void render(float delta) {
         stage.draw();
         stage.act();
-        final SpriteBatch batch = new SpriteBatch();
+
 
         //We need to update the state time to get different animation frames.
         introModel.updateStateTime(delta);
@@ -44,11 +46,11 @@ public class IntroView {
         //We need to update the timer, because all the instructions are dependent on them.
         introModel.updateTimer();
 
-
+        batch.begin();
         //Here we tell the handler to draw the intro, instructions are included in model
         introHandler.drawIntro(batch, delta);
+        batch.end();
 
-        //Check for touch, if so we change screen
     }
 
     public TextButton getButton(){
@@ -57,5 +59,10 @@ public class IntroView {
 
     public IntroHandler getHandler(){
         return introHandler;
+    }
+
+
+    public void dispose(){
+        batch.dispose();
     }
 }

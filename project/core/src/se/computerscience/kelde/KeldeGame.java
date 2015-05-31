@@ -15,6 +15,7 @@ import se.computerscience.kelde.screens.MenuScreen;
 
 public class KeldeGame extends Game implements IScreenEventHandler {
 
+
 	/** Called when application is created */
 	@Override
 	public void create () {

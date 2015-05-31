@@ -121,5 +121,9 @@ public class StartMenuView {
         backgroundMusic.stop();
     }
 
+    public void dispose(){
+        batch.dispose();
+    }
+
 
 }

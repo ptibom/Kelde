@@ -62,29 +62,15 @@ public class GuiOverlayView {
         //Setting the position of the textButton
         textButtonName.setPosition(BUTTON_X, BUTTON_TEXT);
 
-
-
         guiTable.add(mainMenuButton);
         guiTable.row();
-        guiTable.add(exitButton);
+       // guiTable.add(exitButton);
         guiTable.setPosition(700, 30);
         mainMenuButton.setPosition(700, 50);
         exitButton.setPosition(700, 120);
         guiTable.setHeight(116);
         guiTable.setWidth(150);
         guiStage.addActor(guiTable);
-
-        System.out.println(mainMenuButton.getX());
-        System.out.println(mainMenuButton.getY());
-        System.out.println(mainMenuButton.getHeight());
-        System.out.println(mainMenuButton.getWidth());
-        System.out.println(exitButton.getX());
-        System.out.println(exitButton.getX());
-        System.out.println(exitButton.getHeight());
-        System.out.println(exitButton.getWidth());
-
-
-
 
     }
 
@@ -100,7 +86,7 @@ public class GuiOverlayView {
 
         // Things that will happen when you press
         mainMenuButton.draw(batch, 1);
-        exitButton.draw(batch, 1);
+     //   exitButton.draw(batch, 1);
         batch.end();
 
         guiStage.getBatch().setProjectionMatrix(sharedViewport.getCamera().combined);
