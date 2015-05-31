@@ -30,6 +30,7 @@ import se.computerscience.kelde.view.entities.IEntityView;
 import se.computerscience.kelde.view.gameworld.GameWorldView;
 import se.computerscience.kelde.view.worldobjects.IWorldObjectView;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,7 +48,7 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
     private final GuiOverlayController guiOverlayController;
     private final InventoryController inventoryController;
 
-    private Logger logger;
+    private final static Logger logger = Logger.getLogger("");
 
     public GameWorldController() {
         gameWorld = new GameWorld();
@@ -101,7 +102,7 @@ public class GameWorldController implements IGameWorldController, IItemEventHand
                 final IWorldObjectsController controllerObject = (IWorldObjectsController) controllerCls.getConstructor(modelCls, viewCls).newInstance(modelObject, viewObject);
                 gameWorldView.addWorldObject(viewObject);
                 worldObjectsControllers.add(controllerObject);
-            } catch (Exception e) {
+            } catch (ReflectiveOperationException e){//ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 logger.log(Level.WARNING, e.toString());
             }
         }
