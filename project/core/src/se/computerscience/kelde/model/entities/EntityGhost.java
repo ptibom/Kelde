@@ -111,6 +111,7 @@ public class EntityGhost extends EntityEnemy {
     }
 
     public void setDamage(int damage) {
+        System.out.println("healt: " +healt);
         healt -= damage;
         if (healt <= 0) {
             alive = false;

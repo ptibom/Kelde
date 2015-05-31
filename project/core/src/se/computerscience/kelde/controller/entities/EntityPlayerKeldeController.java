@@ -12,9 +12,12 @@ import com.badlogic.gdx.math.Vector2;
 import se.computerscience.kelde.controller.events.IModifyPlayerEventHandler;
 import se.computerscience.kelde.controller.events.ModifyPlayerEvent;
 import se.computerscience.kelde.controller.events.ModifyPlayerEventBus;
+import se.computerscience.kelde.controller.worldobjects.BombAreaController;
 import se.computerscience.kelde.controller.worldobjects.IWorldObjectsController;
 import se.computerscience.kelde.model.Point;
+import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.entities.EntityPlayerKelde;
+import se.computerscience.kelde.model.worldobjects.BombArea;
 
 public class EntityPlayerKeldeController implements IWorldObjectsController, IModifyPlayerEventHandler{
     private final EntityPlayerKelde entityPlayerKelde;
@@ -32,6 +35,24 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
     }
 
     public void update(float delta) {
+        float x = entityPlayerKelde.getPositionX() + 32;
+        float y = entityPlayerKelde.getPositionY() + 8;
+        float direction = entityPlayerKelde.getDirection();
+        // north
+        if ( direction == Direction.NORTH){
+            entityPlayerKelde.getKeldeDmgArea().updatePos(x,y+16);
+        }else if (direction == Direction.SOUTH){
+            entityPlayerKelde.getKeldeDmgArea().updatePos(x, y-16);
+        }else if (direction == Direction.WEST){
+            entityPlayerKelde.getKeldeDmgArea().updatePos(x-32, y);
+        }else if (direction == Direction.EAST){
+            entityPlayerKelde.getKeldeDmgArea().updatePos(x+32, y);
+        }
+        if (isSlashing){
+            entityPlayerKelde.getKeldeDmgArea().setActive(true);
+        }else {
+            entityPlayerKelde.getKeldeDmgArea().setActive(false);
+        }
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
         entityPlayerKelde.setIsSlashing(isSlashing);
         entityPlayerKelde.setIsShooting(isShooting);

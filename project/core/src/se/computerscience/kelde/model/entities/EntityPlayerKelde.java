@@ -10,6 +10,8 @@ import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
+import se.computerscience.kelde.model.worldobjects.BombArea;
+import se.computerscience.kelde.model.worldobjects.KeldeDmgArea;
 
 public class EntityPlayerKelde extends EntityPlayer {
     private static final float BODY_WIDTH = 16, BODY_HEIGHT = 8;
@@ -17,11 +19,13 @@ public class EntityPlayerKelde extends EntityPlayer {
     private boolean slashing;
     private boolean isShooting;
     private final IPhysicalBody entityBody;
+    private final KeldeDmgArea keldeDmgArea;
     IB2DWorld ib2DWorld;
     public EntityPlayerKelde(IB2DWorld ib2DWorld, float startPosX, float startPosY) {
         super();
         entityBody = new PhysicalBody(startPosX, startPosY, BODY_WIDTH, BODY_HEIGHT, ib2DWorld, this);
         this.ib2DWorld = ib2DWorld;
+        keldeDmgArea = new KeldeDmgArea(ib2DWorld,startPosX,startPosY);
     }
 
     public void takeDamage(int damage) {
@@ -82,5 +86,9 @@ public class EntityPlayerKelde extends EntityPlayer {
 
     public void setPosition(float x ,float y){
             entityBody.setPosition(x,y);
+    }
+
+    public KeldeDmgArea getKeldeDmgArea() {
+        return keldeDmgArea;
     }
 }

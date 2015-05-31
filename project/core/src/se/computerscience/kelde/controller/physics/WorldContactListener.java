@@ -13,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import se.computerscience.kelde.model.entities.INPCEntity;
+import se.computerscience.kelde.model.entities.IPlayerEntity;
+import se.computerscience.kelde.model.worldobjects.KeldeDmgArea;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -61,13 +63,38 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
             return;
         }
 
+        if (objectA instanceof KeldeDmgArea){
+            if (objectB instanceof INPCEntity) {
+                INPCEntity npc = (INPCEntity) objectB;
+                KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectA;
+                if (keldeDmgArea.isActive() && !npc.isFriendly()){
+                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc , 10));
+                }
+            }
+        }
+
+        if (objectB instanceof KeldeDmgArea){
+            if (objectA instanceof INPCEntity) {
+                INPCEntity npc = (INPCEntity) objectA;
+                KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectB;
+                if (keldeDmgArea.isActive() && !npc.isFriendly()){
+                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc , 10));
+                }
+            }
+        }
+
+
         // Check whether player is involved in the collision
         if (objectA instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectB));
             if (objectB instanceof INPCEntity) {
                 INPCEntity npc = (INPCEntity) objectB;
+                EntityPlayerKelde player = (EntityPlayerKelde) objectA;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
+                }
+                if (player.isSlashing()){
+                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc ,player.getStrength()));
                 }
             }
         }
