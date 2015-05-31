@@ -58,12 +58,27 @@ public class EntityBat extends EntityEnemy {
         }
     }
 
-    public void update(float delta, float x, float y) {
+    public void chargePlayer(float delta, float playerx, float playery) {
         elapsedTime += delta;
-        if (elapsedTime > 2) {
-            setRandomSpeed();
-            elapsedTime = 0;
+        final float monsterX = entityBody.getPositionX(), monsterY = entityBody.getPositionY();
+        float dx = playerx - monsterX, dy = playery - monsterY;
+        float distance = (float) Math.sqrt(dx*dx+dy*dy);
+
+        float vx = NPCAI.getVelocity(dx);
+        float vy = NPCAI.getVelocity(dy);
+
+        if (distance >= 0 && distance <= 200) {
+            entityBody.setVelocity(vx, vy);
+        }else {
+            if (elapsedTime > 2) {
+                setRandomSpeed();
+                elapsedTime = 0;
+            }
         }
+    }
+
+    public void update(float delta, float playerx, float playery) {
+        chargePlayer(delta, playerx, playery);
     }
 
     private void setRandomSpeed() {

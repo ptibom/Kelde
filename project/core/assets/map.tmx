@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="1561">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="1563">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="96" height="192"/>
   <terraintypes>
@@ -73,7 +73,7 @@
    eJxjYBgFtADaQKyDA+uSYZYWEJsAsT4Qm0FpGNuARPP0oHrVgNgICatTYJ4JFn24xIkxD5s7cIlTYp4pmeaB/KXJgBqXlJhnBtULMhOWTrTINM+QARGX+gyoaYWc8IOZaYQDG5Nh3igYHgAAXGsOZw==
   </data>
  </layer>
- <objectgroup name="Collision" visible="0">
+ <objectgroup name="Collision">
   <object id="31" name="test" type="object" x="217" y="137">
    <polygon points="0,0 211,2 219,20 217,294 2,295 -44,248 -45,50"/>
   </object>
@@ -108,5 +108,7 @@
  </objectgroup>
  <objectgroup name="Npc">
   <object id="1554" name="EntityGhost" type="EntityGhost" x="280" y="528" width="56" height="8"/>
+  <object id="1561" name="EntityEye" type="EntityEye" x="528" y="48" width="56" height="8"/>
+  <object id="1562" name="EntityBat" type="EntityBat" x="328" y="48" width="56" height="8"/>
  </objectgroup>
 </map>

@@ -53,34 +53,23 @@ public class EntityGhost extends EntityEnemy {
     * @param playery Player y axis in the map
     * @param dx the distance between monster and player in x a-xsis
     * @param dy the distance between monster and player in y a-xsis
-    * @param xdir and ydir, checks with direction monster have to face
-    *        to go to the player.
     * @param distance the hypotenuse between the player and monster
-    * @param speed monsters moving speed when in range of player
+    * @param vx monsters velocity, depending on dx
+    * @param vy monsters velocity, depending on dy
     * */
     public void chargePlayer(float delta, float playerx, float playery) {
         elapsedTime += delta;
-        final float monsterx = entityBody.getPositionX(), monstery = entityBody.getPositionY();
-        final float dx = monsterx - playerx, dy = monstery - playery;
-        final float distance = (float) Math.sqrt(dx * dx + dy * dy);
+        final float monsterX = entityBody.getPositionX(), monsterY = entityBody.getPositionY();
+        float dx = playerx - monsterX, dy = playery - monsterY;
+        float distance = (float) Math.sqrt(dx*dx+dy*dy);
+
+        float vx = NPCAI.getVelocity(dx);
+        float vy = NPCAI.getVelocity(dy);
 
         if (distance >= 0 && distance <= 200) {
-            final boolean xdir = playerx - monsterx > 0, ydir = playery - monstery > 0;
-            final float speed = .7f;
-            if (elapsedTime > .5) {
-                if (xdir && ydir) {
-                    entityBody.setVelocity(speed, speed);
-                } else if (!xdir && !ydir) {
-                    entityBody.setVelocity(-speed, -speed);
-                } else if (xdir && !ydir) {
-                    entityBody.setVelocity(speed, -speed);
-                } else if (!xdir && ydir) {
-                    entityBody.setVelocity(-speed, speed);
-                }
-                elapsedTime = 0;
-            }
-        } else {
-            if (elapsedTime > 3) {
+            entityBody.setVelocity(vx, vy);
+        }else {
+            if (elapsedTime > 2) {
                 setRandomSpeed();
                 elapsedTime = 0;
             }

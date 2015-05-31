@@ -22,9 +22,9 @@ public class EntityEyeController implements IMonsterController{
     }
 
     @Override
-    public void update(float delta,float x,float y) {
+    public void update(float delta,float playerX,float playerY) {
         entityEyeView.update(delta);
-        entityEye.update(delta);
+        entityEye.update(delta,playerX, playerY);
     }
 
     public void draw(SpriteBatch batch) {
