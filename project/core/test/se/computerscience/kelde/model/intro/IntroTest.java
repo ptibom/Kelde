@@ -42,11 +42,11 @@ public class IntroTest {
 
             introModel = new Intro(allData);
 
+
         } catch (IOException e) {
             final Logger logg = Logger.getLogger("test");
             logg.isLoggable(Level.FINE);
         }
-
 
     }
 

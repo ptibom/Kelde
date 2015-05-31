@@ -41,11 +41,14 @@ public class AnimationServiceTest {
             allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
 
 
+
             introModel = new Intro(allData);
+
         } catch (IOException e) {
-            final Logger alog = Logger.getLogger("test");
-            alog.isLoggable(Level.FINE);
+            final Logger logg = Logger.getLogger("test");
+            logg.isLoggable(Level.FINE);
         }
+
     }
 
     @Test

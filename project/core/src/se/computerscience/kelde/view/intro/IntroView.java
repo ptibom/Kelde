@@ -4,6 +4,7 @@ package se.computerscience.kelde.view.intro;
  */
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -54,11 +55,10 @@ public class IntroView {
         //We need to update the timer, because all the instructions are dependent on them.
         introModel.updateTimer();
 
-
         //Here we tell the handler to draw the intro, instructions are included in model
         introHandler.drawIntro(delta);
 
-        //Check for touch, if so we change screen
+
     }
 
     public TextButton getButton(){
@@ -67,5 +67,10 @@ public class IntroView {
 
     public IntroHandler getHandler(){
         return introHandler;
+    }
+
+
+    public void dispose(){
+       introHandler.dispose();
     }
 }
