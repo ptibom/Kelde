@@ -24,27 +24,13 @@ public class TextDialogue {
 
     }
 
-
     public TextureRegion updateTextureRegion() {
-
-
-        if (percentToShow + OFFSET_FROM_SCREEN == SCREEN_WIDTH) {
-            percentToShow = SCREEN_WIDTH;
-        } else {
             percentToShow += SCREEN_WIDTH * TEXT_MOVEMENT_SPEED;
-        }
-
-
-
 
         return new TextureRegion(dialogueTexture, (int) ((OFFSET_FROM_SCREEN + percentToShow)*SCALE), (int)(SCREEN_HEIGHT*SCALE));
-
     }
 
     public double getTimeToLast(){
         return timeLengthToShow;
     }
-
-
-
 }

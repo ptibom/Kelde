@@ -25,19 +25,18 @@ public class StartMenuController {
             public void clicked(InputEvent event, float x, float y) {
                 startMenuView.stopMusic();
                 ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.INTRO));
+                startMenuView.dispose();
             }
         });
         startMenuView.getLoadButton().addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 startMenuView.stopMusic();
                 ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
+                startMenuView.dispose();
 
             }
         });
-
-        startMenuView.addActors();
     }
-
 
     public void render(float delta) {
 

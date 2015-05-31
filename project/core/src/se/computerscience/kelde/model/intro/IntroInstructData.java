@@ -18,20 +18,19 @@ public class IntroInstructData {
         this.widthChange = widthChange;
     }
 
-
     public int getXvel(){
         return xVelocity;
     }
 
-    public int getYvel(){
+    public int getYvel() {
         return yVelocity;
     }
 
     public int getHeightChange(){
-        return heightChange;
+       return heightChange;
     }
 
-    public int getWidthChange(){
+    public int getWidthChange() {
         return widthChange;
     }
 }

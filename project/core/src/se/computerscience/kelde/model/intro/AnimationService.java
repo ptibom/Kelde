@@ -8,6 +8,8 @@ import java.util.*;
 
 public class AnimationService {
 
+    // Stores all animations from all spreadsheets in the program
+
     // The finished collection of animations
     private final Map<String, IntroAnimation> mappedWizardTalkAnimation;
     private final Map<String, IntroAnimation> mappedDemonTalkAnimation;
@@ -47,7 +49,6 @@ public class AnimationService {
             animPathInterpolatedY[i + 2] = (int) (animPathCordsY[j] + deltaY * 0.50);
             animPathInterpolatedY[i + 3] = (int) (animPathCordsY[j] + deltaY * 0.75);
         }
-
         //////////////////////////////////////////////////////////////
         //Loading animations for wizard from textfile to animation////
         //////////////////////////////////////////////////////////////
@@ -55,19 +56,18 @@ public class AnimationService {
         final int[] wizardAnimationLengthData = ConstantsAnimation.getWizardLength();
         final int[] wizardSpriteCoordinates = introModel.getWizardTalkCoordinates();
 
-
+        // To send different kind of data to the animation creation section, we need to put them into
+        // object arrays
         final Object[] animationDataCollectionWiz = new Object[]{wizardAnimationLengthData, wizardSpriteCoordinates,
                 keyForAnimations};
         final Object[] animationMapsWiz = new Object[]{mappedWizardTalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionWiz, animationMapsWiz);
-
         ////////////////////////////////////////////
         //Loading animatinos for demon and wizard2//
         ////////////////////////////////////////////
         final int[] demonAndSecondWizardAnimationLengthData = ConstantsAnimation.getDemonLength();
         final int[] demonSpriteCoordinates = introModel.getIntroDemonCoordinates();
-
 
         final String[] keyForAnimations2 = new String[]{"demonspellhit", "demonlaughleft", "demontalkleft", "demonsideleft",
                 "demonlaughright", "demontalkright", "demonbreathe", "demonwalk", "demonpoint", "wizardshoot",
@@ -78,13 +78,11 @@ public class AnimationService {
         final  Object[] animationMapsDem = new Object[]{mappedDemonTalkAnimation, mappedWizard2TalkAnimation};
 
         readAndLoadAnimation(animationDataCollectionDem, animationMapsDem);
-
         /////////////////////////////////
         // Loading animations for spell//
         /////////////////////////////////
         final int[] spellAnimationLengthData = ConstantsAnimation.getSpellLength();
         final   int[] spellSpriteCoordinates = introModel.getSpellIntroCoordinaters();
-
 
         final  String[] keyForAnimations3 = new String[]{"start", "explosion", "loop"};
         final Object[] animationDataCollectionSpell = new Object[]{spellAnimationLengthData, spellSpriteCoordinates,
@@ -92,29 +90,18 @@ public class AnimationService {
         final Object[] animationMapsSpell = new Object[]{mappedSpellAnimation};
 
         readAndLoadAnimation(animationDataCollectionSpell, animationMapsSpell);
-
-
     }
 
     // Gets information about length of animation, the coordinates of the pictures so it can load Texture regions
     // into an animation, then collect these animations into a map for ease of finding them.
     private  List<IntroAnimation> readAndLoadAnimation(Object[] animationDataCollection,
                                       Object[] animationMapArray) {
-
-        //Converting Object to it's specific type. We need to know the length of each animation
-
-
-
         // The width and height of the sprite is stored in the beginning
         final List<IntroAnimation> tempAnimationList = AnimationBuilder.createListofAnimations(
                 (int[])animationDataCollection[0],   (int[])animationDataCollection[1] );
 
-        //Creates an temporary collection of sprites which is one animation
-
-
         //If we have spritesheet with two different animations, this is a special case.
         if (animationMapArray.length > 1) {
-
 
             for (int i = 0; i < ((int[]) animationDataCollection[0]).length; i++) {
                 if (i > LENGTH_OF_FIRST_PART) {
@@ -129,47 +116,31 @@ public class AnimationService {
 
         //Else we just load the animation in as usual
         else {
-
             for (int i = 0; i < tempAnimationList.size(); i++) {
-
                 ((Map<String, IntroAnimation>) animationMapArray[0]).put(((String[]) animationDataCollection[2])[i], tempAnimationList.get(i));
-
             }
         }
-
         return tempAnimationList;
     }
-
-
     //Getters for the generated animations
     public Map<String, IntroAnimation> getWizardAnimations() {
-
         return mappedWizardTalkAnimation;
     }
 
     public Map<String, IntroAnimation> getWizard2Animations() {
-
         return mappedWizard2TalkAnimation;
-
     }
 
     public Map<String, IntroAnimation> getDemonAnimations() {
-
         return mappedDemonTalkAnimation;
     }
 
     public Map<String, IntroAnimation> getSpellAnimations() {
-
         return mappedSpellAnimation;
     }
-
     public int[] getInterpolDataX() {
-
         return Arrays.copyOf(animPathInterpolatedX, animPathInterpolatedX.length);
-
-
     }
-
     public int[] getInterpolDataY() {
         return Arrays.copyOf(animPathInterpolatedY, animPathInterpolatedY.length);
     }

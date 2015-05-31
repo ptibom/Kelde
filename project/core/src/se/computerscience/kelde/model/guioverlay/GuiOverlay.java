@@ -44,7 +44,6 @@ public class GuiOverlay {
         return currentPlayerMana;
     }
     public int getCurrentHealth(){
-
         return currentPlayerHealth;
     }
 

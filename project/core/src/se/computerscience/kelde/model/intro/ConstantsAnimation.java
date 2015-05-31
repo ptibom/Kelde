@@ -8,11 +8,14 @@ import java.util.Arrays;
 
 public final  class ConstantsAnimation {
 
-
     //The length of all animations, used to read in right amount of frame into the animation
     private static final int[] INTRO_WIZARD_ANIMATION_LENGTH_DATA = new int[]{3, 3, 2};
     private static final int[] INTRO_SPELL_ANIMATION_LENGTH_DATA = new int[]{3, 5, 4};
     private static final int[] INTRO_DEMON_ANIMATION_LENGTH_DATA = new int[]{4, 3, 2, 1, 3, 2, 4, 3, 3, 3, 1, 1, 1, 3, 3, 4};
+
+    private static final int LENGTH_OF_TEXT_STAYING = 47;
+    private static final int ORIGIN_OF_TEXT = 8;
+    private static final int TEXT_MOVEMENT_SPEED = 4;
 
 
     // animationPath for spell animation.
@@ -49,6 +52,18 @@ public final  class ConstantsAnimation {
     public static int[] getAnimYCords() {
 
         return Arrays.copyOf(ANIM_PATH_CORDS_Y, ANIM_PATH_CORDS_Y.length);
+    }
+
+    public static int getTextMovementSpeed(){
+        return TEXT_MOVEMENT_SPEED;
+    }
+
+    public static int getOriginText(){
+        return ORIGIN_OF_TEXT;
+    }
+
+    public static int getLengthOfTextStaying(){
+        return LENGTH_OF_TEXT_STAYING;
     }
 
 

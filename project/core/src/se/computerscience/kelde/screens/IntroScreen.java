@@ -3,6 +3,7 @@ package se.computerscience.kelde.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import se.computerscience.kelde.controller.intro.IntroController;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void show() {
+
         try {
             introController = new IntroController();
         } catch (IOException e) {
@@ -35,13 +37,14 @@ public class IntroScreen implements Screen {
         final  GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
         introController.render(delta);
 
     }
 
     @Override
     public void resize(int width, int height) {
-        // No need for this
+      introController.resize(width, height);
     }
 
     @Override
@@ -62,7 +65,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void dispose() {
-        // No need for this
+       introController.dispose();
     }
 
 
