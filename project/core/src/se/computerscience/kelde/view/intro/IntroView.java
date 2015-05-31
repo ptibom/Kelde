@@ -37,10 +37,12 @@ public class IntroView {
         final int viewportX = (int)(width - size.x) / 2;
         final int viewportY = (int)(height - size.y) / 2;
         final int viewportWidth = (int)size.x;
-        final  int viewportHeight = (int)size.y;
+        final int viewportHeight = (int)size.y;
         Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
         stage.getCamera().viewportHeight = height;
         stage.getCamera().viewportWidth = width;
+        stage.getCamera().update();
+        test.setSize(width, height);
     }
 
     public void render(float delta) {
@@ -54,11 +56,10 @@ public class IntroView {
         //We need to update the timer, because all the instructions are dependent on them.
         introModel.updateTimer();
 
-
         //Here we tell the handler to draw the intro, instructions are included in model
         introHandler.drawIntro(delta);
 
-        //Check for touch, if so we change screen
+
     }
 
     public TextButton getButton(){
@@ -67,5 +68,10 @@ public class IntroView {
 
     public IntroHandler getHandler(){
         return introHandler;
+    }
+
+
+    public void dispose(){
+       introHandler.dispose();
     }
 }

@@ -19,6 +19,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void show() {
+
         try {
             introController = new IntroController();
         } catch (IOException e) {
@@ -34,6 +35,7 @@ public class IntroScreen implements Screen {
 
         final  GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 
         introController.render(delta);
 
@@ -62,7 +64,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void dispose() {
-        // No need for this
+       introController.dispose();
     }
 
 

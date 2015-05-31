@@ -43,6 +43,7 @@ public class IntroController {
             public void clicked(InputEvent event, float x, float y) {
                 introView.getHandler().stopIntroMusic();
                 ScreenEventBus.INSTANCE.publish(new ScreenEvent(ScreenEvent.Tag.SET_SCREEN, ScreenEvent.ScreenTag.START_WORLD));
+                introView.dispose();
             }
         });
 
@@ -59,4 +60,7 @@ public class IntroController {
         introView.resize(width, height);
     }
 
+    public void dispose(){
+        introView.dispose();
+    }
 }
