@@ -83,17 +83,31 @@ public class EntityEye extends EntityEnemy {
         entityBody.setVelocity(vx, vy);
 
     }
-    public void chargePlayer(float delta, float playerx, float playery) {
+        /*
+    * Description: monster will charge the players position when
+    * monster is hypotenuse is less then or equal to 200.
+    * @param monsterx Ghost x axis in the map
+    * @param monstery Ghost y axis in the map
+    * @param playerx Player x axis in the map
+    * @param playery Player y axis in the map
+    * @param distance the hypotenuse between the player and monster
+    * @param vx monsters velocity, depending on dx
+    * @param vy monsters velocity, depending on dy
+    * */
+    public void chargePlayer(float delta, float playerX, float playerY) {
         elapsedTime += delta;
-        final float monsterX = entityBody.getPositionX(), monsterY = entityBody.getPositionY();
-        float dx = playerx - monsterX, dy = playery - monsterY;
-        float distance = (float) Math.sqrt(dx*dx+dy*dy);
+        final float monsterX = entityBody.getPositionX();
+        final float monsterY = entityBody.getPositionY();
 
-        float vx = NPCAI.getVelocity(dx);
-        float vy = NPCAI.getVelocity(dy);
+        final float distance = NPCAI.distance(playerX,playerY,monsterX,monsterY);
+        final float vx = NPCAI.getVelocity(NPCAI.deltaX(playerX,monsterX));
+        final float vy = NPCAI.getVelocity(NPCAI.deltaY(playerY,monsterY));
 
-        if (distance >= 0 && distance <= 200) {
-            entityBody.setVelocity(vx, vy);
+        if (distance >= 0 && distance <= ATTACK_DISTANCE) {
+            if (elapsedTime > 1) {
+                entityBody.setVelocity(vx, vy);
+                elapsedTime = 0;
+            }
         }else {
             if (elapsedTime > 2) {
                 setRandomSpeed();
@@ -102,8 +116,8 @@ public class EntityEye extends EntityEnemy {
         }
     }
 
-    public void update(float delta, float playerx, float playery) {
-        chargePlayer(delta, playerx, playery);
+    public void update(float delta, float playerX, float playerY) {
+        chargePlayer(delta, playerX, playerY);
     }
 
 

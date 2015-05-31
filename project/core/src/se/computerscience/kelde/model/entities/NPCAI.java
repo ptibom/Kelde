@@ -16,4 +16,16 @@ public class NPCAI {
         }
         return 0;
     }
+
+    public static float deltaX(float playerX, float monsterX){
+        return playerX + 32 - monsterX;
+    }
+    public static float deltaY(float playerY, float monsterY ){
+        return playerY + 8 - monsterY;
+    }
+    public static float distance(float playerX, float playerY, float monsterX, float monsterY){
+        float dx = deltaX(playerX,monsterX);
+        float dy = deltaY(playerY,monsterY);
+        return (float) Math.sqrt(dx*dx+dy*dy);
+    }
 }
