@@ -158,7 +158,7 @@ public class GameWorldController implements IGameWorldController,IItemEventHandl
         // Make sure to resize camera to prevent stretching.
         gameWorldView.resize(width, height);
         worldPhysicsController.resizeCamera(width, height);
-        guiOverlayController.resize(width, height);
+
     }
 
 

@@ -25,7 +25,7 @@ public class IntroHandler {
     private static final int FIRST_INTRO_LENGTH = 47000;
     private static final int FIRST_INTRO_TEXT_LENGTH = 45000;
 
-
+    private final SpriteBatch batch;
     private final Music introMusic;
     private final List<List<IntroInstruction>> allInstructions;
     private final AnimationHandler animationHandlerWizard1;
@@ -46,7 +46,7 @@ public class IntroHandler {
     private final DialogueHandler dialogueHandler;
 
     public IntroHandler(Intro introModel, AnimationService animationService) {
-
+        batch = new SpriteBatch();
         //The textures and music is loaded
         introMusic = Gdx.audio.newMusic(new FileHandle(ConstantsPath.getIntroMusic()));
         introBackgroundTexture1 = new Texture(ConstantsPath.getIntroBackgroundPathImage());
@@ -110,9 +110,11 @@ public class IntroHandler {
 
     //Here we draw the intro, we switch background
     //for the two different intros.
-    public void drawIntro(SpriteBatch batch, float delta) {
+    public void drawIntro(float delta) {
         this.delta = delta;
 
+
+        batch.begin();
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
             batch.draw(introBackgroundTexture1, 0, 0,(int)(MAX_WIDTH *scale),(int)(MAX_HEIGHT *scale));
         } else if (introModel.getMenuTime() >= FIRST_INTRO_LENGTH) {
@@ -129,14 +131,17 @@ public class IntroHandler {
 
         drawAnimations(batch);
 
-        // Lastly we draw the first intro's foreground.
+        // Lastly we draw the first intro's foreground. Scale if you want to scale it for some reason
         if (introModel.getMenuTime() < FIRST_INTRO_LENGTH) {
 
             batch.draw(introForegroundTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
         }
 
         batch.draw(introBorderTexture, 0, 0, (int)(MAX_WIDTH *scale), (int)(MAX_HEIGHT *scale));
+        batch.end();
     }
+
+
 
     // We need to choose which function in the animationhandler to activate, we check for keyframe
     public void drawHelper(SpriteBatch batch, AnimationHandler animationHandler, IntroInstruction instruct) {
@@ -198,5 +203,9 @@ public class IntroHandler {
         scale = height / MAX_WIDTH;
     }
 
+
+    public void dispose(){
+        batch.dispose();
+    }
 }
 

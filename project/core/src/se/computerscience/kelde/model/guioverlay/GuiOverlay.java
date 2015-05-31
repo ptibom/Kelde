@@ -10,7 +10,7 @@ public class GuiOverlay {
 
     private static final String HEALTH_BAR = "gui/health_bar.png";
     private static final String BACKGROUND_BAR = "gui/bar_background.png";
-    private static  final String MANA_BAR = "gui/mana_bar.png";
+    private static final String MANA_BAR = "gui/mana_bar.png";
     private static final String MANA_FOREGROUND_BAR = "gui/mana_bar_foreground.png";
     private static final String HEALTH_FOREGROUND_BAR = "gui/health_bar_foreground.png";
     private static final String MENU_RECTANGLE = "gui/menu_rectangle.png";
