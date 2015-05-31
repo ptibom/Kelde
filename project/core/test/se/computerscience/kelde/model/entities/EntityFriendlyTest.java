@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class EntityFriendlyTest {
 
-    EntityFriendly entityFriendly;
+   private  EntityFriendly entityFriendly;
 
     @Before
     public void setUp() throws Exception {

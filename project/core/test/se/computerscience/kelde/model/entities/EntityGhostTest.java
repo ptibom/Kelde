@@ -13,7 +13,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
  */
 public class EntityGhostTest {
 
-    EntityGhost entityGhost;
+    private EntityGhost entityGhost;
 
     @Before
     public void setUp() throws Exception {

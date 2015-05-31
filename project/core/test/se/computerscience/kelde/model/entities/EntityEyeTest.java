@@ -13,7 +13,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
  */
 public class EntityEyeTest {
 
-    EntityEye entityEye;
+    private EntityEye entityEye;
 
     @Before
     public void setUp() throws Exception {

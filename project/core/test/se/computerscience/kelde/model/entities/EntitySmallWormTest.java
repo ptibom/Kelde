@@ -2,7 +2,6 @@ package se.computerscience.kelde.model.entities;
 
 import org.junit.Before;
 import org.junit.Test;
-import se.computerscience.kelde.model.constants.Direction;
 import se.computerscience.kelde.model.constants.Heading;
 import se.computerscience.kelde.model.encapsulation.box2d.B2DWorld;
 
@@ -14,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class EntitySmallWormTest {
 
-    EntitySmallWorm smallWormTest;
+   private  EntitySmallWorm smallWormTest;
 
     @Before
     public void setUp() throws Exception {
@@ -58,9 +57,9 @@ public class EntitySmallWormTest {
 
     @Test
     public void testUpdate() throws Exception {
-        int sum = smallWormTest.getPositionX() + smallWormTest.getPositionY();
+        final int sum = smallWormTest.getPositionX() + smallWormTest.getPositionY();
         smallWormTest.update(0.5f, 20,20);
-        int sum2 = smallWormTest.getPositionX() + smallWormTest.getPositionX();
+        final int sum2 = smallWormTest.getPositionX() + smallWormTest.getPositionX();
         assertEquals(sum, sum2);
     }
 
