@@ -28,28 +28,16 @@ public class AnimationServiceTest {
     @Before
     public void initTest() {
         try {
-            
-            File file = new File("/core/assets/intro/introsprites.txt");
-            File file2 = new File("/core/assets/intro/introtalk.txt");
-            File file3 = new File("/core/assets/intro/animationdemon.intro");
-            File file4 = new File("/core/assets/intro/animationwizardinstr.intro");
-            File file5 = new File("/core/assets/intro/animationwizardinstr.intro");
-            File file6 = new File("/core/assets/intro/animationwizard2instr.intro");
-            File file7 = new File("/core/assets/intro/animationwizarddialogue.intro");
-            File file8 = new File("/core/assets/intro/animationdemondialog.intro");
-            File file9 = new File("/core/assets/intro/animationspellinstr.intro");
-
-            System.out.println(file.getAbsoluteFile());
-            allData.add(Files.readAllLines(Paths.get((file.getAbsolutePath())), charset));
-
-            allData.add(Files.readAllLines(Paths.get(file2.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file3.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file4.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file5.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file6.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file7.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file8.getAbsolutePath()), charset));
-            allData.add(Files.readAllLines(Paths.get(file9.getAbsolutePath()), charset));
+            String basepath = System.getProperty("user.dir");
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introsprites.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/introtalk.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/spell.txt"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemon.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizardinstr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizard2instr.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationwizarddialogue.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationdemondialog.intro"), charset));
+            allData.add(Files.readAllLines(Paths.get(basepath +"/assets/intro/animationspellinstr.intro"), charset));
 
             introModel = new Intro(allData);
         } catch (IOException e) {

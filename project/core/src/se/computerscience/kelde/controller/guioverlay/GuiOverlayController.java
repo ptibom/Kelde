@@ -31,9 +31,7 @@ public class GuiOverlayController {
 
     }
 
-    public void resize(int width, int height){
-        gameGuiView.resize(width, height);
-    }
+
 
     public GuiOverlayView getGuiView(){
         return gameGuiView;

@@ -4,9 +4,10 @@ package se.computerscience.kelde.view.intro;
  */
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Scaling;
 import se.computerscience.kelde.model.intro.AnimationService;
 import se.computerscience.kelde.model.intro.Intro;
 
@@ -18,7 +19,9 @@ public class IntroView {
     private final Stage stage;
     private final IntroButton test;
 
+
     public IntroView(Intro introModel) {
+
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         test = new IntroButton( "",IntroButton.createSkin());
@@ -30,13 +33,19 @@ public class IntroView {
     }
     // Need to resize, incase user resizes screen
     public void resize(int width, int height) {
-        introHandler.setScale(width);
+        final Vector2 size = Scaling.fit.apply(1920, 1080, width, height);
+        final int viewportX = (int)(width - size.x) / 2;
+        final int viewportY = (int)(height - size.y) / 2;
+        final int viewportWidth = (int)size.x;
+        final  int viewportHeight = (int)size.y;
+        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
+        stage.getCamera().viewportHeight = height;
+        stage.getCamera().viewportWidth = width;
     }
 
     public void render(float delta) {
         stage.draw();
         stage.act();
-        final SpriteBatch batch = new SpriteBatch();
 
         //We need to update the state time to get different animation frames.
         introModel.updateStateTime(delta);
@@ -46,7 +55,7 @@ public class IntroView {
 
 
         //Here we tell the handler to draw the intro, instructions are included in model
-        introHandler.drawIntro(batch, delta);
+        introHandler.drawIntro(delta);
 
         //Check for touch, if so we change screen
     }

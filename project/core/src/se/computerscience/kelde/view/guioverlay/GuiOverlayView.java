@@ -4,12 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 
@@ -22,6 +20,7 @@ import se.computerscience.kelde.model.guioverlay.GuiOverlay;
 public class GuiOverlayView {
     static final private int BUTTON_X = 685, BUTTON_TEXT = 540;
     static final private int BUTTON_INVENTORY_TRUE_Y = 370, BUTTON_MAIN_MENU_TRUE_Y = 470;
+    static final private int BUTTON_EXIT_TRUE_X = 600;
    private final GuiOverlay guiOverlayModel;
     private final Texture menuRectangle;
     private final  GuiButton mainMenuButton, exitButton;
@@ -30,7 +29,7 @@ public class GuiOverlayView {
     private final Bar healthBar;
     private final Bar manaBar;
     private final Stage guiStage;
-    private final Table guiTable;
+
     private final Viewport sharedViewport;
 
 
@@ -38,7 +37,7 @@ public class GuiOverlayView {
     public GuiOverlayView(GuiOverlay gameGuiModel,Viewport viewport) {
         sharedViewport = viewport;
         guiStage = new Stage( viewport);
-        guiTable = new Table();
+        final Table guiTable = new Table();
         Gdx.input.setInputProcessor(guiStage);
         // The real coordinates do not coorialate with the buttons, because, you add viewport height
         menuRectangle = new Texture(gameGuiModel.getMenuRectangleImagePath());
@@ -46,10 +45,10 @@ public class GuiOverlayView {
         textButtonName = new TextButton("Kelde", GuiButton.createSkin(gameGuiModel.getTextBoxImagePath()));
 
         // Set out position Y does not correlate to input Y, had to switch check.
-        mainMenuButton = new GuiButton("Main Menu",
-                GuiButton.createSkin(gameGuiModel.getGuiButtonImagePath()),BUTTON_X, BUTTON_INVENTORY_TRUE_Y);
+        mainMenuButton = new GuiButton("Exit",
+                GuiButton.createSkin(gameGuiModel.getGuiButtonImagePath()),BUTTON_EXIT_TRUE_X, BUTTON_INVENTORY_TRUE_Y);
 
-        exitButton = new GuiButton("Exit",
+        exitButton = new GuiButton("Exit2",
                 GuiButton.createSkin(gameGuiModel.getGuiButtonImagePath()),
                 BUTTON_X, BUTTON_MAIN_MENU_TRUE_Y);
 
@@ -62,35 +61,18 @@ public class GuiOverlayView {
         //Setting the position of the textButton
         textButtonName.setPosition(BUTTON_X, BUTTON_TEXT);
 
-
-
         guiTable.add(mainMenuButton);
         guiTable.row();
         guiTable.add(exitButton);
-        guiTable.setPosition(700, 30);
-        mainMenuButton.setPosition(700, 50);
+        guiTable.setPosition(700, 50);
+        mainMenuButton.setPosition(685, 50);
         exitButton.setPosition(700, 120);
         guiTable.setHeight(116);
         guiTable.setWidth(150);
         guiStage.addActor(guiTable);
 
-        System.out.println(mainMenuButton.getX());
-        System.out.println(mainMenuButton.getY());
-        System.out.println(mainMenuButton.getHeight());
-        System.out.println(mainMenuButton.getWidth());
-        System.out.println(exitButton.getX());
-        System.out.println(exitButton.getX());
-        System.out.println(exitButton.getHeight());
-        System.out.println(exitButton.getWidth());
-
-
-
-
     }
 
-    public void resize(int width, int height){
-
-    }
 
     public void draw(SpriteBatch batch) {
         batch.setProjectionMatrix(sharedViewport.getCamera().combined);
@@ -100,7 +82,7 @@ public class GuiOverlayView {
 
         // Things that will happen when you press
         mainMenuButton.draw(batch, 1);
-        exitButton.draw(batch, 1);
+       // exitButton.draw(batch, 1);
         batch.end();
 
         guiStage.getBatch().setProjectionMatrix(sharedViewport.getCamera().combined);
@@ -108,27 +90,11 @@ public class GuiOverlayView {
         batch.begin();
 
         if (exitButton.isTouched()) {
-
-
-
-        }
-
-
-       //   System.out.println(Gdx.input.getY());
-      //  System.out.println(Gdx.input.getX());
-
-
-        System.out.println();
-        if (exitButton.isTouched()) {
-            //   System.out.println("TUU2T");
             Gdx.app.exit();
         }
 
         // Draw the button with full opacity
-        //   mainMenuButton.draw(batch, 1);
-        // exitButton.draw(batch, 1);
         textButtonName.draw(batch, 1);
-
     }
 
     public GuiButton getMainMenuButton(){
