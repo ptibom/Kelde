@@ -9,7 +9,7 @@ import se.computerscience.kelde.model.items.IItem;
 import static org.junit.Assert.*;
 
 /**
- * Created by Daniel on 5/31/2015.
+ * @author: Daniel Olsson
  */
 public class ItemEntityTest {
 
