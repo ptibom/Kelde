@@ -21,9 +21,9 @@ public class EntityGhostController implements IMonsterController {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, float x, float y) {
         entityGhostView.update(delta);
-        entityGhost.update(delta);
+        entityGhost.update(delta, x,y);
     }
 
     public void draw(SpriteBatch batch) {

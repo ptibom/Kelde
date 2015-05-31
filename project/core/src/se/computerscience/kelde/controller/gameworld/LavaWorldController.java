@@ -126,8 +126,8 @@ public class LavaWorldController implements IGameWorldController, IItemEventHand
         for (final IWorldObjectsController worldObj : worldObjectsControllers) {
             worldObj.update(delta);
         }
-        for (final IMonsterController monster : npcControllers) {
-            monster.update(delta);
+        for (final IMonsterController monster: npcControllers){
+            monster.update(delta,0,0);
         }
         for (final ItemEntityController entityControllerlist : itemEntityControllers) {
             entityControllerlist.update(delta);

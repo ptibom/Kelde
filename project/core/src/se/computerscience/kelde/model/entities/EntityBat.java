@@ -60,12 +60,41 @@ public class EntityBat extends EntityEnemy {
         }
     }
 
-    public void update(float delta) {
+        /*
+    * Description: monster will charge the players position when
+    * monster is hypotenuse is less then or equal to 200.
+    * @param monsterx Ghost x axis in the map
+    * @param monstery Ghost y axis in the map
+    * @param playerx Player x axis in the map
+    * @param playery Player y axis in the map
+    * @param distance the hypotenuse between the player and monster
+    * @param vx monsters velocity, depending on dx
+    * @param vy monsters velocity, depending on dy
+    * */
+    public void chargePlayer(float delta, float playerX, float playerY) {
         elapsedTime += delta;
-        if (elapsedTime > 2) {
-            setRandomSpeed();
-            elapsedTime = 0;
+        final float monsterX = entityBody.getPositionX();
+        final float monsterY = entityBody.getPositionY();
+
+        final float distance = NPCAI.distance(playerX,playerY,monsterX,monsterY);
+        final float vx = NPCAI.getVelocity(NPCAI.deltaX(playerX,monsterX));
+        final float vy = NPCAI.getVelocity(NPCAI.deltaY(playerY,monsterY));
+
+        if (distance >= 0 && distance <= ATTACK_DISTANCE) {
+            if (elapsedTime > 1) {
+                entityBody.setVelocity(vx, vy);
+                elapsedTime = 0;
+            }
+        }else {
+            if (elapsedTime > 2) {
+                setRandomSpeed();
+                elapsedTime = 0;
+            }
         }
+    }
+
+    public void update(float delta, float playerX, float playerY) {
+        chargePlayer(delta, playerX, playerY);
     }
 
     private void setRandomSpeed() {

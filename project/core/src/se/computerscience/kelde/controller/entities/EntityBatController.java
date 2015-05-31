@@ -24,9 +24,9 @@ public class EntityBatController implements IMonsterController {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, float x , float y) {
         entityBatView.update(delta);
-        entityBat.update(delta);
+        entityBat.update(delta, x ,y);
     }
 
     public void draw(SpriteBatch batch) {

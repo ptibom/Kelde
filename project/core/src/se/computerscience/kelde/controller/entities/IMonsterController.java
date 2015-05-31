@@ -6,5 +6,5 @@
 package se.computerscience.kelde.controller.entities;
 
 public interface IMonsterController {
-    void update(float delta);
+    void update(float delta,float x, float y);
 }

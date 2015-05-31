@@ -6,6 +6,7 @@ import se.computerscience.kelde.model.encapsulation.box2d.IB2DWorld;
 import se.computerscience.kelde.model.encapsulation.box2d.IPhysicalBody;
 import se.computerscience.kelde.model.encapsulation.box2d.PhysicalBody;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -15,15 +16,15 @@ import java.util.Random;
  */
 public class EntityGhost extends EntityEnemy {
 
+    private static final int DAMAGE = 15;
+    private static final int ATTACK_DISTANCE = 150;
+    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
+    private static final int LOOT = 25;
     //Variables
     private final IPhysicalBody entityBody;
     private final Random random;
-    private static final int DAMAGE = 15;
     private int healt = 100;
-    private static final int ATTACK_DISTANCE = 150;
-    private static final int BODY_WIDTH = 16, BODY_HEIGHT = 16;
     private float elapsedTime;
-    private static final int LOOT = 25;
     private boolean alive = true;
     private Heading direction;
 
@@ -44,12 +45,41 @@ public class EntityGhost extends EntityEnemy {
 
     }
 
-    public void update(float delta) {
+    /*
+    * Description: monster will charge the players position when
+    * monster is hypotenuse is less then or equal to 200.
+    * @param monsterx Ghost x axis in the map
+    * @param monstery Ghost y axis in the map
+    * @param playerx Player x axis in the map
+    * @param playery Player y axis in the map
+    * @param distance the hypotenuse between the player and monster
+    * @param vx monsters velocity, depending on dx
+    * @param vy monsters velocity, depending on dy
+    * */
+    public void chargePlayer(float delta, float playerX, float playerY) {
         elapsedTime += delta;
-        if (elapsedTime > 2) {
-            setRandomSpeed();
-            elapsedTime = 0;
+        final float monsterX = entityBody.getPositionX();
+        final float monsterY = entityBody.getPositionY();
+
+        final float distance = NPCAI.distance(playerX,playerY,monsterX,monsterY);
+        final float vx = NPCAI.getVelocity(NPCAI.deltaX(playerX,monsterX));
+        final float vy = NPCAI.getVelocity(NPCAI.deltaY(playerY,monsterY));
+
+        if (distance >= 0 && distance <= ATTACK_DISTANCE) {
+            if (elapsedTime > 1) {
+                entityBody.setVelocity(vx, vy);
+                elapsedTime = 0;
+            }
+        }else {
+            if (elapsedTime > 2) {
+                setRandomSpeed();
+                elapsedTime = 0;
+            }
         }
+    }
+
+    public void update(float delta, float playerX, float playerY) {
+        chargePlayer(delta, playerX, playerY);
     }
 
 
@@ -75,6 +105,11 @@ public class EntityGhost extends EntityEnemy {
 
     public float getPositionY() {
         return (int) (entityBody.getPositionY() - BODY_WIDTH);
+
+    }
+
+    public int getDamage() {
+        return DAMAGE;
     }
 
     public void setDamage(int damage) {
@@ -82,10 +117,6 @@ public class EntityGhost extends EntityEnemy {
         if (healt <= 0) {
             alive = false;
         }
-    }
-
-    public int getDamage() {
-        return DAMAGE;
     }
 
     public int getHealt() {
