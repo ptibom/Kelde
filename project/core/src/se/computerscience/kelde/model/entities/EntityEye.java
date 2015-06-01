@@ -124,6 +124,9 @@ public class EntityEye extends EntityEnemy {
     }
 
     public void update(float delta, float playerX, float playerY) {
+        if (!isALIVE()){
+            return;
+        }
         chargePlayer(delta, playerX, playerY);
     }
 

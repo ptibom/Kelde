@@ -64,39 +64,20 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
             return;
         }
 
-        if (objectA instanceof KeldeDmgArea){
-            if (objectB instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectB;
-                KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectA;
-                if (keldeDmgArea.isActive() && !npc.isFriendly()){
-                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc , 10));
-                }
-            }
-        }
-
-        if (objectB instanceof KeldeDmgArea){
-            if (objectA instanceof INPCEntity) {
-                INPCEntity npc = (INPCEntity) objectA;
-                KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectB;
-                if (keldeDmgArea.isActive() && !npc.isFriendly()){
-                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc , 10));
-                }
-            }
-        }
-
+        playerDamage(objectA,objectB);
 
         // Check whether player is involved in the collision
 
         if (objectA instanceof EntityPlayerKelde) {
             eventCache.add(new CollisionEvent(state, objectB));
             if (objectB instanceof INPCEntity) {
-                EntityPlayerKelde player = (EntityPlayerKelde) objectA;
+                final EntityPlayerKelde player = (EntityPlayerKelde) objectA;
                 final INPCEntity npc = (INPCEntity) objectB;
                 if (!npc.isFriendly() && state == CollisionEvent.Tag.BEGIN) {
                     ModifyPlayerEventBus.INSTANCE.publish(new ModifyPlayerEvent(ModifyPlayerEvent.Tag.DAMAGE, 10));
                 }
-                if (player.isSlashing()){
-                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc ,player.getStrength()));
+                if (player.isSlashing()) {
+                    ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc, player.getStrength()));
                 }
             }
         } else if (objectB instanceof EntityPlayerKelde) {
@@ -110,7 +91,24 @@ public class WorldContactListener implements ContactListener, ICollisionEventHan
             }
         }
     }
+    public void playerDamage(Object objectA,Object objectB){
+        if (objectA instanceof KeldeDmgArea && objectB instanceof INPCEntity) {
+            final INPCEntity npc = (INPCEntity) objectB;
+            final KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectA;
+            if (keldeDmgArea.isActive() && !npc.isFriendly()) {
+                ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc, 10));
+            }
+        }
 
+        if (objectB instanceof KeldeDmgArea && objectA instanceof INPCEntity) {
+            final INPCEntity npc = (INPCEntity) objectA;
+            final KeldeDmgArea keldeDmgArea = (KeldeDmgArea) objectB;
+            if (keldeDmgArea.isActive() && !npc.isFriendly()) {
+                ModifyNPCEventBus.INSTANCE.publish(new ModifyNPCEvent(ModifyNPCEvent.Tag.DAMAGE, npc, 10));
+            }
+        }
+
+    }
     @Override
     public void onCollisionEvent(CollisionEvent event) {
         if (event.getTag() == CollisionEvent.Tag.SEND_CACHE) {

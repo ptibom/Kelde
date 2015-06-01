@@ -95,6 +95,9 @@ public class EntityBat extends EntityEnemy {
     }
 
     public void update(float delta, float playerX, float playerY) {
+        if (!isAlive()){
+            return;
+        }
         chargePlayer(delta, playerX, playerY);
     }
 

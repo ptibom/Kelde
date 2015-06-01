@@ -79,6 +79,9 @@ public class EntityGhost extends EntityEnemy {
     }
 
     public void update(float delta, float playerX, float playerY) {
+        if (!isAlive()){
+            return;
+        }
         chargePlayer(delta, playerX, playerY);
     }
 
@@ -113,7 +116,6 @@ public class EntityGhost extends EntityEnemy {
     }
 
     public void setDamage(int damage) {
-        System.out.println("healt: " +healt);
         healt -= damage;
         if (healt <= 0) {
             alive = false;

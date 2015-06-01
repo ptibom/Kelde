@@ -36,8 +36,7 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
     public void update(float delta) {
         final float x = entityPlayerKelde.getPositionX() + 32;
         final float y = entityPlayerKelde.getPositionY() + 8;
-        float direction = entityPlayerKelde.getDirection();
-        // north
+        final float direction = entityPlayerKelde.getDirection();
         if ( direction == Direction.NORTH){
             entityPlayerKelde.getKeldeDmgArea().updatePos(x,y+16);
         }else if (direction == Direction.SOUTH){
@@ -47,11 +46,13 @@ public class EntityPlayerKeldeController implements IWorldObjectsController, IMo
         }else if (direction == Direction.EAST){
             entityPlayerKelde.getKeldeDmgArea().updatePos(x+32, y);
         }
+
         if (isSlashing){
             entityPlayerKelde.getKeldeDmgArea().setActive(true);
         }else {
             entityPlayerKelde.getKeldeDmgArea().setActive(false);
         }
+
         entityPlayerKelde.setVelocity(velocityControl.x, velocityControl.y);
         entityPlayerKelde.setIsSlashing(isSlashing);
         entityPlayerKelde.setIsShooting(isShooting);
