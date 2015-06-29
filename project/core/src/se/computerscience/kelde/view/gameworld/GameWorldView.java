@@ -88,7 +88,7 @@ public class GameWorldView {
         batch.end();
 
         // Physics debug renderer, comment out to remove debugger lines.
-        worldPhysicsView.render(delta);
+        //worldPhysicsView.render(delta);
     }
 
     public void addEntityViews(ItemEntity itemEntity) {
