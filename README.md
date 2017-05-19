@@ -8,12 +8,12 @@ Anders Bolin
 Daniel Olsson  
 
 ### Compiling & Running  
-#####With Gradle command line
+##### With Gradle command line
 1. gradle build  
 2. gradle run  
 
 
-#####With IntelliJ IDEA
+##### With IntelliJ IDEA
 1. Import build.gradle as a new project.  
 2. Build all.  
 3. Run project/desktop/src/se/computerscience/kelde/desktop/DesktopLauncher.java  
