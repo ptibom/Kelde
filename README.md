@@ -24,5 +24,5 @@ For PMD, run: gradle pmdMain
 For FindBugs, run: gradle findbugsMain  
 For JUnit, run: gradle test
 
-##GitInspector (updated daily)
+## GitInspector (updated daily)
 http://htmlpreview.github.io/?https://github.com/ptibom/Kelde/blob/master/Documents/gitinspector.html
